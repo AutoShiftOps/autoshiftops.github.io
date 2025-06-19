@@ -1,0 +1,8 @@
+site_name: AutoShiftOps
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: deep orange
+nav:
+  - Home: index.md
