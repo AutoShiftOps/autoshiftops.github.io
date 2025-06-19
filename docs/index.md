@@ -1,7 +1,6 @@
-# Welcome to AutoShiftOps 🚀
+# AutoShiftOps 🚀
+_DevOps Automation | CI/CD Intelligence | Infrastructure Monitoring_
 
-Empowering teams to automate, deploy, and scale with confidence.
+Empowering teams to **automate, deploy, and scale** faster—with actionable insights and intelligent pipelines.
 
-> DevOps automation tools, best practices, and infrastructure intelligence.
-
-Stay tuned — something powerful is on the way.
+[📬 Join the waitlist](contact.md)   [📄 Learn more](about.md)

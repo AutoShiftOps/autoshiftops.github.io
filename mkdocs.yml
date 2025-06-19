@@ -1,8 +1,22 @@
 site_name: AutoShiftOps
+site_url: https://autoshiftops.github.io/
 theme:
   name: material
   palette:
-    primary: blue
+    primary: blue grey
     accent: deep orange
+  font:
+    text: Roboto
+    code: Fira Code
 nav:
   - Home: index.md
+  - About: about.md
+  - Roadmap: roadmap.md
+  - Contact: contact.md
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/AutoShiftOps
+  generator: false
+  description: AutoShiftOps – A smarter way to do DevOps.
+  keywords: DevOps, CI/CD, automation, infrastructure, monitoring
