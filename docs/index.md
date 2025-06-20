@@ -41,21 +41,9 @@ Simplify ops with plug-and-play automation modules: Kubernetes scaling, log ship
 
 We're onboarding a limited number of teams to co-design features and shape the roadmap.
 
-<!-- modify this form HTML and place wherever you want your form -->
-<form
-  action="https://formspree.io/f/xblyadjz"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
+<form action="https://formspree.io/f/xblyadjz" method="POST">
+  <input type="email" name="email" placeholder="Your work email" required>
+  <button type="submit">Join the Waitlist</button>
 </form>
 
 ---
