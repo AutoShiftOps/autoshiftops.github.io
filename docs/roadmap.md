@@ -1,10 +1,19 @@
 # Roadmap
 
-## Q3 2025
-- Launch MVP with monitoring dashboard
-- GitHub and Slack integrations
-- CLI toolkit
+We’re building AutoShiftOps **in the open**, with early adopters shaping the features.
 
-## Q4 2025
-- AI-powered insights engine
-- Multi-cloud deployment support
+## ✅ Q2 2025 (Now)
+- Smart GitHub CI/CD connector
+- Customizable notification rules
+- Real-time infrastructure dashboard (beta)
+- Early Access Waitlist launch
+
+## 🛠 Q3 2025
+- Auto-remediation playbooks
+- Kubernetes resource optimizer
+- Slack & Discord alerting integration
+
+## 🧠 Future (Late 2025+)
+- AI-based anomaly detection
+- Auto RCA + root-cause suggestions
+- Team metrics & burn insights
