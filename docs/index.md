@@ -43,6 +43,7 @@ We're onboarding a limited number of teams to co-design features and shape the r
 
 <form action="https://formspree.io/f/xblyadjz" method="POST">
   <input type="email" name="email" placeholder="Your work email" required>
+  <textarea name="message" required></textarea>
   <button type="submit">Join the Waitlist</button>
 </form>
 
