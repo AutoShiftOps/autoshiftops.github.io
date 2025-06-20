@@ -49,3 +49,4 @@ We're onboarding a limited number of teams to co-design features and shape the r
 ---
 
 🧠 Want a guided demo or have feedback? [Contact us](contact.md)
+<button id="scrollTopBtn" onclick="scrollToTop()" style="display:none;position:fixed;bottom:20px;right:20px;z-index:999;border:none;background:#3f51b5;color:#fff;padding:10px 15px;border-radius:50%;box-shadow:0 5px 10px rgba(0,0,0,0.3);cursor:pointer;">⬆️</button>

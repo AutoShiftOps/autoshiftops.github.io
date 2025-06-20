@@ -20,3 +20,33 @@ extra:
   generator: false
   description: AutoShiftOps – A smarter way to do DevOps.
   keywords: DevOps, CI/CD, automation, infrastructure, monitoring
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: blue
+      accent: purple
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    - toc.integrate
+    - content.code.copy
+    - content.tabs.link
+    - content.action.edit
+    - content.tooltips
+    - content.footnotes
+    - search.suggest
+    - search.highlight
+
+extra_css:
+  - stylesheets/custom.css
+
+extra_javascript:
+  - javascripts/scroll-top.js
+extra:
+  logo: img/logo.png
+  favicon: img/favicon.ico
