@@ -21,6 +21,15 @@ form input[type="email"] {
   margin-right: 0.5rem;
 }
 
+form textarea[name="message"] {
+  padding: 0.5rem;
+  width: 360px;
+  height: 360px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-right: 0.5rem;
+}
+
 form button {
   padding: 0.5rem 1rem;
   border: none;
