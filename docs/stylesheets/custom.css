@@ -21,7 +21,7 @@ form input[type="email"] {
   margin-right: 0.5rem;
 }
 
-form textarea[name="message"] {
+form textarea {
   padding: 0.5rem;
   width: 360px;
   height: 360px;
