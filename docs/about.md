@@ -8,8 +8,6 @@ We're a team of experienced DevOps engineers, SREs, and builders passionate abou
 Empower every tech team — from startup to enterprise — with smart automation and actionable insights that scale.
 
 ### 👥 Meet the Core Team
-- **Founder & DevOps Lead** – [Your Name]
-- **AI Integration Advisor** – [Optional]
-- **Infra Monitoring Champion** – [Optional]
+- **Founder & DevOps Lead** – Sajja Sudhakararao
 
 🚀 Backed by years of hands-on experience in cloud-native architecture, observability, and automation tooling.
