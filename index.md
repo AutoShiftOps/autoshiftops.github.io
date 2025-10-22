@@ -1,10 +1,4 @@
 ---
-layout: default
-title: Home
+layout: home
+title: AutoShiftOps
 ---
-
-# Welcome to Tech with Sajja’s
-
-Simplifying DevOps, Cloud, and Automation.
-
-<!-- {% include newsletter.html %} -->

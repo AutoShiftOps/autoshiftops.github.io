@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-{% include head.html %}
-{% include analytics.html %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | AutoShiftOps</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
-<body style="background:#0d1117;color:#c9d1d9;font-family:Inter,sans-serif;">
-<header><h1><a href='/' style='color:#58a6ff;'>Tech with Sajja’s</a></h1></header>
-<main>{{ content }}</main>
-{% include footer.html %}
+<body>
+  {% include navbar.html %}
+  <main>{{ content }}</main>
+  {% include footer.html %}
 </body>
 </html>
