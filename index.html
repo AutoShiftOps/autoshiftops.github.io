@@ -1,27 +1,4 @@
 ---
 layout: home
-title: Home
+title: Welcome to AutoShiftOps
 ---
-
-<section class="hero">
-  <h2>Welcome to AutoShiftOps</h2>
-  <p>Your one-stop DevOps, Cloud, and AI learning portal — learn, automate, and scale smarter every week.</p>
-
-  <div class="buttons">
-    <a href="/blog/" class="btn">Read Blog</a>
-    <a href="/tools/" class="btn outline">Explore Tools</a>
-  </div>
-</section>
-
-<section class="posts">
-  <h3>Latest Articles</h3>
-  <div class="post-grid">
-    {% for post in site.posts limit:6 %}
-      <div class="post-card">
-        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
-        <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-        <span class="tag">{{ post.category }}</span>
-      </div>
-    {% endfor %}
-  </div>
-</section>

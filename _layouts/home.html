@@ -2,20 +2,6 @@
 layout: default
 ---
 
-<!-- <section class="hero">
-  <h1>Welcome to AutoShiftOps</h1>
-  <p>Your daily DevOps, Cloud & AI insights by <strong>Sajja</strong></p>
-</section> -->
-
-<!-- <section class="hero">
-  <h1>Automate. Analyze. Accelerate.</h1>
-  <p>Sharing DevOps automation journeys. Your daily DevOps, Cloud & AI insights by <strong>Sajja</strong></p>
-  <div class="buttons">
-    <a class="btn" href="{{ '/blog/' | relative_url }}">Read the Blog</a>
-    <a class="btn outline" href="{{ '/newsletter/' | relative_url }}">Join Newsletter</a>
-  </div>
-</section> -->
-
 <section class="hero-slider">
   <div class="slide active" style="background-image: url('{{ "/assets/images/slide1.jpg" | relative_url }}');">
     <div class="overlay"></div>
@@ -100,6 +86,7 @@ layout: default
 </script>
 
 <section class="post-list container">
+  <h3>Latest Articles</h3>
   {% for post in site.posts %}
     <article class="post-card">
       <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>

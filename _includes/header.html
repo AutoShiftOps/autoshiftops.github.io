@@ -1,10 +1,17 @@
 <header class="site-header">
   <div class="container">
-    <div class="logo">
+    <!-- <div class="logo">
       <a href="{{ '/' | relative_url }}">AutoShiftOps</a>
+    </div> -->
+    <div class="logo">
+      <a href="{{ '/' | relative_url }}">
+        <img src="{{ '/assets/images/logo.png' | relative_url }}"
+            srcset="{{ '/assets/images/logo@2x.png' | relative_url }} 2x"
+            alt="AutoshiftOps" class="site-logo">
+      </a>
     </div>
     <nav class="site-nav">
-      <a href="{{ '/' | relative_url }}">Blog</a>
+      <a href="{{ '/blog' | relative_url }}">Blog</a>
       <a href="{{ '/tools' | relative_url }}">Tools</a>
       <a href="{{ '/newsletter' | relative_url }}">Newsletter</a>
     </nav>
