@@ -45,15 +45,15 @@
   <h1>Getting Started with GitHub Automation</h1>
   <p class="post-meta">Published on October 20, 2025</p>
   <div class="post-content">
-    <p>🚀 Getting Started with GitHub Automation: Supercharge Your Workflow</p>
+    <h1 id="-getting-started-with-github-automation-supercharge-your-workflow">🚀 Getting Started with GitHub Automation: Supercharge Your Workflow</h1>
 
-<p>In today’s fast-paced tech world, efficiency is everything. Whether you’re a developer, DevOps engineer, or tech enthusiast, automating repetitive tasks is a game-changer. Enter GitHub Automation—your key to smarter workflows, faster deployments, and less manual grunt work.</p>
+<p>In today’s fast-paced tech world, efficiency is everything. Whether you’re a developer, DevOps engineer, or tech enthusiast, automating repetitive tasks is a game-changer. Enter <b>GitHub Automation</b>—your key to smarter workflows, faster deployments, and less manual grunt work.</p>
 
 <p>In this post, we’ll explore what GitHub Automation is, why it matters, and how you can get started—even if you’re new to the ecosystem.</p>
 
-<p>🔹 What is GitHub Automation?</p>
+<h2 id="-what-is-github-automation">🔹 What is GitHub Automation?</h2>
 
-<p>GitHub Automation refers to the use of GitHub Actions, bots, and scripts to perform routine tasks automatically. Think of it as giving your repository superpowers. Tasks like:</p>
+<p>GitHub Automation refers to the use of <b>GitHub Actions, bots, and scripts</b> to perform routine tasks automatically. Think of it as giving your repository superpowers. Tasks like:</p>
 
 <p>Running tests every time you push code</p>
 
@@ -67,53 +67,78 @@
 
 <p>It’s like having a personal assistant for your code!</p>
 
-<p>🔹 Why You Should Care</p>
+<h2 id="-why-you-should-care">🔹 Why You Should Care</h2>
 
 <p>Here’s why automation isn’t just a “nice-to-have,” but a must in 2025:</p>
 
-<p>Time Saver – Stop repeating manual tasks. Spend your brainpower on creative and critical work.</p>
+<ol>
+  <li>
+    <p><b>Time Saver</b> – Stop repeating manual tasks. Spend your brainpower on creative and critical work.</p>
+  </li>
+  <li>
+    <p><b>Error Reduction</b> – Machines don’t forget steps. Your tests, deployments, and merges become more reliable.</p>
+  </li>
+  <li>
+    <p><b>Consistency</b> – Automation ensures your workflow is standard across all projects and team members.</p>
+  </li>
+  <li>
+    <p><b>Scalability</b> – Your project grows, your automation grows with it. No additional overhead.</p>
+  </li>
+</ol>
 
-<p>Error Reduction – Machines don’t forget steps. Your tests, deployments, and merges become more reliable.</p>
-
-<p>Consistency – Automation ensures your workflow is standard across all projects and team members.</p>
-
-<p>Scalability – Your project grows, your automation grows with it. No additional overhead.</p>
-
-<p>🔹 Meet GitHub Actions</p>
+<h2 id="-meet-github-actions">🔹 Meet GitHub Actions</h2>
 
 <p>At the heart of GitHub Automation is GitHub Actions. It allows you to define “workflows” triggered by specific events in your repository.</p>
 
-<p>Event Triggers – Push, pull request, issue creation, scheduled cron jobs, and more.</p>
-
-<p>Jobs &amp; Steps – Each workflow consists of jobs (parallel tasks) and steps (individual commands).</p>
-
-<p>Marketplace – Pre-built actions for everything: code linting, deployments, notifications, security checks, and even AI-assisted tasks!</p>
+<ul>
+  <li>
+    <p><b>Event Triggers</b> – Push, pull request, issue creation, scheduled cron jobs, and more.</p>
+  </li>
+  <li>
+    <p><b>Jobs &amp; Steps</b> – Each workflow consists of jobs (parallel tasks) and steps (individual commands).</p>
+  </li>
+  <li>
+    <p><b>Marketplace</b> – Pre-built actions for everything: code linting, deployments, notifications, security checks, and even AI-assisted tasks!</p>
+  </li>
+</ul>
 
 <p>Example: Automatically run tests on every push to the main branch and deploy to your staging server.</p>
 
-<p>🔹 Getting Started: Step-by-Step</p>
+<h2 id="-getting-started-step-by-step">🔹 Getting Started: Step-by-Step</h2>
 
 <p>Here’s a simple roadmap to kickstart your GitHub Automation journey:</p>
 
-<p>1️⃣ Identify Repetitive Tasks</p>
+<h3 id="1️⃣-identify-repetitive-tasks">1️⃣ Identify Repetitive Tasks</h3>
 
 <p>Look for tasks that are routine and error-prone:</p>
 
-<p>Testing code</p>
+<ul>
+  <li>
+    <p>Testing code</p>
+  </li>
+  <li>
+    <p>Generating documentation</p>
+  </li>
+  <li>
+    <p>Deploying builds</p>
+  </li>
+  <li>
+    <p>Code formatting</p>
+  </li>
+</ul>
 
-<p>Generating documentation</p>
+<h3 id="2️⃣-create-your-first-workflow">2️⃣ Create Your First Workflow</h3>
 
-<p>Deploying builds</p>
+<ol>
+  <li>
+    <p>Navigate to your repo → Actions tab → New workflow.</p>
+  </li>
+  <li>
+    <p>Start with a template or from scratch. For example:</p>
+  </li>
+</ol>
 
-<p>Code formatting</p>
-
-<p>2️⃣ Create Your First Workflow</p>
-
-<p>Navigate to your repo → Actions tab → New workflow.</p>
-
-<p>Start with a template or from scratch. For example:</p>
-
-<p>name: CI Workflow
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>name: CI Workflow
 on: [push]
 jobs:
   build:
@@ -121,11 +146,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run Tests
-        run: npm test</p>
+        run: npm test
+</code></pre></div></div>
 
-<p>Save → Commit → Watch it run automatically on your next push.</p>
+<ol>
+  <li>Save → Commit → Watch it run automatically on your next push.</li>
+</ol>
 
-<p>3️⃣ Explore Pre-built Actions</p>
+<h3 id="3️⃣-explore-pre-built-actions">3️⃣ Explore Pre-built Actions</h3>
 
 <p>GitHub Marketplace has thousands of ready-made actions:</p>
 
@@ -135,29 +163,36 @@ jobs:
 
 <p>Notifications (Slack, Discord, Email)</p>
 
-<p>4️⃣ Iterate &amp; Improve</p>
+<h3 id="4️⃣-iterate--improve">4️⃣ Iterate &amp; Improve</h3>
 
 <p>Automation is a journey. Monitor workflow logs, optimize steps, and gradually automate more processes.</p>
 
-<p>🔹 Pro Tips for Maximum Impact</p>
+<h2 id="-pro-tips-for-maximum-impact">🔹 Pro Tips for Maximum Impact</h2>
 
-<p>Start Small: Automate one task at a time; avoid overwhelming your workflow.</p>
+<ul>
+  <li>
+    <p><b>Start Small:</b> Automate one task at a time; avoid overwhelming your workflow.</p>
+  </li>
+  <li>
+    <p><b>Use Secrets:</b> Store credentials securely with GitHub Secrets.</p>
+  </li>
+  <li>
+    <p><b>Version Control Your Workflows:</b> Keep your .github/workflows folder under version control.</p>
+  </li>
+  <li>
+    <p><b>Monitor &amp; Alert:</b> Use notifications to catch workflow failures instantly.</p>
+  </li>
+</ul>
 
-<p>Use Secrets: Store credentials securely with GitHub Secrets.</p>
-
-<p>Version Control Your Workflows: Keep your .github/workflows folder under version control.</p>
-
-<p>Monitor &amp; Alert: Use notifications to catch workflow failures instantly.</p>
-
-<p>🔹 Final Thoughts</p>
+<h2 id="-final-thoughts">🔹 Final Thoughts</h2>
 
 <p>GitHub Automation is no longer optional—it’s essential. It turns your code repository into a smart, self-operating engine that saves time, reduces errors, and empowers creativity.</p>
 
 <p>Whether you’re a solo developer or leading a large team, automation lets you focus on innovation, not repetition.</p>
 
-<p>💡 Pro Tip: Start experimenting today with GitHub Actions, and in a month, you’ll wonder how you ever managed without it!</p>
+<p>💡 <b>Pro Tip:</b> Start experimenting today with GitHub Actions, and in a month, you’ll wonder how you ever managed without it!</p>
 
-<p>⚡ Call to Action</p>
+<h2 id="-call-to-action">⚡ Call to Action</h2>
 
 <p>If you found this helpful, share this post with your network, and start automating one workflow today!</p>
 
