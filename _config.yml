@@ -1,0 +1,8 @@
+title: "Tech with Sajja’s"
+description: "DevOps, Cloud, Automation, and Career Growth"
+baseurl: ""
+url: "https://autoshiftops.com"
+theme: minima
+plugins:
+  - jekyll-seo-tag
+  - jekyll-feed

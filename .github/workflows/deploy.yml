@@ -1,16 +1,22 @@
-name: Deploy MkDocs
-
+name: Deploy Jekyll Site
 on:
   push:
-    branches: [ main ]
-
+    branches:
+      - main
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          python-version: '3.x'
-      - run: pip install mkdocs-material
-      - run: mkdocs gh-deploy --force
+          ruby-version: '3.1'
+      - run: gem install bundler jekyll
+      - run: bundle install || true
+      - run: jekyll build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
