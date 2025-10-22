@@ -1,0 +1,36 @@
+---
+layout: default
+title: Home
+---
+
+<section class="hero">
+  <h2>Welcome to AutoShiftOps</h2>
+  <p>Your one-stop DevOps, Cloud, and AI learning portal — learn, automate, and scale smarter every week.</p>
+
+  <div class="buttons">
+    <a href="/blog/" class="btn">Read Blog</a>
+    <a href="/tools/" class="btn outline">Explore Tools</a>
+  </div>
+</section>
+
+<section class="posts">
+  <h3>Latest Articles</h3>
+  <div class="post-grid">
+    {% for post in site.posts limit:6 %}
+      <div class="post-card">
+        <h4><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h4>
+        <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        <span class="tag">{{ post.category }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section> -->
