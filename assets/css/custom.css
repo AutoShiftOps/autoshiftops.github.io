@@ -157,6 +157,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 70px;               /* fixed container height you want to keep */
+  overflow: visible;          /* allow logo to overflow if scaled */
 }
 
 .logo a {
@@ -165,6 +167,9 @@ body {
   color: #ffffff;
   text-decoration: none;
   letter-spacing: 0.5px;
+  display: inline-block;
+  height: 48px;
+  line-height: 1;
 }
 
 .site-nav {
@@ -511,4 +516,59 @@ body {
   .hero-slider .dots {
     bottom: 15px;
   }
+}
+
+/* Minimal: keep only the Latest Articles <h3> behavior; do not change card colors/layout */
+.post-list > h3,
+.post-list.container > h3 {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 0 1rem !important;
+  font-size: 1.6rem;
+  line-height: 0.2;
+  text-align: left;
+  font-weight: 500;
+  color: var(--heading-color, inherit); /* preserves theme color if available */
+  /* span across grid parents or flex rows without altering layout */
+  grid-column: 1 / -1 !important;
+  flex-basis: 100% !important;
+  order: -1 !important;
+  background: transparent !important;
+}
+
+/* Logo: rounded corners with subtle shadow to blend into page */
+.site-header .site-logo {
+  display: block;
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 8px;               /* rounded corners */
+  background: transparent;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06); /* soft edge for blending */
+}
+
+/* keep header height/layout, scale logo visually (doesn't affect document flow) */
+.site-header .container {
+  height: 70px;               /* fixed container height you want to keep */
+  align-items: center;
+  overflow: visible;          /* allow logo to overflow if scaled */
+}
+
+/* keep a small intrinsic size so layout remains stable, then scale */
+.logo a { display: inline-block; height: 48px; line-height: 1; }
+.site-logo {
+  max-height: 48px;
+  width: auto;
+  display: block;
+  transform-origin: left center;
+  /* add a small downward offset before scaling to create top gap */
+  transform: translateY(4px) scale(1.6);
+  will-change: transform;
+  margin-top: 0;
+}
+/* responsive: reduce offset/scale on small screens */
+@media (max-width: 480px) {
+  .site-header .container { height: 5px; }
+  .logo a { height: 34px; }
+  .site-logo { max-height: 34px; transform: translateY(2px) scale(1.15); }
 }
