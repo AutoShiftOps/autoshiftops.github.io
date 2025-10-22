@@ -1,0 +1,55 @@
+# Jekyll / build artifacts
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Bundler / Ruby
+.bundle
+vendor/bundle/
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# MkDocs / Python build output (if present)
+site/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+._*
+
+# IDEs / editors
+.vscode/
+.idea/
+*.swp
+*~
+*.tmp
+
+# Logs / temp
+*.log
+tmp/
+temp/
+
+# Env / secrets
+.env
+.env.*
+
+# Python venvs
+venv/
+.venv/
+
+# Test coverage
+coverage/
+.pytest_cache/
+
+# Visual Studio / Windows artifacts
+*.suo
+*.user
+*.userosscache
+*.sln

@@ -7,4 +7,4 @@ title: Home
 
 Simplifying DevOps, Cloud, and Automation.
 
-{% include newsletter.html %}
+<!-- {% include newsletter.html %} -->
