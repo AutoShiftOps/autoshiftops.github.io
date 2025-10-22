@@ -124,3 +124,5 @@ Also, comment below:
 “What’s the first task you’ll automate in your GitHub repo?”
 
 Let’s build smarter, faster, and more fun workflows together! 🚀
+
+![Github Automation](../assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png)
