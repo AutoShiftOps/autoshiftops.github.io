@@ -9,7 +9,7 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 ---
 
 ## 🛠️ Key Tools & Roles
-
+```
 | Tool             | Purpose               | What I Use It For               |
 |------------------|----------------------|---------------------------------|
 | GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
@@ -18,7 +18,7 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 | ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
 | Prometheus       | Metrics              | Alerting, monitoring            |
 | Grafana          | Visualization        | Dashboards, analysis            |
-
+```
 ---
 
 ## Why Automation Matters Now More Than Ever
@@ -28,8 +28,7 @@ Software delivery has changed. No longer is it enough to simply write great code
 ---
 
 ## The Pipeline: A Visual Journey
-
-![DevOps Pipeline Infographic](/assets/images/posts/2025-10-21-devops-automation-tools-1.png)
+![DevOps Pipeline Infographic|250x190](/assets/images/posts/2025-10-21-devops-automation-tools-1.png)
 
 Above, you’ll find the heart of every successful engineering org in 2025—a DevOps pipeline that transforms how code becomes customer value. The arrows show how each automation handoff (testing, provisioning, configuring, deploying, monitoring) makes life easier for developers and ops teams alike.
 

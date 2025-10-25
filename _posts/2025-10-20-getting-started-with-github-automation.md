@@ -125,4 +125,4 @@ Also, comment below:
 
 Let’s build smarter, faster, and more fun workflows together! 🚀
 
-![Github Automation](/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png)
+<!-- ![Github Automation](/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png) -->
