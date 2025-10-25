@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'DevOps Automation Breakthroughs (2025)'
+title: '🚀 DevOps Automation Breakthroughs (2025)'
 ---
 ## How Modern Tools Turn Chaos Into Confidence
 
@@ -9,8 +9,7 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 ---
 
 ## 🛠️ Key Tools & Roles
-```
-| Tool             | Purpose               | What I Use It For               |
+| Tool             | Purpose              | What I Use It For               |
 |------------------|----------------------|---------------------------------|
 | GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
 | Terraform        | IaC                  | Cloud provisioning              |
@@ -18,7 +17,6 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 | ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
 | Prometheus       | Metrics              | Alerting, monitoring            |
 | Grafana          | Visualization        | Dashboards, analysis            |
-```
 ---
 
 ## Why Automation Matters Now More Than Ever

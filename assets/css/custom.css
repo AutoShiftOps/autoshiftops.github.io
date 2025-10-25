@@ -572,3 +572,210 @@ body {
   .logo a { height: 34px; }
   .site-logo { max-height: 34px; transform: translateY(2px) scale(1.15); }
 }
+
+/* === Code & Syntax Highlighting === */
+pre,
+code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  background: rgba(17, 24, 39, 0.85);
+  border-radius: 6px;
+  color: #e5e7eb;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.6;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.2rem 0;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+}
+
+/* Inline code (like `this`) */
+p code, li code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #93c5fd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+/* === Syntax Colors === */
+.highlight .c { color: #9ca3af; font-style: italic; } /* Comment */
+.highlight .k { color: #60a5fa; } /* Keyword */
+.highlight .o { color: #f472b6; } /* Operator */
+.highlight .cm { color: #9ca3af; font-style: italic; } /* Comment.Multiline */
+.highlight .cp { color: #93c5fd; } /* Preprocessor */
+.highlight .cs { color: #a78bfa; font-style: italic; } /* Comment.Special */
+.highlight .gd { color: #f87171; } /* Deleted */
+.highlight .ge { font-style: italic; } /* Emphasis */
+.highlight .gh { color: #60a5fa; font-weight: bold; } /* Heading */
+.highlight .gi { color: #4ade80; } /* Inserted */
+.highlight .kc, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr { color: #60a5fa; }
+.highlight .kt { color: #facc15; } /* Type */
+.highlight .m { color: #fbbf24; } /* Number */
+.highlight .s { color: #34d399; } /* String */
+.highlight .na { color: #fcd34d; } /* Name.Attribute */
+.highlight .nb { color: #60a5fa; } /* Builtin */
+.highlight .nc { color: #a78bfa; } /* Class */
+.highlight .no { color: #f87171; } /* Constant */
+.highlight .nd { color: #93c5fd; } /* Decorator */
+.highlight .nf { color: #93c5fd; } /* Function */
+.highlight .nn { color: #a78bfa; } /* Namespace */
+.highlight .nt { color: #f472b6; } /* Tag */
+.highlight .nv { color: #fbbf24; } /* Variable */
+.highlight .w { color: #9ca3af; } /* Whitespace */
+
+/* Scrollbar inside code blocks */
+pre::-webkit-scrollbar {
+  height: 8px;
+}
+pre::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* === Blockquotes & Callouts === */
+
+/* General blockquote style */
+blockquote {
+  border-left: 4px solid #60a5fa;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #d1d5db;
+  border-radius: 8px;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* === Custom callouts === */
+.callout {
+  border-left: 4px solid;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  line-height: 1.6;
+}
+
+.callout strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+
+/* Info (Blue) */
+.callout.info {
+  border-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.08);
+}
+.callout.info strong {
+  color: #60a5fa;
+}
+
+/* Note (Green) */
+.callout.note {
+  border-color: #34d399;
+  background: rgba(52, 211, 153, 0.08);
+}
+.callout.note strong {
+  color: #34d399;
+}
+
+/* Warning (Yellow) */
+.callout.warning {
+  border-color: #facc15;
+  background: rgba(250, 204, 21, 0.08);
+}
+.callout.warning strong {
+  color: #facc15;
+}
+
+/* Danger (Red) */
+.callout.danger {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
+.callout.danger strong {
+  color: #f87171;
+}
+
+/* === Elegant Blog Image Styling === */
+.post-content img {
+  display: block;
+  max-width: 800px;
+  width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-content img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* === Caption Styling === */
+.post-content figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.5rem auto;
+}
+
+.post-content figcaption {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* === Lightbox Overlay === */
+.lightbox {
+  position: fixed;
+  z-index: 9999;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.05);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.lightbox.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* === Lightbox Image Animation === */
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lightbox.visible img {
+  opacity: 1;
+  transform: scale(1);
+  cursor: zoom-out;
+}
