@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-25T02:49:16+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">Earning with Affiliate Tools</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="Earning with Affiliate Tools" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<p>Earning with Affiliate Tools: Turn Your Recommendations into Revenue</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-25T21:53:06+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">Earning with Affiliate Tools</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="Earning with Affiliate Tools" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<p>Earning with Affiliate Tools: Turn Your Recommendations into Revenue</p>
 
 <p>In the digital era, making money online has gone beyond just creating content or selling products. One of the most effective ways to earn passive income today is through affiliate marketing. But here’s the twist: instead of promoting random products, leveraging the right affiliate tools can significantly boost your income and simplify your journey.</p>
 
@@ -81,49 +81,15 @@
 <hr />
 
 <h2 id="️-key-tools--roles">🛠️ Key Tools &amp; Roles</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Tool</th>
-      <th>Purpose</th>
-      <th>What I Use It For</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>GitHub Actions</td>
-      <td>CI/CD, Automation</td>
-      <td>Test, build, deploy</td>
-    </tr>
-    <tr>
-      <td>Terraform</td>
-      <td>IaC</td>
-      <td>Cloud provisioning</td>
-    </tr>
-    <tr>
-      <td>Ansible</td>
-      <td>Config Management</td>
-      <td>Server setup/config</td>
-    </tr>
-    <tr>
-      <td>ArgoCD</td>
-      <td>GitOps Deployments</td>
-      <td>K8s sync, rollbacks</td>
-    </tr>
-    <tr>
-      <td>Prometheus</td>
-      <td>Metrics</td>
-      <td>Alerting, monitoring</td>
-    </tr>
-    <tr>
-      <td>Grafana</td>
-      <td>Visualization</td>
-      <td>Dashboards, analysis</td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Tool             | Purpose               | What I Use It For               |
+|------------------|----------------------|---------------------------------|
+| GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
+| Terraform        | IaC                  | Cloud provisioning              |
+| Ansible          | Config Management    | Server setup/config             |
+| ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
+| Prometheus       | Metrics              | Alerting, monitoring            |
+| Grafana          | Visualization        | Dashboards, analysis            |
+</code></pre></div></div>
 <hr />
 
 <h2 id="why-automation-matters-now-more-than-ever">Why Automation Matters Now More Than Ever</h2>
@@ -133,8 +99,7 @@
 <hr />
 
 <h2 id="the-pipeline-a-visual-journey">The Pipeline: A Visual Journey</h2>
-
-<p><img src="/assets/images/posts/2025-10-21-devops-automation-tools-1.png" alt="DevOps Pipeline Infographic" /></p>
+<p><img src="/assets/images/posts/2025-10-21-devops-automation-tools-1.png" alt="DevOps Pipeline Infographic|250x190" /></p>
 
 <p>Above, you’ll find the heart of every successful engineering org in 2025—a DevOps pipeline that transforms how code becomes customer value. The arrows show how each automation handoff (testing, provisioning, configuring, deploying, monitoring) makes life easier for developers and ops teams alike.</p>
 
@@ -446,4 +411,4 @@ jobs:
 
 <p>Let’s build smarter, faster, and more fun workflows together! 🚀</p>
 
-<p><img src="/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png" alt="Github Automation" /></p>]]></content><author><name></name></author><summary type="html"><![CDATA[🚀 Getting Started with GitHub Automation: Supercharge Your Workflow]]></summary></entry></feed>
+<!-- ![Github Automation](/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png) -->]]></content><author><name></name></author><summary type="html"><![CDATA[🚀 Getting Started with GitHub Automation: Supercharge Your Workflow]]></summary></entry></feed>
