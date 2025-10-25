@@ -10,7 +10,7 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 
 ## 🛠️ Key Tools & Roles
 | Tool             | Purpose              | What I Use It For               |
-|------------------|----------------------|---------------------------------|
+|---|---|---|
 | GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
 | Terraform        | IaC                  | Cloud provisioning              |
 | Ansible          | Config Management    | Server setup/config             |
