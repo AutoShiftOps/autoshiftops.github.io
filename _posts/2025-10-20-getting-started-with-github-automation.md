@@ -12,13 +12,13 @@ In this post, we’ll explore what GitHub Automation is, why it matters, and how
 
 GitHub Automation refers to the use of <b>GitHub Actions, bots, and scripts</b> to perform routine tasks automatically. Think of it as giving your repository superpowers. Tasks like:
 
-Running tests every time you push code
+- Running tests every time you push code
 
-Automatically deploying your app
+- Automatically deploying your app
 
-Sending notifications for pull requests or issues
+- Sending notifications for pull requests or issues
 
-Merging branches under certain conditions
+- Merging branches under certain conditions
 
 …can all happen without you lifting a finger.
 
