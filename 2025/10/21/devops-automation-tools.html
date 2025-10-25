@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DevOps Automation Breakthroughs (2025)</title>
+  <title>🚀 DevOps Automation Breakthroughs (2025)</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
   
@@ -42,7 +42,7 @@
 
   <main class="site-main">
     <article class="post container">
-  <h1>DevOps Automation Breakthroughs (2025)</h1>
+  <h1>🚀 DevOps Automation Breakthroughs (2025)</h1>
   <p class="post-meta">Published on October 21, 2025</p>
   <div class="post-content">
     <h2 id="how-modern-tools-turn-chaos-into-confidence">How Modern Tools Turn Chaos Into Confidence</h2>
@@ -52,16 +52,15 @@
 <hr />
 
 <h2 id="️-key-tools--roles">🛠️ Key Tools &amp; Roles</h2>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Tool             | Purpose               | What I Use It For               |
-|------------------|----------------------|---------------------------------|
+<p>| Tool             | Purpose              | What I Use It For               |
+|——————|———————-|———————————|
 | GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
 | Terraform        | IaC                  | Cloud provisioning              |
 | Ansible          | Config Management    | Server setup/config             |
 | ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
 | Prometheus       | Metrics              | Alerting, monitoring            |
 | Grafana          | Visualization        | Dashboards, analysis            |
-</code></pre></div></div>
-<hr />
+—</p>
 
 <h2 id="why-automation-matters-now-more-than-ever">Why Automation Matters Now More Than Ever</h2>
 
@@ -239,6 +238,29 @@ tasks:
     <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
   </div>
 </footer>
+
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
 
 </body>
 </html>
