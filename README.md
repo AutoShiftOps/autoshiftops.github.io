@@ -25,3 +25,8 @@ Or use custom classes like {:.note} or {:.warning} to highlight callouts.
 <div class="callout danger">
 <strong>🚨 Danger:</strong> This command will delete all running pods — proceed carefully!
 </div>
+
+For local testing
+bundle install
+bundle exec jekyll build
+bundle exec jekyll serve --livereload

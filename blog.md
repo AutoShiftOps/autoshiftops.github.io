@@ -8,7 +8,7 @@ permalink: /blog/
   <h1>🧠 Blog Archive</h1>
   <p>Browse all posts from AutoShiftOps — from DevOps insights to automation guides.</p>
 
-  <ul class="post-list">
+  <ul class="post-list container">
     {% for post in site.posts %}
       <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
