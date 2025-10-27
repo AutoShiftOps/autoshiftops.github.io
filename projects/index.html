@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>All our projects</title>
+  <title>Projects</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
   
@@ -31,7 +31,7 @@
     </div>
     <nav class="site-nav">
       <a href="/blog/">Blog</a>
-      <a href="/tools/">Tools</a>
+      <!-- <a href="/tools/">Tools</a> -->
       <a href="/projects/">Projects</a>
       <a href="/about/">About</a>
       <a href="/contact/">Contact</a>
@@ -40,7 +40,35 @@
 </header>
 
   <main class="site-main">
-    
+    <section class="page-section">
+  <h1 class="page-title">Projects</h1>
+  <div id="project-grid" class="posts-grid"></div>
+</section>
+
+<script>
+  const org = "autoshiftops";
+  const container = document.getElementById("project-grid");
+
+  fetch(`https://api.github.com/orgs/${org}/repos?per_page=100`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.forEach(repo => {
+        const card = document.createElement("article");
+        card.classList.add("post-card");
+        card.innerHTML = `
+          <a href="https://autoshiftops.com/${repo.name}" target="_blank">
+            <h2>${repo.name}</h2>
+            <p>${repo.description || "No description provided."}</p>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      container.innerHTML = "<p>Failed to load repositories.</p>";
+      console.error(err);
+    });
+</script>
 
   </main>
   <section class="newsletter">

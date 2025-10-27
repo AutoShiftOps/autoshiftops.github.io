@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🚀 On-prem Hadoop to AWS EMR migration strategies</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+            srcset="/assets/images/logo@2x.png 2x"
+            alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+    <nav class="site-nav">
+      <a href="/blog/">Blog</a>
+      <!-- <a href="/tools/">Tools</a> -->
+      <a href="/projects/">Projects</a>
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🚀 On-prem Hadoop to AWS EMR migration strategies</h1>
+  <p class="post-meta">Published on October 26, 2025</p>
+  <div class="post-content">
+    <p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here are some critical questions to consider:</p>
+
+<h2 id="1-current-on-premises-setup">1. Current On-Premises Setup</h2>
+
+<ul>
+  <li>
+    <p>What is the current Hadoop distribution (Cloudera, Hortonworks, Apache Hadoop, etc.) and version?</p>
+  </li>
+  <li>
+    <p>How many nodes are in the on-prem cluster, and what are their configurations (CPU, RAM, Storage)?</p>
+  </li>
+  <li>
+    <p>What services (HDFS, YARN, Hive, HBase, Spark, etc.) are currently in use?</p>
+  </li>
+  <li>
+    <p>Are there any custom configurations or optimizations in the on-prem setup?</p>
+  </li>
+</ul>
+
+<h2 id="2-data-migration">2. Data Migration</h2>
+
+<ul>
+  <li>
+    <p>What is the total data size to be migrated from on-prem to EMR?</p>
+  </li>
+  <li>
+    <p>Is the data static or continuously generated (streaming data)?</p>
+  </li>
+</ul>
+
+<p>Are there any sensitive data that require encryption during transit and at rest?</p>
+
+<ul>
+  <li>
+    <p>What is the most suitable data transfer method (AWS Direct Connect, AWS DataSync, S3 Transfer Acceleration, Snowball, etc.)?</p>
+  </li>
+  <li>
+    <p>Are there any data partitioning and compression strategies that need to be applied during migration?</p>
+  </li>
+</ul>
+
+<h2 id="3-security-and-access-control">3. Security and Access Control</h2>
+
+<ul>
+  <li>
+    <p>How is user authentication and authorization managed on the on-prem cluster (Kerberos, LDAP, Ranger, Sentry)?</p>
+  </li>
+  <li>
+    <p>What are the existing IAM roles and policies for accessing Hadoop services?</p>
+  </li>
+  <li>
+    <p>How will access control be managed in EMR (IAM roles, security groups, AWS KMS for encryption)?</p>
+  </li>
+  <li>
+    <p>Are there any existing network security configurations (VPC, Subnets, Security Groups) needed for EMR?</p>
+  </li>
+</ul>
+
+<h2 id="4-network-configuration">4. Network Configuration</h2>
+
+<ul>
+  <li>
+    <p>Should EMR be launched in a VPC with public or private subnets?</p>
+  </li>
+  <li>
+    <p>What is the preferred network configuration (NAT Gateway, VPC Peering, Direct Connect)?</p>
+  </li>
+  <li>
+    <p>Are there any network performance requirements (latency, bandwidth)?</p>
+  </li>
+</ul>
+
+<h2 id="5-storage-management">5. Storage Management</h2>
+
+<ul>
+  <li>
+    <p>Where will the data be stored in AWS (S3, EBS, or HDFS on EMR)?</p>
+  </li>
+  <li>
+    <p>What are the retention policies for S3 data (lifecycle policies, versioning, intelligent tiering)?</p>
+  </li>
+  <li>
+    <p>Are there any requirements for data backup and disaster recovery?</p>
+  </li>
+</ul>
+
+<h2 id="6-cluster-configuration">6. Cluster Configuration</h2>
+
+<ul>
+  <li>
+    <p>What will be the EMR cluster type (transient, long-running, or serverless)?</p>
+  </li>
+  <li>
+    <p>What instance types and sizes should be used for master, core, and task nodes?</p>
+  </li>
+  <li>
+    <p>Should EMR be configured with Auto Scaling?</p>
+  </li>
+  <li>
+    <p>Are there any custom AMIs or bootstrap actions required?</p>
+  </li>
+</ul>
+
+<h2 id="7-application-and-workload-migration">7. Application and Workload Migration</h2>
+
+<ul>
+  <li>
+    <p>What are the existing applications running on Hadoop (Spark, Hive, HBase, Pig, Flink)?</p>
+  </li>
+  <li>
+    <p>Are there any custom scripts, UDFs, or libraries that need to be migrated?</p>
+  </li>
+  <li>
+    <p>Are the applications compatible with the EMR version being considered?</p>
+  </li>
+  <li>
+    <p>Are there any SLAs or performance benchmarks that must be met on EMR?</p>
+  </li>
+</ul>
+
+<h2 id="8-cost-optimization">8. Cost Optimization</h2>
+
+<ul>
+  <li>
+    <p>What are the expected EMR costs, including EC2, S3, and data transfer?</p>
+  </li>
+  <li>
+    <p>Are Spot Instances suitable for any part of the workload?</p>
+  </li>
+  <li>
+    <p>Can Reserved Instances be used for predictable workloads?</p>
+  </li>
+  <li>
+    <p>Are there any cost optimization tools (AWS Cost Explorer, AWS Budgets) in use?</p>
+  </li>
+</ul>
+
+<h2 id="9-monitoring-and-troubleshooting">9. Monitoring and Troubleshooting</h2>
+
+<ul>
+  <li>
+    <p>How will the EMR cluster be monitored (CloudWatch, CloudTrail, EMR Metrics)?</p>
+  </li>
+  <li>
+    <p>What are the logging configurations for EMR (CloudWatch Logs, S3 logging)?</p>
+  </li>
+  <li>
+    <p>How will alerts be configured for critical failures?</p>
+  </li>
+</ul>
+
+<h2 id="10-post-migration-validation-and-testing">10. Post-Migration Validation and Testing</h2>
+
+<ul>
+  <li>
+    <p>What are the acceptance criteria for successful migration (data integrity, performance, security)?</p>
+  </li>
+  <li>
+    <p>How will migrated jobs and applications be tested on EMR?</p>
+  </li>
+  <li>
+    <p>Are there any rollback strategies in case of migration failure?</p>
+  </li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+
+</body>
+</html>
