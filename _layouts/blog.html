@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<section class="page-section">
+  <h1 class="page-title">Blog</h1>
+  <div class="posts-grid">
+    {% for post in site.posts %}
+      <article class="post-card">
+        <a href="{{ post.url | relative_url }}">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.excerpt | strip_html | truncate: 160 }}</p>
+        </a>
+        <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+      </article>
+    {% endfor %}
+  </div>
+</section>

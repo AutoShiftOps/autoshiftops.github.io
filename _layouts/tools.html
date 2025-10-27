@@ -1,10 +1,24 @@
 ---
 layout: default
-title: "Tools"
-permalink: /tools/
 ---
 
 <section class="page-section">
+  <h1 class="page-title">Tools</h1>
+  <p>Here are some of the best automation and DevOps tools I recommend:</p>
+
+  <div class="posts-grid">
+    {% for tool in site.data.tools %}
+    <article class="post-card">
+      <a href="{{ tool.url }}">
+        <h2>{{ tool.name }}</h2>
+        <p>{{ tool.description }}</p>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- <section class="page-section">
   <h1>🛠️ Developer Tools</h1>
   <p>Hand-picked DevOps and automation tools from the AutoShiftOps ecosystem.</p>
 
@@ -21,4 +35,4 @@ permalink: /tools/
       <a href="/tools/docker-template/" class="btn">View Tool</a>
     </div>
   </div>
-</section>
+</section> -->
