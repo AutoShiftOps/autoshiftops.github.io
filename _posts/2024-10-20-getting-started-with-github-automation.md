@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🚀 Getting Started with GitHub Automation"
-date: 2025-10-15
+date: 2024-10-15
 categories: [DevOps, Automation]
 tags: [automation, ci-cd]
 ---

@@ -10,16 +10,41 @@
 theme: null
 title: "AutoShiftOps"
 description: "Tech with Sajja’s — DevOps, Cloud & AI simplified"
+
 baseurl: ""
 url: "https://autoshiftops.com"
 markdown: kramdown
 highlighter: rouge
+
 include:
   - _pages
+
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-tagging
-paginate: 2
-paginate_path: "/blog/page:num"
+  # - jekyll-paginate
+  - jekyll-sitemap
+  # - jekyll-tagging    # uncomment when building via Actions
+  - jekyll-paginate-v2   # uncomment when building via Actions
+
+# paginate: 6
+# paginate_path: "/page:num/"
+
+# Optional advanced config for v2
+pagination:
+  enabled: true
+  per_page: 2
+  title: ":title - page :num"
+  permalink: '/blog/:num/'
+  sort_field: 'date'
+  sort_reverse: true
+
+# Ensure posts output
+collections:
+  posts:
+    output: true
+
+# Search settings
+search:
+  json_path: /search.json

@@ -6,31 +6,36 @@ title: "Blog"
 <div class="blog-container">
   <h1 class="page-title">Explore Our Blog</h1>
 
-  <!-- Category Filter -->
-  <div class="category-filter">
-    <button class="filter-btn active" data-category="all">All</button>
-    {% assign all_categories = site.categories | sort %}
-    {% for category in all_categories %}
-      <button class="filter-btn" data-category="{{ category[0] | slugify }}">{{ category[0] }}</button>
-    {% endfor %}
+  <!-- Search + Category Filter -->
+  <div class="search-filter">
+    <!-- <input type="text" id="searchBox" placeholder="Search articles..." /> -->
+    <div id="search-widget" class="search-widget">
+      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      {% assign all_categories = site.categories | sort %}
+      {% for category in all_categories %}
+        <button class="filter-btn" data-category="{{ category[0] | slugify }}">{{ category[0] }}</button>
+      {% endfor %}
+    </div>
   </div>
 
   <!-- Blog Grid -->
-  <div class="blog-grid">
+  <div id="searchResults" class="blog-grid">
     {% for post in paginator.posts %}
       <article class="post-card" data-category="{{ post.categories | join: ' ' | slugify }}">
         {% if post.image %}
           <div class="post-thumb">
-            <a href="{{ post.url }}"><img src="{{ post.image }}" alt="{{ post.title }}"></a>
+            <a href="{{ post.url }}"><img src="{{ post.image }}" loading="lazy" alt="{{ post.title }}"></a>
           </div>
         {% endif %}
         <div class="post-content">
           <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
           <p class="excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</p>
-          <p class="meta">
-            <span>{{ post.date | date: "%B %d, %Y" }}</span> | 
-            <span>{{ post.categories | join: ', ' }}</span>
-          </p>
+          <p class="meta">{{ post.date | date: "%B %d, %Y" }} | {{ post.categories | join: ', ' }}</p>
         </div>
       </article>
     {% endfor %}
@@ -39,13 +44,15 @@ title: "Blog"
   <!-- Pagination -->
   <div class="pagination">
     {% if paginator.previous_page %}
-      <a class="prev" href="{{ paginator.previous_page_path }}">&larr; Newer Posts</a>
+      <a class="prev" href="{{ paginator.previous_page_path }}">&larr; Newer</a>
     {% endif %}
     {% if paginator.next_page %}
-      <a class="next" href="{{ paginator.next_page_path }}">Older Posts &rarr;</a>
+      <a class="next" href="{{ paginator.next_page_path }}">Older &rarr;</a>
     {% endif %}
   </div>
 </div>
+
+<script src="{{ '/assets/js/search.js' | relative_url }}"></script>
 
 <script>
   // Simple category filter

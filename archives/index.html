@@ -1,0 +1,21 @@
+---
+layout: default
+title: "Archives"
+permalink: /archives/
+---
+
+<div class="container page-section">
+  <h1>Archives</h1>
+  
+  {% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'" %}
+  
+  <ul class="archives-list">
+    {% for year in postsByYear %}
+      <li>
+        <a href="{{ '/archives/' | append: year.name | append: '/' | relative_url }}">
+          {{ year.name }} ({{ year.items | size }})
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
