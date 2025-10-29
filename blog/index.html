@@ -40,47 +40,60 @@
 </header>
 
   <main class="site-main">
-    <section class="page-section">
-  <h1 class="page-title">Blog</h1>
-  <div class="posts-grid">
+    <div class="blog-container">
+  <h1 class="page-title">Explore Our Blog</h1>
+
+  <!-- Category Filter -->
+  <div class="category-filter">
+    <button class="filter-btn active" data-category="all">All</button>
     
-      <article class="post-card">
-        <a href="/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html">
-          <h2>🚀 On-prem Hadoop to AWS EMR migration strategies</h2>
-          <p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here are some...</p>
-        </a>
-        <span class="post-date">October 26, 2025</span>
-      </article>
     
-      <article class="post-card">
-        <a href="/2025/10/22/earning-with-affiliate-tools.html">
-          <h2>🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</h2>
-          <p>Affiliate Marketing A–Z: A Beginner’s Playbook
-New to affiliate marketing and want a complete roadmap you can follow from day one to steady commissions. This...</p>
-        </a>
-        <span class="post-date">October 22, 2025</span>
-      </article>
+      <button class="filter-btn" data-category="automation">Automation</button>
     
-      <article class="post-card">
-        <a href="/2025/10/21/devops-automation-tools.html">
-          <h2>🚀 DevOps Automation Breakthroughs (2025)</h2>
-          <p>How Modern Tools Turn Chaos Into Confidence
-</p>
-        </a>
-        <span class="post-date">October 21, 2025</span>
-      </article>
+      <button class="filter-btn" data-category="devops">DevOps</button>
     
-      <article class="post-card">
-        <a href="/2025/10/20/getting-started-with-github-automation.html">
-          <h2>🚀 Getting Started with GitHub Automation</h2>
-          <p>Getting Started with GitHub Automation: Supercharge Your Workflow
-</p>
-        </a>
-        <span class="post-date">October 20, 2025</span>
-      </article>
+      <button class="filter-btn" data-category="emr">EMR</button>
+    
+      <button class="filter-btn" data-category="hadoop">Hadoop</button>
     
   </div>
-</section>
+
+  <!-- Blog Grid -->
+  <div class="blog-grid">
+    
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    
+    
+  </div>
+</div>
+
+<script>
+  // Simple category filter
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const posts = document.querySelectorAll(".post-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-category");
+
+        posts.forEach(post => {
+          if (category === "all" || post.dataset.category.includes(category)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
 
   </main>
   <section class="newsletter">
