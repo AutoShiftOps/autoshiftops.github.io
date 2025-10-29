@@ -1,0 +1,110 @@
+---
+layout: default
+---
+
+<!-- <section class="hero">
+  <h1>Welcome to AutoShiftOps</h1>
+  <p>Your daily DevOps, Cloud & AI insights by <strong>Sajja</strong></p>
+</section> -->
+
+<!-- <section class="hero">
+  <h1>Automate. Analyze. Accelerate.</h1>
+  <p>Sharing DevOps automation journeys. Your daily DevOps, Cloud & AI insights by <strong>Sajja</strong></p>
+  <div class="buttons">
+    <a class="btn" href="{{ '/blog/' | relative_url }}">Read the Blog</a>
+    <a class="btn outline" href="{{ '/newsletter/' | relative_url }}">Join Newsletter</a>
+  </div>
+</section> -->
+
+<section class="hero-slider">
+  <div class="slide active" style="background-image: url('{{ "/assets/images/slide1.jpg" | relative_url }}');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Automate. Analyze. Accelerate.</h1>
+      <p>Sharing DevOps automation journeys. Your daily DevOps, Cloud & AI insights by <strong>Sajja</strong></p>
+      <div class="buttons">
+        <a class="btn" href="{{ '/blog/' | relative_url }}">Read the Blog</a>
+        <a class="btn outline" href="{{ '/newsletter/' | relative_url }}">Join Newsletter</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('{{ "/assets/images/slide2.jpg" | relative_url }}');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Empower Your DevOps with AI</h1>
+      <p>Discover how AI-driven automation transforms CI/CD and cloud management.</p>
+      <div class="buttons">
+        <a class="btn" href="{{ '/projects/' | relative_url }}">Explore Projects</a>
+        <a class="btn outline" href="{{ '/newsletter/' | relative_url }}">Subscribe</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide" style="background-image: url('{{ "/assets/images/slide3.jpg" | relative_url }}');">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1>Build Smarter, Deploy Faster.</h1>
+      <p>Get practical DevOps automation insights to scale your workflow efficiently.</p>
+      <div class="buttons">
+        <a class="btn" href="{{ '/blog/' | relative_url }}">Learn More</a>
+        <a class="btn outline" href="{{ '/contact/' | relative_url }}">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav prev">&#10094;</div>
+  <div class="nav next">&#10095;</div>
+
+  <!-- Dots -->
+  <div class="dots"></div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.hero-slider .slide');
+  const dotsContainer = document.querySelector('.hero-slider .dots');
+  let currentSlide = 0;
+
+  // Create dots dynamically
+  slides.forEach((_, index) => {
+    const dot = document.createElement('span');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    goToSlide((currentSlide + 1) % slides.length);
+  }
+
+  function prevSlide() {
+    goToSlide((currentSlide - 1 + slides.length) % slides.length);
+  }
+
+  document.querySelector('.next').addEventListener('click', nextSlide);
+  document.querySelector('.prev').addEventListener('click', prevSlide);
+
+  setInterval(nextSlide, 6000); // auto-slide every 6 seconds
+</script>
+
+<section class="post-list container">
+  {% for post in site.posts %}
+    <article class="post-card">
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
+    </article>
+  {% endfor %}
+</section>
