@@ -1114,3 +1114,73 @@ a:hover {
   text-decoration: none;
 }
 
+.blog-list {
+  padding: 3rem 0;
+}
+
+.category-section {
+  margin-bottom: 3rem;
+}
+
+.category-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-card {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.2rem;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+.post-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.post-card h3 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+/* Pagination */
+.pagination { text-align:center; margin-top:2rem; color:#9ca3af; }
+.pagination .page-info { margin: 0 1rem; color:#cbd5e1; }
+
+/* Search UI */
+.search-widget { position: relative; max-width:360px; margin-left: auto; }
+#searchBox { width:100%; padding:0.6rem; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02); color:#fff; }
+.search-results { position:absolute; width:100%; top:110%; left:0; background: rgba(10, 12, 20, 0.95); border-radius:8px; max-height:320px; overflow:auto; padding:0.5rem; display:none; }
+.search-results .search-hit { padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.03); }
+.search-results .search-hit a { color:#60a5fa; }
+
+/* Lazy image placeholder */
+img.lazy-img { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); display:block; }
+
+/* posts-grid & card tweaks (if not already present) */
+.posts-grid, .blog-grid { display:grid; gap:1.2rem; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); }
+.post-card, .project-card { background: rgba(255,255,255,0.03); border-radius:10px; padding:1rem; transition: transform .2s ease; }
+.post-card:hover, .project-card:hover { transform: translateY(-6px); box-shadow:0 6px 18px rgba(0,0,0,0.45); }
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+img[loading="lazy"].loaded {
+  opacity: 1;
+}

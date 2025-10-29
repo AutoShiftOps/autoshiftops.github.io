@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tools</title>
+  <title>Blog - page 2</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
   
@@ -52,33 +52,92 @@
 </header>
 
   <main class="site-main">
-    <section class="page-section">
-  <h1 class="page-title">Tools</h1>
-  <p>Here are some of the best automation and DevOps tools I recommend:</p>
+    <div class="blog-container">
+  <h1 class="page-title">Explore Our Blog</h1>
 
-  <div class="posts-grid">
+  <!-- Search + Category Filter -->
+  <div class="search-filter">
+    <!-- <input type="text" id="searchBox" placeholder="Search articles..." /> -->
+    <div id="search-widget" class="search-widget">
+      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      
+      
+        <button class="filter-btn" data-category="automation">Automation</button>
+      
+        <button class="filter-btn" data-category="devops">DevOps</button>
+      
+        <button class="filter-btn" data-category="emr">EMR</button>
+      
+        <button class="filter-btn" data-category="hadoop">Hadoop</button>
+      
+    </div>
+  </div>
+
+  <!-- Blog Grid -->
+  <div id="searchResults" class="blog-grid">
+    
+      <article class="post-card" data-category="">
+        
+        <div class="post-content">
+          <h2><a href="/2025/10/21/devops-automation-tools.html">🚀 DevOps Automation Breakthroughs (2025)</a></h2>
+          <p class="excerpt">How Modern Tools Turn Chaos Into Confidence
+</p>
+          <p class="meta">October 21, 2025 | </p>
+        </div>
+      </article>
+    
+      <article class="post-card" data-category="devops-automation">
+        
+        <div class="post-content">
+          <h2><a href="/devops/automation/2024/10/15/getting-started-with-github-automation.html">🚀 Getting Started with GitHub Automation</a></h2>
+          <p class="excerpt">Getting Started with GitHub Automation: Supercharge Your Workflow
+</p>
+          <p class="meta">October 15, 2024 | DevOps, Automation</p>
+        </div>
+      </article>
     
   </div>
-</section>
 
-<!-- <section class="page-section">
-  <h1>🛠️ Developer Tools</h1>
-  <p>Hand-picked DevOps and automation tools from the AutoShiftOps ecosystem.</p>
-
-  <div class="tool-grid">
-    <div class="tool-card">
-      <h3>GitHub Automation Toolkit</h3>
-      <p>Automate your GitHub workflows with AI-powered scripts.</p>
-      <a href="/tools/github-automation/" class="btn">View Tool</a>
-    </div>
-
-    <div class="tool-card">
-      <h3>Docker Template Generator</h3>
-      <p>Quickly scaffold production-ready Dockerfiles for any project.</p>
-      <a href="/tools/docker-template/" class="btn">View Tool</a>
-    </div>
+  <!-- Pagination -->
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/">&larr; Newer</a>
+    
+    
   </div>
-</section> -->
+</div>
+
+<script src="/assets/js/search.js"></script>
+
+<script>
+  // Simple category filter
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const posts = document.querySelectorAll(".post-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-category");
+
+        posts.forEach(post => {
+          if (category === "all" || post.dataset.category.includes(category)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
   </main>
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>

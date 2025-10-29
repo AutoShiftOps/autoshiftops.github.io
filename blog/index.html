@@ -30,12 +30,24 @@
       </a>
     </div>
     <nav class="site-nav">
-      <a href="/blog/">Blog</a>
-      <!-- <a href="/tools/">Tools</a> -->
-      <a href="/projects/">Projects</a>
-      <a href="/about/">About</a>
-      <a href="/contact/">Contact</a>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/newsletter">Newsletter</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
     </nav>
+
+    <!-- <div class="search-filter">
+      <div id="search-widget" class="search-widget">
+        <input id="searchBox" type="search" placeholder="Search posts..." aria-label="Search posts">
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <script src="/assets/js/search.js"></script>
+    <script src="/assets/js/lazyload.js"></script> -->
   </div>
 </header>
 
@@ -43,23 +55,50 @@
     <div class="blog-container">
   <h1 class="page-title">Explore Our Blog</h1>
 
-  <!-- Category Filter -->
-  <div class="category-filter">
-    <button class="filter-btn active" data-category="all">All</button>
-    
-    
-      <button class="filter-btn" data-category="automation">Automation</button>
-    
-      <button class="filter-btn" data-category="devops">DevOps</button>
-    
-      <button class="filter-btn" data-category="emr">EMR</button>
-    
-      <button class="filter-btn" data-category="hadoop">Hadoop</button>
-    
+  <!-- Search + Category Filter -->
+  <div class="search-filter">
+    <!-- <input type="text" id="searchBox" placeholder="Search articles..." /> -->
+    <div id="search-widget" class="search-widget">
+      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      
+      
+        <button class="filter-btn" data-category="automation">Automation</button>
+      
+        <button class="filter-btn" data-category="devops">DevOps</button>
+      
+        <button class="filter-btn" data-category="emr">EMR</button>
+      
+        <button class="filter-btn" data-category="hadoop">Hadoop</button>
+      
+    </div>
   </div>
 
   <!-- Blog Grid -->
-  <div class="blog-grid">
+  <div id="searchResults" class="blog-grid">
+    
+      <article class="post-card" data-category="devops-hadoop-emr">
+        
+        <div class="post-content">
+          <h2><a href="/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html">🚀 On-prem Hadoop to AWS EMR migration strategies</a></h2>
+          <p class="excerpt">When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to e...</p>
+          <p class="meta">October 26, 2025 | DevOps, Hadoop, EMR</p>
+        </div>
+      </article>
+    
+      <article class="post-card" data-category="">
+        
+        <div class="post-content">
+          <h2><a href="/2025/10/22/earning-with-affiliate-tools.html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</a></h2>
+          <p class="excerpt">Affiliate Marketing A–Z: A Beginner’s Playbook
+New to affiliate marketing and want a complete roadmap you can follow ...</p>
+          <p class="meta">October 22, 2025 | </p>
+        </div>
+      </article>
     
   </div>
 
@@ -67,8 +106,12 @@
   <div class="pagination">
     
     
+      <a class="next" href="/blog/blog/page/2/">Older &rarr;</a>
+    
   </div>
 </div>
+
+<script src="/assets/js/search.js"></script>
 
 <script>
   // Simple category filter
@@ -94,7 +137,6 @@
     });
   });
 </script>
-
   </main>
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>
