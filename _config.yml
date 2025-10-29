@@ -20,5 +20,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-tagging
 paginate: 2
 paginate_path: "/blog/page:num"
