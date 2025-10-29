@@ -19,5 +19,6 @@ include:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-paginate: 6
+  - jekyll-paginate
+paginate: 2
 paginate_path: "/blog/page:num"

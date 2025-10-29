@@ -1,7 +1,10 @@
 ---
 layout: post
-title: '🚀 Getting Started with GitHub Automation'
+title: "🚀 Getting Started with GitHub Automation"
+date: 2025-10-15
+categories: [DevOps, Automation]
 ---
+
 ## Getting Started with GitHub Automation: Supercharge Your Workflow
 
 In today’s fast-paced tech world, efficiency is everything. Whether you're a developer, DevOps engineer, or tech enthusiast, automating repetitive tasks is a game-changer. Enter <b>GitHub Automation</b>—your key to smarter workflows, faster deployments, and less manual grunt work.
