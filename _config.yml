@@ -15,7 +15,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-tagging    # uncomment when building via Actions
+  # - jekyll-tagging    # uncomment when building via Actions
   - jekyll-paginate-v2
 
 # Optional advanced config for v2
