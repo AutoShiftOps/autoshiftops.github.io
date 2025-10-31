@@ -1,12 +1,3 @@
-# title: "Tech with Sajja’s"
-# description: "DevOps, Cloud, Automation, and Career Growth"
-# baseurl: ""
-# url: "https://autoshiftops.com"
-# theme: null
-# plugins:
-#   - jekyll-seo-tag
-#   - jekyll-feed
-
 theme: null
 title: "AutoShiftOps"
 description: "Tech with Sajja’s — DevOps, Cloud & AI simplified"
@@ -23,18 +14,14 @@ include:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  # - jekyll-paginate
   - jekyll-sitemap
-  # - jekyll-tagging    # uncomment when building via Actions
-  - jekyll-paginate-v2   # uncomment when building via Actions
-
-# paginate: 6
-# paginate_path: "/page:num/"
+  - jekyll-tagging    # uncomment when building via Actions
+  - jekyll-paginate-v2
 
 # Optional advanced config for v2
 pagination:
   enabled: true
-  per_page: 2
+  per_page: 6
   title: ":title - page :num"
   permalink: '/blog/:num/'
   sort_field: 'date'

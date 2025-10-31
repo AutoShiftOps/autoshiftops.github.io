@@ -1,23 +1,23 @@
 ---
 layout: post
-title: '🚀 On-prem Hadoop to AWS EMR migration strategies'
+title: '🚀 On-prem Hadoop to AWS EMR Migration Strategies'
 date: 2025-10-26
-categories: [DevOps, Hadoop, EMR]
-tags: [automation, migration, AWS]
-description: "How to perform on-prem Hadoop to EMR migration?"
+categories: [DevOps, Hadoop]
+tags: [automation, migration, AWS, EMR]
+description: "A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases."
+# image: /assets/images/posts/hadoop-emr-migration.jpg
 ---
 
-When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here are some critical questions to consider:
+When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here's a comprehensive checklist of critical considerations:
 
 ## 1. Current On-Premises Setup
 
-- What is the current Hadoop distribution (Cloudera, Hortonworks, Apache Hadoop, etc.) and version?
-
-- How many nodes are in the on-prem cluster, and what are their configurations (CPU, RAM, Storage)?
-
-- What services (HDFS, YARN, Hive, HBase, Spark, etc.) are currently in use?
-
-- Are there any custom configurations or optimizations in the on-prem setup?
+* **Distribution**: What is the current Hadoop distribution (Cloudera, Hortonworks, Apache Hadoop) and version?
+* **Infrastructure**: 
+  - Number of nodes in the cluster
+  - Node configurations (CPU, RAM, Storage)
+* **Services**: Which components are in use? (HDFS, YARN, Hive, HBase, Spark)
+* **Customizations**: Any custom configurations or optimizations?
 
 ## 2. Data Migration
 
@@ -97,8 +97,25 @@ Are there any sensitive data that require encryption during transit and at rest?
 
 ## 10. Post-Migration Validation and Testing
 
-- What are the acceptance criteria for successful migration (data integrity, performance, security)?
+* **Acceptance Criteria**:
+  - Data integrity validation
+  - Performance benchmarks
+  - Security compliance checks
+* **Testing Strategy**:
+  - Job migration validation
+  - Application functionality testing
+  - Performance testing
+* **Rollback Plan**: 
+  - Fallback procedures
+  - Data recovery strategy
+  - Service continuity plan
 
-- How will migrated jobs and applications be tested on EMR?
+---
 
-- Are there any rollback strategies in case of migration failure?
+> **Pro Tip**: Start with a small proof-of-concept migration before attempting the full production workload migration.
+
+## Additional Resources
+
+* [AWS EMR Migration Guide](https://aws.amazon.com/emr/resources/)
+* [EMR Best Practices](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan.html)
+* [Migration Cost Calculator](https://calculator.aws/#/createCalculator/EMR)
