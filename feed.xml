@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-31T12:16:10+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🚀 On-prem Hadoop to AWS EMR Migration Strategies</title><link href="https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration.html" rel="alternate" type="text/html" title="🚀 On-prem Hadoop to AWS EMR Migration Strategies" /><published>2025-10-26T00:00:00+00:00</published><updated>2025-10-26T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration</id><content type="html" xml:base="https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration.html"><![CDATA[<p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here’s a comprehensive checklist of critical considerations:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-31T13:53:07+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🚀 On-prem Hadoop to AWS EMR Migration Strategies</title><link href="https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html" rel="alternate" type="text/html" title="🚀 On-prem Hadoop to AWS EMR Migration Strategies" /><published>2025-10-26T00:00:00+00:00</published><updated>2025-10-26T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration</id><content type="html" xml:base="https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html"><![CDATA[<p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here’s a comprehensive checklist of critical considerations:</p>
 
 <h2 id="1-current-on-premises-setup">1. Current On-Premises Setup</h2>
 
@@ -184,7 +184,7 @@
   <li><a href="https://aws.amazon.com/emr/resources/">AWS EMR Migration Guide</a></li>
   <li><a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan.html">EMR Best Practices</a></li>
   <li><a href="https://calculator.aws/#/createCalculator/EMR">Migration Cost Calculator</a></li>
-</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="Hadoop" /><category term="automation" /><category term="migration" /><category term="AWS" /><category term="EMR" /><summary type="html"><![CDATA[A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases.]]></summary></entry><entry><title type="html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<h2 id="affiliate-marketing-az-a-beginners-playbook">Affiliate Marketing A–Z: A Beginner’s Playbook</h2>
+</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="Hadoop" /><category term="EMR" /><category term="automation" /><category term="migration" /><category term="AWS" /><category term="EMR" /><summary type="html"><![CDATA[A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases.]]></summary></entry><entry><title type="html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<h2 id="affiliate-marketing-az-a-beginners-playbook">Affiliate Marketing A–Z: A Beginner’s Playbook</h2>
 <p>New to affiliate marketing and want a complete roadmap you can follow from day one to steady commissions. This guide covers the fundamentals, the exact A–Z strategies to execute, the essential tools, and a 30/60/90‑day plan to launch, optimize, and scale.​</p>
 
 <h2 id="why-affiliate-marketing">Why affiliate marketing</h2>
@@ -483,15 +483,50 @@
 <hr />
 
 <h2 id="️-key-tools--roles">🛠️ Key Tools &amp; Roles</h2>
-<p>| Tool | Purpose | What I Use It For |
-|—|—|—|
-| GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
-| Terraform        | IaC                  | Cloud provisioning              |
-| Ansible          | Config Management    | Server setup/config             |
-| ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
-| Prometheus       | Metrics              | Alerting, monitoring            |
-| Grafana          | Visualization        | Dashboards, analysis            |
-—</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tool</th>
+      <th>Purpose</th>
+      <th>What I Use It For</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GitHub Actions</td>
+      <td>CI/CD, Automation</td>
+      <td>Test, build, deploy</td>
+    </tr>
+    <tr>
+      <td>Terraform</td>
+      <td>IaC</td>
+      <td>Cloud provisioning</td>
+    </tr>
+    <tr>
+      <td>Ansible</td>
+      <td>Config Management</td>
+      <td>Server setup/config</td>
+    </tr>
+    <tr>
+      <td>ArgoCD</td>
+      <td>GitOps Deployments</td>
+      <td>K8s sync, rollbacks</td>
+    </tr>
+    <tr>
+      <td>Prometheus</td>
+      <td>Metrics</td>
+      <td>Alerting, monitoring</td>
+    </tr>
+    <tr>
+      <td>Grafana</td>
+      <td>Visualization</td>
+      <td>Dashboards, analysis</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 <h2 id="why-automation-matters-now-more-than-ever">Why Automation Matters Now More Than Ever</h2>
 
