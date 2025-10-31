@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Automation</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
@@ -22,11 +23,13 @@
 <body>
   <header class="site-header">
   <div class="container header-container">
+    <button class="nav-toggle" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="logo">
       <a href="/">
         <img src="/assets/images/logo.png"
-            srcset="/assets/images/logo@2x.png 2x"
-            alt="AutoshiftOps" class="site-logo">
+             alt="AutoshiftOps" class="site-logo">
       </a>
     </div>
     <nav class="site-nav">
@@ -38,16 +41,6 @@
       <a href="/about">About</a>
       <a href="/contact">Contact</a>
     </nav>
-
-    <!-- <div class="search-filter">
-      <div id="search-widget" class="search-widget">
-        <input id="searchBox" type="search" placeholder="Search posts..." aria-label="Search posts">
-        <div id="search-results" class="search-results"></div>
-      </div>
-    </div>
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
-    <script src="/assets/js/search.js"></script>
-    <script src="/assets/js/lazyload.js"></script> -->
   </div>
 </header>
 
@@ -95,6 +88,6 @@
       });
     });
   </script>
-
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>
