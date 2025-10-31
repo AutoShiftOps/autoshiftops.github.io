@@ -1,10 +1,12 @@
 <header class="site-header">
   <div class="container header-container">
+    <button class="nav-toggle" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
     <div class="logo">
       <a href="{{ '/' | relative_url }}">
         <img src="{{ '/assets/images/logo.png' | relative_url }}"
-            srcset="{{ '/assets/images/logo@2x.png' | relative_url }} 2x"
-            alt="AutoshiftOps" class="site-logo">
+             alt="AutoshiftOps" class="site-logo">
       </a>
     </div>
     <nav class="site-nav">
@@ -16,15 +18,5 @@
       <a href="{{ '/about' | relative_url }}">About</a>
       <a href="{{ '/contact' | relative_url }}">Contact</a>
     </nav>
-
-    <!-- <div class="search-filter">
-      <div id="search-widget" class="search-widget">
-        <input id="searchBox" type="search" placeholder="Search posts..." aria-label="Search posts">
-        <div id="search-results" class="search-results"></div>
-      </div>
-    </div>
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
-    <script src="{{ '/assets/js/search.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/lazyload.js' | relative_url }}"></script> -->
   </div>
 </header>
