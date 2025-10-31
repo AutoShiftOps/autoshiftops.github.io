@@ -1,20 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-31T01:12:30+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🚀 On-prem Hadoop to AWS EMR migration strategies</title><link href="https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html" rel="alternate" type="text/html" title="🚀 On-prem Hadoop to AWS EMR migration strategies" /><published>2025-10-26T00:00:00+00:00</published><updated>2025-10-26T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration</id><content type="html" xml:base="https://autoshiftops.com/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html"><![CDATA[<p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here are some critical questions to consider:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-10-31T12:16:10+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🚀 On-prem Hadoop to AWS EMR Migration Strategies</title><link href="https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration.html" rel="alternate" type="text/html" title="🚀 On-prem Hadoop to AWS EMR Migration Strategies" /><published>2025-10-26T00:00:00+00:00</published><updated>2025-10-26T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration</id><content type="html" xml:base="https://autoshiftops.com/devops/hadoop/2025/10/26/onprem-hadoop-to-aws-emr-migration.html"><![CDATA[<p>When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here’s a comprehensive checklist of critical considerations:</p>
 
 <h2 id="1-current-on-premises-setup">1. Current On-Premises Setup</h2>
 
 <ul>
-  <li>
-    <p>What is the current Hadoop distribution (Cloudera, Hortonworks, Apache Hadoop, etc.) and version?</p>
+  <li><strong>Distribution</strong>: What is the current Hadoop distribution (Cloudera, Hortonworks, Apache Hadoop) and version?</li>
+  <li><strong>Infrastructure</strong>:
+    <ul>
+      <li>Number of nodes in the cluster</li>
+      <li>Node configurations (CPU, RAM, Storage)</li>
+    </ul>
   </li>
-  <li>
-    <p>How many nodes are in the on-prem cluster, and what are their configurations (CPU, RAM, Storage)?</p>
-  </li>
-  <li>
-    <p>What services (HDFS, YARN, Hive, HBase, Spark, etc.) are currently in use?</p>
-  </li>
-  <li>
-    <p>Are there any custom configurations or optimizations in the on-prem setup?</p>
-  </li>
+  <li><strong>Services</strong>: Which components are in use? (HDFS, YARN, Hive, HBase, Spark)</li>
+  <li><strong>Customizations</strong>: Any custom configurations or optimizations?</li>
 </ul>
 
 <h2 id="2-data-migration">2. Data Migration</h2>
@@ -152,16 +149,42 @@
 <h2 id="10-post-migration-validation-and-testing">10. Post-Migration Validation and Testing</h2>
 
 <ul>
-  <li>
-    <p>What are the acceptance criteria for successful migration (data integrity, performance, security)?</p>
+  <li><strong>Acceptance Criteria</strong>:
+    <ul>
+      <li>Data integrity validation</li>
+      <li>Performance benchmarks</li>
+      <li>Security compliance checks</li>
+    </ul>
   </li>
-  <li>
-    <p>How will migrated jobs and applications be tested on EMR?</p>
+  <li><strong>Testing Strategy</strong>:
+    <ul>
+      <li>Job migration validation</li>
+      <li>Application functionality testing</li>
+      <li>Performance testing</li>
+    </ul>
   </li>
-  <li>
-    <p>Are there any rollback strategies in case of migration failure?</p>
+  <li><strong>Rollback Plan</strong>:
+    <ul>
+      <li>Fallback procedures</li>
+      <li>Data recovery strategy</li>
+      <li>Service continuity plan</li>
+    </ul>
   </li>
-</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="Hadoop" /><category term="EMR" /><category term="automation" /><category term="migration" /><category term="AWS" /><summary type="html"><![CDATA[How to perform on-prem Hadoop to EMR migration?]]></summary></entry><entry><title type="html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<h2 id="affiliate-marketing-az-a-beginners-playbook">Affiliate Marketing A–Z: A Beginner’s Playbook</h2>
+</ul>
+
+<hr />
+
+<blockquote>
+  <p><strong>Pro Tip</strong>: Start with a small proof-of-concept migration before attempting the full production workload migration.</p>
+</blockquote>
+
+<h2 id="additional-resources">Additional Resources</h2>
+
+<ul>
+  <li><a href="https://aws.amazon.com/emr/resources/">AWS EMR Migration Guide</a></li>
+  <li><a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan.html">EMR Best Practices</a></li>
+  <li><a href="https://calculator.aws/#/createCalculator/EMR">Migration Cost Calculator</a></li>
+</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="Hadoop" /><category term="automation" /><category term="migration" /><category term="AWS" /><category term="EMR" /><summary type="html"><![CDATA[A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases.]]></summary></entry><entry><title type="html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</title><link href="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html" rel="alternate" type="text/html" title="🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue" /><published>2025-10-22T00:00:00+00:00</published><updated>2025-10-22T00:00:00+00:00</updated><id>https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools</id><content type="html" xml:base="https://autoshiftops.com/2025/10/22/earning-with-affiliate-tools.html"><![CDATA[<h2 id="affiliate-marketing-az-a-beginners-playbook">Affiliate Marketing A–Z: A Beginner’s Playbook</h2>
 <p>New to affiliate marketing and want a complete roadmap you can follow from day one to steady commissions. This guide covers the fundamentals, the exact A–Z strategies to execute, the essential tools, and a 30/60/90‑day plan to launch, optimize, and scale.​</p>
 
 <h2 id="why-affiliate-marketing">Why affiliate marketing</h2>
