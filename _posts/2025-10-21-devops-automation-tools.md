@@ -9,14 +9,16 @@ A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’
 ---
 
 ## 🛠️ Key Tools & Roles
+
 | Tool | Purpose | What I Use It For |
 |---|---|---|
-| GitHub Actions   | CI/CD, Automation    | Test, build, deploy             |
-| Terraform        | IaC                  | Cloud provisioning              |
-| Ansible          | Config Management    | Server setup/config             |
-| ArgoCD           | GitOps Deployments   | K8s sync, rollbacks             |
-| Prometheus       | Metrics              | Alerting, monitoring            |
-| Grafana          | Visualization        | Dashboards, analysis            |
+| GitHub Actions | CI/CD, Automation | Test, build, deploy |
+| Terraform | IaC | Cloud provisioning |
+| Ansible | Config Management | Server setup/config |
+| ArgoCD | GitOps Deployments | K8s sync, rollbacks |
+| Prometheus | Metrics | Alerting, monitoring |
+| Grafana | Visualization | Dashboards, analysis |
+
 ---
 
 ## Why Automation Matters Now More Than Ever
