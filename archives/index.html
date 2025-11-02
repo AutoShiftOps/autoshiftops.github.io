@@ -70,7 +70,7 @@
     
       <li>
         <a href="/archives/2024/">
-          2024 (1)
+          2024 (2)
         </a>
       </li>
     
@@ -78,6 +78,15 @@
 </div>
 
   </main>
+
+  <!-- mermaid: render diagrams client-side -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      mermaid.initialize({ startOnLoad: true, theme: 'base' });
+    });
+  </script>
+
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>
   <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
