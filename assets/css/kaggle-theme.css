@@ -113,3 +113,24 @@
     transform: rotate(-45deg) translateY(-7px);
   }
 }
+
+/* Default: hidden on desktop */
+.nav-close {
+  display: none !important;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1200;
+}
+
+/* Show only on mobile when menu is open */
+@media (max-width: 768px) {
+  .site-nav.active .nav-close {
+    display: block !important;
+  }
+}
