@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🏗️ Building CI/CD Pipelines with GitHub Actions"
-date: 2024-11-02
+date: 2025-11-02
 categories: [DevOps, CI/CD, Automation]
 tags: [CI/CD, GitHub Actions, DevOps, pipeline automation]
 description: "Step-by-step guide for building robust CI/CD pipelines using GitHub Actions to automate testing, deployment, and monitoring."
