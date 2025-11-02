@@ -1366,3 +1366,83 @@ img[loading="lazy"] {
 img[loading="lazy"].loaded {
   opacity: 1;
 }
+
+/* ===== Responsive search-widget override (place at end of CSS) ===== */
+
+/* Ensure no fixed size is forcing extra space */
+.blog-container .search-widget,
+.blog-container .search-widget * {
+  width: auto !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Make search-widget occupy available width and be compact */
+.blog-container .search-widget {
+  display: block;
+  flex: 1 1 100% !important;    /* grow/shrink to full width */
+  margin: 0 !important;
+  padding: 0.4rem 0 !important;
+  max-width: 100% !important;
+}
+
+/* Input full width and compact height */
+.blog-container .search-widget input,
+.blog-container #searchBox {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  padding: 0.55rem 0.8rem !important;
+  font-size: 0.95rem !important;
+  border-radius: 6px !important;
+  margin: 0 !important;
+}
+
+/* Category area: appear immediately below search box, compact */
+.blog-container .category-filter {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.4rem !important;
+  margin: 0 !important;
+  padding-top: 0.45rem !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  flex: 1 1 100% !important;
+}
+
+/* Each button minimal size */
+.blog-container .filter-btn {
+  padding: 0.35rem 0.6rem !important;
+  font-size: 0.84rem !important;
+  margin: 0 !important;
+}
+
+/* Tighten the gaps for mobile screens */
+@media (max-width: 768px) {
+  .blog-container {
+    gap: 0.6rem !important;
+  }
+
+  .blog-container .sidebar,
+  .blog-container .search-widget,
+  .blog-container .category-filter {
+    padding: 0.4rem !important;
+  }
+
+  .blog-container .search-widget input {
+    padding: 0.5rem 0.7rem !important;
+  }
+
+  .blog-container .category-filter {
+    gap: 0.35rem !important;
+  }
+}
+
+/* Debug utility (temporary) — uncomment to visualize widget area */
+/*
+.blog-container .search-widget {
+  outline: 1px dashed rgba(255,0,0,0.3) !important;
+}
+*/

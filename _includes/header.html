@@ -1,19 +1,24 @@
 <header class="site-header">
   <div class="container header-container">
-    <button class="nav-toggle" aria-label="Open Menu">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
+
+    <!-- Logo -->
     <div class="logo">
       <a href="{{ '/' | relative_url }}">
         <img src="{{ '/assets/images/logo.png' | relative_url }}"
              alt="AutoshiftOps" class="site-logo">
       </a>
     </div>
+
+    <!-- Navigation -->
     <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
       <a href="{{ '/blog' | relative_url }}">Blog</a>
       <a href="{{ '/projects' | relative_url }}">Projects</a>
       <a href="{{ '/tools' | relative_url }}">Tools</a>
-      <!-- <a href="{{ '/newsletter' | relative_url }}">Newsletter</a> -->
       <a href="{{ '/archives/2025' | relative_url }}">Archives</a>
       <a href="{{ '/about' | relative_url }}">About</a>
       <a href="{{ '/contact' | relative_url }}">Contact</a>
