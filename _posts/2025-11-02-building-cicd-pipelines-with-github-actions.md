@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🏗️ Building CI/CD Pipelines with GitHub Actions"
-date: 2024-10-16
+date: 2024-11-02
 categories: [DevOps, CI/CD, Automation]
 tags: [CI/CD, GitHub Actions, DevOps, pipeline automation]
 description: "Step-by-step guide for building robust CI/CD pipelines using GitHub Actions to automate testing, deployment, and monitoring."
@@ -36,7 +36,8 @@ Continuous Integration (CI) and Continuous Deployment (CD) are at the heart of m
 6. **Notify Team:** Slack or email notifications about success/failure.  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Commit to GitHub] --> B[Checkout Code]
     B --> C[Install Dependencies]
@@ -46,7 +47,9 @@ flowchart TD
     E -->|No| G[Notify Team]
     F --> H[Staging or Production]
     H --> I[Slack Notification]
-```
+</div>
+{% endraw %}
+ 
 ### GitHub Actions Pipeline Example
 
 ```yaml

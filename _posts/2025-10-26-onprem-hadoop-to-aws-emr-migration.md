@@ -2,10 +2,10 @@
 layout: post
 title: '🚀 On-prem Hadoop to AWS EMR Migration Strategies'
 date: 2025-10-26
-categories: [DevOps, Hadoop, EMR]
-tags: [automation, migration, AWS, EMR]
+categories: [DevOps, Cloud Migration]
+tags: [Hadoop migration, AWS EMR, on-premises to cloud, data migration, DevOps]
 description: "A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases."
-# image: /assets/images/posts/hadoop-emr-migration.jpg
+keywords: [Hadoop migration, AWS EMR, on-premises to cloud, data migration, DevOps]
 ---
 
 When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to ensure a smooth transition. Here's a comprehensive checklist of critical considerations:

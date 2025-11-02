@@ -2,8 +2,10 @@
 layout: post
 title: "🚀 Getting Started with GitHub Automation"
 date: 2024-10-15
-categories: [DevOps, Automation]
-tags: [automation, ci-cd]
+categories: [DevOps, GitHub Automation]
+tags: [GitHub Automation, GitHub Actions, DevOps, CI/CD]
+description: "Supercharge your workflow with GitHub Automation: A beginner's guide to smarter, faster development."
+keywords: [GitHub Automation, GitHub Actions, workflow automation, DevOps, CI/CD]
 ---
 
 ## Getting Started with GitHub Automation: Supercharge Your Workflow

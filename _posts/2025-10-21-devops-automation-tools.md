@@ -1,7 +1,13 @@
 ---
 layout: post
-title: '🚀 DevOps Automation Breakthroughs (2025)'
+title: "🚀 DevOps Automation Breakthroughs (2025)"
+date: 2024-10-21
+categories: [DevOps, CI/CD, Automation]
+tags: [DevOps, pipeline automation]
+description: "Guide for building robust CI/CD pipelines using automation."
+keywords: [CI/CD, DevOps, automation, pipeline, testing, deployment]
 ---
+
 ## How Modern Tools Turn Chaos Into Confidence
 
 A year ago, my deployment pipeline was a patchwork of manual steps. Today? It’s fast, resilient, and feels like magic. Here’s how you can build the same—using just code and a handful of connected tools.
