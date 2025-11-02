@@ -64,13 +64,13 @@
     
       <li>
         <a href="/archives/2025/">
-          2025 (3)
+          2025 (1)
         </a>
       </li>
     
       <li>
         <a href="/archives/2024/">
-          2024 (2)
+          2024 (4)
         </a>
       </li>
     
@@ -80,12 +80,16 @@
   </main>
 
   <!-- mermaid: render diagrams client-side -->
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
   <script defer>
     document.addEventListener('DOMContentLoaded', function () {
-      mermaid.initialize({ startOnLoad: true, theme: 'base' });
+      try {
+        mermaid.initialize({ startOnLoad: true, theme: 'base' });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
     });
-  </script>
+  </script> -->
 
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>
@@ -101,6 +105,52 @@
   </div>
 </footer>
 
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
 
   <!-- === Animated Lightbox Script === -->
   <script>

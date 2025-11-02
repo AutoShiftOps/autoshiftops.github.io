@@ -75,11 +75,13 @@
       
         <button class="filter-btn" data-category="ci-cd">CI/CD</button>
       
+        <button class="filter-btn" data-category="cloud-migration">Cloud Migration</button>
+      
         <button class="filter-btn" data-category="devops">DevOps</button>
       
-        <button class="filter-btn" data-category="emr">EMR</button>
+        <button class="filter-btn" data-category="github-automation">GitHub Automation</button>
       
-        <button class="filter-btn" data-category="hadoop">Hadoop</button>
+        <button class="filter-btn" data-category="affiliate-marketing">affiliate marketing</button>
       
     </div>
   </div>
@@ -87,52 +89,52 @@
   <!-- Blog Grid -->
   <div id="searchResults" class="blog-grid">
     
-      <article class="post-card" data-category="devops-hadoop-emr">
+      <article class="post-card" data-category="devops-cloud-migration">
         
         <div class="post-content">
-          <h2><a href="/devops/hadoop/emr/2025/10/26/onprem-hadoop-to-aws-emr-migration.html">🚀 On-prem Hadoop to AWS EMR Migration Strategies</a></h2>
+          <h2><a href="/devops/cloud%20migration/2025/10/26/onprem-hadoop-to-aws-emr-migration.html">🚀 On-prem Hadoop to AWS EMR Migration Strategies</a></h2>
           <p class="excerpt">When migrating from an on-premises Hadoop cluster to Amazon EMR on EC2, it is crucial to ask the right questions to e...</p>
-          <p class="meta">October 26, 2025 | DevOps, Hadoop, EMR</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="">
-        
-        <div class="post-content">
-          <h2><a href="/2025/10/22/earning-with-affiliate-tools.html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</a></h2>
-          <p class="excerpt">Affiliate Marketing A–Z: A Beginner’s Playbook
-New to affiliate marketing and want a complete roadmap you can follow ...</p>
-          <p class="meta">October 22, 2025 | </p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="">
-        
-        <div class="post-content">
-          <h2><a href="/2025/10/21/devops-automation-tools.html">🚀 DevOps Automation Breakthroughs (2025)</a></h2>
-          <p class="excerpt">How Modern Tools Turn Chaos Into Confidence
-</p>
-          <p class="meta">October 21, 2025 | </p>
+          <p class="meta">October 26, 2025 | DevOps, Cloud Migration</p>
         </div>
       </article>
     
       <article class="post-card" data-category="devops-ci-cd-automation">
         
         <div class="post-content">
-          <h2><a href="/devops/ci/cd/automation/2024/10/16/building-cicd-pipelines-with-github-actions.html">🏗️ Building CI/CD Pipelines with GitHub Actions</a></h2>
+          <h2><a href="/devops/ci/cd/automation/2024/11/02/building-cicd-pipelines-with-github-actions.html">🏗️ Building CI/CD Pipelines with GitHub Actions</a></h2>
           <p class="excerpt">Building CI/CD Pipelines with GitHub Actions
 </p>
-          <p class="meta">October 16, 2024 | DevOps, CI/CD, Automation</p>
+          <p class="meta">November 02, 2024 | DevOps, CI/CD, Automation</p>
         </div>
       </article>
     
-      <article class="post-card" data-category="devops-automation">
+      <article class="post-card" data-category="devops-affiliate-marketing">
         
         <div class="post-content">
-          <h2><a href="/devops/automation/2024/10/15/getting-started-with-github-automation.html">🚀 Getting Started with GitHub Automation</a></h2>
+          <h2><a href="/devops/affiliate%20marketing/2024/10/22/earning-with-affiliate-tools.html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</a></h2>
+          <p class="excerpt">Affiliate Marketing A–Z: A Beginner’s Playbook
+New to affiliate marketing and want a complete roadmap you can follow ...</p>
+          <p class="meta">October 22, 2024 | DevOps, affiliate marketing</p>
+        </div>
+      </article>
+    
+      <article class="post-card" data-category="devops-ci-cd-automation">
+        
+        <div class="post-content">
+          <h2><a href="/devops/ci/cd/automation/2024/10/21/devops-automation-tools.html">🚀 DevOps Automation Breakthroughs (2025)</a></h2>
+          <p class="excerpt">How Modern Tools Turn Chaos Into Confidence
+</p>
+          <p class="meta">October 21, 2024 | DevOps, CI/CD, Automation</p>
+        </div>
+      </article>
+    
+      <article class="post-card" data-category="devops-github-automation">
+        
+        <div class="post-content">
+          <h2><a href="/devops/github%20automation/2024/10/15/getting-started-with-github-automation.html">🚀 Getting Started with GitHub Automation</a></h2>
           <p class="excerpt">Getting Started with GitHub Automation: Supercharge Your Workflow
 </p>
-          <p class="meta">October 15, 2024 | DevOps, Automation</p>
+          <p class="meta">October 15, 2024 | DevOps, GitHub Automation</p>
         </div>
       </article>
     
@@ -174,12 +176,16 @@ New to affiliate marketing and want a complete roadmap you can follow ...</p>
   </main>
 
   <!-- mermaid: render diagrams client-side -->
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
   <script defer>
     document.addEventListener('DOMContentLoaded', function () {
-      mermaid.initialize({ startOnLoad: true, theme: 'base' });
+      try {
+        mermaid.initialize({ startOnLoad: true, theme: 'base' });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
     });
-  </script>
+  </script> -->
 
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>
@@ -195,6 +201,52 @@ New to affiliate marketing and want a complete roadmap you can follow ...</p>
   </div>
 </footer>
 
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
 
   <!-- === Animated Lightbox Script === -->
   <script>

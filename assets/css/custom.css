@@ -1440,9 +1440,36 @@ img[loading="lazy"].loaded {
   }
 }
 
-/* Debug utility (temporary) — uncomment to visualize widget area */
-/*
-.blog-container .search-widget {
-  outline: 1px dashed rgba(255,0,0,0.3) !important;
+/* Revert node (box) visual overrides applied earlier — restore theme/default */
+.mermaid svg .node rect,
+.mermaid svg .node ellipse,
+.mermaid svg .node polygon {
+  /* unset any forced fill/stroke/filters applied previously */
+  fill: unset !important;
+  stroke: unset !important;
+  filter: none !important;
+  box-shadow: none !important;
 }
-*/
+
+/* Keep edges and arrowheads white */
+.mermaid svg .edgePath path,
+.mermaid svg .edgePaths path,
+.mermaid svg path[marker-end],
+.mermaid svg path[class*="edge"] {
+  stroke: #ffffff !important;
+  stroke-width: 2.2px !important;
+  opacity: 0.95 !important;
+  fill: none !important; /* ensure lines are strokes only */
+}
+
+.mermaid svg marker path,
+.mermaid svg .arrowheadPath {
+  fill: #ffffff !important;
+}
+
+/* keep labels readable */
+.mermaid svg .label,
+.mermaid svg .nodeLabel,
+.mermaid svg .edgeLabel tspan {
+  fill: #ffffff !important;
+}
