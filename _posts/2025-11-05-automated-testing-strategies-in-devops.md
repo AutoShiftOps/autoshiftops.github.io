@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🧪 Automated Testing Strategies in DevOps"
-date: 2024-11-05
+date: 2025-11-05
 categories: [DevOps, CI/CD, Testing]
 tags: [automated testing, DevOps, CI/CD, quality assurance]
 description: "Learn how to implement automated testing strategies in DevOps pipelines to improve software quality and reduce deployment failures."
