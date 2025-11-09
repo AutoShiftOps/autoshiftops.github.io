@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives</title>
+  <title>Blog - page 2</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,28 +55,93 @@
 </header>
 
   <main class="site-main">
-    <div class="container page-section">
-  <h1>Archives</h1>
-  
-  
-  
-  <ul class="archives-list">
+    <div class="blog-container">
+  <h1 class="page-title">Explore Our Blog</h1>
+
+  <!-- Search + Category Filter -->
+  <div class="search-filter">
+    <!-- Search Widget -->
+    <div id="search-widget" class="search-widget">
+      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div class="spacer"></div>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      
+      
+        <button class="filter-btn" data-category="automation">Automation</button>
+      
+        <button class="filter-btn" data-category="ci-cd">CI/CD</button>
+      
+        <button class="filter-btn" data-category="cloud">Cloud</button>
+      
+        <button class="filter-btn" data-category="cloud-migration">Cloud Migration</button>
+      
+        <button class="filter-btn" data-category="devops">DevOps</button>
+      
+        <button class="filter-btn" data-category="github-automation">GitHub Automation</button>
+      
+        <button class="filter-btn" data-category="terraform">Terraform</button>
+      
+        <button class="filter-btn" data-category="testing">Testing</button>
+      
+        <button class="filter-btn" data-category="affiliate-marketing">affiliate marketing</button>
+      
+    </div>
+  </div>
+
+  <!-- Blog Grid -->
+  <div id="searchResults" class="blog-grid">
     
-      <li>
-        <a href="/archives/2025/">
-          2025 (3)
-        </a>
-      </li>
+      <article class="post-card" data-category="devops-ci-cd-testing">
+        
+        <div class="post-content">
+          <h2><a href="/devops/ci/cd/testing/2024/10/17/automated-testing-strategies-in-devops.html">🧪 Automated Testing Strategies in DevOps</a></h2>
+          <p class="excerpt">Automated Testing Strategies in DevOps
+</p>
+          <p class="meta">October 17, 2024 | DevOps, CI/CD, Testing</p>
+        </div>
+      </article>
     
-      <li>
-        <a href="/archives/2024/">
-          2024 (4)
-        </a>
-      </li>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
     
-  </ul>
+      <a class="prev" href="/blog/">&larr; Newer</a>
+    
+    
+  </div>
 </div>
 
+<script src="/assets/js/search.js"></script>
+
+<script>
+  // Simple category filter
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const posts = document.querySelectorAll(".post-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-category");
+
+        posts.forEach(post => {
+          if (category === "all" || post.dataset.category.includes(category)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
   </main>
 
   <!-- mermaid: render diagrams client-side -->

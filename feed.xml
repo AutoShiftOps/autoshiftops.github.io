@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-11-02T18:41:52+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🏗️ Building CI/CD Pipelines with GitHub Actions</title><link href="https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions.html" rel="alternate" type="text/html" title="🏗️ Building CI/CD Pipelines with GitHub Actions" /><published>2025-11-02T00:00:00+00:00</published><updated>2025-11-02T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions.html"><![CDATA[<h2 id="building-cicd-pipelines-with-github-actions">Building CI/CD Pipelines with GitHub Actions</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-11-09T23:28:37+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🏗️ Building CI/CD Pipelines with GitHub Actions</title><link href="https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions.html" rel="alternate" type="text/html" title="🏗️ Building CI/CD Pipelines with GitHub Actions" /><published>2025-11-02T00:00:00+00:00</published><updated>2025-11-02T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/automation/2025/11/02/building-cicd-pipelines-with-github-actions.html"><![CDATA[<h2 id="building-cicd-pipelines-with-github-actions">Building CI/CD Pipelines with GitHub Actions</h2>
 
 <p>Continuous Integration (CI) and Continuous Deployment (CD) are at the heart of modern DevOps. <strong>GitHub Actions</strong> enables engineers to automate builds, tests, and deployments across multiple environments without relying on third-party CI/CD tools.</p>
 
@@ -949,4 +949,167 @@ jobs:
 
 <p>Let’s build smarter, faster, and more fun workflows together! 🚀</p>
 
-<!-- ![Github Automation](/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png) -->]]></content><author><name></name></author><category term="DevOps" /><category term="GitHub Automation" /><category term="GitHub Automation" /><category term="GitHub Actions" /><category term="DevOps" /><category term="CI/CD" /><summary type="html"><![CDATA[Supercharge your workflow with GitHub Automation: A beginner's guide to smarter, faster development.]]></summary></entry></feed>
+<!-- ![Github Automation](/assets/images/posts/2025-10-20-getting-started-with-github-automation-1.png) -->]]></content><author><name></name></author><category term="DevOps" /><category term="GitHub Automation" /><category term="GitHub Automation" /><category term="GitHub Actions" /><category term="DevOps" /><category term="CI/CD" /><summary type="html"><![CDATA[Supercharge your workflow with GitHub Automation: A beginner's guide to smarter, faster development.]]></summary></entry><entry><title type="html">🌐 Infrastructure as Code (IaC) with Terraform</title><link href="https://autoshiftops.com/devops/cloud/terraform/2024/10/18/infrastructure-as-code-with-terraform.html" rel="alternate" type="text/html" title="🌐 Infrastructure as Code (IaC) with Terraform" /><published>2024-10-18T00:00:00+00:00</published><updated>2024-10-18T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/cloud/terraform/2024/10/18/infrastructure-as-code-with-terraform</id><content type="html" xml:base="https://autoshiftops.com/devops/cloud/terraform/2024/10/18/infrastructure-as-code-with-terraform.html"><![CDATA[<h2 id="infrastructure-as-code-iac-with-terraform">Infrastructure as Code (IaC) with Terraform</h2>
+
+<p>Manual infrastructure management is error-prone and time-consuming. <strong>Terraform</strong> allows DevOps engineers to define, provision, and manage cloud resources using code. This ensures <strong>consistency, scalability, and version control</strong>.</p>
+
+<hr />
+
+<h3 id="why-terraform-and-iac-matter">Why Terraform and IaC Matter</h3>
+
+<ul>
+  <li><strong>Version Control:</strong> Track infrastructure changes in Git.</li>
+  <li><strong>Consistency:</strong> Avoid configuration drift across environments.</li>
+  <li><strong>Automation:</strong> Provision resources automatically, saving time.</li>
+  <li><strong>Collaboration:</strong> Teams can review, approve, and reuse IaC modules.</li>
+</ul>
+
+<hr />
+
+<h3 id="example-use-case">Example Use Case</h3>
+
+<p><strong>Scenario:</strong> Deploy a web server on AWS.</p>
+
+<ol>
+  <li>Define AWS EC2 instance using Terraform HCL</li>
+  <li>Apply Terraform plan to create resources</li>
+  <li>Monitor infrastructure state</li>
+  <li>Update or destroy resources as needed</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Terraform Code] --&gt; B[Terraform Plan]
+    B --&gt; C[Terraform Apply]
+    C --&gt; D[AWS Infrastructure Provisioned]
+    D --&gt; E[Monitor &amp; Update]
+</code></pre>
+
+<h2 id="sample-terraform-code">Sample Terraform Code</h2>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
+<span class="p">}</span>
+
+<span class="nx">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"web"</span> <span class="p">{</span>
+  <span class="nx">ami</span>           <span class="o">=</span> <span class="s2">"ami-0abcdef1234567890"</span>
+  <span class="nx">instance_type</span> <span class="o">=</span> <span class="s2">"t2.micro"</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"MyWebServer"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ul>
+  <li>
+    <p>Use modules for reusable infrastructure components</p>
+  </li>
+  <li>
+    <p>Keep state files secure (e.g., S3 with encryption)</p>
+  </li>
+  <li>
+    <p>Separate environments using workspaces or directories</p>
+  </li>
+  <li>
+    <p>Review and approve changes via Git pull requests</p>
+  </li>
+</ul>
+
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+
+<ul>
+  <li>
+    <p>Hardcoding secrets in Terraform code</p>
+  </li>
+  <li>
+    <p>Ignoring drift detection between IaC and actual resources</p>
+  </li>
+  <li>
+    <p>Applying changes without reviewing plan</p>
+  </li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Terraform enables predictable, repeatable, and automated cloud provisioning, empowering DevOps engineers to manage complex infrastructures efficiently and safely.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Cloud" /><category term="Terraform" /><category term="IaC" /><category term="Terraform" /><category term="DevOps" /><category term="cloud infrastructure" /><summary type="html"><![CDATA[Learn how to implement Infrastructure as Code (IaC) using Terraform for automated, scalable, and consistent cloud environments.]]></summary></entry><entry><title type="html">🧪 Automated Testing Strategies in DevOps</title><link href="https://autoshiftops.com/devops/ci/cd/testing/2024/10/17/automated-testing-strategies-in-devops.html" rel="alternate" type="text/html" title="🧪 Automated Testing Strategies in DevOps" /><published>2024-10-17T00:00:00+00:00</published><updated>2024-10-17T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/testing/2024/10/17/automated-testing-strategies-in-devops</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/testing/2024/10/17/automated-testing-strategies-in-devops.html"><![CDATA[<h2 id="automated-testing-strategies-in-devops">Automated Testing Strategies in DevOps</h2>
+
+<p>Automated testing is a core principle of DevOps. Manual testing slows down deployments and increases human error. By <strong>integrating automated tests in CI/CD pipelines</strong>, DevOps engineers can ensure high-quality releases at speed.</p>
+
+<hr />
+
+<h3 id="why-automated-testing-matters">Why Automated Testing Matters</h3>
+
+<ul>
+  <li><strong>Early Bug Detection:</strong> Identify issues before production deployment.</li>
+  <li><strong>Faster Feedback:</strong> Developers get immediate results on code changes.</li>
+  <li><strong>Consistency:</strong> Same test runs every time, eliminating variability.</li>
+  <li><strong>Scalability:</strong> Run hundreds or thousands of tests across multiple environments.</li>
+</ul>
+
+<hr />
+
+<h3 id="types-of-automated-tests">Types of Automated Tests</h3>
+
+<ol>
+  <li><strong>Unit Tests:</strong> Test individual functions or modules.</li>
+  <li><strong>Integration Tests:</strong> Test interactions between modules or services.</li>
+  <li><strong>End-to-End (E2E) Tests:</strong> Simulate real user scenarios.</li>
+  <li><strong>Regression Tests:</strong> Ensure new changes do not break existing functionality.</li>
+  <li><strong>Performance Tests:</strong> Measure speed, load, and scalability.</li>
+</ol>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<p><strong>Scenario:</strong> Testing a Node.js application before deployment.</p>
+
+<ol>
+  <li>Commit code to <code class="language-plaintext highlighter-rouge">develop</code> branch</li>
+  <li>CI pipeline triggers automated tests</li>
+  <li>Unit and integration tests run first</li>
+  <li>If tests pass, E2E tests execute</li>
+  <li>Pipeline fails on errors and notifies developers</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Code Commit] --&gt; B[Run Unit Tests]
+    B --&gt; C[Run Integration Tests]
+    C --&gt; D[Run E2E Tests]
+    D --&gt; E{Tests Passed?}
+    E --&gt;|Yes| F[Deploy to Staging]
+    E --&gt;|No| G[Notify Team]
+</code></pre>
+
+<h2 id="sample-test-code">Sample Test Code</h2>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Unit test example using Jest</span>
+<span class="kd">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+
+<span class="nf">test</span><span class="p">(</span><span class="dl">'</span><span class="s1">adds 1 + 2 to equal 3</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">expect</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)).</span><span class="nf">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="best-practices">Best Practices</h2>
+
+<ul>
+  <li>Run fast tests first, slow tests later</li>
+  <li>Use mock services to avoid dependencies</li>
+  <li>Parallelize tests for efficiency</li>
+  <li>Integrate code coverage reports to ensure quality</li>
+</ul>
+
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+
+<ul>
+  <li>Ignoring flaky tests that fail intermittently</li>
+  <li>Skipping regression tests on critical paths</li>
+  <li>Overloading CI pipeline with unnecessary tests</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Automated testing ensures reliable, fast, and scalable DevOps pipelines. By designing a thoughtful test strategy, engineers can catch issues early, reduce downtime, and maintain high software quality.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="CI/CD" /><category term="Testing" /><category term="automated testing" /><category term="DevOps" /><category term="CI/CD" /><category term="quality assurance" /><summary type="html"><![CDATA[Learn how to implement automated testing strategies in DevOps pipelines to improve software quality and reduce deployment failures.]]></summary></entry></feed>
