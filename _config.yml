@@ -21,7 +21,7 @@ plugins:
 # Optional advanced config for v2
 pagination:
   enabled: true
-  per_page: 6
+  per_page: 12
   title: ":title - page :num"
   permalink: '/blog/:num/'
   sort_field: 'date'
