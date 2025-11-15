@@ -32,14 +32,16 @@ Single-stage pipelines are limited. Multi-stage pipelines separate **build, test
 5. **Production Deployment:** Deploy with rollback options  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Build Stage] --> B[Test Stage]
     B --> C[Staging Deployment]
     C --> D[Approval Gate]
     D --> E[Production Deployment]
     E --> F[Monitor & Rollback if Needed]
-```
+</div>
+{% endraw %}
 ---
 
 ### GitHub Actions Multi-Stage Example

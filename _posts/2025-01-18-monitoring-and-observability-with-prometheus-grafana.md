@@ -31,14 +31,16 @@ Effective monitoring is crucial to detect failures, optimize performance, and ma
 4. Engineers investigate and resolve issues  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Application Metrics] --> B[Prometheus Scraper]
     B --> C[Prometheus Storage]
     C --> D[Grafana Dashboard]
     C --> E[Alertmanager Notification]
     E --> F[DevOps Team]
-```
+</div>
+{% endraw %}
 
 ### Sample Prometheus Config
 

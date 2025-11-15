@@ -32,13 +32,15 @@ GitOps is a **declarative approach** to infrastructure and application managemen
 5. Notifications on deployment status  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Git Repository] --> B[GitOps Operator]
     B --> C[Kubernetes Cluster]
     C --> D[Deploy & Monitor]
     D --> E[Rollback via Git]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample ArgoCD Application YAML

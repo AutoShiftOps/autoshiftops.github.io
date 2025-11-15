@@ -30,14 +30,16 @@ Kubernetes is a powerful orchestration platform, but deployments require careful
 3. **Canary Deployment:** Release to a small subset, monitor, then expand  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[New Version] --> B[Rolling Update / Blue-Green / Canary]
     B --> C[Monitor Metrics]
     C --> D{Success?}
     D -->|Yes| E[Full Deployment]
     D -->|No| F[Rollback]
-```
+</div>
+{% endraw %}
 
 ### Sample Kubernetes Deployment (Rolling Update)
 ```yaml

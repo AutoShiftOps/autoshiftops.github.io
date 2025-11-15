@@ -32,13 +32,15 @@ Managing logs across multiple services and servers is challenging. The **ELK Sta
 5. Create alerts for critical events  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Application Logs] --> B[Logstash/Filebeat]
     B --> C[Elasticsearch Storage]
     C --> D[Kibana Dashboard]
     C --> E[Alerts via Email/Slack]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample Logstash Config

@@ -33,13 +33,15 @@ Manual infrastructure management is error-prone and time-consuming. **Terraform*
 4. Update or destroy resources as needed  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Terraform Code] --> B[Terraform Plan]
     B --> C[Terraform Apply]
     C --> D[AWS Infrastructure Provisioned]
     D --> E[Monitor & Update]
-```
+</div>
+{% endraw %}
 
 ## Sample Terraform Code
 ```hcl

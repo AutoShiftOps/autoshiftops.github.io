@@ -31,14 +31,16 @@ Storing sensitive information like passwords, API keys, or tokens in code reposi
 4. Rotate secrets regularly and audit usage  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Secrets Vault] --> B[Pipeline Fetches Secrets]
     B --> C[Deployment Scripts Use Secrets]
     C --> D[Application Runs Securely]
     B --> E[Audit Logs]
     E --> F[Security Team Reviews]
-```
+</div>
+{% endraw %}
 ---
 
 ### Tools for Secrets Management

@@ -33,7 +33,8 @@ DevOps pipelines are fast, but speed without security is risky. **DevSecOps** in
 6. Automated or manual approval before deployment  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Code Commit] --> B[SAST Analysis]
     B --> C[Dependency Scan]
@@ -41,7 +42,8 @@ flowchart TD
     D --> E{Vulnerabilities Found?}
     E -->|No| F[Deploy]
     E -->|Yes| G[Alert Team & Fix]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample GitHub Actions Security Scan

@@ -32,7 +32,8 @@ Deploying updates without downtime is challenging. **Blue-Green Deployment** cre
 5. Keep Blue as backup in case of rollback  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
   A[Blue Env - Live] --> B[Green Env - New Version]
   B --> C[Run Tests]
@@ -43,7 +44,8 @@ flowchart TD
   G --> I[Complete]
   F --> H[Investigate Issues]
   H --> I
-```
+</div>
+{% endraw %}
 
 ---
 

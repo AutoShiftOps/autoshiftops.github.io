@@ -31,14 +31,16 @@ Traditional monitoring is reactive. **AI-driven observability** uses machine lea
 4. Predictive recommendations guide scaling or fixes  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Metrics & Logs] --> B[AI Analysis]
     B --> C[Anomaly Detection]
     C --> D[Priority Alerts]
     C --> E[Predictive Actions]
     D --> F[DevOps Team Notification]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample Code Snippet

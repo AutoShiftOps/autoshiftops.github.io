@@ -31,14 +31,16 @@ keywords: [canary deployment, CI/CD, DevOps, progressive release, rollout strate
 4. Rollback if issues arise  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Deploy Canary] --> B[Monitor Metrics]
     B --> C{Metrics OK?}
     C -->|Yes| D[Increase Traffic Gradually]
     C -->|No| E[Rollback]
     D --> F[Full Deployment]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample Kubernetes Canary Deployment

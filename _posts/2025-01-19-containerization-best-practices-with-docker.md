@@ -32,13 +32,15 @@ Docker enables packaging applications into lightweight, portable containers. **P
 5. Deploy to orchestrator (Kubernetes, Docker Swarm)  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Write Dockerfile] --> B[Build Image]
     B --> C[Test Container Locally]
     C --> D[Push to Registry]
     D --> E[Deploy to Cluster]
-```
+</div>
+{% endraw %}
 
 ### Sample Dockerfile
 ```dockerfile
