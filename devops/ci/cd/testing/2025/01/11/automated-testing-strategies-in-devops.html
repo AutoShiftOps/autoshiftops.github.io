@@ -101,14 +101,16 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Code Commit] --&gt; B[Run Unit Tests]
     B --&gt; C[Run Integration Tests]
     C --&gt; D[Run E2E Tests]
     D --&gt; E{Tests Passed?}
     E --&gt;|Yes| F[Deploy to Staging]
     E --&gt;|No| G[Notify Team]
-</code></pre>
+</div>
 
 <h2 id="sample-test-code">Sample Test Code</h2>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Unit test example using Jest</span>

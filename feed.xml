@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-11-15T17:20:38+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">📈 Auto-Scaling Strategies in DevOps</title><link href="https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling-Strategies.html" rel="alternate" type="text/html" title="📈 Auto-Scaling Strategies in DevOps" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-02-23T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling%20Strategies</id><content type="html" xml:base="https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling-Strategies.html"><![CDATA[<h2 id="auto-scaling-strategies-in-devops">Auto-Scaling Strategies in DevOps</h2>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2025-11-15T18:15:12+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">📈 Auto-Scaling Strategies in DevOps</title><link href="https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling-Strategies.html" rel="alternate" type="text/html" title="📈 Auto-Scaling Strategies in DevOps" /><published>2025-02-23T00:00:00+00:00</published><updated>2025-02-23T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling%20Strategies</id><content type="html" xml:base="https://autoshiftops.com/devops/cloud/scalability/2025/02/23/Auto-Scaling-Strategies.html"><![CDATA[<h2 id="auto-scaling-strategies-in-devops">Auto-Scaling Strategies in DevOps</h2>
 
 <p>Auto-scaling automatically adjusts compute resources based on demand, ensuring <strong>high availability</strong> and <strong>cost efficiency</strong>.</p>
 
@@ -26,14 +26,17 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Monitor Metrics] --&gt; B{Threshold Exceeded?}
     B --&gt;|Yes| C[Scale Up Resources]
     B --&gt;|No| D[Scale Down Resources]
     C --&gt; E[Update Cluster/VMs]
     D --&gt; E
     E --&gt; F[Notify Team]
-</code></pre>
+</div>
+
 <hr />
 
 <h3 id="sample-kubernetes-horizontal-pod-autoscaler">Sample Kubernetes Horizontal Pod Autoscaler</h3>
