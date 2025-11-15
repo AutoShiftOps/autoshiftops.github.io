@@ -87,12 +87,15 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Git Repository] --&gt; B[GitOps Operator]
     B --&gt; C[Kubernetes Cluster]
     C --&gt; D[Deploy &amp; Monitor]
     D --&gt; E[Rollback via Git]
-</code></pre>
+</div>
+
 <hr />
 
 <h3 id="sample-argocd-application-yaml">Sample ArgoCD Application YAML</h3>

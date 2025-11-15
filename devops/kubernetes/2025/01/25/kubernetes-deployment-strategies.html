@@ -85,13 +85,15 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[New Version] --&gt; B[Rolling Update / Blue-Green / Canary]
     B --&gt; C[Monitor Metrics]
     C --&gt; D{Success?}
     D --&gt;|Yes| E[Full Deployment]
     D --&gt;|No| F[Rollback]
-</code></pre>
+</div>
 
 <h3 id="sample-kubernetes-deployment-rolling-update">Sample Kubernetes Deployment (Rolling Update)</h3>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>

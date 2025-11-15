@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>📚 Log Aggregation and Analysis with ELK Stack</title>
+  <title>💥 Chaos Engineering in DevOps</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -56,22 +56,22 @@
 
   <main class="site-main">
     <article class="post container">
-  <h1>📚 Log Aggregation and Analysis with ELK Stack</h1>
-  <p class="post-meta">Published on February 09, 2025</p>
+  <h1>💥 Chaos Engineering in DevOps</h1>
+  <p class="post-meta">Published on March 01, 2025</p>
   <div class="post-content">
-    <h2 id="log-aggregation-and-analysis-with-elk-stack">Log Aggregation and Analysis with ELK Stack</h2>
+    <h2 id="chaos-engineering-in-devops">Chaos Engineering in DevOps</h2>
 
-<p>Managing logs across multiple services and servers is challenging. The <strong>ELK Stack</strong> provides centralized logging, powerful search, and visualization to streamline monitoring and troubleshooting.</p>
+<p>Chaos Engineering intentionally injects failures into systems to <strong>test resilience</strong> and identify weaknesses before production incidents occur.</p>
 
 <hr />
 
-<h3 id="why-elk-stack-matters">Why ELK Stack Matters</h3>
+<h3 id="why-chaos-engineering-matters">Why Chaos Engineering Matters</h3>
 
 <ul>
-  <li><strong>Centralized Logs:</strong> Collect logs from all services in one place</li>
-  <li><strong>Efficient Troubleshooting:</strong> Search and filter logs quickly</li>
-  <li><strong>Visualization:</strong> Gain insights using dashboards</li>
-  <li><strong>Alerting:</strong> Detect anomalies and failures proactively</li>
+  <li><strong>Proactive Failure Detection:</strong> Identify vulnerabilities early</li>
+  <li><strong>Improved Resilience:</strong> Strengthen systems against unexpected failures</li>
+  <li><strong>Confidence in Deployments:</strong> Test rollback and recovery procedures</li>
+  <li><strong>Data-Driven Insights:</strong> Learn system behavior under stress</li>
 </ul>
 
 <hr />
@@ -79,58 +79,40 @@
 <h3 id="example-workflow">Example Workflow</h3>
 
 <ol>
-  <li>Collect logs from applications and servers</li>
-  <li>Ship logs to <strong>Logstash</strong> or <strong>Filebeat</strong></li>
-  <li>Store in <strong>Elasticsearch</strong></li>
-  <li>Visualize and analyze using <strong>Kibana</strong></li>
-  <li>Create alerts for critical events</li>
+  <li>Identify critical system components</li>
+  <li>Define failure scenarios (CPU spike, service crash, network latency)</li>
+  <li>Inject failures using automation tools</li>
+  <li>Monitor system response and recovery</li>
+  <li>Update systems and procedures based on insights</li>
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
 
 <div class="mermaid">
 flowchart TD
-    A[Application Logs] --&gt; B[Logstash/Filebeat]
-    B --&gt; C[Elasticsearch Storage]
-    C --&gt; D[Kibana Dashboard]
-    C --&gt; E[Alerts via Email/Slack]
+    A[Identify Components] --&gt; B[Define Failure Scenarios]
+    B --&gt; C[Inject Failure]
+    C --&gt; D[Monitor Response]
+    D --&gt; E[Analyze &amp; Improve]
 </div>
 
 <hr />
 
-<h3 id="sample-logstash-config">Sample Logstash Config</h3>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">input {</span>
-  <span class="s">file {</span>
-    <span class="s">path =&gt; "/var/log/app/*.log"</span>
-    <span class="s">start_position =&gt; "beginning"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
-<span class="s">output {</span>
-  <span class="s">elasticsearch {</span>
-    <span class="s">hosts =&gt; ["http://localhost:9200"]</span>
-    <span class="s">index =&gt; "app-logs-%{+YYYY.MM.dd}"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
+<h3 id="sample-chaos-tool-gremlin-cli">Sample Chaos Tool: Gremlin CLI</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#Inject CPU spike on a node</span>
+gremlin attack cpu <span class="nt">--targets</span> <span class="s2">"webapp-node-1"</span> <span class="nt">--length</span> 60
 </code></pre></div></div>
-
-<hr />
-
-<h3 id="kibana-dashboard-example">Kibana Dashboard Example</h3>
-<ol>
-  <li>Create visualizations (e.g., error rates, response times)</li>
-  <li>Combine visualizations into dashboards for overview</li>
-  <li>Set up alerts based on log patterns (e.g., high error rates)</li>
-</ol>
 
 <hr />
 
 <h3 id="best-practices">Best Practices</h3>
 
 <ul>
-  <li>Standardize log formats across services</li>
-  <li>Use indices and retention policies in Elasticsearch</li>
-  <li>Secure access to logs and dashboards</li>
-  <li>Create dashboards for high-level and detailed views</li>
+  <li>Start small with low-risk experiments</li>
+  <li>Automate experiments in controlled environments</li>
+  <li>Always monitor and document results</li>
+  <li>Coordinate with team to avoid unintended downtime</li>
 </ul>
 
 <hr />
@@ -138,15 +120,14 @@ flowchart TD
 <h3 id="common-pitfalls">Common Pitfalls</h3>
 
 <ul>
-  <li>Storing too many logs without retention, causing storage issues</li>
-  <li>Ignoring log parsing and structuring</li>
-  <li>Not monitoring ELK performance</li>
-  <li>Failing to secure sensitive log data</li>
+  <li>Injecting chaos without monitoring</li>
+  <li>Running experiments on critical production without backup</li>
+  <li>Ignoring post-experiment analysis</li>
 </ul>
 
-<h2 id="conclusion">Conclusion</h2>
+<h3 id="conclusion">Conclusion</h3>
 
-<p>The ELK Stack enables centralized, searchable, and visualized logs, empowering DevOps teams to quickly detect and resolve issues while gaining operational insights.</p>
+<p>Chaos Engineering allows DevOps teams to build more resilient systems, anticipate failures, and ensure reliability under real-world conditions.</p>
 
   </div>
 </article>

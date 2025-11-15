@@ -86,13 +86,15 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Application Metrics] --&gt; B[Prometheus Scraper]
     B --&gt; C[Prometheus Storage]
     C --&gt; D[Grafana Dashboard]
     C --&gt; E[Alertmanager Notification]
     E --&gt; F[DevOps Team]
-</code></pre>
+</div>
 
 <h3 id="sample-prometheus-config">Sample Prometheus Config</h3>
 

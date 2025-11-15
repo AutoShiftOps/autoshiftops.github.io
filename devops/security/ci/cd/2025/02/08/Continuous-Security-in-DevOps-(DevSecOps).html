@@ -88,14 +88,17 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Code Commit] --&gt; B[SAST Analysis]
     B --&gt; C[Dependency Scan]
     C --&gt; D[Container Security Scan]
     D --&gt; E{Vulnerabilities Found?}
     E --&gt;|No| F[Deploy]
     E --&gt;|Yes| G[Alert Team &amp; Fix]
-</code></pre>
+</div>
+
 <hr />
 
 <h3 id="sample-github-actions-security-scan">Sample GitHub Actions Security Scan</h3>

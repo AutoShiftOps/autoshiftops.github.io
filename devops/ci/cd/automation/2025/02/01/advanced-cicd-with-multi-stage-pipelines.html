@@ -87,13 +87,16 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Build Stage] --&gt; B[Test Stage]
     B --&gt; C[Staging Deployment]
     C --&gt; D[Approval Gate]
     D --&gt; E[Production Deployment]
     E --&gt; F[Monitor &amp; Rollback if Needed]
-</code></pre>
+</div>
+
 <hr />
 
 <h3 id="github-actions-multi-stage-example">GitHub Actions Multi-Stage Example</h3>

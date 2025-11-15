@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>📚 Log Aggregation and Analysis with ELK Stack</title>
+  <title>☁️ Serverless CI/CD Pipelines</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -56,22 +56,22 @@
 
   <main class="site-main">
     <article class="post container">
-  <h1>📚 Log Aggregation and Analysis with ELK Stack</h1>
-  <p class="post-meta">Published on February 09, 2025</p>
+  <h1>☁️ Serverless CI/CD Pipelines</h1>
+  <p class="post-meta">Published on March 02, 2025</p>
   <div class="post-content">
-    <h2 id="log-aggregation-and-analysis-with-elk-stack">Log Aggregation and Analysis with ELK Stack</h2>
+    <h2 id="serverless-cicd-pipelines">Serverless CI/CD Pipelines</h2>
 
-<p>Managing logs across multiple services and servers is challenging. The <strong>ELK Stack</strong> provides centralized logging, powerful search, and visualization to streamline monitoring and troubleshooting.</p>
+<p>Serverless pipelines leverage <strong>cloud-native functions</strong> for CI/CD tasks, removing infrastructure management overhead and enabling <strong>faster, cost-efficient deployments</strong>.</p>
 
 <hr />
 
-<h3 id="why-elk-stack-matters">Why ELK Stack Matters</h3>
+<h3 id="why-serverless-pipelines-matter">Why Serverless Pipelines Matter</h3>
 
 <ul>
-  <li><strong>Centralized Logs:</strong> Collect logs from all services in one place</li>
-  <li><strong>Efficient Troubleshooting:</strong> Search and filter logs quickly</li>
-  <li><strong>Visualization:</strong> Gain insights using dashboards</li>
-  <li><strong>Alerting:</strong> Detect anomalies and failures proactively</li>
+  <li><strong>No Server Management:</strong> Focus on code, not infrastructure</li>
+  <li><strong>Scalable Execution:</strong> Automatically scales with workload</li>
+  <li><strong>Cost-Efficient:</strong> Pay only for execution time</li>
+  <li><strong>Faster Iteration:</strong> Parallel execution reduces pipeline duration</li>
 </ul>
 
 <hr />
@@ -79,58 +79,52 @@
 <h3 id="example-workflow">Example Workflow</h3>
 
 <ol>
-  <li>Collect logs from applications and servers</li>
-  <li>Ship logs to <strong>Logstash</strong> or <strong>Filebeat</strong></li>
-  <li>Store in <strong>Elasticsearch</strong></li>
-  <li>Visualize and analyze using <strong>Kibana</strong></li>
-  <li>Create alerts for critical events</li>
+  <li>Code committed to repository triggers pipeline</li>
+  <li>Serverless function runs tests, builds artifacts</li>
+  <li>Deploy artifacts to staging or production</li>
+  <li>Monitor deployment success via logs or dashboards</li>
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
 
 <div class="mermaid">
 flowchart TD
-    A[Application Logs] --&gt; B[Logstash/Filebeat]
-    B --&gt; C[Elasticsearch Storage]
-    C --&gt; D[Kibana Dashboard]
-    C --&gt; E[Alerts via Email/Slack]
+    A[Code Commit] --&gt; B[Serverless Function CI]
+    B --&gt; C[Test &amp; Build]
+    C --&gt; D[Deploy Artifacts]
+    D --&gt; E[Monitor &amp; Notify]
 </div>
 
 <hr />
 
-<h3 id="sample-logstash-config">Sample Logstash Config</h3>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">input {</span>
-  <span class="s">file {</span>
-    <span class="s">path =&gt; "/var/log/app/*.log"</span>
-    <span class="s">start_position =&gt; "beginning"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
-<span class="s">output {</span>
-  <span class="s">elasticsearch {</span>
-    <span class="s">hosts =&gt; ["http://localhost:9200"]</span>
-    <span class="s">index =&gt; "app-logs-%{+YYYY.MM.dd}"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
+<h3 id="sample-aws-lambda-ci-trigger">Sample AWS Lambda CI Trigger</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Serverless Framework example</span>
+<span class="na">functions</span><span class="pi">:</span>
+  <span class="na">runTests</span><span class="pi">:</span>
+    <span class="na">handler</span><span class="pi">:</span> <span class="s">handler.runTests</span>
+    <span class="na">events</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">s3</span><span class="pi">:</span>
+          <span class="na">bucket</span><span class="pi">:</span> <span class="s">ci-artifacts</span>
+          <span class="na">event</span><span class="pi">:</span> <span class="s">s3:ObjectCreated:*</span>
 </code></pre></div></div>
-
-<hr />
-
-<h3 id="kibana-dashboard-example">Kibana Dashboard Example</h3>
-<ol>
-  <li>Create visualizations (e.g., error rates, response times)</li>
-  <li>Combine visualizations into dashboards for overview</li>
-  <li>Set up alerts based on log patterns (e.g., high error rates)</li>
-</ol>
-
 <hr />
 
 <h3 id="best-practices">Best Practices</h3>
 
 <ul>
-  <li>Standardize log formats across services</li>
-  <li>Use indices and retention policies in Elasticsearch</li>
-  <li>Secure access to logs and dashboards</li>
-  <li>Create dashboards for high-level and detailed views</li>
+  <li>
+    <p>Use ephemeral storage for pipeline artifacts</p>
+  </li>
+  <li>
+    <p>Integrate logs with monitoring and alerting</p>
+  </li>
+  <li>
+    <p>Separate stages for build, test, deploy</p>
+  </li>
+  <li>
+    <p>Secure credentials via environment variables or secrets manager</p>
+  </li>
 </ul>
 
 <hr />
@@ -138,15 +132,22 @@ flowchart TD
 <h3 id="common-pitfalls">Common Pitfalls</h3>
 
 <ul>
-  <li>Storing too many logs without retention, causing storage issues</li>
-  <li>Ignoring log parsing and structuring</li>
-  <li>Not monitoring ELK performance</li>
-  <li>Failing to secure sensitive log data</li>
+  <li>
+    <p>Overloading serverless functions with long-running tasks</p>
+  </li>
+  <li>
+    <p>Ignoring error handling and retries</p>
+  </li>
+  <li>
+    <p>Not monitoring execution metrics</p>
+  </li>
 </ul>
+
+<hr />
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>The ELK Stack enables centralized, searchable, and visualized logs, empowering DevOps teams to quickly detect and resolve issues while gaining operational insights.</p>
+<p>Serverless CI/CD pipelines provide scalable, fast, and cost-efficient automation, allowing DevOps teams to focus on delivering value instead of managing infrastructure.</p>
 
   </div>
 </article>

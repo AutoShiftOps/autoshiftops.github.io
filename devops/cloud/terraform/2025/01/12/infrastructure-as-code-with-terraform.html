@@ -88,12 +88,14 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Terraform Code] --&gt; B[Terraform Plan]
     B --&gt; C[Terraform Apply]
     C --&gt; D[AWS Infrastructure Provisioned]
     D --&gt; E[Monitor &amp; Update]
-</code></pre>
+</div>
 
 <h2 id="sample-terraform-code">Sample Terraform Code</h2>
 <div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>

@@ -86,13 +86,16 @@
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
+
+<div class="mermaid">
+flowchart TD
     A[Deploy Canary] --&gt; B[Monitor Metrics]
     B --&gt; C{Metrics OK?}
     C --&gt;|Yes| D[Increase Traffic Gradually]
     C --&gt;|No| E[Rollback]
     D --&gt; F[Full Deployment]
-</code></pre>
+</div>
+
 <hr />
 
 <h3 id="sample-kubernetes-canary-deployment">Sample Kubernetes Canary Deployment</h3>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>📚 Log Aggregation and Analysis with ELK Stack</title>
+  <title>💰 DevOps Cost Optimization Strategies</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -56,81 +56,80 @@
 
   <main class="site-main">
     <article class="post container">
-  <h1>📚 Log Aggregation and Analysis with ELK Stack</h1>
-  <p class="post-meta">Published on February 09, 2025</p>
+  <h1>💰 DevOps Cost Optimization Strategies</h1>
+  <p class="post-meta">Published on March 09, 2025</p>
   <div class="post-content">
-    <h2 id="log-aggregation-and-analysis-with-elk-stack">Log Aggregation and Analysis with ELK Stack</h2>
+    <h2 id="devops-cost-optimization-strategies">DevOps Cost Optimization Strategies</h2>
 
-<p>Managing logs across multiple services and servers is challenging. The <strong>ELK Stack</strong> provides centralized logging, powerful search, and visualization to streamline monitoring and troubleshooting.</p>
+<p>Managing costs is critical in DevOps, especially in cloud-heavy environments. Optimizing <strong>resource usage, pipelines, and infrastructure</strong> ensures better ROI.</p>
 
 <hr />
 
-<h3 id="why-elk-stack-matters">Why ELK Stack Matters</h3>
+<h3 id="why-cost-optimization-matters">Why Cost Optimization Matters</h3>
 
 <ul>
-  <li><strong>Centralized Logs:</strong> Collect logs from all services in one place</li>
-  <li><strong>Efficient Troubleshooting:</strong> Search and filter logs quickly</li>
-  <li><strong>Visualization:</strong> Gain insights using dashboards</li>
-  <li><strong>Alerting:</strong> Detect anomalies and failures proactively</li>
+  <li><strong>Reduce Waste:</strong> Avoid idle or over-provisioned resources</li>
+  <li><strong>Improve Efficiency:</strong> Streamline pipelines and deployments</li>
+  <li><strong>Scalable Budgeting:</strong> Align infrastructure costs with business needs</li>
+  <li><strong>Sustainability:</strong> Optimize energy and resource consumption</li>
 </ul>
 
 <hr />
 
-<h3 id="example-workflow">Example Workflow</h3>
+<h3 id="workflow-example">Workflow Example</h3>
 
 <ol>
-  <li>Collect logs from applications and servers</li>
-  <li>Ship logs to <strong>Logstash</strong> or <strong>Filebeat</strong></li>
-  <li>Store in <strong>Elasticsearch</strong></li>
-  <li>Visualize and analyze using <strong>Kibana</strong></li>
-  <li>Create alerts for critical events</li>
+  <li>Identify underutilized VMs, containers, and storage</li>
+  <li>Implement auto-scaling to match demand</li>
+  <li>Review CI/CD pipeline execution times and optimize steps</li>
+  <li>Analyze cost reports and adjust resource allocation</li>
 </ol>
 
 <h3 id="visual-diagram">Visual Diagram</h3>
 
 <div class="mermaid">
 flowchart TD
-    A[Application Logs] --&gt; B[Logstash/Filebeat]
-    B --&gt; C[Elasticsearch Storage]
-    C --&gt; D[Kibana Dashboard]
-    C --&gt; E[Alerts via Email/Slack]
+    A[Resource Utilization Metrics] --&gt; B[Identify Waste]
+    B --&gt; C[Implement Auto-Scaling &amp; Cleanup]
+    C --&gt; D[Optimize Pipelines &amp; Jobs]
+    D --&gt; E[Cost Savings &amp; Monitoring]
+    E --&gt; F[Continuous Improvement]
 </div>
 
 <hr />
 
-<h3 id="sample-logstash-config">Sample Logstash Config</h3>
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">input {</span>
-  <span class="s">file {</span>
-    <span class="s">path =&gt; "/var/log/app/*.log"</span>
-    <span class="s">start_position =&gt; "beginning"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
-<span class="s">output {</span>
-  <span class="s">elasticsearch {</span>
-    <span class="s">hosts =&gt; ["http://localhost:9200"]</span>
-    <span class="s">index =&gt; "app-logs-%{+YYYY.MM.dd}"</span>
-  <span class="s">}</span>
-<span class="err">}</span>
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">boto3</span>
+<span class="kn">from</span> <span class="n">botocore.exceptions</span> <span class="kn">import</span> <span class="n">NoCredentialsError</span>
+<span class="k">def</span> <span class="nf">list_underutilized_ec2_instances</span><span class="p">(</span><span class="n">threshold_hours</span><span class="o">=</span><span class="mi">24</span><span class="p">):</span>
+    <span class="n">ec2</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">ec2</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">instances</span> <span class="o">=</span> <span class="n">ec2</span><span class="p">.</span><span class="nf">describe_instances</span><span class="p">()</span>
+    <span class="n">underutilized</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">reservation</span> <span class="ow">in</span> <span class="n">instances</span><span class="p">[</span><span class="sh">'</span><span class="s">Reservations</span><span class="sh">'</span><span class="p">]:</span>
+        <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">reservation</span><span class="p">[</span><span class="sh">'</span><span class="s">Instances</span><span class="sh">'</span><span class="p">]:</span>
+            <span class="n">launch_time</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="sh">'</span><span class="s">LaunchTime</span><span class="sh">'</span><span class="p">]</span>
+            <span class="n">current_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">(</span><span class="n">launch_time</span><span class="p">.</span><span class="n">tzinfo</span><span class="p">)</span>
+            <span class="n">uptime_hours</span> <span class="o">=</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">launch_time</span><span class="p">).</span><span class="nf">total_seconds</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3600</span>
+
+            <span class="k">if</span> <span class="n">uptime_hours</span> <span class="o">&lt;</span> <span class="n">threshold_hours</span><span class="p">:</span>
+                <span class="n">underutilized</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">instance</span><span class="p">[</span><span class="sh">'</span><span class="s">InstanceId</span><span class="sh">'</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">underutilized</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Underutilized EC2 Instances:</span><span class="sh">"</span><span class="p">,</span> <span class="nf">list_underutilized_ec2_instances</span><span class="p">())</span>
+<span class="k">except</span> <span class="n">NoCredentialsError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">AWS credentials not found.</span><span class="sh">"</span><span class="p">)</span>
 </code></pre></div></div>
-
-<hr />
-
-<h3 id="kibana-dashboard-example">Kibana Dashboard Example</h3>
-<ol>
-  <li>Create visualizations (e.g., error rates, response times)</li>
-  <li>Combine visualizations into dashboards for overview</li>
-  <li>Set up alerts based on log patterns (e.g., high error rates)</li>
-</ol>
-
 <hr />
 
 <h3 id="best-practices">Best Practices</h3>
 
 <ul>
-  <li>Standardize log formats across services</li>
-  <li>Use indices and retention policies in Elasticsearch</li>
-  <li>Secure access to logs and dashboards</li>
-  <li>Create dashboards for high-level and detailed views</li>
+  <li>Use cloud cost monitoring tools (AWS Cost Explorer, Azure Cost Management)</li>
+  <li>Remove idle resources and unused artifacts</li>
+  <li>Optimize CI/CD pipelines to reduce unnecessary runs</li>
+  <li>Consider spot instances or serverless options</li>
 </ul>
 
 <hr />
@@ -138,15 +137,14 @@ flowchart TD
 <h3 id="common-pitfalls">Common Pitfalls</h3>
 
 <ul>
-  <li>Storing too many logs without retention, causing storage issues</li>
-  <li>Ignoring log parsing and structuring</li>
-  <li>Not monitoring ELK performance</li>
-  <li>Failing to secure sensitive log data</li>
+  <li>Ignoring cost monitoring until end of month</li>
+  <li>Over-provisioning without usage data</li>
+  <li>Not automating cleanup of old resources</li>
 </ul>
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>The ELK Stack enables centralized, searchable, and visualized logs, empowering DevOps teams to quickly detect and resolve issues while gaining operational insights.</p>
+<p>Cost optimization ensures DevOps teams deliver value efficiently, maintaining performance while reducing unnecessary cloud and infrastructure expenses.</p>
 
   </div>
 </article>
