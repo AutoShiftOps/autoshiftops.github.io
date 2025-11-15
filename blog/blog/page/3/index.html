@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>🌐 Infrastructure as Code (IaC) with Terraform</title>
+  <title>Blog - page 3</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,99 +55,107 @@
 </header>
 
   <main class="site-main">
-    <article class="post container">
-  <h1>🌐 Infrastructure as Code (IaC) with Terraform</h1>
-  <p class="post-meta">Published on November 09, 2025</p>
-  <div class="post-content">
-    <h2 id="infrastructure-as-code-iac-with-terraform">Infrastructure as Code (IaC) with Terraform</h2>
+    <div class="blog-container">
+  <h1 class="page-title">Explore Our Blog</h1>
 
-<p>Manual infrastructure management is error-prone and time-consuming. <strong>Terraform</strong> allows DevOps engineers to define, provision, and manage cloud resources using code. This ensures <strong>consistency, scalability, and version control</strong>.</p>
-
-<hr />
-
-<h3 id="why-terraform-and-iac-matter">Why Terraform and IaC Matter</h3>
-
-<ul>
-  <li><strong>Version Control:</strong> Track infrastructure changes in Git.</li>
-  <li><strong>Consistency:</strong> Avoid configuration drift across environments.</li>
-  <li><strong>Automation:</strong> Provision resources automatically, saving time.</li>
-  <li><strong>Collaboration:</strong> Teams can review, approve, and reuse IaC modules.</li>
-</ul>
-
-<hr />
-
-<h3 id="example-use-case">Example Use Case</h3>
-
-<p><strong>Scenario:</strong> Deploy a web server on AWS.</p>
-
-<ol>
-  <li>Define AWS EC2 instance using Terraform HCL</li>
-  <li>Apply Terraform plan to create resources</li>
-  <li>Monitor infrastructure state</li>
-  <li>Update or destroy resources as needed</li>
-</ol>
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-<pre><code class="language-mermaid">flowchart TD
-    A[Terraform Code] --&gt; B[Terraform Plan]
-    B --&gt; C[Terraform Apply]
-    C --&gt; D[AWS Infrastructure Provisioned]
-    D --&gt; E[Monitor &amp; Update]
-</code></pre>
-
-<h2 id="sample-terraform-code">Sample Terraform Code</h2>
-<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
-  <span class="nx">region</span> <span class="o">=</span> <span class="s2">"us-east-1"</span>
-<span class="p">}</span>
-
-<span class="nx">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"web"</span> <span class="p">{</span>
-  <span class="nx">ami</span>           <span class="o">=</span> <span class="s2">"ami-0abcdef1234567890"</span>
-  <span class="nx">instance_type</span> <span class="o">=</span> <span class="s2">"t2.micro"</span>
-
-  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"MyWebServer"</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<h2 id="best-practices">Best Practices</h2>
-
-<ul>
-  <li>
-    <p>Use modules for reusable infrastructure components</p>
-  </li>
-  <li>
-    <p>Keep state files secure (e.g., S3 with encryption)</p>
-  </li>
-  <li>
-    <p>Separate environments using workspaces or directories</p>
-  </li>
-  <li>
-    <p>Review and approve changes via Git pull requests</p>
-  </li>
-</ul>
-
-<h2 id="common-pitfalls">Common Pitfalls</h2>
-
-<ul>
-  <li>
-    <p>Hardcoding secrets in Terraform code</p>
-  </li>
-  <li>
-    <p>Ignoring drift detection between IaC and actual resources</p>
-  </li>
-  <li>
-    <p>Applying changes without reviewing plan</p>
-  </li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Terraform enables predictable, repeatable, and automated cloud provisioning, empowering DevOps engineers to manage complex infrastructures efficiently and safely.</p>
-
+  <!-- Search + Category Filter -->
+  <div class="search-filter">
+    <!-- Search Widget -->
+    <div id="search-widget" class="search-widget">
+      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
+      <div id="search-results" class="search-results"></div>
+    </div>
+    <div class="spacer"></div>
+    <!-- Category Filter -->
+    <div class="category-filter">
+      <button class="filter-btn active" data-category="all">All</button>
+      
+      
+        <button class="filter-btn" data-category="ai">AI</button>
+      
+        <button class="filter-btn" data-category="automation">Automation</button>
+      
+        <button class="filter-btn" data-category="ci-cd">CI/CD</button>
+      
+        <button class="filter-btn" data-category="cloud">Cloud</button>
+      
+        <button class="filter-btn" data-category="cloud-migration">Cloud Migration</button>
+      
+        <button class="filter-btn" data-category="containers">Containers</button>
+      
+        <button class="filter-btn" data-category="devops">DevOps</button>
+      
+        <button class="filter-btn" data-category="docker">Docker</button>
+      
+        <button class="filter-btn" data-category="github-automation">GitHub Automation</button>
+      
+        <button class="filter-btn" data-category="kubernetes">Kubernetes</button>
+      
+        <button class="filter-btn" data-category="monitoring">Monitoring</button>
+      
+        <button class="filter-btn" data-category="observability">Observability</button>
+      
+        <button class="filter-btn" data-category="security">Security</button>
+      
+        <button class="filter-btn" data-category="terraform">Terraform</button>
+      
+        <button class="filter-btn" data-category="testing">Testing</button>
+      
+        <button class="filter-btn" data-category="affiliate-marketing">affiliate marketing</button>
+      
+    </div>
   </div>
-</article>
 
+  <!-- Blog Grid -->
+  <div id="searchResults" class="blog-grid">
+    
+      <article class="post-card" data-category="devops-affiliate-marketing">
+        
+        <div class="post-content">
+          <h2><a href="/devops/affiliate%20marketing/2024/10/22/earning-with-affiliate-tools.html">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</a></h2>
+          <p class="excerpt">Affiliate Marketing A–Z: A Beginner’s Playbook
+New to affiliate marketing and want a complete roadmap you can follow ...</p>
+          <p class="meta">October 22, 2024 | DevOps, affiliate marketing</p>
+        </div>
+      </article>
+    
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/blog/page/2/">&larr; Newer</a>
+    
+    
+  </div>
+</div>
+
+<script src="/assets/js/search.js"></script>
+
+<script>
+  // Simple category filter
+  document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".filter-btn");
+    const posts = document.querySelectorAll(".post-card");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const category = btn.getAttribute("data-category");
+
+        posts.forEach(post => {
+          if (category === "all" || post.dataset.category.includes(category)) {
+            post.style.display = "block";
+          } else {
+            post.style.display = "none";
+          }
+        });
+      });
+    });
+  });
+</script>
   </main>
 
   <!-- mermaid: render diagrams client-side -->

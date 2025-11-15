@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives</title>
+  <title>🐳 Containerization Best Practices with Docker</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,27 +55,82 @@
 </header>
 
   <main class="site-main">
-    <div class="container page-section">
-  <h1>Archives</h1>
-  
-  
-  
-  <ul class="archives-list">
-    
-      <li>
-        <a href="/archives/2025/">
-          2025 (12)
-        </a>
-      </li>
-    
-      <li>
-        <a href="/archives/2024/">
-          2024 (1)
-        </a>
-      </li>
-    
-  </ul>
-</div>
+    <article class="post container">
+  <h1>🐳 Containerization Best Practices with Docker</h1>
+  <p class="post-meta">Published on January 19, 2025</p>
+  <div class="post-content">
+    <h2 id="containerization-best-practices-with-docker">Containerization Best Practices with Docker</h2>
+
+<p>Docker enables packaging applications into lightweight, portable containers. <strong>Proper practices ensure stability, scalability, and maintainability</strong> in production environments.</p>
+
+<hr />
+
+<h3 id="why-containerization-matters">Why Containerization Matters</h3>
+
+<ul>
+  <li><strong>Portability:</strong> Run the same container across dev, staging, and production</li>
+  <li><strong>Isolation:</strong> Avoid conflicts between applications and dependencies</li>
+  <li><strong>Scalability:</strong> Spin up multiple instances with minimal overhead</li>
+  <li><strong>Efficiency:</strong> Reduce resource consumption compared to full VMs</li>
+</ul>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<ol>
+  <li>Create Dockerfile for application</li>
+  <li>Build Docker image</li>
+  <li>Test locally in container</li>
+  <li>Push image to registry</li>
+  <li>Deploy to orchestrator (Kubernetes, Docker Swarm)</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Write Dockerfile] --&gt; B[Build Image]
+    B --&gt; C[Test Container Locally]
+    C --&gt; D[Push to Registry]
+    D --&gt; E[Deploy to Cluster]
+</code></pre>
+
+<h3 id="sample-dockerfile">Sample Dockerfile</h3>
+<div class="language-dockerfile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">FROM</span><span class="s"> node:18</span>
+<span class="k">WORKDIR</span><span class="s"> /app</span>
+<span class="k">COPY</span><span class="s"> package*.json ./</span>
+<span class="k">RUN </span>npm <span class="nb">install</span>
+<span class="k">COPY</span><span class="s"> . .</span>
+<span class="k">EXPOSE</span><span class="s"> 3000</span>
+<span class="k">CMD</span><span class="s"> ["node", "app.js"]</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Use official base images for security and reliability</li>
+  <li>Minimize layers to reduce image size</li>
+  <li>Avoid storing secrets in images</li>
+  <li>Tag images clearly with version numbers</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Large images leading to slow deployments</li>
+  <li>Running containers as root user (security risk)</li>
+  <li>Hardcoding environment variables instead of using secrets management</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Following Docker best practices allows DevOps teams to deploy applications reliably, securely, and efficiently, enabling faster iterations and easier scaling.</p>
+
+  </div>
+</article>
 
   </main>
 

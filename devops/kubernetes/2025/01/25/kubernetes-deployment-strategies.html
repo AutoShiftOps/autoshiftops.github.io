@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives</title>
+  <title>☸️ Kubernetes Deployment Strategies</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,27 +55,97 @@
 </header>
 
   <main class="site-main">
-    <div class="container page-section">
-  <h1>Archives</h1>
-  
-  
-  
-  <ul class="archives-list">
-    
-      <li>
-        <a href="/archives/2025/">
-          2025 (12)
-        </a>
-      </li>
-    
-      <li>
-        <a href="/archives/2024/">
-          2024 (1)
-        </a>
-      </li>
-    
-  </ul>
-</div>
+    <article class="post container">
+  <h1>☸️ Kubernetes Deployment Strategies</h1>
+  <p class="post-meta">Published on January 25, 2025</p>
+  <div class="post-content">
+    <h2 id="kubernetes-deployment-strategies">Kubernetes Deployment Strategies</h2>
+
+<p>Kubernetes is a powerful orchestration platform, but deployments require careful planning. Strategies like <strong>Rolling Updates, Blue-Green, and Canary Deployments</strong> help minimize downtime and reduce risk.</p>
+
+<hr />
+
+<h3 id="why-deployment-strategies-matter">Why Deployment Strategies Matter</h3>
+
+<ul>
+  <li><strong>Zero-downtime updates:</strong> Users don’t experience interruptions</li>
+  <li><strong>Rollback capability:</strong> Quickly revert to stable versions</li>
+  <li><strong>Gradual rollout:</strong> Test new versions on a subset of users</li>
+  <li><strong>Scalability:</strong> Handle spikes in demand efficiently</li>
+</ul>
+
+<hr />
+
+<h3 id="deployment-types">Deployment Types</h3>
+
+<ol>
+  <li><strong>Rolling Update:</strong> Gradually replace pods with new versions</li>
+  <li><strong>Blue-Green Deployment:</strong> Run old and new versions side by side</li>
+  <li><strong>Canary Deployment:</strong> Release to a small subset, monitor, then expand</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[New Version] --&gt; B[Rolling Update / Blue-Green / Canary]
+    B --&gt; C[Monitor Metrics]
+    C --&gt; D{Success?}
+    D --&gt;|Yes| E[Full Deployment]
+    D --&gt;|No| F[Rollback]
+</code></pre>
+
+<h3 id="sample-kubernetes-deployment-rolling-update">Sample Kubernetes Deployment (Rolling Update)</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">webapp</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">3</span>
+  <span class="na">strategy</span><span class="pi">:</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">RollingUpdate</span>
+    <span class="na">rollingUpdate</span><span class="pi">:</span>
+      <span class="na">maxSurge</span><span class="pi">:</span> <span class="m">1</span>
+      <span class="na">maxUnavailable</span><span class="pi">:</span> <span class="m">0</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">webapp</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">webapp</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">webapp</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry/webapp:v2</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Monitor metrics during deployment</li>
+  <li>Set maxSurge and maxUnavailable for safe updates</li>
+  <li>Automate rollbacks for failed deployments</li>
+  <li>Use labels and selectors effectively</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Updating too many pods at once, causing downtime</li>
+  <li>Ignoring resource limits leading to pod crashes</li>
+  <li>Lack of monitoring during rollout</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Kubernetes deployment strategies ensure reliable, safe, and scalable application updates, enabling DevOps teams to deliver features faster without impacting users.</p>
+
+  </div>
+</article>
 
   </main>
 

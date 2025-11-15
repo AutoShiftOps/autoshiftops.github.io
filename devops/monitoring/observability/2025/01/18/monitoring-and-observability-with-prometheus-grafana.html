@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives</title>
+  <title>📊 Monitoring and Observability with Prometheus & Grafana</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,27 +55,89 @@
 </header>
 
   <main class="site-main">
-    <div class="container page-section">
-  <h1>Archives</h1>
-  
-  
-  
-  <ul class="archives-list">
-    
-      <li>
-        <a href="/archives/2025/">
-          2025 (12)
-        </a>
-      </li>
-    
-      <li>
-        <a href="/archives/2024/">
-          2024 (1)
-        </a>
-      </li>
-    
-  </ul>
-</div>
+    <article class="post container">
+  <h1>📊 Monitoring and Observability with Prometheus & Grafana</h1>
+  <p class="post-meta">Published on January 18, 2025</p>
+  <div class="post-content">
+    <h2 id="monitoring-and-observability-with-prometheus--grafana">Monitoring and Observability with Prometheus &amp; Grafana</h2>
+
+<p>Effective monitoring is crucial to detect failures, optimize performance, and maintain uptime. <strong>Prometheus</strong> collects metrics, while <strong>Grafana</strong> visualizes them for actionable insights.</p>
+
+<hr />
+
+<h3 id="why-monitoring-matters">Why Monitoring Matters</h3>
+
+<ul>
+  <li><strong>Early Issue Detection:</strong> Identify problems before users are affected</li>
+  <li><strong>Performance Optimization:</strong> Understand system behavior under load</li>
+  <li><strong>Proactive Alerts:</strong> Reduce MTTR (Mean Time to Recovery)</li>
+  <li><strong>Capacity Planning:</strong> Make data-driven scaling decisions</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Prometheus scrapes metrics from application endpoints</li>
+  <li>Grafana visualizes metrics with dashboards</li>
+  <li>Alertmanager sends notifications for anomalies</li>
+  <li>Engineers investigate and resolve issues</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Application Metrics] --&gt; B[Prometheus Scraper]
+    B --&gt; C[Prometheus Storage]
+    C --&gt; D[Grafana Dashboard]
+    C --&gt; E[Alertmanager Notification]
+    E --&gt; F[DevOps Team]
+</code></pre>
+
+<h3 id="sample-prometheus-config">Sample Prometheus Config</h3>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">scrape_configs</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">job_name</span><span class="pi">:</span> <span class="s1">'</span><span class="s">webapp'</span>
+    <span class="na">static_configs</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">targets</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">localhost:8080'</span><span class="pi">]</span>
+</code></pre></div></div>
+
+<h2 id="grafana-example-dashboard">Grafana Example Dashboard</h2>
+
+<ul>
+  <li>CPU usage over time</li>
+  <li>Memory usage per container</li>
+  <li>Request latency and error rate</li>
+  <li>Alerts for threshold breaches</li>
+</ul>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Tag metrics with environment labels (dev/staging/prod)</li>
+  <li>Use dashboards for both high-level overview and deep dive</li>
+  <li>Set thresholds based on historical data, not guesswork</li>
+  <li>Test alerts to ensure timely notification</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Monitoring too few metrics or irrelevant metrics</li>
+  <li>Ignoring alert fatigue — tune thresholds carefully</li>
+  <li>Not maintaining dashboards or keeping them up-to-date</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Prometheus and Grafana provide actionable observability, empowering DevOps engineers to detect issues early, optimize performance, and make informed operational decisions.</p>
+
+  </div>
+</article>
 
   </main>
 
