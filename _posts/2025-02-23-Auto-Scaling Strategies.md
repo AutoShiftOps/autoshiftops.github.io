@@ -32,7 +32,8 @@ Auto-scaling automatically adjusts compute resources based on demand, ensuring *
 5. Optional: integrate with alerting and dashboards  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Monitor Metrics] --> B{Threshold Exceeded?}
     B -->|Yes| C[Scale Up Resources]
@@ -40,7 +41,8 @@ flowchart TD
     C --> E[Update Cluster/VMs]
     D --> E
     E --> F[Notify Team]
-```
+</div>
+{% endraw %}
 ---
 
 ### Sample Kubernetes Horizontal Pod Autoscaler

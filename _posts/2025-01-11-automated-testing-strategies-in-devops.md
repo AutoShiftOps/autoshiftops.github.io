@@ -44,7 +44,8 @@ Automated testing is a core principle of DevOps. Manual testing slows down deplo
 5. Pipeline fails on errors and notifies developers  
 
 ### Visual Diagram
-```mermaid
+{% raw %}
+<div class="mermaid">
 flowchart TD
     A[Code Commit] --> B[Run Unit Tests]
     B --> C[Run Integration Tests]
@@ -52,7 +53,8 @@ flowchart TD
     D --> E{Tests Passed?}
     E -->|Yes| F[Deploy to Staging]
     E -->|No| G[Notify Team]
-```
+</div>
+{% endraw %}
 
 ## Sample Test Code
 ```javascript
