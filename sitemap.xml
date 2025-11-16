@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://autoshiftops.com/devops/security/containers/2024/05/04/Container-Security-Best-Practices.html</loc>
-<lastmod>2024-05-04T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://autoshiftops.com/devops/ci/cd/deployment/2024/05/10/Progressive-Delivery-Techniques.html</loc>
-<lastmod>2024-05-10T00:00:00+00:00</lastmod>
-</url>
-<url>
 <loc>https://autoshiftops.com/devops/affiliate%20marketing/2024/10/22/earning-with-affiliate-tools.html</loc>
 <lastmod>2024-10-22T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://autoshiftops.com/devops/cloud%20migration/2024/10/26/onprem-hadoop-to-aws-emr-migration.html</loc>
 <lastmod>2024-10-26T00:00:00+00:00</lastmod>
-</url>
-<url>
-<loc>https://autoshiftops.com/devops/deployment/kubernetes/2024/10/27/Blue-Green-Deployment-in-Production.html</loc>
-<lastmod>2024-10-27T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://autoshiftops.com/devops/ci/cd/automation/2025/01/01/devops-automation-tools.html</loc>
@@ -71,6 +59,10 @@
 <url>
 <loc>https://autoshiftops.com/devops/monitoring/logging/2025/02/09/Log-Aggregation-and-Analysis-with-ELK-Stack.html</loc>
 <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://autoshiftops.com/devops/deployment/kubernetes/2025/02/15/Blue-Green-Deployment-in-Production.html</loc>
+<lastmod>2025-02-15T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://autoshiftops.com/devops/deployment/ci/cd/2025/02/16/Canary-Deployment-for-Progressive-Releases.html</loc>
@@ -155,6 +147,14 @@
 <url>
 <loc>https://autoshiftops.com/devops/monitoring/logging/2025/05/03/Log-Aggregation-&amp;-Analysis.html</loc>
 <lastmod>2025-05-03T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://autoshiftops.com/devops/security/containers/2025/05/04/Container-Security-Best-Practices.html</loc>
+<lastmod>2025-05-04T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://autoshiftops.com/devops/ci/cd/deployment/2025/05/10/Progressive-Delivery-Techniques.html</loc>
+<lastmod>2025-05-10T00:00:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://autoshiftops.com/devops/ai/monitoring/2025/05/11/AI-Powered-DevOps-Insights.html</loc>
