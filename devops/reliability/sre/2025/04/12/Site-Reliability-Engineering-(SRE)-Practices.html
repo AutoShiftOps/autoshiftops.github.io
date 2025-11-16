@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🛡️ Site Reliability Engineering (SRE) Practices</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🛡️ Site Reliability Engineering (SRE) Practices</h1>
+  <p class="post-meta">Published on April 12, 2025</p>
+  <div class="post-content">
+    <h2 id="site-reliability-engineering-sre-practices">Site Reliability Engineering (SRE) Practices</h2>
+
+<p>SRE applies software engineering principles to operations, focusing on <strong>reliability, scalability, and efficiency</strong> in production systems.</p>
+
+<hr />
+
+<h3 id="why-sre-matters">Why SRE Matters</h3>
+
+<ul>
+  <li><strong>Define SLAs and SLOs:</strong> Measure and maintain reliability</li>
+  <li><strong>Error Budgets:</strong> Balance feature releases and system stability</li>
+  <li><strong>Automate Operations:</strong> Reduce manual interventions</li>
+  <li><strong>Proactive Monitoring:</strong> Detect issues before user impact</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Define SLOs and error budgets</li>
+  <li>Instrument services for monitoring</li>
+  <li>Automate alerting and remediation</li>
+  <li>Conduct post-incident analysis</li>
+  <li>Continuously improve processes</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Define SLOs &amp; SLIs] --&gt; B[Monitor Systems]
+    B --&gt; C[Alert on Violations]
+    C --&gt; D[Automated Remediation]
+    D --&gt; E[Post-Incident Review]
+    E --&gt; F[Continuous Improvement]
+</div>
+
+<hr />
+
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">slo</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">User</span><span class="nv"> </span><span class="s">Request</span><span class="nv"> </span><span class="s">Latency"</span>
+  <span class="na">target</span><span class="pi">:</span> <span class="s">99.9%</span>
+  <span class="na">window</span><span class="pi">:</span> <span class="s">30d</span>
+  <span class="na">indicators</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">type</span><span class="pi">:</span> <span class="s">latency</span>
+      <span class="na">threshold</span><span class="pi">:</span> <span class="s">200ms</span>
+      <span class="na">measurement</span><span class="pi">:</span> <span class="s">p99</span>
+<span class="na">alerts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s2">"</span><span class="s">slo_violated"</span>
+        <span class="na">action</span><span class="pi">:</span> <span class="s2">"</span><span class="s">notify_oncall"</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Measure SLIs that matter to users</li>
+  <li>Track error budgets and enforce limits</li>
+  <li>Automate repetitive operational tasks</li>
+  <li>Conduct blameless post-mortems</li>
+</ul>
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Ignoring SLOs and error budgets</li>
+  <li>Overlooking automation opportunities</li>
+  <li>Not analyzing incidents thoroughly</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>SRE practices enable DevOps teams to balance reliability and velocity, ensuring scalable, highly available systems.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

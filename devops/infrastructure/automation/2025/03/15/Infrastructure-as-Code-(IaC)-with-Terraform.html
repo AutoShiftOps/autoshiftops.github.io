@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🛠️ Infrastructure as Code with Terraform</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🛠️ Infrastructure as Code with Terraform</h1>
+  <p class="post-meta">Published on March 15, 2025</p>
+  <div class="post-content">
+    <h2 id="infrastructure-as-code-iac-with-terraform">Infrastructure as Code (IaC) with Terraform</h2>
+
+<p>Terraform allows you to <strong>define infrastructure as code</strong>, enabling automated, consistent, and repeatable deployments across environments.</p>
+
+<hr />
+
+<h3 id="why-terraform-matters">Why Terraform Matters</h3>
+
+<ul>
+  <li><strong>Version Control:</strong> Track changes to infrastructure</li>
+  <li><strong>Automation:</strong> Reduce manual provisioning errors</li>
+  <li><strong>Consistency:</strong> Avoid drift between environments</li>
+  <li><strong>Scalability:</strong> Deploy multi-cloud or hybrid infrastructure easily</li>
+</ul>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<ol>
+  <li>Write Terraform configurations</li>
+  <li>Initialize Terraform and plan changes</li>
+  <li>Apply configurations to provision resources</li>
+  <li>Monitor and update resources via code</li>
+  <li>Destroy or rollback environments as needed</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Write Terraform Code] --&gt; B[terraform init &amp; plan]
+    B --&gt; C[terraform apply]
+    C --&gt; D[Provision Resources]
+    D --&gt; E[Monitor &amp; Update]
+    E --&gt; F[terraform destroy if needed]
+</div>
+
+<hr />
+
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">provider</span> <span class="s2">"aws"</span> <span class="p">{</span>
+  <span class="nx">region</span> <span class="o">=</span> <span class="s2">"us-west-2"</span>
+<span class="p">}</span>
+<span class="nx">resource</span> <span class="s2">"aws_instance"</span> <span class="s2">"example"</span> <span class="p">{</span>
+  <span class="nx">ami</span>           <span class="o">=</span> <span class="s2">"ami-0c55b159cbfafe1f0"</span>
+  <span class="nx">instance_type</span> <span class="o">=</span> <span class="s2">"t2.micro"</span>
+
+  <span class="nx">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">Name</span> <span class="o">=</span> <span class="s2">"TerraformExample"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">resource</span> <span class="s2">"aws_s3_bucket"</span> <span class="s2">"app_bucket"</span> <span class="p">{</span>
+  <span class="nx">bucket</span> <span class="o">=</span> <span class="s2">"my-app-bucket"</span>
+  <span class="nx">acl</span>    <span class="o">=</span> <span class="s2">"private"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Modularize Terraform code for reusability</li>
+  <li>Use state files securely (e.g., S3 with locking)</li>
+  <li>Review plans before applying changes</li>
+  <li>Version control everything</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Manual changes outside IaC causing drift</li>
+  <li>Not securing state files (leaks secrets)</li>
+  <li>Mixing environments in the same configuration</li>
+  <li>Ignoring Terraform version compatibility</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Terraform empowers DevOps teams to manage infrastructure declaratively, safely, and consistently, reducing errors and enabling automation.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

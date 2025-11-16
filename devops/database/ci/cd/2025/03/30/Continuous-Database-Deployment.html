@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>💾 Continuous Database Deployment</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>💾 Continuous Database Deployment</h1>
+  <p class="post-meta">Published on March 30, 2025</p>
+  <div class="post-content">
+    <h2 id="continuous-database-deployment">Continuous Database Deployment</h2>
+
+<p>Managing database schema and data changes safely is critical. <strong>Continuous Database Deployment</strong> automates database updates alongside application deployments.</p>
+
+<hr />
+
+<h3 id="why-continuous-database-deployment-matters">Why Continuous Database Deployment Matters</h3>
+
+<ul>
+  <li><strong>Version Control:</strong> Track database schema changes</li>
+  <li><strong>Automation:</strong> Reduce manual errors</li>
+  <li><strong>Rollback:</strong> Revert to previous schema versions safely</li>
+  <li><strong>Synchronization:</strong> Keep app and database in sync</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Write migration scripts (schema, data)</li>
+  <li>Store scripts in version control</li>
+  <li>CI/CD pipeline executes migrations before/after app deployment</li>
+  <li>Run integration tests to validate changes</li>
+  <li>Rollback if issues occur</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Migration Scripts] --&gt; B[CI/CD Pipeline]
+    B --&gt; C[Apply to Database]
+    C --&gt; D[Run Tests]
+    D --&gt; E[Deploy Application]
+    D --&gt; F[Rollback if Failed]
+</div>
+
+<hr />
+
+<h3 id="full-fledged-flyway-migration-example">Full-Fledged Flyway Migration Example</h3>
+
+<p>Below is a complete, versioned Flyway migration example with configuration, SQL migrations (forward + optional undo), commands, Docker usage, and a CI snippet.</p>
+
+<p>Files (place these under src/main/resources/db/migration or your Flyway locations):</p>
+
+<ul>
+  <li>V1__create_users_table.sql
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- V1__create_users_table.sql</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span>
+<span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+<span class="n">username</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span><span class="p">,</span>
+<span class="n">email</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">UNIQUE</span><span class="p">,</span>
+<span class="n">created_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="n">now</span><span class="p">()</span>
+<span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>V2__add_last_login.sql
+```sql
+– V2__add_last_login.sql
+ALTER TABLE users ADD COLUMN last_login TIMESTAMP WITH TIME ZONE;</li>
+</ul>
+
+<p>– Backfill recent known values (example)
+UPDATE users SET last_login = now() WHERE last_login IS NULL;</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- V3__seed_demo_user.sql
+```sql
+-- V3__seed_demo_user.sql
+INSERT INTO users (username, email) VALUES ('demo', 'demo@example.com')
+ON CONFLICT (username) DO NOTHING;
+</code></pre></div></div>
+
+<p>Optional undo (requires Flyway Teams for <code class="language-plaintext highlighter-rouge">undo</code> support) — names follow Flyway undo convention:</p>
+<ul>
+  <li>U2__undo_add_last_login.sql
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- U2__undo_add_last_login.sql</span>
+<span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="k">DROP</span> <span class="k">COLUMN</span> <span class="n">IF</span> <span class="k">EXISTS</span> <span class="n">last_login</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>Flyway config (flyway.conf) — prefer env vars in CI</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>flyway.url=${DB_URL}
+flyway.user=${DB_USER}
+flyway.password=${DB_PASSWORD}
+# locations=filesystem:src/main/resources/db/migration (adjust for your project)
+flyway.locations=classpath:db/migration
+</code></pre></div></div>
+
+<p>Local CLI commands (use env vars instead of plain secrets)</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Validate migrations and show status</span>
+flyway <span class="nt">-url</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_URL</span><span class="s2">"</span> <span class="nt">-user</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span> <span class="nt">-password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_PASSWORD</span><span class="s2">"</span> info
+
+<span class="c"># Apply outstanding migrations</span>
+flyway <span class="nt">-url</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_URL</span><span class="s2">"</span> <span class="nt">-user</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span> <span class="nt">-password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_PASSWORD</span><span class="s2">"</span> migrate
+
+<span class="c"># Repair metadata (use carefully)</span>
+flyway <span class="nt">-url</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_URL</span><span class="s2">"</span> <span class="nt">-user</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span> <span class="nt">-password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_PASSWORD</span><span class="s2">"</span> repair
+
+<span class="c"># Undo last version (Teams)</span>
+flyway <span class="nt">-url</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_URL</span><span class="s2">"</span> <span class="nt">-user</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span> <span class="nt">-password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$DB_PASSWORD</span><span class="s2">"</span> undo
+</code></pre></div></div>
+
+<p>Docker example (one-off Flyway container)</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">db</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">postgres:15</span>
+  <span class="na">environment</span><span class="pi">:</span>
+    <span class="na">POSTGRES_USER</span><span class="pi">:</span> <span class="s">app</span>
+    <span class="na">POSTGRES_PASSWORD</span><span class="pi">:</span> <span class="s">example</span>
+    <span class="na">POSTGRES_DB</span><span class="pi">:</span> <span class="s">appdb</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">5432:5432"</span>
+
+  <span class="na">flyway</span><span class="pi">:</span>
+  <span class="na">image</span><span class="pi">:</span> <span class="s">flyway/flyway:9</span>
+  <span class="na">depends_on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">db</span><span class="pi">]</span>
+  <span class="na">command</span><span class="pi">:</span> <span class="s">-url=jdbc:postgresql://db:5432/appdb -user=app -password=example migrate</span>
+  <span class="na">volumes</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">./src/main/resources/db/migration:/flyway/sql</span>
+</code></pre></div></div>
+
+<p>CI snippet (GitHub Actions) — run migrations during deploy stage</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">DB Migrations</span>
+<span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">]</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">migrate</span><span class="pi">:</span>
+  <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+  <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up JDK</span>
+    <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-java@v4</span>
+    <span class="na">with</span><span class="pi">:</span>
+      <span class="na">java-version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">17'</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Flyway migrate</span>
+    <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">curl -L https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/9.16.0/flyway-commandline-9.16.0-linux-x64.tar.gz | tar xz</span>
+      <span class="s">./flyway-*/flyway -url="$" -user="$" -password="$" migrate</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">DB_URL</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">DB_USER</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">DB_PASSWORD</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+
+<h3 id="summary">summary</h3>
+<ul>
+  <li>Keep SQL migrations small, idempotent where possible, and versioned (V#__*.sql).</li>
+  <li>Test migrations against a staging DB; run integration tests after migrate.</li>
+  <li>Use environment secrets and never commit credentials.</li>
+  <li>For destructive changes, prefer multi-step changes (add column → backfill → swap reads → drop) to maintain backward compatibility.</li>
+  <li>Consider undo scripts (Flyway Teams) or write explicit rollback SQL stored in version control for emergency rollbacks.</li>
+</ul>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Version-control all migration scripts</li>
+  <li>Test migrations in dev/staging before production</li>
+  <li>Automate rollback scripts</li>
+  <li>Maintain backward-compatible migrations</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Manual database changes outside pipelines</li>
+  <li>Ignoring testing of migrations</li>
+  <li>Breaking app compatibility with schema updates</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Continuous database deployment ensures synchronized, safe, and automated database changes, improving reliability and reducing errors in DevOps pipelines.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

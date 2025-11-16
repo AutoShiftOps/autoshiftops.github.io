@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>⚙️ Kubernetes Operators Explained</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>⚙️ Kubernetes Operators Explained</h1>
+  <p class="post-meta">Published on April 20, 2025</p>
+  <div class="post-content">
+    <h2 id="kubernetes-operators-explained">Kubernetes Operators Explained</h2>
+
+<p>Kubernetes Operators extend Kubernetes functionality by <strong>automating complex application management</strong> using Custom Resource Definitions (CRDs) and controllers.</p>
+
+<hr />
+
+<h3 id="why-operators-matter">Why Operators Matter</h3>
+
+<ul>
+  <li><strong>Automated Management:</strong> Deploy, scale, backup, and upgrade apps</li>
+  <li><strong>Consistency:</strong> Maintain state as defined in CRDs</li>
+  <li><strong>Complex Applications:</strong> Manage stateful apps like databases efficiently</li>
+  <li><strong>Extensibility:</strong> Add custom logic for operational tasks</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Define a Custom Resource (CR) for the application</li>
+  <li>Deploy the Operator which watches the CR</li>
+  <li>Operator performs tasks: deployment, scaling, upgrades, backup</li>
+  <li>Monitor application state and metrics</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Custom Resource] --&gt; B[Kubernetes Operator]
+    B --&gt; C[Application Deployment &amp; Management]
+    C --&gt; D[Monitor &amp; Self-Heal]
+    D --&gt; E[Update Custom Resource]
+    E --&gt; B
+</div>
+
+<hr />
+
+<h3 id="real-world-example-deploying-a-database-operator">Real-World Example: Deploying a Database Operator</h3>
+
+<h4 id="step-1-create-a-custom-resource-definition">Step 1: Create a Custom Resource Definition</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apiextensions.k8s.io/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">CustomResourceDefinition</span>
+<span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">databases.example.com</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">names</span><span class="pi">:</span>
+        <span class="na">kind</span><span class="pi">:</span> <span class="s">Database</span>
+        <span class="na">plural</span><span class="pi">:</span> <span class="s">databases</span>
+    <span class="na">scope</span><span class="pi">:</span> <span class="s">Namespaced</span>
+    <span class="na">versions</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">v1</span>
+        <span class="s">served</span><span class="err">:</span> <span class="kc">true</span>
+        <span class="s">storage</span><span class="err">:</span> <span class="kc">true</span>
+        <span class="s">schema</span><span class="err">:</span>
+            <span class="na">openAPIV3Schema</span><span class="pi">:</span>
+                <span class="na">type</span><span class="pi">:</span> <span class="s">object</span>
+                <span class="na">properties</span><span class="pi">:</span>
+                    <span class="na">spec</span><span class="pi">:</span>
+                        <span class="na">type</span><span class="pi">:</span> <span class="s">object</span>
+                        <span class="na">properties</span><span class="pi">:</span>
+                            <span class="na">engine</span><span class="pi">:</span>
+                                <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+                                <span class="na">enum</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">postgres</span><span class="pi">,</span> <span class="nv">mysql</span><span class="pi">]</span>
+                            <span class="na">version</span><span class="pi">:</span>
+                                <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+                            <span class="na">backupSchedule</span><span class="pi">:</span>
+                                <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+</code></pre></div></div>
+
+<h4 id="step-2-deploy-the-operator">Step 2: Deploy the Operator</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">database-operator</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="na">selector</span><span class="pi">:</span>
+        <span class="na">matchLabels</span><span class="pi">:</span>
+            <span class="na">app</span><span class="pi">:</span> <span class="s">database-operator</span>
+    <span class="na">template</span><span class="pi">:</span>
+        <span class="na">metadata</span><span class="pi">:</span>
+            <span class="na">labels</span><span class="pi">:</span>
+                <span class="na">app</span><span class="pi">:</span> <span class="s">database-operator</span>
+        <span class="na">spec</span><span class="pi">:</span>
+            <span class="na">containers</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">operator</span>
+                <span class="s">image</span><span class="err">:</span> <span class="s">database-operator:v1.0</span>
+                <span class="s">env</span><span class="err">:</span>
+                <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">WATCH_NAMESPACE</span>
+                    <span class="s">value</span><span class="err">:</span> <span class="s2">"</span><span class="s">"</span>
+</code></pre></div></div>
+
+<h4 id="step-3-create-an-instance-using-the-cr">Step 3: Create an Instance Using the CR</h4>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">example.com/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Database</span>
+<span class="na">metadata</span><span class="pi">:</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">production-db</span>
+<span class="na">spec</span><span class="pi">:</span>
+    <span class="na">engine</span><span class="pi">:</span> <span class="s">postgres</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">14"</span>
+    <span class="na">backupSchedule</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*"</span>
+</code></pre></div></div>
+
+<h4 id="step-4-operator-reconciliation-logic-go">Step 4: Operator Reconciliation Logic (Go)</h4>
+<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">func</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span><span class="n">DatabaseReconciler</span><span class="p">)</span> <span class="n">Reconcile</span><span class="p">(</span><span class="n">ctx</span> <span class="n">context</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">req</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">Request</span><span class="p">)</span> <span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">Result</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">db</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">examplev1</span><span class="o">.</span><span class="n">Database</span><span class="p">{}</span>
+        <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">r</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">req</span><span class="o">.</span><span class="n">NamespacedName</span><span class="p">,</span> <span class="n">db</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">Result</span><span class="p">{},</span> <span class="n">err</span>
+        <span class="p">}</span>
+        
+        <span class="c">// Create StatefulSet for database</span>
+        <span class="n">statefulSet</span> <span class="o">:=</span> <span class="n">constructStatefulSet</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">err</span> <span class="o">:=</span> <span class="n">r</span><span class="o">.</span><span class="n">Create</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">statefulSet</span><span class="p">);</span> <span class="n">err</span> <span class="o">!=</span> <span class="no">nil</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">Result</span><span class="p">{</span><span class="n">RequeueAfter</span><span class="o">:</span> <span class="m">5</span> <span class="o">*</span> <span class="n">time</span><span class="o">.</span><span class="n">Second</span><span class="p">},</span> <span class="n">err</span>
+        <span class="p">}</span>
+        
+        <span class="c">// Update CR status</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">Status</span><span class="o">.</span><span class="n">Phase</span> <span class="o">=</span> <span class="s">"Running"</span>
+        <span class="n">r</span><span class="o">.</span><span class="n">Status</span><span class="p">()</span><span class="o">.</span><span class="n">Update</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">Result</span><span class="p">{},</span> <span class="no">nil</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Use operators for stateful or complex applications</li>
+  <li>Monitor operator logs and events</li>
+  <li>Keep CRDs and operator code versioned</li>
+  <li>Test operators in staging before production</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>
+    <p>Using operators for simple stateless apps unnecessarily</p>
+  </li>
+  <li>
+    <p>Not handling errors or retries in reconciliation</p>
+  </li>
+  <li>
+    <p>Ignoring resource consumption of operators</p>
+  </li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Kubernetes Operators allow DevOps teams to automate operational complexity, ensuring reliable management of stateful and complex applications.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

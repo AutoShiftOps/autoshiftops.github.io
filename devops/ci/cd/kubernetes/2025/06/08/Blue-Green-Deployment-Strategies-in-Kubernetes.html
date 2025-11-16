@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🔹 Blue-Green Deployment Strategies in Kubernetes</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🔹 Blue-Green Deployment Strategies in Kubernetes</h1>
+  <p class="post-meta">Published on June 08, 2025</p>
+  <div class="post-content">
+    <h2 id="blue-green-deployment-strategies-in-kubernetes">Blue-Green Deployment Strategies in Kubernetes</h2>
+
+<p>Blue-Green deployment is a <strong>CI/CD technique</strong> that reduces downtime and risk by running <strong>two identical production environments</strong>: one active (Blue) and one idle (Green). Deployments happen to the idle environment, then traffic is switched over after validation.</p>
+
+<p>This approach ensures <strong>zero downtime, safe rollbacks, and minimal user disruption</strong>, making it crucial for modern DevOps pipelines.</p>
+
+<hr />
+
+<h3 id="why-blue-green-deployment-matters-for-devops-engineers">Why Blue-Green Deployment Matters for DevOps Engineers</h3>
+
+<ul>
+  <li><strong>Zero Downtime:</strong> Switch traffic seamlessly from Blue to Green</li>
+  <li><strong>Safe Rollbacks:</strong> Quickly revert if issues arise in Green</li>
+  <li><strong>Continuous Delivery:</strong> Supports frequent releases without affecting users</li>
+  <li><strong>Simplified Testing:</strong> Validate production-ready code in an isolated environment</li>
+  <li><strong>Predictable Deployments:</strong> Reduces risk of deployment failures</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Maintain two identical environments: Blue (live) and Green (staging)</li>
+  <li>Deploy new version to Green environment</li>
+  <li>Run smoke and integration tests on Green</li>
+  <li>Switch traffic from Blue → Green using Kubernetes service routing</li>
+  <li>Monitor metrics, logs, and user experience</li>
+  <li>Retire Blue or prepare for the next deployment</li>
+</ol>
+
+<hr />
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Blue Environment - Active] --&gt;|User Traffic| B[Service]
+    C[Green Environment - Idle] --&gt; B
+    D[Deploy New Version] --&gt; C
+    C --&gt;|Switch Traffic| B
+    B --&gt; E[Users Experience Seamless Service]
+</div>
+
+<hr />
+
+<h3 id="step-by-step-implementation-in-kubernetes">Step-by-Step Implementation in Kubernetes</h3>
+
+<ol>
+  <li><strong>Create Namespaces and Deployments</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create namespace blue
+kubectl create namespace green
+kubectl apply <span class="nt">-f</span> deployment-blue.yaml <span class="nt">-n</span> blue
+kubectl apply <span class="nt">-f</span> deployment-green.yaml <span class="nt">-n</span> green
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Expose Services</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> service-blue.yaml <span class="nt">-n</span> blue
+kubectl apply <span class="nt">-f</span> service-green.yaml <span class="nt">-n</span> green
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Switch Traffic Using Service Selector</strong>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl patch service my-app <span class="nt">-n</span> default <span class="nt">-p</span> <span class="s1">'{"spec":{"selector":{"env":"green"}}}'</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Monitor Metrics</strong></li>
+</ol>
+
+<ul>
+  <li>Use Prometheus, Grafana, and Datadog to track latency, error rates, and user impact</li>
+</ul>
+
+<h3 id="sample-python-script-for-automation">Sample Python Script for Automation</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
+
+<span class="k">def</span> <span class="nf">switch_traffic</span><span class="p">(</span><span class="n">namespace</span><span class="p">):</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">kubectl patch service my-app -n default -p </span><span class="sh">'</span><span class="s">{{</span><span class="se">\"</span><span class="s">spec</span><span class="se">\"</span><span class="s">:{{</span><span class="se">\"</span><span class="s">selector</span><span class="se">\"</span><span class="s">:{{</span><span class="se">\"</span><span class="s">env</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="si">{</span><span class="n">namespace</span><span class="si">}</span><span class="se">\"</span><span class="s">}}}}}}</span><span class="sh">'"</span>
+    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Switch traffic to green environment
+</span><span class="nf">switch_traffic</span><span class="p">(</span><span class="sh">"</span><span class="s">green</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="real-world-use-cases">Real-World Use Cases</h3>
+
+<ul>
+  <li>E-commerce: Deploy high-traffic sale updates without downtime</li>
+  <li>Banking: Safely update transaction systems with zero disruption</li>
+  <li>Gaming: Push new features before peak usage without affecting players</li>
+</ul>
+
+<hr />
+
+<h3 id="recommended-tools">Recommended Tools</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Tools</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CI/CD Pipelines</td>
+      <td>Jenkins, GitHub Actions, GitLab CI</td>
+    </tr>
+    <tr>
+      <td>Deployment</td>
+      <td>ArgoCD, Spinnaker, FluxCD</td>
+    </tr>
+    <tr>
+      <td>Monitoring</td>
+      <td>Prometheus, Grafana, Datadog</td>
+    </tr>
+    <tr>
+      <td>Kubernetes Mgmt</td>
+      <td>Kustomize, Helm, kubectl</td>
+    </tr>
+    <tr>
+      <td>Automation Scripts</td>
+      <td>Python, Bash, Ansible</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Test Green environment thoroughly before traffic switch</li>
+  <li>Use health checks and readiness probes in Kubernetes</li>
+  <li>Automate traffic switching with scripts or pipelines</li>
+  <li>Keep both environments in sync to avoid drift</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Traffic switch without proper health checks</li>
+  <li>Environment drift between Blue and Green</li>
+  <li>Ignoring rollback plan and monitoring alerts</li>
+</ul>
+
+<hr />
+
+<h3 id="key-takeaways">Key Takeaways</h3>
+
+<ul>
+  <li>Blue-Green deployment ensures zero downtime and safer releases</li>
+  <li>Kubernetes makes switching seamless with service selectors</li>
+  <li>Automation and monitoring are critical for success</li>
+  <li>Ideal for high-traffic, production-critical applications</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Blue-Green deployments in Kubernetes are a best-practice strategy for minimizing risk and downtime. Combining automation, monitoring, and traffic management ensures smooth, predictable, and safe deployments for any DevOps team.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

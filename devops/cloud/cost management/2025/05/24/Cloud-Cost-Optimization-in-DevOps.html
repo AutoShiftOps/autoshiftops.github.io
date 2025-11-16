@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>💰 Cloud Cost Optimization in DevOps</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>💰 Cloud Cost Optimization in DevOps</h1>
+  <p class="post-meta">Published on May 24, 2025</p>
+  <div class="post-content">
+    <h2 id="cloud-cost-optimization-in-devops">Cloud Cost Optimization in DevOps</h2>
+
+<p>Cloud cost optimization ensures <strong>efficient usage of resources</strong>, reducing unnecessary expenses while maintaining performance and scalability.</p>
+
+<hr />
+
+<h3 id="why-cloud-cost-optimization-matters">Why Cloud Cost Optimization Matters</h3>
+
+<ul>
+  <li><strong>Reduce Waste:</strong> Identify underutilized resources</li>
+  <li><strong>Improve ROI:</strong> Maximize value for cloud spend</li>
+  <li><strong>Scalability:</strong> Adjust resources dynamically</li>
+  <li><strong>Forecasting:</strong> Predict costs for budgeting</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Monitor resource utilization with cloud-native or third-party tools</li>
+  <li>Identify idle or oversized instances</li>
+  <li>Automate scaling policies</li>
+  <li>Implement reserved instances or spot pricing where applicable</li>
+  <li>Continuously review and optimize</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Cloud Resources] --&gt; B[Monitor &amp; Analyze Usage]
+    B --&gt; C[Identify Optimization Opportunities]
+    C --&gt; D[Implement Scaling &amp; Cost Strategies]
+    D --&gt; E[Review &amp; Continuous Improvement]
+    E --&gt; B
+</div>
+
+<hr />
+
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Cost-aware EC2 auditor: estimates costs and flags idle/oversized instances (dry-run)
+</span><span class="kn">import</span> <span class="n">boto3</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="n">botocore.exceptions</span> <span class="kn">import</span> <span class="n">NoCredentialsError</span>
+
+<span class="c1"># Simple hourly price map (USD). Extend as needed.
+</span><span class="n">PRICE_PER_HOUR</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="sh">'</span><span class="s">t3.micro</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0104</span><span class="p">,</span> <span class="sh">'</span><span class="s">t3.small</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0208</span><span class="p">,</span> <span class="sh">'</span><span class="s">t3.medium</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.0416</span><span class="p">,</span>
+  <span class="sh">'</span><span class="s">m5.large</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.096</span><span class="p">,</span> <span class="sh">'</span><span class="s">m5.xlarge</span><span class="sh">'</span><span class="p">:</span> <span class="mf">0.192</span>
+<span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">get_avg_cpu</span><span class="p">(</span><span class="n">cw_client</span><span class="p">,</span> <span class="n">instance_id</span><span class="p">,</span> <span class="n">period_hours</span><span class="o">=</span><span class="mi">168</span><span class="p">):</span>
+  <span class="n">end</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="nf">utcnow</span><span class="p">()</span>
+  <span class="n">start</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">timedelta</span><span class="p">(</span><span class="n">hours</span><span class="o">=</span><span class="n">period_hours</span><span class="p">)</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">cw_client</span><span class="p">.</span><span class="nf">get_metric_statistics</span><span class="p">(</span>
+      <span class="n">Namespace</span><span class="o">=</span><span class="sh">'</span><span class="s">AWS/EC2</span><span class="sh">'</span><span class="p">,</span>
+      <span class="n">MetricName</span><span class="o">=</span><span class="sh">'</span><span class="s">CPUUtilization</span><span class="sh">'</span><span class="p">,</span>
+      <span class="n">Dimensions</span><span class="o">=</span><span class="p">[{</span><span class="sh">'</span><span class="s">Name</span><span class="sh">'</span><span class="p">:</span><span class="sh">'</span><span class="s">InstanceId</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">Value</span><span class="sh">'</span><span class="p">:</span><span class="n">instance_id</span><span class="p">}],</span>
+      <span class="n">StartTime</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">EndTime</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">Period</span><span class="o">=</span><span class="mi">86400</span><span class="p">,</span> <span class="n">Statistics</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">Average</span><span class="sh">'</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">datapoints</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Datapoints</span><span class="sh">'</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">datapoints</span><span class="p">:</span>
+      <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="nf">sum</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="sh">'</span><span class="s">Average</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">datapoints</span><span class="p">)</span> <span class="o">/</span> <span class="nf">len</span><span class="p">(</span><span class="n">datapoints</span><span class="p">)</span>
+  <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">estimate_hourly_cost</span><span class="p">(</span><span class="n">instance_type</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">PRICE_PER_HOUR</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">instance_type</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)</span>  <span class="c1"># fallback estimate
+</span>
+<span class="k">def</span> <span class="nf">analyze_instances</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="sh">'</span><span class="s">us-east-1</span><span class="sh">'</span><span class="p">,</span> <span class="n">idle_cpu_threshold</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">do_action</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+  <span class="k">try</span><span class="p">:</span>
+    <span class="n">ec2</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">ec2</span><span class="sh">'</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+    <span class="n">cw</span> <span class="o">=</span> <span class="n">boto3</span><span class="p">.</span><span class="nf">client</span><span class="p">(</span><span class="sh">'</span><span class="s">cloudwatch</span><span class="sh">'</span><span class="p">,</span> <span class="n">region_name</span><span class="o">=</span><span class="n">region</span><span class="p">)</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">ec2</span><span class="p">.</span><span class="nf">describe_instances</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">[</span><span class="sh">'</span><span class="s">Reservations</span><span class="sh">'</span><span class="p">]:</span>
+      <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="sh">'</span><span class="s">Instances</span><span class="sh">'</span><span class="p">]:</span>
+        <span class="n">iid</span> <span class="o">=</span> <span class="n">i</span><span class="p">[</span><span class="sh">'</span><span class="s">InstanceId</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">itype</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">InstanceType</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span><span class="n">t</span><span class="p">[</span><span class="sh">'</span><span class="s">Key</span><span class="sh">'</span><span class="p">]:</span> <span class="n">t</span><span class="p">[</span><span class="sh">'</span><span class="s">Value</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">i</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Tags</span><span class="sh">'</span><span class="p">,</span> <span class="p">[])}</span>
+        <span class="n">avg_cpu</span> <span class="o">=</span> <span class="nf">get_avg_cpu</span><span class="p">(</span><span class="n">cw</span><span class="p">,</span> <span class="n">iid</span><span class="p">,</span> <span class="n">period_hours</span><span class="o">=</span><span class="mi">24</span><span class="o">*</span><span class="n">days</span><span class="p">)</span>
+        <span class="n">hourly</span> <span class="o">=</span> <span class="nf">estimate_hourly_cost</span><span class="p">(</span><span class="n">itype</span><span class="p">)</span>
+        <span class="n">monthly_cost</span> <span class="o">=</span> <span class="n">hourly</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">30</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">i</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">State</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Name</span><span class="sh">'</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">iid</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">itype</span><span class="si">}</span><span class="s">) status=</span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s"> owner=</span><span class="si">{</span><span class="n">tags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Owner</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">-</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="s"> env=</span><span class="si">{</span><span class="n">tags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Environment</span><span class="sh">'</span><span class="p">,</span><span class="sh">'</span><span class="s">-</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  avg_cpu=</span><span class="si">{</span><span class="n">avg_cpu</span> <span class="k">if</span> <span class="n">avg_cpu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="k">else</span> <span class="sh">'</span><span class="s">N/A</span><span class="sh">'</span><span class="si">}</span><span class="s">%  est_hourly=$</span><span class="si">{</span><span class="n">hourly</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">  est_monthly=$</span><span class="si">{</span><span class="n">monthly_cost</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">avg_cpu</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">avg_cpu</span> <span class="o">&lt;</span> <span class="n">idle_cpu_threshold</span> <span class="ow">and</span> <span class="n">status</span> <span class="o">==</span> <span class="sh">'</span><span class="s">running</span><span class="sh">'</span><span class="p">:</span>
+          <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">  -&gt; Recommendation: Instance appears idle. Consider stopping, rightsizing, or using spot/reserved pricing.</span><span class="sh">"</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">do_action</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">     (dry-run) Would stop instance here.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">""</span><span class="p">)</span>
+  <span class="k">except</span> <span class="n">NoCredentialsError</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">AWS credentials not available.</span><span class="sh">"</span><span class="p">)</span>
+  <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error:</span><span class="sh">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+  <span class="c1"># set do_action=True to perform cloud actions (not recommended in examples)
+</span>  <span class="nf">analyze_instances</span><span class="p">(</span><span class="n">region</span><span class="o">=</span><span class="sh">'</span><span class="s">us-east-1</span><span class="sh">'</span><span class="p">,</span> <span class="n">idle_cpu_threshold</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">days</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">do_action</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Tag resources for cost allocation</li>
+  <li>Use automated scaling and rightsizing</li>
+  <li>Monitor costs in real-time</li>
+  <li>Educate teams about cost-conscious practices</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Ignoring small recurring costs</li>
+  <li>Over-provisioning without monitoring</li>
+  <li>Not reviewing cost reports regularly</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Cloud cost optimization enables DevOps teams to maximize value, reduce waste, and maintain scalable operations in cloud environments.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

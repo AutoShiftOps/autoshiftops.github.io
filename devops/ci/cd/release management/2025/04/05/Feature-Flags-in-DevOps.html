@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🚩 Feature Flags in DevOps</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🚩 Feature Flags in DevOps</h1>
+  <p class="post-meta">Published on April 05, 2025</p>
+  <div class="post-content">
+    <h2 id="feature-flags-in-devops">Feature Flags in DevOps</h2>
+
+<p>Feature flags enable <strong>dynamic control over new features</strong> without redeploying applications. They allow testing in production, gradual rollout, and safe rollback.</p>
+
+<hr />
+
+<h3 id="why-feature-flags-matter">Why Feature Flags Matter</h3>
+
+<ul>
+  <li><strong>Safe Deployments:</strong> Deploy incomplete features without impacting users</li>
+  <li><strong>Gradual Rollout:</strong> Target specific users or percentages</li>
+  <li><strong>A/B Testing:</strong> Test features in production</li>
+  <li><strong>Instant Rollback:</strong> Disable features without redeploying</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Implement feature flags in code</li>
+  <li>Control flags via configuration service or dashboard</li>
+  <li>Deploy application with flags off by default</li>
+  <li>Gradually enable flags for testing or specific users</li>
+  <li>Monitor behavior and metrics</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart 
+    A[Feature Flag Config] --&gt; B[Deploy App]
+    B --&gt; C[Gradual Rollout]
+    C --&gt; D[Monitor Metrics]
+    D --&gt; E{Issues Detected?}
+    E --&gt;|Yes| F[Disable Feature]
+    E --&gt;|No| G[Full Release]
+</div>
+
+<hr />
+
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FeatureFlag</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">flags</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">set_flag</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">flags</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span>
+
+    <span class="k">def</span> <span class="nf">is_enabled</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+<span class="c1"># Usage
+</span><span class="n">feature_flags</span> <span class="o">=</span> <span class="nc">FeatureFlag</span><span class="p">()</span>
+<span class="n">feature_flags</span><span class="p">.</span><span class="nf">set_flag</span><span class="p">(</span><span class="sh">"</span><span class="s">new_ui</span><span class="sh">"</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">feature_flags</span><span class="p">.</span><span class="nf">is_enabled</span><span class="p">(</span><span class="sh">"</span><span class="s">new_ui</span><span class="sh">"</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">New UI is enabled</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">New UI is disabled</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="sample-launchdarkly-integration-nodejs">Sample LaunchDarkly Integration (Node.js)</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="p">{</span> <span class="nx">LDClient</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">launchdarkly-node-server-sdk</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">ldClient</span> <span class="o">=</span> <span class="nx">LDClient</span><span class="p">.</span><span class="nf">init</span><span class="p">(</span><span class="dl">'</span><span class="s1">SDK_KEY</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">ldClient</span><span class="p">.</span><span class="nf">waitForInitialization</span><span class="p">().</span><span class="nf">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">showFeature</span> <span class="o">=</span> <span class="nx">ldClient</span><span class="p">.</span><span class="nf">variation</span><span class="p">(</span><span class="dl">'</span><span class="s1">new-feature-flag</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span> <span class="na">key</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user123</span><span class="dl">'</span> <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="k">if </span><span class="p">(</span><span class="nx">showFeature</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Feature enabled for user</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div></div>
+<hr />
+<h3 id="sample-unleash-integration-java">Sample Unleash Integration (Java)</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">no.finn.unleash.DefaultUnleash</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">no.finn.unleash.Unleash</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">no.finn.unleash.strategy.Strategy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">no.finn.unleash.util.UnleashConfig</span><span class="o">;</span>
+<span class="nc">UnleashConfig</span> <span class="n">config</span> <span class="o">=</span> <span class="nc">UnleashConfig</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">appName</span><span class="o">(</span><span class="s">"my-app"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">instanceId</span><span class="o">(</span><span class="s">"instance-1"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">unleashAPI</span><span class="o">(</span><span class="s">"http://unleash-server/api/"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="nc">Unleash</span> <span class="n">unleash</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultUnleash</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+<span class="kt">boolean</span> <span class="n">isEnabled</span> <span class="o">=</span> <span class="n">unleash</span><span class="o">.</span><span class="na">isEnabled</span><span class="o">(</span><span class="s">"new-feature-flag"</span><span class="o">);</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">isEnabled</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Feature is enabled"</span><span class="o">);</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Feature is disabled"</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Keep feature flags short-lived and remove unused flags</li>
+  <li>Use targeting rules for staged rollouts</li>
+  <li>Monitor feature performance and metrics</li>
+  <li>Automate enabling/disabling through CI/CD</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Long-lived feature flags increasing code complexity</li>
+  <li>Not monitoring metrics after rollout</li>
+  <li>Hardcoding flags instead of using centralized management</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Feature flags provide flexibility, safe rollouts, and testing in production, empowering DevOps teams to release faster and reduce risk.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

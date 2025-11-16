@@ -95,6 +95,8 @@ flowchart TD
     D --&gt;|No| F[Rollback]
 </div>
 
+<hr />
+
 <h3 id="sample-kubernetes-deployment-rolling-update">Sample Kubernetes Deployment (Rolling Update)</h3>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
 <span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
@@ -150,18 +152,6 @@ flowchart TD
 </article>
 
   </main>
-
-  <!-- mermaid: render diagrams client-side -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
-  <script defer>
-    document.addEventListener('DOMContentLoaded', function () {
-      try {
-        mermaid.initialize({ startOnLoad: true, theme: 'base' });
-      } catch (e) {
-        console.error('mermaid init error', e);
-      }
-    });
-  </script> -->
 
   <section class="newsletter">
   <h3>Join the Weekly DevOps Digest 🚀</h3>

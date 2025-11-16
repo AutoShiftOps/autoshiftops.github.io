@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🚦 Advanced Jenkins Pipelines for CI/CD</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🚦 Advanced Jenkins Pipelines for CI/CD</h1>
+  <p class="post-meta">Published on March 16, 2025</p>
+  <div class="post-content">
+    <h2 id="advanced-jenkins-pipelines">Advanced Jenkins Pipelines</h2>
+
+<p>Jenkins pipelines automate <strong>build, test, and deploy stages</strong>, enabling complex workflows with parallelization, conditional execution, and integrations.</p>
+
+<hr />
+
+<h3 id="why-jenkins-pipelines-matter">Why Jenkins Pipelines Matter</h3>
+
+<ul>
+  <li><strong>Automate repetitive tasks</strong> reliably</li>
+  <li><strong>Visualize pipeline stages</strong> for monitoring</li>
+  <li><strong>Parallelization:</strong> Run tasks concurrently</li>
+  <li><strong>Conditional logic:</strong> Skip or retry steps based on results</li>
+</ul>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<ol>
+  <li>Code commit triggers pipeline</li>
+  <li>Build and lint code</li>
+  <li>Run unit, integration, and E2E tests</li>
+  <li>Deploy to staging and production</li>
+  <li>Send notifications on success/failure</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Code Commit] --&gt; B[Build &amp; Lint]
+    B --&gt; C[Test Stage]
+    C --&gt; D[Deploy Staging]
+    D --&gt; E[Deploy Production]
+    D --&gt; F[Notifications]
+    C --&gt; G[Parallel Tests]
+    G --&gt; H[Unit Tests]
+    G --&gt; I[Integration Tests]
+    G --&gt; J[E2E Tests]
+</div>
+
+<hr />
+
+<h3 id="sample-jenkinsfile">Sample Jenkinsfile</h3>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pipeline</span> <span class="o">{</span>
+    <span class="n">agent</span> <span class="n">any</span>
+    <span class="n">stages</span> <span class="o">{</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Build &amp; Lint'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'make build'</span>
+                <span class="n">sh</span> <span class="s1">'make lint'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Test Stage'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">parallel</span> <span class="o">{</span>
+                <span class="n">stage</span><span class="o">(</span><span class="s1">'Unit Tests'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">steps</span> <span class="o">{</span>
+                        <span class="n">sh</span> <span class="s1">'make test-unit'</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">stage</span><span class="o">(</span><span class="s1">'Integration Tests'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">steps</span> <span class="o">{</span>
+                        <span class="n">sh</span> <span class="s1">'make test-integration'</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+                <span class="n">stage</span><span class="o">(</span><span class="s1">'E2E Tests'</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">steps</span> <span class="o">{</span>
+                        <span class="n">sh</span> <span class="s1">'make test-e2e'</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Deploy Staging'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'make deploy-staging'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">stage</span><span class="o">(</span><span class="s1">'Deploy Production'</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">when</span> <span class="o">{</span>
+                <span class="n">branch</span> <span class="s1">'main'</span>
+            <span class="o">}</span>
+            <span class="n">steps</span> <span class="o">{</span>
+                <span class="n">sh</span> <span class="s1">'make deploy-production'</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">post</span> <span class="o">{</span>
+        <span class="n">success</span> <span class="o">{</span>
+            <span class="n">mail</span> <span class="nl">to:</span> <span class="s1">'team@example.com'</span><span class="o">,</span>
+                 <span class="nl">subject:</span> <span class="s2">"Jenkins Pipeline Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}"</span><span class="o">,</span>
+                 <span class="nl">body:</span> <span class="s2">"Good news! The Jenkins pipeline for ${env.JOB_NAME} build #${env.BUILD_NUMBER} succeeded."</span>
+        <span class="o">}</span>
+        <span class="n">failure</span> <span class="o">{</span>
+            <span class="n">mail</span> <span class="nl">to:</span> <span class="s1">'team@example.com'</span><span class="o">,</span>
+                 <span class="nl">subject:</span> <span class="s2">"Jenkins Pipeline Failure: ${env.JOB_NAME} #${env.BUILD_NUMBER}"</span><span class="o">,</span>
+                 <span class="nl">body:</span> <span class="s2">"Attention! The Jenkins pipeline for ${env.JOB_NAME} build #${env.BUILD_NUMBER} failed. Please check the logs."</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Use shared libraries for reusable functions</li>
+  <li>Keep pipelines modular and maintainable</li>
+  <li>Add proper error handling and retries</li>
+  <li>Monitor pipeline execution and metrics</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>
+    <p>Monolithic pipelines that are hard to maintain</p>
+  </li>
+  <li>
+    <p>Ignoring logs and notifications</p>
+  </li>
+  <li>
+    <p>Not cleaning workspace leading to inconsistent builds</p>
+  </li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Advanced Jenkins pipelines allow DevOps teams to automate complex workflows, increase efficiency, and maintain robust CI/CD practices.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

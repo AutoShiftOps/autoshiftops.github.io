@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>⚡ CI/CD for Microservices</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>⚡ CI/CD for Microservices</h1>
+  <p class="post-meta">Published on April 26, 2025</p>
+  <div class="post-content">
+    <h2 id="cicd-for-microservices">CI/CD for Microservices</h2>
+
+<p>Microservices architectures require <strong>independent CI/CD pipelines</strong> for each service to enable fast and reliable deployments.</p>
+
+<hr />
+
+<h3 id="why-microservices-cicd-matters">Why Microservices CI/CD Matters</h3>
+
+<ul>
+  <li><strong>Independent Deployments:</strong> Deploy services without affecting others</li>
+  <li><strong>Parallel Testing:</strong> Run builds/tests per microservice</li>
+  <li><strong>Scalability:</strong> Handle multiple services efficiently</li>
+  <li><strong>Automation:</strong> Reduce manual integration errors</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Commit changes to a microservice repository</li>
+  <li>Build and test independently</li>
+  <li>Deploy to staging environment</li>
+  <li>Run integration tests across services</li>
+  <li>Deploy to production</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Microservice Repo 1] --&gt; B[Build &amp; Test]
+    A[Microservice Repo 2] --&gt; C[Build &amp; Test]
+    B --&gt; D[Deploy Staging]
+    C --&gt; D
+    D --&gt; E[Integration Tests]
+    E --&gt; F[Deploy Production]
+</div>
+
+<hr />
+
+<h3 id="sample-cicd-pipeline-yaml">Sample CI/CD Pipeline (YAML)</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">stages</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">build</span>
+  <span class="pi">-</span> <span class="s">test</span>
+  <span class="pi">-</span> <span class="s">deploy</span>
+<span class="na">build</span><span class="pi">:</span>
+    <span class="na">stage</span><span class="pi">:</span> <span class="s">build</span>
+    <span class="na">script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">echo "Building microservice..."</span>
+        <span class="pi">-</span> <span class="s">./build.sh</span>
+    <span class="na">artifacts</span><span class="pi">:</span>
+        <span class="na">paths</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">build/</span>
+<span class="na">test</span><span class="pi">:</span>
+    <span class="na">stage</span><span class="pi">:</span> <span class="s">test</span>
+    <span class="na">script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">echo "Running tests..."</span>
+        <span class="pi">-</span> <span class="s">./test.sh</span>
+<span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">stage</span><span class="pi">:</span> <span class="s">deploy</span>
+    <span class="na">script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">echo "Deploying microservice..."</span>
+        <span class="pi">-</span> <span class="s">./deploy.sh</span>
+    <span class="na">environment</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">production</span>
+        <span class="na">url</span><span class="pi">:</span> <span class="s">https://microservice.example.com</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Keep pipelines modular and reusable</li>
+  <li>Version-control configurations and manifests</li>
+  <li>Automate service dependencies and integration tests</li>
+  <li>Monitor deployments independently</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Tight coupling between microservice pipelines</li>
+  <li>Ignoring integration testing</li>
+  <li>Manual coordination causing delays</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>CI/CD for microservices enables rapid, reliable, and independent service deployments, essential for modern DevOps teams.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
