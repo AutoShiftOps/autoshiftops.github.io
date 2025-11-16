@@ -42,6 +42,7 @@ flowchart TD
     E --> F[Monitor & Rollback if Needed]
 </div>
 {% endraw %}
+
 ---
 
 ### GitHub Actions Multi-Stage Example

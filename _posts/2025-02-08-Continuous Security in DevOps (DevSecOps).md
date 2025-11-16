@@ -44,6 +44,7 @@ flowchart TD
     E -->|Yes| G[Alert Team & Fix]
 </div>
 {% endraw %}
+
 ---
 
 ### Sample GitHub Actions Security Scan

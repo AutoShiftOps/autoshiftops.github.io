@@ -41,6 +41,8 @@ flowchart TD
 </div>
 {% endraw %}
 
+---
+
 ### Sample Kubernetes Deployment (Rolling Update)
 ```yaml
 apiVersion: apps/v1

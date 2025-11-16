@@ -43,6 +43,8 @@ flowchart TD
 </div>
 {% endraw %}
 
+---
+
 ## Sample Terraform Code
 ```hcl
 provider "aws" {

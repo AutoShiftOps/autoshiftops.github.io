@@ -43,6 +43,7 @@ flowchart TD
     E --> F[Notify Team]
 </div>
 {% endraw %}
+
 ---
 
 ### Sample Kubernetes Horizontal Pod Autoscaler

@@ -41,6 +41,7 @@ flowchart TD
     C --> E[Alerts via Email/Slack]
 </div>
 {% endraw %}
+
 ---
 
 ### Sample Logstash Config

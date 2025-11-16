@@ -41,6 +41,7 @@ flowchart TD
     D --> F[Full Deployment]
 </div>
 {% endraw %}
+
 ---
 
 ### Sample Kubernetes Canary Deployment

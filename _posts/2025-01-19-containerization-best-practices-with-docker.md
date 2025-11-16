@@ -42,6 +42,8 @@ flowchart TD
 </div>
 {% endraw %}
 
+---
+
 ### Sample Dockerfile
 ```dockerfile
 FROM node:18

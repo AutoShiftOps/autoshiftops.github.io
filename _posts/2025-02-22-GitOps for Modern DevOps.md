@@ -41,6 +41,7 @@ flowchart TD
     D --> E[Rollback via Git]
 </div>
 {% endraw %}
+
 ---
 
 ### Sample ArgoCD Application YAML

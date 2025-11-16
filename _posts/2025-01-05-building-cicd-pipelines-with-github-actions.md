@@ -49,6 +49,8 @@ flowchart TD
     H --> I[Slack Notification]
 </div>
 {% endraw %}
+
+---
  
 ### GitHub Actions Pipeline Example
 

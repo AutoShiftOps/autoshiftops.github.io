@@ -42,6 +42,8 @@ flowchart TD
 </div>
 {% endraw %}
 
+---
+
 ### Sample Prometheus Config
 
 ```yaml

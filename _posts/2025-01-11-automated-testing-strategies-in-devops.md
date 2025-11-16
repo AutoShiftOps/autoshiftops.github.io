@@ -56,6 +56,8 @@ flowchart TD
 </div>
 {% endraw %}
 
+---
+
 ## Sample Test Code
 ```javascript
 // Unit test example using Jest
