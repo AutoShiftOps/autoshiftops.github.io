@@ -81,7 +81,7 @@ kubectl patch service my-app -n default -p '{"spec":{"selector":{"env":"green"}}
 import subprocess
 
 def switch_traffic(namespace):
-    cmd = f"kubectl patch service my-app -n default -p '{{\"spec\":{{\"selector\":{{\"env\":\"{namespace}\"}}}}}}'"
+    cmd = f"kubectl patch service my-app -n default -p '{{\"spec\":{{\"selector\":{{\"env\":\"\{{namespace}\"}}}}}}}'"
     subprocess.run(cmd, shell=True)
 
 # Switch traffic to green environment
