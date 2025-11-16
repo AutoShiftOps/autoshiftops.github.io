@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🚀 Progressive Delivery Techniques"
-date: 2024-05-10
+date: 2025-05-10
 categories: [DevOps, CI/CD, Deployment]
 tags: [progressive delivery, DevOps, feature rollout, canary, blue-green]
 description: "Implement progressive delivery techniques like canary releases and feature flags to reduce risk and improve deployment quality."

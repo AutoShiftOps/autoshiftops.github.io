@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🔵🔴 Blue-Green Deployment in Production"
-date: 2024-10-27
+date: 2025-02-15
 categories: [DevOps, Deployment, Kubernetes]
 tags: [blue-green deployment, Kubernetes, CI/CD, DevOps]
 description: "Implement Blue-Green Deployment strategies for zero-downtime updates and safer production releases."
