@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</h1>
+  <p class="post-meta">Published on December 29, 2025</p>
+  <div class="post-content">
+    <h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+
+<blockquote>
+  <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
+</blockquote>
+
+<p>Large Language Models (LLMs) are often associated with expensive GPUs and cloud infrastructure. However, for <strong>development, research, privacy-sensitive environments, and cost-controlled setups</strong>, running LLMs <strong>entirely on CPU</strong> is not only possible — it’s practical.</p>
+
+<p>This post is a <strong>complete, end-to-end guide</strong> to running <strong>large models (13B–27B+) on CPU-only hardware</strong>, using modern quantization techniques and efficient runtimes like <code class="language-plaintext highlighter-rouge">llama.cpp</code>.</p>
+
+<p>By the end, you’ll understand:</p>
+<ul>
+  <li>Why CPU-based LLMs exist</li>
+  <li>What <em>quantization</em> and <em>inference</em> really mean</li>
+  <li>How to set up a Linux system for CPU inference</li>
+  <li>How large models can realistically run without GPUs</li>
+  <li>A reproducible workflow you can use immediately</li>
+</ul>
+
+<hr />
+
+<h2 id="why-run-llms-on-cpu">Why Run LLMs on CPU?</h2>
+
+<p>Let’s address the obvious question first.</p>
+
+<h3 id="if-gpus-are-faster-why-bother-with-cpu">If GPUs are faster, why bother with CPU?</h3>
+
+<p>Because <strong>speed is not the only constraint</strong>.</p>
+
+<p>CPU-based LLMs are ideal when you need:</p>
+
+<ul>
+  <li><strong>Low-cost experimentation</strong> (no $10K GPUs)</li>
+  <li><strong>Offline or air-gapped environments</strong></li>
+  <li><strong>Privacy &amp; compliance</strong> (healthcare, finance, legal)</li>
+  <li><strong>On-prem developer tooling</strong></li>
+  <li><strong>Edge or internal R&amp;D systems</strong></li>
+  <li><strong>Predictable, reproducible environments</strong></li>
+</ul>
+
+<p>For many teams, <strong>“fast enough” beats “fastest possible.”</strong></p>
+
+<hr />
+
+<h2 id="core-concepts-no-ml-background-required">Core Concepts (No ML Background Required)</h2>
+
+<h3 id="1-what-is-inference">1. What Is Inference?</h3>
+
+<p><strong>Inference</strong> is the act of <em>using</em> a trained model to generate text.</p>
+
+<ul>
+  <li>Training = learning weights (expensive, GPU-heavy)</li>
+  <li>Inference = reading weights + predicting tokens (much cheaper)</li>
+</ul>
+
+<p>This guide is <strong>only about inference</strong>.</p>
+
+<hr />
+
+<h3 id="2-why-large-models-dont-fit-on-cpu-by-default">2. Why Large Models Don’t Fit on CPU (By Default)</h3>
+
+<p>A 27B model in FP16 format:</p>
+<ul>
+  <li>27B parameters × 2 bytes ≈ 54 GB RAM</li>
+</ul>
+
+<p>That’s before runtime overhead.</p>
+
+<p>This is why <strong>quantization</strong> exists.</p>
+
+<hr />
+
+<h2 id="quantization-explained-simply">Quantization Explained (Simply)</h2>
+
+<h3 id="what-is-quantization">What Is Quantization?</h3>
+
+<p>Quantization reduces the <strong>precision</strong> of model weights to save memory and speed up inference.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Format</th>
+      <th>Memory</th>
+      <th>Quality</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FP16</td>
+      <td>Very High</td>
+      <td>Best</td>
+      <td>Training / GPUs</td>
+    </tr>
+    <tr>
+      <td>Q6</td>
+      <td>Medium</td>
+      <td>Very Good</td>
+      <td>CPU, high quality</td>
+    </tr>
+    <tr>
+      <td>Q5</td>
+      <td>Lower</td>
+      <td>Good</td>
+      <td>CPU, balanced</td>
+    </tr>
+    <tr>
+      <td>Q4</td>
+      <td>Lowest</td>
+      <td>Acceptable</td>
+      <td>CPU, fastest</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Quantization:</p>
+<ul>
+  <li>Reduces RAM usage by <strong>4–6×</strong></li>
+  <li>Improves CPU cache efficiency</li>
+  <li>Makes CPU inference viable</li>
+</ul>
+
+<hr />
+
+<h2 id="why-gguf-format">Why GGUF Format?</h2>
+
+<p>Modern CPU runtimes use <strong>GGUF</strong>, a binary format that:</p>
+
+<ul>
+  <li>Packs weights + tokenizer together</li>
+  <li>Is optimized for memory-mapped loading</li>
+  <li>Avoids Python overhead</li>
+  <li>Works directly with C/C++ inference engines</li>
+</ul>
+
+<p>Think of GGUF as:</p>
+<blockquote>
+  <p><em>“Docker images for LLM weights.”</em></p>
+</blockquote>
+
+<hr />
+
+<h2 id="the-cpu-inference-stack">The CPU Inference Stack</h2>
+
+<p>Here’s the <strong>minimal, production-grade stack</strong>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Raw Model Weights (HF / Google)
+↓
+Conversion → GGUF
+↓
+Quantization (Q4/Q5/Q6)
+↓
+CPU Runtime (llama.cpp)
+↓
+Optimized Linux Execution
+</code></pre></div></div>
+
+<p>No PyTorch runtime is needed at inference time.</p>
+
+<hr />
+
+<h2 id="system-requirements-realistic">System Requirements (Realistic)</h2>
+
+<h3 id="minimum-recommended-specs">Minimum Recommended Specs</h3>
+
+<ul>
+  <li>Ubuntu 22.04+</li>
+  <li>x86_64 CPU with <strong>AVX2</strong> (AVX512 preferred)</li>
+  <li><strong>128 GB RAM</strong> for 27B models</li>
+  <li>16–32 CPU cores</li>
+  <li>SSD storage</li>
+</ul>
+
+<blockquote>
+  <p>Tip: CPUs with high memory bandwidth matter more than clock speed.</p>
+</blockquote>
+
+<hr />
+
+<h2 id="step-by-step-quick-start">Step-by-Step Quick Start</h2>
+
+<h3 id="1-install-system-dependencies">1. Install System Dependencies</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install</span> <span class="nt">-y</span> <span class="se">\</span>
+  build-essential cmake git wget <span class="se">\</span>
+  python3 python3-venv python3-pip <span class="se">\</span>
+  numactl htop perf libopenblas-dev
+</code></pre></div></div>
+
+<h3 id="2-build-the-cpu-inference-engine">2. Build the CPU Inference Engine</h3>
+
+<p>llama.cpp is the gold standard for CPU LLM inference.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
+make LLAMA_AVX2=1 LLAMA_AVX512=1 LLAMA_BLAS=1 -j$(nproc)
+</code></pre></div></div>
+
+<p>Verify CPU features:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>lscpu | grep AVX
+</code></pre></div></div>
+
+<h3 id="3-download-model-weights">3. Download Model Weights</h3>
+
+<p>Download official model weights (example shown):</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mkdir -p models/raw
+cd models/raw
+wget &lt;official-model-url&gt;
+</code></pre></div></div>
+
+<p>Always respect model licenses.</p>
+
+<h3 id="4-convert-to-gguf">4. Convert to GGUF</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python llama.cpp/tools/convert-hf-to-gguf.py \
+  models/raw/model.safetensors \
+  models/gguf/model.gguf
+</code></pre></div></div>
+
+<p>This step:</p>
+
+<ul>
+  <li>Aligns tokenizer</li>
+  <li>Normalizes weight layout</li>
+  <li>Ensures runtime compatibility</li>
+</ul>
+
+<h3 id="5-quantize-the-model">5. Quantize the Model</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./quantize models/gguf/model.gguf models/quantized/model-q4.gguf q4_k_m
+./quantize models/gguf/model.gguf models/quantized/model-q5.gguf q5_k_m
+./quantize models/gguf/model.gguf models/quantized/model-q6.gguf q6_k
+</code></pre></div></div>
+
+<p>Start with Q4. Move up if quality is insufficient.</p>
+
+<h3 id="6-run-inference-optimized">6. Run Inference (Optimized)</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>numactl --cpunodebind=0 --membind=0 \
+./main -m models/quantized/model-q4.gguf \
+--threads 16 \
+-p "Explain CPU-based LLM inference"
+</code></pre></div></div>
+
+<p>Tune:</p>
+
+<ul>
+  <li>
+    <p>–threads</p>
+  </li>
+  <li>
+    <p>NUMA binding</p>
+  </li>
+  <li>
+    <p>Batch size</p>
+  </li>
+  <li>
+    <p>Performance Expectations (Honest)</p>
+  </li>
+</ul>
+
+<p>For a 27B model on CPU:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantization</th>
+      <th>Tokens/sec</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q4</td>
+      <td>4–7 t/s</td>
+    </tr>
+    <tr>
+      <td>Q5</td>
+      <td>3–5 t/s</td>
+    </tr>
+    <tr>
+      <td>Q6</td>
+      <td>2–4 t/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This is not chatGPT speed — but it is:</p>
+
+<ul>
+  <li>
+    <p>Stable</p>
+  </li>
+  <li>
+    <p>Cheap</p>
+  </li>
+  <li>
+    <p>Private</p>
+  </li>
+  <li>
+    <p>Predictable</p>
+  </li>
+</ul>
+
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<p>❌ Tokenizer mismatch</p>
+
+<ul>
+  <li>Always convert with the correct tokenizer.</li>
+</ul>
+
+<p>❌ Running out of memory</p>
+
+<ul>
+  <li>Use lower quantization or fewer threads.</li>
+</ul>
+
+<p>❌ Poor performance</p>
+
+<p>Check:</p>
+
+<ul>
+  <li>
+    <p>AVX support</p>
+  </li>
+  <li>
+    <p>NUMA locality</p>
+  </li>
+  <li>
+    <p>BLAS enabled</p>
+  </li>
+</ul>
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>CPU-based LLM inference is not a workaround — it’s a legitimate engineering choice.</p>
+
+<p>With the right:</p>
+
+<ul>
+  <li>Quantization</li>
+  <li>Runtime</li>
+  <li>Linux tuning</li>
+  <li>Documentation</li>
+</ul>
+
+<p>You can run surprisingly large models on commodity hardware.</p>
+
+<p>And most importantly — you understand exactly how it works.</p>
+
+<h2 id="further-reading">Further Reading</h2>
+
+<ul>
+  <li>llama.cpp GitHub</li>
+  <li>GGUF specification</li>
+  <li>CPU vectorization (AVX2 / AVX512)</li>
+  <li>NUMA performance tuning</li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
