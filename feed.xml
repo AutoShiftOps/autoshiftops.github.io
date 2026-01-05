@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-05T00:58:50+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm.html" rel="alternate" type="text/html" title="CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-29T00:00:00+00:00</published><updated>2025-12-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-05T01:12:25+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm.html" rel="alternate" type="text/html" title="CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-29T00:00:00+00:00</published><updated>2025-12-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/29/llm.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -355,131 +355,111 @@ wget &lt;official-model-url&gt;
   <li>GGUF specification</li>
   <li>CPU vectorization (AVX2 / AVX512)</li>
   <li>NUMA performance tuning</li>
-</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="LLMs" /><category term="Machine Learning" /><category term="LLMs" /><category term="CPU inference" /><category term="quantization" /><category term="llama.cpp" /><category term="large language models" /><category term="AI" /><category term="machine learning" /><summary type="html"><![CDATA[A comprehensive guide to running large language models (LLMs) entirely on CPU hardware using quantization techniques and efficient runtimes like llama.cpp.]]></summary></entry><entry><title type="html">Building AI Agents for Stock Trading: A Practical Guide in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="Building AI Agents for Stock Trading: A Practical Guide in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h1 id="-ai-powered-stock-trading-bot-in-python-with-backtesting">🚀 AI-Powered Stock Trading Bot in Python (With Backtesting)</h1>
-
-<p>A practical, end-to-end guide to building an AI-driven stock trading bot using Python, LSTM models, and backtesting.</p>
+</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="LLMs" /><category term="Machine Learning" /><category term="LLMs" /><category term="CPU inference" /><category term="quantization" /><category term="llama.cpp" /><category term="large language models" /><category term="AI" /><category term="machine learning" /><summary type="html"><![CDATA[A comprehensive guide to running large language models (LLMs) entirely on CPU hardware using quantization techniques and efficient runtimes like llama.cpp.]]></summary></entry><entry><title type="html">Building AI Agents for Stock Trading: A Practical Guide in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="Building AI Agents for Stock Trading: A Practical Guide in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h1 id="-building-an-ai-powered-stock-trading-bot-in-python">🚀 Building an AI-Powered Stock Trading Bot in Python</h1>
+<h3 id="an-autoshiftops-guide-to-ai-agents-backtesting-and-real-world-automation">An AutoShiftOps guide to AI agents, backtesting, and real-world automation</h3>
 
 <hr />
 
-<h2 id="-introduction">📌 Introduction</h2>
-<p>Algorithmic trading is no longer reserved for hedge funds. With Python, open APIs, and modern AI models, individual engineers can build intelligent stock trading bots that analyze data, predict price movement, backtest strategies, and automate trades.</p>
+<h2 id="introduction">Introduction</h2>
 
-<p>In this post, I’ll walk you through:</p>
+<p>At <strong>AutoShiftOps</strong>, we don’t build demos — we build systems that survive real-world uncertainty.</p>
+
+<p>AI trading is often presented as a shortcut to profits:</p>
+
+<blockquote>
+  <p>“Train a model, predict prices, make money.”</p>
+</blockquote>
+
+<p>That’s not how markets work.</p>
+
+<p>This post walks through how to <strong>design an AI-powered stock trading bot</strong> using Python, focusing on <strong>engineering discipline, backtesting, and system thinking</strong>, rather than hype.</p>
+
+<p>You’ll also find links to other published versions of this post on <strong>Medium, Substack, Patreon, and DEV.to</strong> at the bottom.</p>
+
+<hr />
+
+<h2 id="what-is-an-ai-trading-agent">What Is an AI Trading Agent?</h2>
+
+<p>An AI trading agent is <strong>not just a model</strong>.</p>
+
+<p>It’s a system that:</p>
 
 <ul>
-  <li>Designing an AI agent for stock price prediction</li>
-  <li>Converting predictions into trading decisions</li>
-  <li>Backtesting the strategy on historical data</li>
-  <li>Preparing the system for real-world deployment</li>
+  <li>Observes market data</li>
+  <li>Generates signals</li>
+  <li>Applies trading rules</li>
+  <li>Manages risk</li>
+  <li>Evaluates performance</li>
 </ul>
 
-<p>This guide is hands-on, practical, and written for:</p>
+<p>Remove any one of these pieces, and the system breaks.</p>
 
+<hr />
+
+<h2 id="autoshiftops-trading-agent-architecture">AutoShiftOps Trading Agent Architecture</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Market Data
+↓
+AI Prediction Engine
+↓
+Strategy &amp; Risk Rules
+↓
+Backtesting Engine
+↓
+Broker Execution Layer
+</code></pre></div></div>
+
+<p>This separation keeps the system testable, explainable, and production-ready.</p>
+
+<hr />
+
+<h2 id="step-1-market-data">Step 1: Market Data</h2>
+
+<p>We start with <strong>historical stock prices</strong> (for example, from Yahoo Finance).</p>
+
+<p>Clean, consistent data matters more than fancy indicators at this stage.</p>
+
+<p>Goals:</p>
 <ul>
-  <li>Software / DevOps engineers</li>
-  <li>Python developers</li>
-  <li>Anyone curious about AI in finance</li>
+  <li>Stable inputs</li>
+  <li>Reproducible experiments</li>
+  <li>Minimal noise</li>
 </ul>
 
 <hr />
 
-<h2 id="-what-is-an-ai-trading-agent">🧠 What Is an AI Trading Agent?</h2>
-<p>An AI trading agent is a system that:</p>
+<h2 id="step-2-ai-model-why-lstm">Step 2: AI Model (Why LSTM?)</h2>
 
-<ol>
-  <li>Observes the market (historical &amp; live data)</li>
-  <li>Learns patterns using machine learning</li>
-  <li>Makes decisions (Buy / Sell / Hold)</li>
-  <li>Executes trades automatically</li>
-  <li>Improves through evaluation and backtesting</li>
-</ol>
+<p>Markets are <strong>time-series data</strong>.</p>
 
-<h2 id="core-components">Core Components</h2>
-<p>| Component          | Purpose |
-| —————— | ——— |
-| Data Source | Market prices (Yahoo Finance, Alpaca, etc.) |
-| AI Model | Predict future price movement |
-| Strategy Engine | Convert predictions into actions |
-| Backtesting Engine | Validate strategy on past data |
-| Broker API | Execute trades |</p>
-
-<h2 id="️-system-architecture">🏗️ System Architecture</h2>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Market Data → AI Model → Trading Strategy → Backtesting → Broker API
-</code></pre></div></div>
-<p>This separation keeps the system modular, testable, and scalable.</p>
-
-<hr />
-
-<h2 id="-step-1-fetching-stock-market-data">📊 Step 1: Fetching Stock Market Data</h2>
-<p>We’ll use Yahoo Finance for historical prices.</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">yfinance</span> <span class="k">as</span> <span class="n">yf</span>
-<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-
-<span class="n">ticker</span> <span class="o">=</span> <span class="sh">"</span><span class="s">AAPL</span><span class="sh">"</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">yf</span><span class="p">.</span><span class="nf">download</span><span class="p">(</span><span class="n">ticker</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="sh">"</span><span class="s">2020-01-01</span><span class="sh">"</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="sh">"</span><span class="s">2024-01-01</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">]]</span>
-<span class="n">df</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>This gives us clean, daily closing prices — perfect for modeling.</p>
-
-<hr />
-
-<h2 id="-step-2-ai-model-lstm-for-time-series-prediction">🤖 Step 2: AI Model (LSTM for Time-Series Prediction)</h2>
-<p>Stock prices are sequential data, so LSTM (Long Short-Term Memory) works well.</p>
-
-<h3 id="why-lstm">Why LSTM?</h3>
+<p>LSTM (Long Short-Term Memory) models work well because they:</p>
 <ul>
-  <li>Learns temporal patterns</li>
-  <li>Handles noisy financial data better than simple regression</li>
-  <li>Widely used in quantitative finance research</li>
+  <li>Capture temporal patterns</li>
+  <li>Handle noisy signals better than linear models</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="n">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">LSTM</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
-<span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-</code></pre></div></div>
-
-<h3 id="data-preparation">Data Preparation</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">scaler</span> <span class="o">=</span> <span class="nc">MinMaxScaler</span><span class="p">()</span>
-<span class="n">scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">create_sequences</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">window</span><span class="p">):</span>
-        <span class="n">X</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">window</span><span class="p">])</span>
-        <span class="n">y</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">window</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">create_sequences</span><span class="p">(</span><span class="n">scaled</span><span class="p">)</span>
-</code></pre></div></div>
+<p>⚠️ Reminder: The model provides <strong>signals</strong>, not decisions.</p>
 
 <hr />
 
-<h2 id="-step-3-training-the-model">🧪 Step 3: Training the Model</h2>
+<h2 id="step-3-prediction-is-not-trading">Step 3: Prediction Is Not Trading</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="nc">Sequential</span><span class="p">([</span>
-    <span class="nc">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)),</span>
-    <span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
-    <span class="nc">LSTM</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
-    <span class="nc">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="p">])</span>
+<p>Prediction alone does not generate profits.</p>
 
-<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">"</span><span class="s">adam</span><span class="sh">"</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="sh">"</span><span class="s">mse</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
-</code></pre></div></div>
-<p>This model predicts the next-day closing price.</p>
+<p>Trading requires:</p>
+<ul>
+  <li>Rules</li>
+  <li>Constraints</li>
+  <li>Risk limits</li>
+</ul>
+
+<p>At AutoShiftOps, AI output is treated as <strong>input</strong>, not authority.</p>
 
 <hr />
 
-<h2 id="-step-4-designing-the-trading-strategy">📈 Step 4: Designing the Trading Strategy</h2>
-<p>Predictions alone are useless without rules.</p>
+<h2 id="step-4-strategy-rules">Step 4: Strategy Rules</h2>
 
-<h3 id="simple-strategy-logic">Simple Strategy Logic</h3>
+<p>Example simple rule layer:</p>
 
 <table>
   <thead>
@@ -504,129 +484,78 @@ wget &lt;official-model-url&gt;
   </tbody>
 </table>
 
-<p>This avoids over-trading and reduces noise.</p>
+<p>Doing nothing is a valid action.<br />
+Over-trading kills strategies faster than bad models.</p>
 
 <hr />
 
-<h2 id="-step-5-backtesting-the-strategy">🔁 Step 5: Backtesting the Strategy</h2>
-<p>Backtesting answers one question:</p>
+<h2 id="step-5-backtesting">Step 5: Backtesting</h2>
 
-<blockquote>
-  <p><strong>Note — “Would this strategy have worked in the past?”</strong></p>
+<p>Backtesting is <strong>non-negotiable</strong>.</p>
 
-  <ul>
-    <li>Use a strict train/validation split and avoid look‑ahead or data leakage.</li>
-    <li>Account for transaction costs, commissions, slippage, and bid/ask spreads.</li>
-    <li>Simulate realistic order sizes, partial fills, and market hours/liquidity.</li>
-    <li>Validate with walk‑forward and out‑of‑sample testing, not just in‑sample fit.</li>
-    <li>Report performance metrics: CAGR, Sharpe ratio, max drawdown, drawdown duration, and win rate.</li>
-    <li>Stress test across different market regimes and perform sensitivity analysis.</li>
-    <li>Paper‑trade after backtesting before any live deployment.</li>
-  </ul>
-</blockquote>
+<p>If you skip it:</p>
+<ul>
+  <li>You are guessing</li>
+  <li>You are curve-fitting</li>
+  <li>You are gambling</li>
+</ul>
 
-<h3 id="backtesting-engine">Backtesting Engine</h3>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">backtest</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">initial_cash</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
-  <span class="n">cash</span> <span class="o">=</span> <span class="n">initial_cash</span>
-  <span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="n">trades</span> <span class="o">=</span> <span class="p">[]</span> 
+<p>Backtesting reveals:</p>
+<ul>
+  <li>Drawdowns</li>
+  <li>Trade frequency</li>
+  <li>Capital erosion</li>
+  <li>Market regime sensitivity</li>
+</ul>
 
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):</span>
-    <span class="n">window</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">50</span><span class="p">:</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">window</span><span class="p">).</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">predicted</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">inverse_transform</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">price</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">]</span>
-    
-    <span class="k">if</span> <span class="n">predicted</span> <span class="o">&gt;</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">1.02</span> <span class="ow">and</span> <span class="n">cash</span> <span class="o">&gt;=</span> <span class="n">price</span><span class="p">:</span>
-      <span class="n">cash</span> <span class="o">-=</span> <span class="n">price</span>
-      <span class="n">position</span> <span class="o">+=</span> <span class="mi">1</span>
-      <span class="n">trades</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">"</span><span class="s">BUY</span><span class="sh">"</span><span class="p">,</span> <span class="n">price</span><span class="p">))</span>
-    
-    <span class="k">elif</span> <span class="n">predicted</span> <span class="o">&lt;</span> <span class="n">price</span> <span class="o">*</span> <span class="mf">0.98</span> <span class="ow">and</span> <span class="n">position</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-      <span class="n">cash</span> <span class="o">+=</span> <span class="n">price</span>
-      <span class="n">position</span> <span class="o">-=</span> <span class="mi">1</span>
-      <span class="n">trades</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">"</span><span class="s">SELL</span><span class="sh">"</span><span class="p">,</span> <span class="n">price</span><span class="p">))</span>
-    
-  <span class="n">final_value</span> <span class="o">=</span> <span class="n">cash</span> <span class="o">+</span> <span class="n">position</span> <span class="o">*</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">]</span>
-  <span class="k">return</span> <span class="n">final_value</span><span class="p">,</span> <span class="n">trades</span>
-</code></pre></div></div>
-
-<h2 id="-step-6-performance-evaluation">📊 Step 6: Performance Evaluation</h2>
-<h3 id="ai-strategy-vs-buy--hold">AI Strategy vs Buy &amp; Hold</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">final_value</span><span class="p">,</span> <span class="n">trades</span> <span class="o">=</span> <span class="nf">backtest</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="n">buy_hold</span> <span class="o">=</span> <span class="mi">10000</span> <span class="o">*</span> <span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">]</span> <span class="o">/</span> <span class="n">df</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">Close</span><span class="sh">'</span><span class="p">])</span>
-
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">AI Strategy:</span><span class="sh">"</span><span class="p">,</span> <span class="n">final_value</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Buy &amp; Hold:</span><span class="sh">"</span><span class="p">,</span> <span class="n">buy_hold</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>This comparison tells you whether the AI adds real value or just noise.</p>
+<p>Many “great” models fail here — and that’s a good thing.</p>
 
 <hr />
 
-<h2 id="️-important-risk-considerations">⚠️ Important Risk Considerations</h2>
-<p>AI trading is not magic.</p>
-
-<p>Be aware of:</p>
-<ul>
-  <li>Overfitting</li>
-  <li>Market regime changes</li>
-  <li>Latency in real trading</li>
-  <li>Slippage and transaction fees</li>
-</ul>
-
-<p>Never deploy without:</p>
-<ul>
-  <li>Backtesting</li>
-  <li>Paper trading</li>
-  <li>Risk limits</li>
-  <li>Stop-loss rules</li>
-</ul>
-
-<h2 id="-production-readiness-checklist">🚀 Production Readiness Checklist</h2>
-<p>Before going live:</p>
-
-<p>✅ Paper trading (Alpaca)<br />
-✅ Daily trade limits<br />
-✅ Stop-loss &amp; take-profit<br />
-✅ Logging &amp; monitoring<br />
-✅ Model retraining strategy</p>
-
-<h2 id="-where-this-can-go-next">🧩 Where This Can Go Next</h2>
-<ul>
-  <li>Reinforcement Learning (RL)</li>
-  <li>Multi-stock portfolio optimization</li>
-  <li>Sentiment analysis (news + social)</li>
-  <li>Kubernetes-based trading microservices</li>
-  <li>Fully autonomous AI agents</li>
-</ul>
-
-<h2 id="-final-thoughts">🧠 Final Thoughts</h2>
-<p>AI-powered trading bots are an excellent real-world application of machine learning, combining:</p>
+<h2 id="lessons-learned">Lessons Learned</h2>
 
 <ul>
-  <li>Data engineering</li>
-  <li>AI modeling</li>
-  <li>System design</li>
-  <li>Financial reasoning</li>
+  <li>AI didn’t make me profitable — it made me <strong>disciplined</strong></li>
+  <li>Consistency comes from <strong>rules</strong>, not intelligence</li>
+  <li>Engineers have an advantage because they think in <strong>systems, failure modes, and feedback loops</strong></li>
+  <li>Trading is a <strong>software system problem first</strong>, finance second</li>
 </ul>
-
-<p>Even if you never trade real money, building one will level up your skills dramatically.</p>
-
-<h2 id="️-disclaimer">⚠️ Disclaimer</h2>
-
-<blockquote>
-  <p>This article is for educational purposes only.<br />
-It is not financial advice.<br />
-Always understand the risks before trading.</p>
-</blockquote>
 
 <hr />
 
-<h2 id="️-about-the-author">✍️ About the Author</h2>
-<p>I’m a DevOps Engineer exploring the intersection of AI, automation, and real-world systems.<br />
-I write about practical AI, engineering, and building systems that actually work.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🚦 Feature Flag Management in Continuous Delivery</title><link href="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html" rel="alternate" type="text/html" title="🚦 Feature Flag Management in Continuous Delivery" /><published>2025-06-29T00:00:00+00:00</published><updated>2025-06-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature%20Flag%20Management%20in%20Continuous%20Delivery</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"><![CDATA[<h2 id="feature-flag-management-in-continuous-delivery">Feature Flag Management in Continuous Delivery</h2>
+<h2 id="cross-published-versions">Cross-Published Versions</h2>
+
+<p>This post is also available on:</p>
+
+<ul>
+  <li><strong>Medium:</strong> <a href="https://medium.com/@sajjasudhakarrao/building-an-ai-powered-stock-trading-bot-in-python-with-backtesting-779ac13cfd9f">Read on Medium</a></li>
+  <li><strong>Substack:</strong> <a href="https://sajjas.substack.com/p/building-an-ai-powered-stock-trading">Read on Substack</a></li>
+  <li><strong>Patreon:</strong> <a href="https://www.patreon.com/posts/building-ai-bot-147412738?collection=1863952">Read on Patreon</a></li>
+  <li><strong>DEV.to:</strong> <a href="https://dev.to/sajjasudhakararao/building-an-ai-powered-stock-trading-bot-in-python-with-backtesting-19f6">Read on DEV</a></li>
+</ul>
+
+<hr />
+
+<h2 id="disclaimer">Disclaimer</h2>
+
+<p>This content is for <strong>educational purposes only</strong>.<br />
+It is <strong>not financial advice</strong>.</p>
+
+<hr />
+
+<h2 id="about-autoshiftops">About AutoShiftOps</h2>
+
+<p><strong>AutoShiftOps</strong> explores the intersection of:</p>
+<ul>
+  <li>AI agents</li>
+  <li>Automation</li>
+  <li>DevOps</li>
+  <li>Real-world engineering systems</li>
+</ul>
+
+<p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
+
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🚦 Feature Flag Management in Continuous Delivery</title><link href="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html" rel="alternate" type="text/html" title="🚦 Feature Flag Management in Continuous Delivery" /><published>2025-06-29T00:00:00+00:00</published><updated>2025-06-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature%20Flag%20Management%20in%20Continuous%20Delivery</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"><![CDATA[<h2 id="feature-flag-management-in-continuous-delivery">Feature Flag Management in Continuous Delivery</h2>
 
 <p>Feature flags (also known as feature toggles) are a <strong>powerful mechanism to decouple code deployment from feature releases</strong>. They enable DevOps teams to <strong>release features gradually, conduct A/B tests, and quickly rollback problematic features</strong> without redeploying code.</p>
 
