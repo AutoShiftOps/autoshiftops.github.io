@@ -42,13 +42,13 @@ An AI trading agent is a system that:
 5. Improves through evaluation and backtesting
 
 ## Core Components
-| Component          | Purpose                                     |
-| ------------------ | ------------------------------------------- |
-| Data Source        | Market prices (Yahoo Finance, Alpaca, etc.) |
-| AI Model           | Predict future price movement               |
-| Strategy Engine    | Convert predictions into actions            |
-| Backtesting Engine | Validate strategy on past data              |
-| Broker API         | Execute trades                              |
+| Component          | Purpose |
+| ------------------ | --------- |
+| Data Source | Market prices (Yahoo Finance, Alpaca, etc.) |
+| AI Model | Predict future price movement |
+| Strategy Engine | Convert predictions into actions |
+| Backtesting Engine | Validate strategy on past data |
+| Broker API | Execute trades |
 
 ## 🏗️ System Architecture
 
