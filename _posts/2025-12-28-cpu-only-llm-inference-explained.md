@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp"
-date: 2025-12-29
+date: 2025-12-28
 categories: [DevOps, AI, LLMs, Machine Learning]
 tags: [LLMs, CPU inference, quantization, llama.cpp, large language models, AI, machine learning]
 description: "A comprehensive guide to running large language models (LLMs) entirely on CPU hardware using quantization techniques and efficient runtimes like llama.cpp."
