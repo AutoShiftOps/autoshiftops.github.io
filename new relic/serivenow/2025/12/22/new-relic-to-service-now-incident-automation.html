@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Relic to ServiceNow Incident Automation(Lab Guide)</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>New Relic to ServiceNow Incident Automation(Lab Guide)</h1>
+  <p class="post-meta">Published on December 22, 2025</p>
+  <div class="post-content">
+    <h2 id="objective">Objective</h2>
+<p>Create a closed-loop incident management system where New Relic automatically creates ServiceNow incidents when CPU usage is high and resolves them when usage returns to normal.</p>
+
+<h2 id="architecture">Architecture:</h2>
+<ol>
+  <li><b>Monitor:</b> New Relic Infrastructure Agent monitors a local machine.</li>
+  <li><b>Trigger:</b> NRQL Alert Policy detects CPU &gt; 5%.</li>
+  <li><b>Transport:</b> New Relic Workflow sends a Webhook <code class="language-plaintext highlighter-rouge">POST</code> request.</li>
+  <li><b>Logic:</b> ServiceNow Scripted REST API receives the request, checks for a <code class="language-plaintext highlighter-rouge">correlation_id</code>, and decides whether to <code class="language-plaintext highlighter-rouge">insert()</code> (Create) or <code class="language-plaintext highlighter-rouge">update()</code> (Close).</li>
+</ol>
+
+<h2 id="part-i-environment-setup">Part I: Environment Setup</h2>
+<p>Before configuring the integration, you need to establish your “Sandbox” environment.</p>
+
+<h3 id="1-get-a-servicenow-personal-developer-instance-pdi">1. Get a ServiceNow Personal Developer Instance (PDI)</h3>
+<p><i>ServiceNow does not run locally; you must use their cloud sandbox.</i></p>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://developer.servicenow.com/">ServiceNow Developer Site</a>.</p>
+  </li>
+  <li>
+    <p>Sign up for a free account.</p>
+  </li>
+  <li>
+    <p>Click Request Instance.</p>
+  </li>
+  <li>
+    <p>Wait a few minutes. You will receive:</p>
+
+    <ul>
+      <li>URL: e.g., <code class="language-plaintext highlighter-rouge">https://devXXXXX.service-now.com</code></li>
+      <li>Username: e.g., <code class="language-plaintext highlighter-rouge">admin</code></li>
+      <li>Password: e.g., <code class="language-plaintext highlighter-rouge">XXXXXX</code>(Save this securely)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Log in to your instance using the provided URL, username, and password.</p>
+  </li>
+</ol>
+
+<h3 id="2-get-new-relic--install-agent">2. Get New Relic &amp; Install Agent</h3>
+<ol>
+  <li>Sign up for a free New Relic account at <a href="https://newrelic.com/signup">New Relic Sign Up</a>.</li>
+  <li>Once logged in, go to <b> Add Data &gt; Linux </b> (or MacOS/Windows depending on your local machine).</li>
+  <li>Follow the instructions to run the installation command in your terminal.
+    <ul>
+      <li>Example (linux):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ls</span> https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash <span class="o">&amp;&amp;</span> <span class="nb">sudo </span><span class="nv">NEW_RELIC_API_KEY</span><span class="o">=</span>YOUR_API_KEY <span class="nv">NEW_RELIC_ACCOUNT_ID</span><span class="o">=</span>YOUR_ACCOUNT_ID newrelic <span class="nb">install</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Verify data is flowing by going to <b> Infrastructure &gt; Hosts </b> in New Relic.</li>
+</ol>
+
+<h2 id="part-ii-servicenow-configurationthe-listener">Part II: ServiceNow Configuration(The Listener)</h2>
+<p>We will build a “Smart Endpoint” that accepts the alert data.</p>
+
+<h3 id="1-create-the-api-container">1. Create the API Container</h3>
+<ol>
+  <li>In your ServiceNow PDI, use the Filter Navigator (top left) to search for “Scripted REST APIs”.</li>
+  <li>Click <b> New </b>.
+    <ul>
+      <li><b>Name:</b> <code class="language-plaintext highlighter-rouge">NewReliWebhook</code></li>
+      <li><b>API ID:</b> <code class="language-plaintext highlighter-rouge">newrelic_handler</code></li>
+    </ul>
+  </li>
+  <li>Click <b> Submit </b>.</li>
+</ol>
+
+<h3 id="2-create-the-resourcethe-endpoint">2. Create the Resource(The Endpoint)</h3>
+<ol>
+  <li>Open the <code class="language-plaintext highlighter-rouge">NewRelicWebhook</code> record you just created.</li>
+  <li>Scroll down to the Resources tab and click <b> New </b>.
+    <ul>
+      <li><b>Name:</b> <code class="language-plaintext highlighter-rouge">HandleAlert</code></li>
+      <li><b>HTTP Method:</b> <code class="language-plaintext highlighter-rouge">POST</code></li>
+      <li><b>Relative Path:</b> <code class="language-plaintext highlighter-rouge">/incident</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><b>The Script:</b> Delete the default code in the <b> Script </b> field and paste the following “Traffic Cop” logic:</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">(</span><span class="kd">function</span> <span class="nf">process</span><span class="p">(</span><span class="cm">/*RESTAPIRequest*/</span> <span class="nx">request</span><span class="p">,</span> <span class="cm">/*RESTAPIResponse*/</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// 1. Parse the incoming JSON from New Relic</span>
+     <span class="kd">var</span> <span class="nx">requestBody</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrIssueId</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">issue_id</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrState</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">current_state</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrTitle</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrCpu</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">cpu_value</span><span class="p">;</span>
+
+     <span class="c1">// 2. Look for an existing Incident with this New Relic Issue ID</span>
+     <span class="kd">var</span> <span class="nx">gr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlideRecord</span><span class="p">(</span><span class="dl">'</span><span class="s1">incident</span><span class="dl">'</span><span class="p">);</span>
+     <span class="nx">gr</span><span class="p">.</span><span class="nf">addQuery</span><span class="p">(</span><span class="dl">'</span><span class="s1">correlation_id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">nrIssueId</span><span class="p">);</span>
+     <span class="nx">gr</span><span class="p">.</span><span class="nf">query</span><span class="p">();</span>
+
+     <span class="k">if </span><span class="p">(</span><span class="nx">gr</span><span class="p">.</span><span class="nf">next</span><span class="p">())</span> <span class="p">{</span>
+         <span class="c1">// --- SCENARIO: UPDATE EXISTING INCIDENT ---</span>
+         <span class="k">if </span><span class="p">(</span><span class="nx">nrState</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">CLOSED</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Set to 'Resolved' (Standard ID)</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">close_code</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Solved (Permanently)</span><span class="dl">'</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">close_notes</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Cloased automatically by New Relic. Alert cleared.</span><span class="dl">'</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">work_notes</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">New Relic reports issue is closed.</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nf">update</span><span class="p">();</span>
+
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Resolved</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">gr</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+             <span class="c1">// Optional: Update work notes if it's just an update</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">work_notes</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Received update from New Relic. Current CPU: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrCpu</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">%</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nf">update</span><span class="p">();</span>
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Updated</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">gr</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="c1">// --- SCENARIO: CREATE NEW INCIDENT ---</span>
+         <span class="k">if </span><span class="p">(</span><span class="nx">nrState</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">ACTIVATED</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+             <span class="kd">var</span> <span class="nx">newInc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlideRecord</span><span class="p">(</span><span class="dl">'</span><span class="s1">incident</span><span class="dl">'</span><span class="p">);</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nf">initialize</span><span class="p">();</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">short_description</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">New Relic Alert: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrTitle</span><span class="p">;</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">description</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Automatic alert from New Relic.</span><span class="se">\n</span><span class="s2">Issue ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrIssueId</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="s2">CPU Usage: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrCpu</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">%</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">correlation_id</span> <span class="o">=</span> <span class="nx">nrIssueId</span><span class="p">;</span> <span class="c1">// THIS IS CRITICAL</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">caller_id</span> <span class="o">=</span> <span class="nx">gs</span><span class="p">.</span><span class="nf">getUserID</span><span class="p">();</span> <span class="c1">// Assign to API user</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">urgency</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// High</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nf">insert</span><span class="p">();</span>
+
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Created</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">newInc</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">})(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Click <b>Submit.</b></li>
+  <li><b>Important:</b> Note your full Endpoint URL. It will be: <code class="language-plaintext highlighter-rouge">https://devXXXXX.service-now.com/api/x_scope_id/newrelic_handler/incident</code></li>
+</ol>
+
+<h2 id="part-iii-new-relic-configurationthe-trigger">Part III: New Relic Configuration(The Trigger)</h2>
+<h3 id="1-configure-the-destination">1. Configure the Destination</h3>
+<ol>
+  <li>In New Relic, go to <b>Alerts &amp; AI &gt; Destinations</b>.</li>
+  <li>Select <b> Webhook </b>.
+    <ul>
+      <li><b>Endpoint URL:</b> Your ServiceNow Scripted REST API URL from above.</li>
+      <li><b>Authorization Type:</b> Select <b>Basic Authentication</b>. Use your PDI <code class="language-plaintext highlighter-rouge">admin</code> username and password.</li>
+    </ul>
+  </li>
+  <li>Name it “ServiceNow PDI”.
+    <h3 id="2-configure-the-workflow-payload">2. Configure the Workflow (Payload)</h3>
+  </li>
+  <li>Go to <b> Alerts &amp; AI &gt; Workflows </b>.</li>
+  <li>Click <b> Add Workflow </b>.
+    <ul>
+      <li><b>Filter:</b> <code class="language-plaintext highlighter-rouge">Policy Name = 'Low CPU Test'</code> ( we will create policy in the next step)</li>
+    </ul>
+  </li>
+  <li><b>Notify:</b> Select your “ServiceNow PDI” destination.</li>
+  <li><b>Payload Template:</b> This defines exactly what data is sent to script. Paste this JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"issue_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"cpu_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+    <h3 id="3-create-the-alert-policy">3. Create the Alert Policy</h3>
+  </li>
+  <li>Go to <b>Alerts &amp; AI &gt; Conditions (Policies) </b>.</li>
+  <li>Create a New Policy named <code class="language-plaintext highlighter-rouge">Local CPU Test</code>.</li>
+  <li><b>Create a Condition:</b>
+    <ul>
+      <li><b>Product:</b> NRQL</li>
+      <li><b>Query:</b>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="n">average</span><span class="p">(</span><span class="n">cpuPercent</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">SystemSample</span> <span class="k">WHERE</span> <span class="nv">`hostname = 'YOUR_HOSTNAME'
+</span></code></pre></div>        </div>
+      </li>
+      <li><b>Threshold:</b> Critical if query returns value <code class="language-plaintext highlighter-rouge">above 5</code> (Low threshold for easy testing) for at least <code class="language-plaintext highlighter-rouge">1 minute</code>.</li>
+      <li><b>Advanced Signal Settings:</b> “Close open incidents on signal loss” -&gt; set to <code class="language-plaintext highlighter-rouge">5 minutes</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="part-iv-execution--testing">Part IV: Execution &amp; Testing</h2>
+<h3 id="test-a-unit-test-via-curl-command-line">Test A: Unit Test via cURL (Command Line)</h3>
+<p>Verify your serviceNow script works without waiting for New Relic.</p>
+<h4 id="1-create-incidentsimulate-alert">1. Create Incident(Simulate Alert)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://&lt;YOUR_INSTANCE&gt;.service-now.com/api/&lt;YOUR_SCOPE_ID&gt;/newrelic_handler/incident"</span> <span class="se">\</span>
+<span class="nt">--request</span> POST <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<span class="nt">--user</span> <span class="s1">'admin:&lt;YOUR_PASSWORD&gt;'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "issue_id": "TEST12345",
+  "title": "Test High CPU Alert",
+  "current_state": "ACTIVATED",
+  "cpu_value": "95"
+}'</span>
+</code></pre></div></div>
+<p><b><i>Result&lt;/b&gt;: Check ServiceNow incidents table. You should see a new ticket.</i></b></p>
+
+<h4 id="2-resolve-incidentsimulate-recovery">2. Resolve Incident(Simulate Recovery)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://&lt;YOUR_INSTANCE&gt;.service-now.com/api/&lt;YOUR_SCOPE_ID&gt;/newrelic_handler/incident"</span> <span class="se">\</span>
+<span class="nt">--request</span> POST <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<span class="nt">--user</span> <span class="s1">'admin:&lt;YOUR_PASSWORD&gt;'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "issue_id": "TEST12345",
+  "title": "Test High CPU Alert",
+  "current_state": "CLOSED",
+  "cpu_value": "20"
+}'</span>
+</code></pre></div></div>
+<p><b><i>Result&lt;/b&gt;: The ticket created in step 1 should now be marked as “Resolved”.</i></b></p>
+
+<h3 id="test-b-end-to-end-integration-smoke-test">Test B: End-to-End Integration (“Smoke Test”)</h3>
+<p>Now, use the <code class="language-plaintext highlighter-rouge">strees</code> tool to forced a real CPU spike on your local machine.</p>
+<ol>
+  <li>Install Stress Tool:
+    <ul>
+      <li>Linux: <code class="language-plaintext highlighter-rouge">sudo apt-get install stress</code></li>
+      <li>MacOS: <code class="language-plaintext highlighter-rouge">brew install stress</code></li>
+    </ul>
+  </li>
+  <li>Run Stress:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">stress --cpu 8 --timeout 180</code> (Runs for 3 minutes).</li>
+    </ul>
+  </li>
+  <li>Monitor:
+    <ul>
+      <li><b>T+0 to T+1 min:</b> New Relic detects high CPU.</li>
+      <li><b>T+1 min:</b> New Relic triggers Alert -&gt; Webhook -&gt; <b>ServiceNow creates Incident</b>.</li>
+      <li><b>T+3 min:</b> Stress command ends, CPU drops.</li>
+      <li><b>T+5 to T+8 min:</b> New Relic closes Alert -&gt; Webhook -&gt; <b>ServiceNow resolves Incident</b>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="appendix-troubleshooting">Appendix: Troubleshooting</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Cause</th>
+      <th>Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>401 Unauthorized</td>
+      <td>Bad credentials</td>
+      <td>Check your PDI admin password. Update the Destination in New Relic.</td>
+    </tr>
+    <tr>
+      <td>403 Forbidden</td>
+      <td>Scope/ACL</td>
+      <td>Ensure the user has the <code class="language-plaintext highlighter-rouge">admin</code> or <code class="language-plaintext highlighter-rouge">rest_service</code> role.</td>
+    </tr>
+    <tr>
+      <td>404 Not Found</td>
+      <td>Bad URL</td>
+      <td>Check your API ID and Resource Path. Ensure the Resource is set to <code class="language-plaintext highlighter-rouge">POST</code>.</td>
+    </tr>
+    <tr>
+      <td>Duplicate Incidents</td>
+      <td>Logic Error</td>
+      <td>Verify the <code class="language-plaintext highlighter-rouge">gr.addQuery</code> in the script matches the <code class="language-plaintext highlighter-rouge">issue_id</code> being sent.</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

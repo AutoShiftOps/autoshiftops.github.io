@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-06T21:42:04+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-07T21:07:14+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1050,7 +1050,276 @@ wget &lt;official-model-url&gt;
     <span class="n">processed</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p>This comprehensive guide covers all aspects of developing professional AI agents! 🎯</p>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="LLMs" /><category term="Machine Learning" /><category term="LLMs" /><category term="AI agents" /><category term="best practices" /><category term="software engineering" /><category term="machine learning" /><summary type="html"><![CDATA[A comprehensive guide to best practices for developing robust, reliable AI agents with code examples and patterns.]]></summary></entry><entry><title type="html">🚀 Building an AI-Powered Stock Trading Bot in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="🚀 Building an AI-Powered Stock Trading Bot in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h3 id="an-autoshiftops-guide-to-ai-agents-backtesting-and-real-world-automation">An AutoShiftOps guide to AI agents, backtesting, and real-world automation</h3>
+<p>This comprehensive guide covers all aspects of developing professional AI agents! 🎯</p>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="LLMs" /><category term="Machine Learning" /><category term="LLMs" /><category term="AI agents" /><category term="best practices" /><category term="software engineering" /><category term="machine learning" /><summary type="html"><![CDATA[A comprehensive guide to best practices for developing robust, reliable AI agents with code examples and patterns.]]></summary></entry><entry><title type="html">New Relic to ServiceNow Incident Automation(Lab Guide)</title><link href="https://autoshiftops.com/new%20relic/serivenow/2025/12/22/new-relic-to-service-now-incident-automation.html" rel="alternate" type="text/html" title="New Relic to ServiceNow Incident Automation(Lab Guide)" /><published>2025-12-22T00:00:00+00:00</published><updated>2025-12-22T00:00:00+00:00</updated><id>https://autoshiftops.com/new%20relic/serivenow/2025/12/22/new-relic-to-service-now-incident-automation</id><content type="html" xml:base="https://autoshiftops.com/new%20relic/serivenow/2025/12/22/new-relic-to-service-now-incident-automation.html"><![CDATA[<h2 id="objective">Objective</h2>
+<p>Create a closed-loop incident management system where New Relic automatically creates ServiceNow incidents when CPU usage is high and resolves them when usage returns to normal.</p>
+
+<h2 id="architecture">Architecture:</h2>
+<ol>
+  <li><b>Monitor:</b> New Relic Infrastructure Agent monitors a local machine.</li>
+  <li><b>Trigger:</b> NRQL Alert Policy detects CPU &gt; 5%.</li>
+  <li><b>Transport:</b> New Relic Workflow sends a Webhook <code class="language-plaintext highlighter-rouge">POST</code> request.</li>
+  <li><b>Logic:</b> ServiceNow Scripted REST API receives the request, checks for a <code class="language-plaintext highlighter-rouge">correlation_id</code>, and decides whether to <code class="language-plaintext highlighter-rouge">insert()</code> (Create) or <code class="language-plaintext highlighter-rouge">update()</code> (Close).</li>
+</ol>
+
+<h2 id="part-i-environment-setup">Part I: Environment Setup</h2>
+<p>Before configuring the integration, you need to establish your “Sandbox” environment.</p>
+
+<h3 id="1-get-a-servicenow-personal-developer-instance-pdi">1. Get a ServiceNow Personal Developer Instance (PDI)</h3>
+<p><i>ServiceNow does not run locally; you must use their cloud sandbox.</i></p>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://developer.servicenow.com/">ServiceNow Developer Site</a>.</p>
+  </li>
+  <li>
+    <p>Sign up for a free account.</p>
+  </li>
+  <li>
+    <p>Click Request Instance.</p>
+  </li>
+  <li>
+    <p>Wait a few minutes. You will receive:</p>
+
+    <ul>
+      <li>URL: e.g., <code class="language-plaintext highlighter-rouge">https://devXXXXX.service-now.com</code></li>
+      <li>Username: e.g., <code class="language-plaintext highlighter-rouge">admin</code></li>
+      <li>Password: e.g., <code class="language-plaintext highlighter-rouge">XXXXXX</code>(Save this securely)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Log in to your instance using the provided URL, username, and password.</p>
+  </li>
+</ol>
+
+<h3 id="2-get-new-relic--install-agent">2. Get New Relic &amp; Install Agent</h3>
+<ol>
+  <li>Sign up for a free New Relic account at <a href="https://newrelic.com/signup">New Relic Sign Up</a>.</li>
+  <li>Once logged in, go to <b> Add Data &gt; Linux </b> (or MacOS/Windows depending on your local machine).</li>
+  <li>Follow the instructions to run the installation command in your terminal.
+    <ul>
+      <li>Example (linux):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-Ls</span> https://download.newrelic.com/install/newrelic-cli/scripts/install.sh | bash <span class="o">&amp;&amp;</span> <span class="nb">sudo </span><span class="nv">NEW_RELIC_API_KEY</span><span class="o">=</span>YOUR_API_KEY <span class="nv">NEW_RELIC_ACCOUNT_ID</span><span class="o">=</span>YOUR_ACCOUNT_ID newrelic <span class="nb">install</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Verify data is flowing by going to <b> Infrastructure &gt; Hosts </b> in New Relic.</li>
+</ol>
+
+<h2 id="part-ii-servicenow-configurationthe-listener">Part II: ServiceNow Configuration(The Listener)</h2>
+<p>We will build a “Smart Endpoint” that accepts the alert data.</p>
+
+<h3 id="1-create-the-api-container">1. Create the API Container</h3>
+<ol>
+  <li>In your ServiceNow PDI, use the Filter Navigator (top left) to search for “Scripted REST APIs”.</li>
+  <li>Click <b> New </b>.
+    <ul>
+      <li><b>Name:</b> <code class="language-plaintext highlighter-rouge">NewReliWebhook</code></li>
+      <li><b>API ID:</b> <code class="language-plaintext highlighter-rouge">newrelic_handler</code></li>
+    </ul>
+  </li>
+  <li>Click <b> Submit </b>.</li>
+</ol>
+
+<h3 id="2-create-the-resourcethe-endpoint">2. Create the Resource(The Endpoint)</h3>
+<ol>
+  <li>Open the <code class="language-plaintext highlighter-rouge">NewRelicWebhook</code> record you just created.</li>
+  <li>Scroll down to the Resources tab and click <b> New </b>.
+    <ul>
+      <li><b>Name:</b> <code class="language-plaintext highlighter-rouge">HandleAlert</code></li>
+      <li><b>HTTP Method:</b> <code class="language-plaintext highlighter-rouge">POST</code></li>
+      <li><b>Relative Path:</b> <code class="language-plaintext highlighter-rouge">/incident</code></li>
+    </ul>
+  </li>
+  <li>
+    <p><b>The Script:</b> Delete the default code in the <b> Script </b> field and paste the following “Traffic Cop” logic:</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="p">(</span><span class="kd">function</span> <span class="nf">process</span><span class="p">(</span><span class="cm">/*RESTAPIRequest*/</span> <span class="nx">request</span><span class="p">,</span> <span class="cm">/*RESTAPIResponse*/</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// 1. Parse the incoming JSON from New Relic</span>
+     <span class="kd">var</span> <span class="nx">requestBody</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrIssueId</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">issue_id</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrState</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">current_state</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrTitle</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span>
+     <span class="kd">var</span> <span class="nx">nrCpu</span> <span class="o">=</span> <span class="nx">requestBody</span><span class="p">.</span><span class="nx">cpu_value</span><span class="p">;</span>
+
+     <span class="c1">// 2. Look for an existing Incident with this New Relic Issue ID</span>
+     <span class="kd">var</span> <span class="nx">gr</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlideRecord</span><span class="p">(</span><span class="dl">'</span><span class="s1">incident</span><span class="dl">'</span><span class="p">);</span>
+     <span class="nx">gr</span><span class="p">.</span><span class="nf">addQuery</span><span class="p">(</span><span class="dl">'</span><span class="s1">correlation_id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">nrIssueId</span><span class="p">);</span>
+     <span class="nx">gr</span><span class="p">.</span><span class="nf">query</span><span class="p">();</span>
+
+     <span class="k">if </span><span class="p">(</span><span class="nx">gr</span><span class="p">.</span><span class="nf">next</span><span class="p">())</span> <span class="p">{</span>
+         <span class="c1">// --- SCENARIO: UPDATE EXISTING INCIDENT ---</span>
+         <span class="k">if </span><span class="p">(</span><span class="nx">nrState</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">CLOSED</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="c1">// Set to 'Resolved' (Standard ID)</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">close_code</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Solved (Permanently)</span><span class="dl">'</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">close_notes</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">Cloased automatically by New Relic. Alert cleared.</span><span class="dl">'</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">work_notes</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">New Relic reports issue is closed.</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nf">update</span><span class="p">();</span>
+
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Resolved</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">gr</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+             <span class="c1">// Optional: Update work notes if it's just an update</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nx">work_notes</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Received update from New Relic. Current CPU: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrCpu</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">%</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">gr</span><span class="p">.</span><span class="nf">update</span><span class="p">();</span>
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Updated</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">gr</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span>
+     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="c1">// --- SCENARIO: CREATE NEW INCIDENT ---</span>
+         <span class="k">if </span><span class="p">(</span><span class="nx">nrState</span> <span class="o">==</span> <span class="dl">'</span><span class="s1">ACTIVATED</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+             <span class="kd">var</span> <span class="nx">newInc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">GlideRecord</span><span class="p">(</span><span class="dl">'</span><span class="s1">incident</span><span class="dl">'</span><span class="p">);</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nf">initialize</span><span class="p">();</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">short_description</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">New Relic Alert: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrTitle</span><span class="p">;</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">description</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Automatic alert from New Relic.</span><span class="se">\n</span><span class="s2">Issue ID: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrIssueId</span> <span class="o">+</span> <span class="dl">"</span><span class="se">\n</span><span class="s2">CPU Usage: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">nrCpu</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">%</span><span class="dl">"</span><span class="p">;</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">correlation_id</span> <span class="o">=</span> <span class="nx">nrIssueId</span><span class="p">;</span> <span class="c1">// THIS IS CRITICAL</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">caller_id</span> <span class="o">=</span> <span class="nx">gs</span><span class="p">.</span><span class="nf">getUserID</span><span class="p">();</span> <span class="c1">// Assign to API user</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nx">urgency</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// High</span>
+             <span class="nx">newInc</span><span class="p">.</span><span class="nf">insert</span><span class="p">();</span>
+
+             <span class="k">return</span> <span class="p">{</span> <span class="na">status</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Incident Created</span><span class="dl">"</span><span class="p">,</span> <span class="na">number</span><span class="p">:</span> <span class="nx">newInc</span><span class="p">.</span><span class="nx">number</span> <span class="p">};</span>
+         <span class="p">}</span>
+     <span class="p">}</span>
+ <span class="p">})(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Click <b>Submit.</b></li>
+  <li><b>Important:</b> Note your full Endpoint URL. It will be: <code class="language-plaintext highlighter-rouge">https://devXXXXX.service-now.com/api/x_scope_id/newrelic_handler/incident</code></li>
+</ol>
+
+<h2 id="part-iii-new-relic-configurationthe-trigger">Part III: New Relic Configuration(The Trigger)</h2>
+<h3 id="1-configure-the-destination">1. Configure the Destination</h3>
+<ol>
+  <li>In New Relic, go to <b>Alerts &amp; AI &gt; Destinations</b>.</li>
+  <li>Select <b> Webhook </b>.
+    <ul>
+      <li><b>Endpoint URL:</b> Your ServiceNow Scripted REST API URL from above.</li>
+      <li><b>Authorization Type:</b> Select <b>Basic Authentication</b>. Use your PDI <code class="language-plaintext highlighter-rouge">admin</code> username and password.</li>
+    </ul>
+  </li>
+  <li>Name it “ServiceNow PDI”.
+    <h3 id="2-configure-the-workflow-payload">2. Configure the Workflow (Payload)</h3>
+  </li>
+  <li>Go to <b> Alerts &amp; AI &gt; Workflows </b>.</li>
+  <li>Click <b> Add Workflow </b>.
+    <ul>
+      <li><b>Filter:</b> <code class="language-plaintext highlighter-rouge">Policy Name = 'Low CPU Test'</code> ( we will create policy in the next step)</li>
+    </ul>
+  </li>
+  <li><b>Notify:</b> Select your “ServiceNow PDI” destination.</li>
+  <li><b>Payload Template:</b> This defines exactly what data is sent to script. Paste this JSON:
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nl">"issue_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"current_state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"cpu_value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N/A"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+    <h3 id="3-create-the-alert-policy">3. Create the Alert Policy</h3>
+  </li>
+  <li>Go to <b>Alerts &amp; AI &gt; Conditions (Policies) </b>.</li>
+  <li>Create a New Policy named <code class="language-plaintext highlighter-rouge">Local CPU Test</code>.</li>
+  <li><b>Create a Condition:</b>
+    <ul>
+      <li><b>Product:</b> NRQL</li>
+      <li><b>Query:</b>
+        <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">SELECT</span> <span class="n">average</span><span class="p">(</span><span class="n">cpuPercent</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">SystemSample</span> <span class="k">WHERE</span> <span class="nv">`hostname = 'YOUR_HOSTNAME'
+</span></code></pre></div>        </div>
+      </li>
+      <li><b>Threshold:</b> Critical if query returns value <code class="language-plaintext highlighter-rouge">above 5</code> (Low threshold for easy testing) for at least <code class="language-plaintext highlighter-rouge">1 minute</code>.</li>
+      <li><b>Advanced Signal Settings:</b> “Close open incidents on signal loss” -&gt; set to <code class="language-plaintext highlighter-rouge">5 minutes</code>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="part-iv-execution--testing">Part IV: Execution &amp; Testing</h2>
+<h3 id="test-a-unit-test-via-curl-command-line">Test A: Unit Test via cURL (Command Line)</h3>
+<p>Verify your serviceNow script works without waiting for New Relic.</p>
+<h4 id="1-create-incidentsimulate-alert">1. Create Incident(Simulate Alert)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://&lt;YOUR_INSTANCE&gt;.service-now.com/api/&lt;YOUR_SCOPE_ID&gt;/newrelic_handler/incident"</span> <span class="se">\</span>
+<span class="nt">--request</span> POST <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<span class="nt">--user</span> <span class="s1">'admin:&lt;YOUR_PASSWORD&gt;'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "issue_id": "TEST12345",
+  "title": "Test High CPU Alert",
+  "current_state": "ACTIVATED",
+  "cpu_value": "95"
+}'</span>
+</code></pre></div></div>
+<p><b><i>Result&lt;/b&gt;: Check ServiceNow incidents table. You should see a new ticket.</i></b></p>
+
+<h4 id="2-resolve-incidentsimulate-recovery">2. Resolve Incident(Simulate Recovery)</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="s2">"https://&lt;YOUR_INSTANCE&gt;.service-now.com/api/&lt;YOUR_SCOPE_ID&gt;/newrelic_handler/incident"</span> <span class="se">\</span>
+<span class="nt">--request</span> POST <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Accept: application/json"</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+<span class="nt">--user</span> <span class="s1">'admin:&lt;YOUR_PASSWORD&gt;'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+  "issue_id": "TEST12345",
+  "title": "Test High CPU Alert",
+  "current_state": "CLOSED",
+  "cpu_value": "20"
+}'</span>
+</code></pre></div></div>
+<p><b><i>Result&lt;/b&gt;: The ticket created in step 1 should now be marked as “Resolved”.</i></b></p>
+
+<h3 id="test-b-end-to-end-integration-smoke-test">Test B: End-to-End Integration (“Smoke Test”)</h3>
+<p>Now, use the <code class="language-plaintext highlighter-rouge">strees</code> tool to forced a real CPU spike on your local machine.</p>
+<ol>
+  <li>Install Stress Tool:
+    <ul>
+      <li>Linux: <code class="language-plaintext highlighter-rouge">sudo apt-get install stress</code></li>
+      <li>MacOS: <code class="language-plaintext highlighter-rouge">brew install stress</code></li>
+    </ul>
+  </li>
+  <li>Run Stress:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">stress --cpu 8 --timeout 180</code> (Runs for 3 minutes).</li>
+    </ul>
+  </li>
+  <li>Monitor:
+    <ul>
+      <li><b>T+0 to T+1 min:</b> New Relic detects high CPU.</li>
+      <li><b>T+1 min:</b> New Relic triggers Alert -&gt; Webhook -&gt; <b>ServiceNow creates Incident</b>.</li>
+      <li><b>T+3 min:</b> Stress command ends, CPU drops.</li>
+      <li><b>T+5 to T+8 min:</b> New Relic closes Alert -&gt; Webhook -&gt; <b>ServiceNow resolves Incident</b>.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="appendix-troubleshooting">Appendix: Troubleshooting</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Error</th>
+      <th>Cause</th>
+      <th>Fix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>401 Unauthorized</td>
+      <td>Bad credentials</td>
+      <td>Check your PDI admin password. Update the Destination in New Relic.</td>
+    </tr>
+    <tr>
+      <td>403 Forbidden</td>
+      <td>Scope/ACL</td>
+      <td>Ensure the user has the <code class="language-plaintext highlighter-rouge">admin</code> or <code class="language-plaintext highlighter-rouge">rest_service</code> role.</td>
+    </tr>
+    <tr>
+      <td>404 Not Found</td>
+      <td>Bad URL</td>
+      <td>Check your API ID and Resource Path. Ensure the Resource is set to <code class="language-plaintext highlighter-rouge">POST</code>.</td>
+    </tr>
+    <tr>
+      <td>Duplicate Incidents</td>
+      <td>Logic Error</td>
+      <td>Verify the <code class="language-plaintext highlighter-rouge">gr.addQuery</code> in the script matches the <code class="language-plaintext highlighter-rouge">issue_id</code> being sent.</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name></name></author><category term="New Relic" /><category term="SeriveNow" /><category term="New Relic" /><category term="ServiceNow" /><category term="Integration" /><summary type="html"><![CDATA[A comprehensive guide to Integrate New Relic Incidents into ServiceNow.]]></summary></entry><entry><title type="html">🚀 Building an AI-Powered Stock Trading Bot in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="🚀 Building an AI-Powered Stock Trading Bot in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h3 id="an-autoshiftops-guide-to-ai-agents-backtesting-and-real-world-automation">An AutoShiftOps guide to AI agents, backtesting, and real-world automation</h3>
 
 <hr />
 
@@ -2255,167 +2524,4 @@ flowchart TD
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Observability-driven DevOps empowers engineers to detect, diagnose, and resolve issues quickly, improving uptime and performance. By integrating metrics, logs, and traces into CI/CD pipelines, teams can deliver robust, scalable, and resilient systems in modern cloud-native environments.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Observability" /><category term="CI/CD" /><category term="observability" /><category term="monitoring" /><category term="metrics" /><category term="logs" /><category term="traces" /><category term="DevOps" /><category term="SRE" /><summary type="html"><![CDATA[Implement observability-driven DevOps pipelines with metrics, logs, and distributed traces to improve reliability, troubleshooting, and performance monitoring.]]></summary></entry><entry><title type="html">🔹 Blue-Green Deployment Strategies in Kubernetes</title><link href="https://autoshiftops.com/devops/ci/cd/kubernetes/2025/06/08/Blue-Green-Deployment-Strategies-in-Kubernetes.html" rel="alternate" type="text/html" title="🔹 Blue-Green Deployment Strategies in Kubernetes" /><published>2025-06-08T00:00:00+00:00</published><updated>2025-06-08T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/kubernetes/2025/06/08/Blue-Green%20Deployment%20Strategies%20in%20Kubernetes</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/kubernetes/2025/06/08/Blue-Green-Deployment-Strategies-in-Kubernetes.html"><![CDATA[<h2 id="blue-green-deployment-strategies-in-kubernetes">Blue-Green Deployment Strategies in Kubernetes</h2>
-
-<p>Blue-Green deployment is a <strong>CI/CD technique</strong> that reduces downtime and risk by running <strong>two identical production environments</strong>: one active (Blue) and one idle (Green). Deployments happen to the idle environment, then traffic is switched over after validation.</p>
-
-<p>This approach ensures <strong>zero downtime, safe rollbacks, and minimal user disruption</strong>, making it crucial for modern DevOps pipelines.</p>
-
-<hr />
-
-<h3 id="why-blue-green-deployment-matters-for-devops-engineers">Why Blue-Green Deployment Matters for DevOps Engineers</h3>
-
-<ul>
-  <li><strong>Zero Downtime:</strong> Switch traffic seamlessly from Blue to Green</li>
-  <li><strong>Safe Rollbacks:</strong> Quickly revert if issues arise in Green</li>
-  <li><strong>Continuous Delivery:</strong> Supports frequent releases without affecting users</li>
-  <li><strong>Simplified Testing:</strong> Validate production-ready code in an isolated environment</li>
-  <li><strong>Predictable Deployments:</strong> Reduces risk of deployment failures</li>
-</ul>
-
-<hr />
-
-<h3 id="workflow-example">Workflow Example</h3>
-
-<ol>
-  <li>Maintain two identical environments: Blue (live) and Green (staging)</li>
-  <li>Deploy new version to Green environment</li>
-  <li>Run smoke and integration tests on Green</li>
-  <li>Switch traffic from Blue → Green using Kubernetes service routing</li>
-  <li>Monitor metrics, logs, and user experience</li>
-  <li>Retire Blue or prepare for the next deployment</li>
-</ol>
-
-<hr />
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-
-<div class="mermaid">
-flowchart TD
-    A[Blue Environment - Active] --&gt;|User Traffic| B[Service]
-    C[Green Environment - Idle] --&gt; B
-    D[Deploy New Version] --&gt; C
-    C --&gt;|Switch Traffic| B
-    B --&gt; E[Users Experience Seamless Service]
-</div>
-
-<hr />
-
-<h3 id="step-by-step-implementation-in-kubernetes">Step-by-Step Implementation in Kubernetes</h3>
-
-<ol>
-  <li><strong>Create Namespaces and Deployments</strong>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl create namespace blue
-kubectl create namespace green
-kubectl apply <span class="nt">-f</span> deployment-blue.yaml <span class="nt">-n</span> blue
-kubectl apply <span class="nt">-f</span> deployment-green.yaml <span class="nt">-n</span> green
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Expose Services</strong>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> service-blue.yaml <span class="nt">-n</span> blue
-kubectl apply <span class="nt">-f</span> service-green.yaml <span class="nt">-n</span> green
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Switch Traffic Using Service Selector</strong>
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl patch service my-app <span class="nt">-n</span> default <span class="nt">-p</span> <span class="s1">'{"spec":{"selector":{"env":"green"}}}'</span>
-</code></pre></div>    </div>
-  </li>
-  <li><strong>Monitor Metrics</strong></li>
-</ol>
-
-<ul>
-  <li>Use Prometheus, Grafana, and Datadog to track latency, error rates, and user impact</li>
-</ul>
-
-<h3 id="sample-python-script-for-automation">Sample Python Script for Automation</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-
-<span class="k">def</span> <span class="nf">switch_traffic</span><span class="p">(</span><span class="n">namespace</span><span class="p">):</span>
-    <span class="n">cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">kubectl patch service my-app -n default -p </span><span class="sh">'</span><span class="s">{{</span><span class="se">\"</span><span class="s">spec</span><span class="se">\"</span><span class="s">:{{</span><span class="se">\"</span><span class="s">selector</span><span class="se">\"</span><span class="s">:{{</span><span class="se">\"</span><span class="s">env</span><span class="se">\"</span><span class="s">:</span><span class="se">\"</span><span class="si">{</span><span class="n">namespace</span><span class="si">}</span><span class="se">\"</span><span class="s">}}}}}}</span><span class="sh">'"</span>
-    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-
-<span class="c1"># Switch traffic to green environment
-</span><span class="nf">switch_traffic</span><span class="p">(</span><span class="sh">"</span><span class="s">green</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="real-world-use-cases">Real-World Use Cases</h3>
-
-<ul>
-  <li>E-commerce: Deploy high-traffic sale updates without downtime</li>
-  <li>Banking: Safely update transaction systems with zero disruption</li>
-  <li>Gaming: Push new features before peak usage without affecting players</li>
-</ul>
-
-<hr />
-
-<h3 id="recommended-tools">Recommended Tools</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Tools</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CI/CD Pipelines</td>
-      <td>Jenkins, GitHub Actions, GitLab CI</td>
-    </tr>
-    <tr>
-      <td>Deployment</td>
-      <td>ArgoCD, Spinnaker, FluxCD</td>
-    </tr>
-    <tr>
-      <td>Monitoring</td>
-      <td>Prometheus, Grafana, Datadog</td>
-    </tr>
-    <tr>
-      <td>Kubernetes Mgmt</td>
-      <td>Kustomize, Helm, kubectl</td>
-    </tr>
-    <tr>
-      <td>Automation Scripts</td>
-      <td>Python, Bash, Ansible</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="best-practices">Best Practices</h3>
-
-<ul>
-  <li>Test Green environment thoroughly before traffic switch</li>
-  <li>Use health checks and readiness probes in Kubernetes</li>
-  <li>Automate traffic switching with scripts or pipelines</li>
-  <li>Keep both environments in sync to avoid drift</li>
-</ul>
-
-<hr />
-
-<h3 id="common-pitfalls">Common Pitfalls</h3>
-
-<ul>
-  <li>Traffic switch without proper health checks</li>
-  <li>Environment drift between Blue and Green</li>
-  <li>Ignoring rollback plan and monitoring alerts</li>
-</ul>
-
-<hr />
-
-<h3 id="key-takeaways">Key Takeaways</h3>
-
-<ul>
-  <li>Blue-Green deployment ensures zero downtime and safer releases</li>
-  <li>Kubernetes makes switching seamless with service selectors</li>
-  <li>Automation and monitoring are critical for success</li>
-  <li>Ideal for high-traffic, production-critical applications</li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Blue-Green deployments in Kubernetes are a best-practice strategy for minimizing risk and downtime. Combining automation, monitoring, and traffic management ensures smooth, predictable, and safe deployments for any DevOps team.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="CI/CD" /><category term="Kubernetes" /><category term="blue-green deployment" /><category term="Kubernetes" /><category term="CI/CD" /><category term="DevOps automation" /><summary type="html"><![CDATA[Learn how to implement Blue-Green deployment strategies in Kubernetes, with detailed workflows, architecture diagrams, automation scripts, and real-world use cases.]]></summary></entry></feed>
+<p>Observability-driven DevOps empowers engineers to detect, diagnose, and resolve issues quickly, improving uptime and performance. By integrating metrics, logs, and traces into CI/CD pipelines, teams can deliver robust, scalable, and resilient systems in modern cloud-native environments.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Observability" /><category term="CI/CD" /><category term="observability" /><category term="monitoring" /><category term="metrics" /><category term="logs" /><category term="traces" /><category term="DevOps" /><category term="SRE" /><summary type="html"><![CDATA[Implement observability-driven DevOps pipelines with metrics, logs, and distributed traces to improve reliability, troubleshooting, and performance monitoring.]]></summary></entry></feed>
