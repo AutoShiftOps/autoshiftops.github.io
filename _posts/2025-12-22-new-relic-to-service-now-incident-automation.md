@@ -1,4 +1,13 @@
-# New Relic to ServiceNow Incident Automation(Lab Guide)
+---
+layout: post
+title: "New Relic to ServiceNow Incident Automation(Lab Guide)"
+date: 2025-12-22
+categories: [New Relic, SeriveNow]
+tags: [New Relic, ServiceNow, Integration]
+description: "A comprehensive guide to Integrate New Relic Incidents into ServiceNow."
+keywords: [New Relic, ServiceNow, Integration]
+---
+
 ## Objective
 Create a closed-loop incident management system where New Relic automatically creates ServiceNow incidents when CPU usage is high and resolves them when usage returns to normal.
 
