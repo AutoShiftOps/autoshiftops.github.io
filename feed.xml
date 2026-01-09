@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-07T21:12:17+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-09T03:30:01+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1518,7 +1518,270 @@ It is <strong>not financial advice</strong>.</p>
 
 <p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
 
-<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🚦 Feature Flag Management in Continuous Delivery</title><link href="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html" rel="alternate" type="text/html" title="🚦 Feature Flag Management in Continuous Delivery" /><published>2025-06-29T00:00:00+00:00</published><updated>2025-06-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature%20Flag%20Management%20in%20Continuous%20Delivery</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"><![CDATA[<h2 id="feature-flag-management-in-continuous-delivery">Feature Flag Management in Continuous Delivery</h2>
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">Advanced Bash Scripting for DevOps Automation</title><link href="https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html" rel="alternate" type="text/html" title="Advanced Bash Scripting for DevOps Automation" /><published>2025-07-05T00:00:00+00:00</published><updated>2025-07-05T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html"><![CDATA[<h2 id="why-bash-still-rules-devops">Why Bash Still Rules DevOps?</h2>
+
+<p>Infrastructure as code, containers, and Kubernetes are great, but when you log into a box to fix something right now, Bash is still the fastest tool you have.
+​</p>
+
+<p>This post focuses on practical Bash scripting patterns that automate real DevOps tasks: deployments, health checks, log cleanups, and safety‑first operations you can trust in production.
+​</p>
+
+<h2 id="1-bash-scripting-foundations-done-right">1. Bash Scripting Foundations Done Right</h2>
+<p>Even experienced engineers skip basics that later cause flaky scripts.</p>
+
+<p>Always start with a shebang and safe defaults:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+<span class="nv">IFS</span><span class="o">=</span><span class="s1">$'</span><span class="se">\n\t</span><span class="s1">'</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><b>et -e</b> → exit on error</p>
+  </li>
+  <li>
+    <p><b>set -u</b> → fail on undefined variables</p>
+  </li>
+  <li>
+    <p><b>set -o pipefail</b> → fail if any part of a pipe fails
+​</p>
+  </li>
+</ul>
+
+<p>Use functions instead of long procedural blobs:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+die<span class="o">()</span> <span class="o">{</span>
+  log <span class="s2">"ERROR: </span><span class="nv">$*</span><span class="s2">"</span>
+  <span class="nb">exit </span>1
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>These patterns make scripts safer and easier to reuse across services and environments.</p>
+
+<h2 id="2-parameters-flags-and-environments">2. Parameters, Flags, and Environments</h2>
+<p>A good DevOps script is configurable without editing the file.</p>
+
+<p>Using Arguments and Defaults</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>   <span class="c"># default to staging</span>
+
+log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+log <span class="s2">"Deploying to </span><span class="nv">$ENVIRONMENT</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>${1:-staging} gives you a default while still allowing overrides.</p>
+  </li>
+  <li>
+    <p>This pattern works great for scripts you’ll run from CI/CD pipelines.
+​</p>
+  </li>
+</ul>
+
+<h3 id="robust-flag-parsing">Robust Flag Parsing</h3>
+<p>For more complex tools, use getopts:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while </span><span class="nb">getopts</span> <span class="s2">"e:v:h"</span> opt<span class="p">;</span> <span class="k">do
+  case</span> <span class="s2">"</span><span class="nv">$opt</span><span class="s2">"</span> <span class="k">in
+    </span>e<span class="p">)</span> <span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
+    v<span class="p">)</span> <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
+    h<span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Usage: deploy.sh -e &lt;env&gt; -v &lt;version&gt;"</span><span class="p">;</span> <span class="nb">exit </span>0 <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span> <span class="nb">exit </span>1 <span class="p">;;</span>
+  <span class="k">esac</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>This turns a script into a proper CLI your team can rely on.​</p>
+
+<h2 id="3-realworld-deployment-script-pattern">3. Real‑World Deployment Script Pattern</h2>
+<p>Here’s a simplified multi‑step deployment flow you can adapt for web apps or microservices.
+​</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">APP_DIR</span><span class="o">=</span><span class="s2">"/srv/myapp"</span>
+<span class="nv">REPO_URL</span><span class="o">=</span><span class="s2">"git@github.com:org/myapp.git"</span>
+
+log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+deploy<span class="o">()</span> <span class="o">{</span>
+  log <span class="s2">"Updating code..."</span>
+  <span class="k">if</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">/.git"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span>git clone <span class="s2">"</span><span class="nv">$REPO_URL</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
+  <span class="k">fi
+  </span><span class="nb">cd</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
+  git fetch <span class="nt">--all</span>
+  git checkout main
+  git pull <span class="nt">--ff-only</span>
+
+  log <span class="s2">"Installing dependencies..."</span>
+  npm ci
+
+  log <span class="s2">"Running tests..."</span>
+  npm <span class="nb">test
+
+  </span>log <span class="s2">"Building..."</span>
+  npm run build
+
+  log <span class="s2">"Restarting service..."</span>
+  <span class="nb">sudo </span>systemctl restart myapp
+
+  log <span class="s2">"Deployment complete."</span>
+<span class="o">}</span>
+
+deploy
+</code></pre></div></div>
+
+<p>Why this works for DevOps:</p>
+
+<ul>
+  <li>Idempotent: safe to run multiple times.
+​</li>
+  <li>Ties into systemd for consistent service management.</li>
+</ul>
+
+<h2 id="4-automated-health-checks-and-rollbacks">4. Automated Health Checks and Rollbacks</h2>
+<p>Production automation needs more than “deploy and hope.”</p>
+
+<p>Health Check Example</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>health_check<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">url</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">http</span>://localhost/health<span class="k">}</span><span class="s2">"</span>
+  <span class="k">if </span>curl <span class="nt">-fsS</span> <span class="s2">"</span><span class="nv">$url</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null<span class="p">;</span> <span class="k">then
+    </span>log <span class="s2">"Health check passed for </span><span class="nv">$url</span><span class="s2">"</span>
+  <span class="k">else
+    </span>die <span class="s2">"Health check FAILED for </span><span class="nv">$url</span><span class="s2">"</span>
+  <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Combine this with deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>previous_version<span class="o">()</span> <span class="o">{</span>
+  git describe <span class="nt">--tags</span> <span class="nt">--abbrev</span><span class="o">=</span>0 HEAD~1 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">""</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rollback<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span>prev
+  <span class="nv">prev</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span>previous_version<span class="si">)</span><span class="s2">"</span>
+  <span class="o">[[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> die <span class="s2">"No previous version found for rollback"</span>
+
+  log <span class="s2">"Rolling back to </span><span class="nv">$prev</span><span class="s2">"</span>
+  git checkout <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span>
+  npm run build
+  <span class="nb">sudo </span>systemctl restart myapp
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>After deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deploy
+<span class="k">if</span> <span class="o">!</span> health_check <span class="s2">"https://myapp.example.com/health"</span><span class="p">;</span> <span class="k">then
+  </span>log <span class="s2">"Health check failed; rolling back"</span>
+  rollback
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>This pattern mirrors real‑world blue/green or canary flows on a smaller scale.
+​</p>
+<h2 id="5-log-rotation-and-cleanup-jobs">5. Log Rotation and Cleanup Jobs</h2>
+<p>Bash + cron is still a perfectly valid way to manage logs on smaller setups.
+​</p>
+<h3 id="rotate-and-compress-logs">Rotate and Compress Logs</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">LOG_DIR</span><span class="o">=</span><span class="s2">"/var/log/myapp"</span>
+<span class="nv">DAYS_TO_KEEP</span><span class="o">=</span>7
+
+find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +<span class="nv">$DAYS_TO_KEEP</span> <span class="nt">-print0</span> <span class="se">\</span>
+  | <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> <span class="nt">-d</span> <span class="s1">''</span> file<span class="p">;</span> <span class="k">do
+      </span><span class="nb">gzip</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+    <span class="k">done</span>
+</code></pre></div></div>
+
+<p>Remove Old Archives</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.gz"</span> <span class="nt">-mtime</span> +30 <span class="nt">-delete</span>
+</code></pre></div></div>
+
+<p>Schedule with cron:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
+<span class="c"># Run cleanup daily at 01:30</span>
+30 1 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/local/bin/log_cleanup.sh
+</code></pre></div></div>
+
+<p>This keeps disks healthy without needing a full log‑management stack.
+​</p>
+<h2 id="6-monitoring-scripts-with-alerts">6. Monitoring Scripts with Alerts</h2>
+<p>You can wrap common Linux monitoring commands into Bash scripts that push alerts to Slack, email, or webhooks.
+​
+Example: CPU and Memory Watchdog</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">CPU_THRESHOLD</span><span class="o">=</span>80
+<span class="nv">MEM_THRESHOLD</span><span class="o">=</span>80
+
+cpu_usage<span class="o">()</span> <span class="o">{</span>
+  mpstat 1 1 | <span class="nb">awk</span> <span class="s1">'/Average/ &amp;&amp; $12 ~ /[0-9.]+/ {print 100-$12}'</span>
+<span class="o">}</span>
+
+mem_usage<span class="o">()</span> <span class="o">{</span>
+  free | <span class="nb">awk</span> <span class="s1">'/Mem:/ {printf(\"%.0f\", $3/$2 * 100)}'</span>
+<span class="o">}</span>
+
+<span class="nv">CPU</span><span class="o">=</span><span class="si">$(</span>cpu_usage<span class="si">)</span>
+<span class="nv">MEM</span><span class="o">=</span><span class="si">$(</span>mem_usage<span class="si">)</span>
+
+<span class="k">if</span> <span class="o">((</span> CPU <span class="o">&gt;</span> CPU_THRESHOLD <span class="o">||</span> MEM <span class="o">&gt;</span> MEM_THRESHOLD <span class="o">))</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">echo</span> <span class="s2">"High usage detected: CPU=</span><span class="k">${</span><span class="nv">CPU</span><span class="k">}</span><span class="s2">% MEM=</span><span class="k">${</span><span class="nv">MEM</span><span class="k">}</span><span class="s2">%"</span>
+  <span class="c"># Hook: send to Slack / email / alerting system</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>This complements full monitoring stacks by giving you lightweight, scriptable checks.​</p>
+
+<h2 id="7-safer-file-and-config-changes">7. Safer File and Config Changes</h2>
+<p>Use Bash to modify configuration files predictably instead of manual edits.</p>
+
+<p>Backups + Atomic Changes</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CONFIG</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml"</span>
+<span class="nv">BACKUP</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml.</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F-%H%M%S'</span><span class="si">)</span><span class="s2">.bak"</span>
+
+<span class="nb">cp</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$BACKUP</span><span class="s2">"</span>
+
+<span class="c"># Example: toggle a feature flag</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/feature_x: false/feature_x: true/'</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span>
+
+systemctl restart myapp
+</code></pre></div></div>
+
+<p>Pattern:</p>
+
+<ul>
+  <li>
+    <p>Always create timestamped backups.</p>
+  </li>
+  <li>
+    <p>Make changes with sed, awk, or yq/jq for structured data.
+​</p>
+  </li>
+</ul>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide for bash scripting commands essential for Devops Automation.]]></summary></entry><entry><title type="html">🚦 Feature Flag Management in Continuous Delivery</title><link href="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html" rel="alternate" type="text/html" title="🚦 Feature Flag Management in Continuous Delivery" /><published>2025-06-29T00:00:00+00:00</published><updated>2025-06-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature%20Flag%20Management%20in%20Continuous%20Delivery</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"><![CDATA[<h2 id="feature-flag-management-in-continuous-delivery">Feature Flag Management in Continuous Delivery</h2>
 
 <p>Feature flags (also known as feature toggles) are a <strong>powerful mechanism to decouple code deployment from feature releases</strong>. They enable DevOps teams to <strong>release features gradually, conduct A/B tests, and quickly rollback problematic features</strong> without redeploying code.</p>
 
@@ -2317,211 +2580,4 @@ kubectl <span class="nb">exec</span> <span class="nt">-it</span> &lt;pod-name&gt
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Chaos engineering is a proactive approach to building reliable systems. By deliberately introducing failures in a controlled manner and analyzing outcomes, DevOps teams can uncover weaknesses, optimize recovery strategies, and deliver more resilient services — all while reducing downtime and improving operational confidence.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Chaos Engineering" /><category term="Resilience" /><category term="chaos engineering" /><category term="resilience" /><category term="reliability" /><category term="DevOps" /><category term="fault injection" /><category term="SRE" /><summary type="html"><![CDATA[Learn how to implement chaos engineering in production systems to build resilient and fault-tolerant architectures using practical workflows, tools, and best practices.]]></summary></entry><entry><title type="html">🔍 Observability-Driven DevOps: Metrics, Logs &amp;amp; Traces</title><link href="https://autoshiftops.com/devops/observability/ci/cd/2025/06/14/Observability-Driven-DevOps.html" rel="alternate" type="text/html" title="🔍 Observability-Driven DevOps: Metrics, Logs &amp;amp; Traces" /><published>2025-06-14T00:00:00+00:00</published><updated>2025-06-14T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/observability/ci/cd/2025/06/14/Observability-Driven%20DevOps</id><content type="html" xml:base="https://autoshiftops.com/devops/observability/ci/cd/2025/06/14/Observability-Driven-DevOps.html"><![CDATA[<h2 id="observability-driven-devops-metrics-logs--traces">Observability-Driven DevOps: Metrics, Logs &amp; Traces</h2>
-
-<p>Observability is the <strong>backbone of modern DevOps</strong>. It enables teams to understand the <strong>internal state of complex systems</strong> by analyzing <strong>metrics, logs, and traces</strong>. Unlike traditional monitoring, observability focuses on <strong>contextual insights</strong>, helping engineers quickly detect, diagnose, and resolve issues.</p>
-
-<p>By adopting observability-driven workflows, DevOps teams can <strong>reduce downtime, accelerate troubleshooting, and improve system performance</strong> across CI/CD pipelines and production environments.</p>
-
-<hr />
-
-<h3 id="why-observability-matters-for-devops-engineers">Why Observability Matters for DevOps Engineers</h3>
-
-<ul>
-  <li><strong>Proactive Issue Detection:</strong> Identify anomalies before they impact users</li>
-  <li><strong>Faster Root Cause Analysis:</strong> Correlate metrics, logs, and traces to pinpoint failures</li>
-  <li><strong>Improved Reliability:</strong> Maintain SLOs, SLIs, and high availability</li>
-  <li><strong>Data-Driven Decisions:</strong> Optimize infrastructure and deployment strategies</li>
-  <li><strong>Scalable Monitoring:</strong> Adapt to multi-cloud and microservices architectures</li>
-</ul>
-
-<hr />
-
-<h3 id="observability-components">Observability Components</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Component</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Metrics</strong></td>
-      <td>Quantitative measurements of system health (CPU, memory, latency, throughput)</td>
-    </tr>
-    <tr>
-      <td><strong>Logs</strong></td>
-      <td>Time-stamped events that provide detailed context of system behavior</td>
-    </tr>
-    <tr>
-      <td><strong>Traces</strong></td>
-      <td>Distributed traces show end-to-end request flows across services</td>
-    </tr>
-    <tr>
-      <td><strong>Events</strong></td>
-      <td>Significant state changes or incidents in infrastructure or applications</td>
-    </tr>
-    <tr>
-      <td><strong>Alerts</strong></td>
-      <td>Automated notifications when thresholds are crossed or anomalies detected</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="workflow-example">Workflow Example</h3>
-
-<ol>
-  <li>Collect metrics from applications, infrastructure, and CI/CD pipelines</li>
-  <li>Aggregate and visualize metrics using Grafana or Kibana dashboards</li>
-  <li>Collect and structure logs from containers, applications, and services</li>
-  <li>Trace requests across microservices to identify bottlenecks</li>
-  <li>Set up alerts and automated remediation workflows</li>
-  <li>Continuously refine observability to cover new services and features</li>
-</ol>
-
-<hr />
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-
-<div class="mermaid">
-flowchart TD
-    A[Application Metrics] --&gt; B[Observability Platform]
-    C[Logs &amp; Events] --&gt; B
-    D[Distributed Traces] --&gt; B
-    B --&gt; E[Dashboards &amp; Alerts]
-    E --&gt; F[DevOps Engineers Action]
-    F --&gt; G[Auto-Remediation / Incident Response]
-</div>
-
-<hr />
-
-<h3 id="sample-implementation-metrics-collection-with-prometheus">Sample Implementation: Metrics Collection with Prometheus</h3>
-
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
-<span class="na">kind</span><span class="pi">:</span> <span class="s">ConfigMap</span>
-<span class="na">metadata</span><span class="pi">:</span>
-  <span class="na">name</span><span class="pi">:</span> <span class="s">prometheus-config</span>
-<span class="na">data</span><span class="pi">:</span>
-  <span class="na">prometheus.yml</span><span class="pi">:</span> <span class="pi">|</span>
-    <span class="s">global:</span>
-      <span class="s">scrape_interval: 15s</span>
-    <span class="s">scrape_configs:</span>
-      <span class="s">- job_name: 'kubernetes-pods'</span>
-        <span class="s">kubernetes_sd_configs:</span>
-          <span class="s">- role: pod</span>
-        <span class="s">relabel_configs:</span>
-          <span class="s">- source_labels: [__meta_kubernetes_pod_label_app]</span>
-            <span class="s">action: keep</span>
-            <span class="s">regex: my-app</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>Prometheus scrapes metrics from Kubernetes pods labeled my-app</p>
-  </li>
-  <li>
-    <p>Metrics are visualized in Grafana dashboards for real-time monitoring</p>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="sample-python-script-correlating-logs-and-metrics">Sample Python Script: Correlating Logs and Metrics</h3>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">json</span>
-
-<span class="c1"># Fetch metrics from Prometheus
-</span><span class="n">prometheus_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">http://prometheus-server/api/v1/query?query=cpu_usage</span><span class="sh">"</span>
-<span class="n">metrics</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">prometheus_url</span><span class="p">).</span><span class="nf">json</span><span class="p">()</span>
-
-<span class="c1"># Fetch logs from Elasticsearch
-</span><span class="n">es_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">http://elasticsearch:9200/my-app-logs/_search</span><span class="sh">"</span>
-<span class="n">logs</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">es_url</span><span class="p">).</span><span class="nf">json</span><span class="p">()</span>
-
-<span class="c1"># Correlate high CPU metrics with logs
-</span><span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">[</span><span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
-    <span class="n">pod</span> <span class="o">=</span> <span class="n">metric</span><span class="p">[</span><span class="sh">'</span><span class="s">metric</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">pod</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">cpu</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="n">metric</span><span class="p">[</span><span class="sh">'</span><span class="s">value</span><span class="sh">'</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">if</span> <span class="n">cpu</span> <span class="o">&gt;</span> <span class="mi">80</span><span class="p">:</span>
-        <span class="n">pod_logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span><span class="p">[</span><span class="sh">'</span><span class="s">_source</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">logs</span><span class="p">[</span><span class="sh">'</span><span class="s">hits</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">hits</span><span class="sh">'</span><span class="p">]</span> <span class="k">if</span> <span class="n">log</span><span class="p">[</span><span class="sh">'</span><span class="s">_source</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">pod</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="n">pod</span><span class="p">]</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">High CPU detected in </span><span class="si">{</span><span class="n">pod</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">cpu</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Relevant logs:</span><span class="sh">"</span><span class="p">,</span> <span class="n">pod_logs</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="recommended-tools">Recommended Tools</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Tools</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Metrics Collection</td>
-      <td>Prometheus, Datadog, New Relic</td>
-    </tr>
-    <tr>
-      <td>Log Aggregation</td>
-      <td>ELK Stack (Elasticsearch, Logstash, Kibana), Loki</td>
-    </tr>
-    <tr>
-      <td>Distributed Tracing</td>
-      <td>Jaeger, OpenTelemetry, Zipkin</td>
-    </tr>
-    <tr>
-      <td>Alerting &amp; Notification</td>
-      <td>Grafana Alerting, PagerDuty, OpsGenie</td>
-    </tr>
-    <tr>
-      <td>Automation &amp; Remediation</td>
-      <td>Ansible, Python scripts, Kubernetes Operators</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="best-practices">Best Practices</h3>
-
-<ul>
-  <li>Instrument applications and infrastructure consistently</li>
-  <li>Use centralized observability platforms to correlate metrics, logs, and traces</li>
-  <li>Set meaningful thresholds and alerts</li>
-  <li>Incorporate observability into CI/CD pipelines</li>
-  <li>Continuously review and improve dashboards and metrics</li>
-</ul>
-
-<hr />
-
-<h3 id="common-pitfalls">Common Pitfalls</h3>
-
-<ul>
-  <li>Overloading dashboards with too many metrics</li>
-  <li>Ignoring low-severity alerts leading to alert fatigue</li>
-  <li>Not correlating logs with metrics for context</li>
-  <li>Lack of automation for incident response</li>
-</ul>
-
-<hr />
-
-<h3 id="key-takeaways">Key Takeaways</h3>
-<ul>
-  <li>Observability is critical for reliable, scalable, and maintainable systems</li>
-  <li>Metrics, logs, and traces together provide full visibility</li>
-  <li>Automation and dashboards accelerate troubleshooting and remediation</li>
-  <li>Continuous improvement in observability ensures proactive system health</li>
-</ul>
-
-<hr />
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Observability-driven DevOps empowers engineers to detect, diagnose, and resolve issues quickly, improving uptime and performance. By integrating metrics, logs, and traces into CI/CD pipelines, teams can deliver robust, scalable, and resilient systems in modern cloud-native environments.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Observability" /><category term="CI/CD" /><category term="observability" /><category term="monitoring" /><category term="metrics" /><category term="logs" /><category term="traces" /><category term="DevOps" /><category term="SRE" /><summary type="html"><![CDATA[Implement observability-driven DevOps pipelines with metrics, logs, and distributed traces to improve reliability, troubleshooting, and performance monitoring.]]></summary></entry></feed>
+<p>Chaos engineering is a proactive approach to building reliable systems. By deliberately introducing failures in a controlled manner and analyzing outcomes, DevOps teams can uncover weaknesses, optimize recovery strategies, and deliver more resilient services — all while reducing downtime and improving operational confidence.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="Chaos Engineering" /><category term="Resilience" /><category term="chaos engineering" /><category term="resilience" /><category term="reliability" /><category term="DevOps" /><category term="fault injection" /><category term="SRE" /><summary type="html"><![CDATA[Learn how to implement chaos engineering in production systems to build resilient and fault-tolerant architectures using practical workflows, tools, and best practices.]]></summary></entry></feed>

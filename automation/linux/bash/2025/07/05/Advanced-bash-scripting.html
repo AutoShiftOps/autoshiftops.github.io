@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Bash Scripting for DevOps Automation</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>Advanced Bash Scripting for DevOps Automation</h1>
+  <p class="post-meta">Published on July 05, 2025</p>
+  <div class="post-content">
+    <h2 id="why-bash-still-rules-devops">Why Bash Still Rules DevOps?</h2>
+
+<p>Infrastructure as code, containers, and Kubernetes are great, but when you log into a box to fix something right now, Bash is still the fastest tool you have.
+​</p>
+
+<p>This post focuses on practical Bash scripting patterns that automate real DevOps tasks: deployments, health checks, log cleanups, and safety‑first operations you can trust in production.
+​</p>
+
+<h2 id="1-bash-scripting-foundations-done-right">1. Bash Scripting Foundations Done Right</h2>
+<p>Even experienced engineers skip basics that later cause flaky scripts.</p>
+
+<p>Always start with a shebang and safe defaults:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+<span class="nv">IFS</span><span class="o">=</span><span class="s1">$'</span><span class="se">\n\t</span><span class="s1">'</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p><b>et -e</b> → exit on error</p>
+  </li>
+  <li>
+    <p><b>set -u</b> → fail on undefined variables</p>
+  </li>
+  <li>
+    <p><b>set -o pipefail</b> → fail if any part of a pipe fails
+​</p>
+  </li>
+</ul>
+
+<p>Use functions instead of long procedural blobs:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+die<span class="o">()</span> <span class="o">{</span>
+  log <span class="s2">"ERROR: </span><span class="nv">$*</span><span class="s2">"</span>
+  <span class="nb">exit </span>1
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>These patterns make scripts safer and easier to reuse across services and environments.</p>
+
+<h2 id="2-parameters-flags-and-environments">2. Parameters, Flags, and Environments</h2>
+<p>A good DevOps script is configurable without editing the file.</p>
+
+<p>Using Arguments and Defaults</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>   <span class="c"># default to staging</span>
+
+log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+log <span class="s2">"Deploying to </span><span class="nv">$ENVIRONMENT</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>${1:-staging} gives you a default while still allowing overrides.</p>
+  </li>
+  <li>
+    <p>This pattern works great for scripts you’ll run from CI/CD pipelines.
+​</p>
+  </li>
+</ul>
+
+<h3 id="robust-flag-parsing">Robust Flag Parsing</h3>
+<p>For more complex tools, use getopts:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while </span><span class="nb">getopts</span> <span class="s2">"e:v:h"</span> opt<span class="p">;</span> <span class="k">do
+  case</span> <span class="s2">"</span><span class="nv">$opt</span><span class="s2">"</span> <span class="k">in
+    </span>e<span class="p">)</span> <span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
+    v<span class="p">)</span> <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
+    h<span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Usage: deploy.sh -e &lt;env&gt; -v &lt;version&gt;"</span><span class="p">;</span> <span class="nb">exit </span>0 <span class="p">;;</span>
+    <span class="k">*</span><span class="p">)</span> <span class="nb">exit </span>1 <span class="p">;;</span>
+  <span class="k">esac</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p>This turns a script into a proper CLI your team can rely on.​</p>
+
+<h2 id="3-realworld-deployment-script-pattern">3. Real‑World Deployment Script Pattern</h2>
+<p>Here’s a simplified multi‑step deployment flow you can adapt for web apps or microservices.
+​</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>
+<span class="nv">APP_DIR</span><span class="o">=</span><span class="s2">"/srv/myapp"</span>
+<span class="nv">REPO_URL</span><span class="o">=</span><span class="s2">"git@github.com:org/myapp.git"</span>
+
+log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+deploy<span class="o">()</span> <span class="o">{</span>
+  log <span class="s2">"Updating code..."</span>
+  <span class="k">if</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">/.git"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
+    </span>git clone <span class="s2">"</span><span class="nv">$REPO_URL</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
+  <span class="k">fi
+  </span><span class="nb">cd</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
+  git fetch <span class="nt">--all</span>
+  git checkout main
+  git pull <span class="nt">--ff-only</span>
+
+  log <span class="s2">"Installing dependencies..."</span>
+  npm ci
+
+  log <span class="s2">"Running tests..."</span>
+  npm <span class="nb">test
+
+  </span>log <span class="s2">"Building..."</span>
+  npm run build
+
+  log <span class="s2">"Restarting service..."</span>
+  <span class="nb">sudo </span>systemctl restart myapp
+
+  log <span class="s2">"Deployment complete."</span>
+<span class="o">}</span>
+
+deploy
+</code></pre></div></div>
+
+<p>Why this works for DevOps:</p>
+
+<ul>
+  <li>Idempotent: safe to run multiple times.
+​</li>
+  <li>Ties into systemd for consistent service management.</li>
+</ul>
+
+<h2 id="4-automated-health-checks-and-rollbacks">4. Automated Health Checks and Rollbacks</h2>
+<p>Production automation needs more than “deploy and hope.”</p>
+
+<p>Health Check Example</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>health_check<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">url</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">http</span>://localhost/health<span class="k">}</span><span class="s2">"</span>
+  <span class="k">if </span>curl <span class="nt">-fsS</span> <span class="s2">"</span><span class="nv">$url</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null<span class="p">;</span> <span class="k">then
+    </span>log <span class="s2">"Health check passed for </span><span class="nv">$url</span><span class="s2">"</span>
+  <span class="k">else
+    </span>die <span class="s2">"Health check FAILED for </span><span class="nv">$url</span><span class="s2">"</span>
+  <span class="k">fi</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Combine this with deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>previous_version<span class="o">()</span> <span class="o">{</span>
+  git describe <span class="nt">--tags</span> <span class="nt">--abbrev</span><span class="o">=</span>0 HEAD~1 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">""</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rollback<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span>prev
+  <span class="nv">prev</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span>previous_version<span class="si">)</span><span class="s2">"</span>
+  <span class="o">[[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> die <span class="s2">"No previous version found for rollback"</span>
+
+  log <span class="s2">"Rolling back to </span><span class="nv">$prev</span><span class="s2">"</span>
+  git checkout <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span>
+  npm run build
+  <span class="nb">sudo </span>systemctl restart myapp
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>After deployment:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deploy
+<span class="k">if</span> <span class="o">!</span> health_check <span class="s2">"https://myapp.example.com/health"</span><span class="p">;</span> <span class="k">then
+  </span>log <span class="s2">"Health check failed; rolling back"</span>
+  rollback
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>This pattern mirrors real‑world blue/green or canary flows on a smaller scale.
+​</p>
+<h2 id="5-log-rotation-and-cleanup-jobs">5. Log Rotation and Cleanup Jobs</h2>
+<p>Bash + cron is still a perfectly valid way to manage logs on smaller setups.
+​</p>
+<h3 id="rotate-and-compress-logs">Rotate and Compress Logs</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">LOG_DIR</span><span class="o">=</span><span class="s2">"/var/log/myapp"</span>
+<span class="nv">DAYS_TO_KEEP</span><span class="o">=</span>7
+
+find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +<span class="nv">$DAYS_TO_KEEP</span> <span class="nt">-print0</span> <span class="se">\</span>
+  | <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> <span class="nt">-d</span> <span class="s1">''</span> file<span class="p">;</span> <span class="k">do
+      </span><span class="nb">gzip</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
+    <span class="k">done</span>
+</code></pre></div></div>
+
+<p>Remove Old Archives</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.gz"</span> <span class="nt">-mtime</span> +30 <span class="nt">-delete</span>
+</code></pre></div></div>
+
+<p>Schedule with cron:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
+<span class="c"># Run cleanup daily at 01:30</span>
+30 1 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/local/bin/log_cleanup.sh
+</code></pre></div></div>
+
+<p>This keeps disks healthy without needing a full log‑management stack.
+​</p>
+<h2 id="6-monitoring-scripts-with-alerts">6. Monitoring Scripts with Alerts</h2>
+<p>You can wrap common Linux monitoring commands into Bash scripts that push alerts to Slack, email, or webhooks.
+​
+Example: CPU and Memory Watchdog</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="nv">CPU_THRESHOLD</span><span class="o">=</span>80
+<span class="nv">MEM_THRESHOLD</span><span class="o">=</span>80
+
+cpu_usage<span class="o">()</span> <span class="o">{</span>
+  mpstat 1 1 | <span class="nb">awk</span> <span class="s1">'/Average/ &amp;&amp; $12 ~ /[0-9.]+/ {print 100-$12}'</span>
+<span class="o">}</span>
+
+mem_usage<span class="o">()</span> <span class="o">{</span>
+  free | <span class="nb">awk</span> <span class="s1">'/Mem:/ {printf(\"%.0f\", $3/$2 * 100)}'</span>
+<span class="o">}</span>
+
+<span class="nv">CPU</span><span class="o">=</span><span class="si">$(</span>cpu_usage<span class="si">)</span>
+<span class="nv">MEM</span><span class="o">=</span><span class="si">$(</span>mem_usage<span class="si">)</span>
+
+<span class="k">if</span> <span class="o">((</span> CPU <span class="o">&gt;</span> CPU_THRESHOLD <span class="o">||</span> MEM <span class="o">&gt;</span> MEM_THRESHOLD <span class="o">))</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">echo</span> <span class="s2">"High usage detected: CPU=</span><span class="k">${</span><span class="nv">CPU</span><span class="k">}</span><span class="s2">% MEM=</span><span class="k">${</span><span class="nv">MEM</span><span class="k">}</span><span class="s2">%"</span>
+  <span class="c"># Hook: send to Slack / email / alerting system</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>This complements full monitoring stacks by giving you lightweight, scriptable checks.​</p>
+
+<h2 id="7-safer-file-and-config-changes">7. Safer File and Config Changes</h2>
+<p>Use Bash to modify configuration files predictably instead of manual edits.</p>
+
+<p>Backups + Atomic Changes</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CONFIG</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml"</span>
+<span class="nv">BACKUP</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml.</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F-%H%M%S'</span><span class="si">)</span><span class="s2">.bak"</span>
+
+<span class="nb">cp</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$BACKUP</span><span class="s2">"</span>
+
+<span class="c"># Example: toggle a feature flag</span>
+<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/feature_x: false/feature_x: true/'</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span>
+
+systemctl restart myapp
+</code></pre></div></div>
+
+<p>Pattern:</p>
+
+<ul>
+  <li>
+    <p>Always create timestamped backups.</p>
+  </li>
+  <li>
+    <p>Make changes with sed, awk, or yq/jq for structured data.
+​</p>
+  </li>
+</ul>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
