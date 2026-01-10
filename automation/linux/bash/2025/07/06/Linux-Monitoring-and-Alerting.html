@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linux Monitoring & Alerting: Command-Line Mastery for DevOps</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>Linux Monitoring & Alerting: Command-Line Mastery for DevOps</h1>
+  <p class="post-meta">Published on July 06, 2025</p>
+  <div class="post-content">
+    <h2 id="the-monitoring-gap-every-devops-engineer-faces">The Monitoring Gap Every DevOps Engineer Faces</h2>
+
+<p>Full monitoring stacks like Prometheus + Grafana are great, but they take time to set up. What about the servers you inherit? The staging environments? The emergency VM you spin up during an outage?</p>
+
+<p>Command-line monitoring is your immediate, universal answer. These tools work on every Linux box, no agents required. Better yet, they’re fast enough to script into alerting workflows.</p>
+
+<p>This post covers the essential Linux monitoring commands plus patterns to turn raw metrics into actionable alerts—perfect follow-up to our Bash scripting guide.</p>
+
+<h2 id="1-real-time-resource-dashboards">1. Real-Time Resource Dashboards</h2>
+<p>The <code class="language-plaintext highlighter-rouge">top</code>/<code class="language-plaintext highlighter-rouge">htop</code> Foundation
+<code class="language-plaintext highlighter-rouge">top</code> gives you an instant system snapshot:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>top - 11:26:45 up 5 days,  3:12,  2 <span class="nb">users</span>,  load average: 1.23, 1.45, 1.67
+Tasks: 234 total,   2 running, 232 sleeping,   0 stopped,   0 zombie
+%Cpu<span class="o">(</span>s<span class="o">)</span>: 12.3 us,  8.7 sy,  0.0 ni, 78.9 <span class="nb">id</span>,  0.1 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :  7900.2 total,  1234.5 free,  4567.8 used,  2097.9 buff/cache
+</code></pre></div></div>
+<p><b>Pro move:</b> <code class="language-plaintext highlighter-rouge">htop</code> (install with <code class="language-plaintext highlighter-rouge">apt install htop</code>)</p>
+
+<ul>
+  <li>
+    <p>Mouse/keyboard navigation</p>
+  </li>
+  <li>
+    <p>Color-coded resource bars</p>
+  </li>
+  <li>
+    <p>Tree view of processes (<code class="language-plaintext highlighter-rouge">F5</code>)</p>
+  </li>
+</ul>
+
+<p>Quick filters:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>htop <span class="nt">-p</span> <span class="si">$(</span>pgrep <span class="nt">-d</span>, nginx<span class="si">)</span>  <span class="c"># Monitor nginx processes only</span>
+</code></pre></div></div>
+
+<p><b>Memory Deep Dive:</b> <code class="language-plaintext highlighter-rouge">free -h</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>free <span class="nt">-h</span>
+               total        used        free      shared  buff/cache   available
+Mem:           7.7Gi       4.2Gi       1.2Gi       128Mi       2.3Gi       3.1Gi 
+Swap:          2.0Gi          0B       2.0Gi
+</code></pre></div></div>
+
+<p>What matters: Focus on <code class="language-plaintext highlighter-rouge">available</code> column, not <code class="language-plaintext highlighter-rouge">free</code>. Linux aggressively caches to disk.</p>
+
+<h2 id="2-cpu-analysis-whos-eating-cycles">2. CPU Analysis: Who’s Eating Cycles?</h2>
+<p><b>Per-Process Breakdown</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-10</span>
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+mysql     1234 45.2 12.3 2.1g  980m ?        S    10:00   3:45 /usr/sbin/mysqld
+</code></pre></div></div>
+
+<p><b>Historical CPU Trends:</b> <code class="language-plaintext highlighter-rouge">sar</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install: apt install sysstat</span>
+sar <span class="nt">-u</span> 1 5     <span class="c"># CPU every 1 sec, 5 samples</span>
+sar <span class="nt">-u</span> <span class="nt">-f</span> /var/log/sysstat/sa08  <span class="c"># Yesterday's data</span>
+
+Average: CPU %user %nice %system %iowait %steal %idle
+Average:    all  12.34  0.00  8.76    1.23   0.00  77.67
+</code></pre></div></div>
+
+<p><b>Alert pattern:</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="k">if </span>sar <span class="nt">-u</span> 1 3 | <span class="nb">tail</span> <span class="nt">-1</span> | <span class="nb">awk</span> <span class="s1">'{if($8 &lt; 70) exit 1}'</span><span class="p">;</span> <span class="k">then
+  </span><span class="nb">echo</span> <span class="s2">"CPU idle &lt;70% for 3s - investigate!"</span>
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<h2 id="3-disk-io-the-silent-killer">3. Disk I/O: The Silent Killer</h2>
+<p><b>Current I/O:</b> <code class="language-plaintext highlighter-rouge">iostat</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iostat <span class="nt">-x</span> 1 5
+Device            r/s     w/s     rkB/s    wkB/s   rrqm/s   wrqm/s  %rrqm  %wrqm r_await w_await aqu-sz rareq-sz wareq-sz svctm  %util
+sda              23.4     1.2   234.5    12.3     0.0     10.2   0.00  89.12    0.1    2.3   0.45    10.0     6.2  1.23  45.2
+</code></pre></div></div>
+
+<p><b>Red flags:</b> <code class="language-plaintext highlighter-rouge">%util &gt;80%</code>, <code class="language-plaintext highlighter-rouge">await &gt;20ms</code></p>
+
+<p><b>Disk Space Alerts:</b> <code class="language-plaintext highlighter-rouge">df</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span> <span class="nt">--output</span><span class="o">=</span><span class="nb">source</span>,fstype,size,used,avail,pcent,target | <span class="nb">grep</span> <span class="nt">-v</span> tmpfs
+</code></pre></div></div>
+
+<p><b>Scriptable alert:</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"[8-9][0-9]%|[9][0-9]%|[100]%"</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">"Disk healthy"</span>
+</code></pre></div></div>
+
+<h2 id="4-network-troubleshooting-masters">4. Network Troubleshooting Masters</h2>
+<p><b>Active Connections:</b> <code class="language-plaintext highlighter-rouge">ss</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Replace netstat everywhere</span>
+ss <span class="nt">-tuln</span>          <span class="c"># Listening TCP/UDP</span>
+ss <span class="nt">-tunap</span> | <span class="nb">grep</span> :80   <span class="c"># Processes on port 80</span>
+ss <span class="nt">-t</span> state established | <span class="nb">grep</span> :443 | <span class="nb">wc</span> <span class="nt">-l</span>  <span class="c"># Active HTTPS connections</span>
+</code></pre></div></div>
+
+<p><b>Drop Counters:</b> <code class="language-plaintext highlighter-rouge">netstat</code> or <code class="language-plaintext highlighter-rouge">ss</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>netstat <span class="nt">-s</span> | <span class="nb">grep</span> <span class="nt">-E</span> <span class="s2">"errors|dropped|retrans"</span>
+Ip:
+    1234 total packets received
+    56 dropped because of memory problems
+</code></pre></div></div>
+
+<p><b>Live Packet Capture:</b> <code class="language-plaintext highlighter-rouge">tcpdump</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Capture 100 packets on interface eth0, port 80</span>
+<span class="nb">sudo </span>tcpdump <span class="nt">-i</span> eth0 <span class="nt">-c</span> 100 port 80 <span class="nt">-w</span> capture.pcap
+
+<span class="c"># Read capture</span>
+tcpdump <span class="nt">-r</span> capture.pcap <span class="nt">-nn</span>
+</code></pre></div></div>
+
+<h2 id="5-log-monitoring-beyond-tail--f">5. Log Monitoring: Beyond tail -f</h2>
+<p><b>Service Logs:</b> <code class="language-plaintext highlighter-rouge">journalctl</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>           <span class="c"># Follow nginx logs</span>
+journalctl <span class="nt">-u</span> nginx <span class="nt">--since</span> <span class="s2">"1h ago"</span>  <span class="c"># Last hour</span>
+journalctl <span class="nt">-p</span> err <span class="nt">-u</span> nginx      <span class="c"># Only errors</span>
+journalctl <span class="nt">--no-pager</span> | <span class="nb">grep</span> <span class="nt">-i</span> panic  <span class="c"># System panics</span>
+</code></pre></div></div>
+
+<p><b>Pattern Mining:</b> <code class="language-plaintext highlighter-rouge">grep + awk</code></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Count 5xx errors per minute</span>
+journalctl <span class="nt">-u</span> nginx <span class="nt">--since</span> <span class="s2">"10min ago"</span> | <span class="se">\</span>
+<span class="nb">grep</span> <span class="s2">" 500 "</span> | <span class="se">\</span>
+<span class="nb">awk</span> <span class="s1">'{print $1, $2}'</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="nb">.</span> <span class="nt">-f1</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span>
+
+<span class="c"># Slow requests (&gt;2s)</span>
+<span class="nb">awk</span> <span class="s1">'$NF &gt; 2 {print}'</span> /var/log/nginx/access.log
+</code></pre></div></div>
+
+<h2 id="6-production-alerting-patterns">6. Production Alerting Patterns</h2>
+<p><b>CPU/Memory Watchdog</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+alert<span class="o">()</span> <span class="o">{</span> curl <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s2">"CPU </span><span class="k">${</span><span class="nv">CPU</span><span class="k">}</span><span class="s2">%, MEM </span><span class="k">${</span><span class="nv">MEM</span><span class="k">}</span><span class="s2">%"</span> <span class="s2">"</span><span class="nv">$SLACK_WEBHOOK</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
+
+<span class="nv">CPU</span><span class="o">=</span><span class="si">$(</span>top <span class="nt">-bn1</span> | <span class="nb">grep</span> <span class="s2">"Cpu(s)"</span> | <span class="nb">awk</span> <span class="s1">'{print $2}'</span> | <span class="nb">cut</span> <span class="nt">-d</span><span class="s1">'%'</span> <span class="nt">-f1</span><span class="si">)</span>
+<span class="nv">MEM</span><span class="o">=</span><span class="si">$(</span>free | <span class="nb">awk</span> <span class="s1">'/Mem:/ {printf "%.0f", $3/$2 * 100}'</span><span class="si">)</span>
+
+<span class="o">[[</span> <span class="s2">"</span><span class="nv">$CPU</span><span class="s2">"</span> <span class="nt">-gt</span> 80 <span class="o">||</span> <span class="s2">"</span><span class="nv">$MEM</span><span class="s2">"</span> <span class="nt">-gt</span> 80 <span class="o">]]</span> <span class="o">&amp;&amp;</span> alert
+</code></pre></div></div>
+
+<p><b>Disk Space Guardian</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="k">for </span>fs <span class="k">in</span> <span class="si">$(</span><span class="nb">df</span> <span class="nt">--local</span> <span class="nt">--output</span><span class="o">=</span><span class="nb">source</span> | <span class="nb">tail</span> <span class="nt">-n</span> +2<span class="si">)</span><span class="p">;</span> <span class="k">do
+  </span><span class="nv">usage</span><span class="o">=</span><span class="si">$(</span><span class="nb">df</span> <span class="nv">$fs</span> | <span class="nb">tail</span> <span class="nt">-1</span> | <span class="nb">awk</span> <span class="s1">'{print $5}'</span> | <span class="nb">sed</span> <span class="s1">'s/%//'</span><span class="si">)</span>
+  <span class="o">[[</span> <span class="nv">$usage</span> <span class="nt">-gt</span> 85 <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">"ALERT: </span><span class="nv">$fs</span><span class="s2"> at </span><span class="k">${</span><span class="nv">usage</span><span class="k">}</span><span class="s2">%"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<p><b>Cron schedule:</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Every 5 minutes</span>
+<span class="k">*</span>/5 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/local/bin/check_resources.sh
+</code></pre></div></div>
+
+<h2 id="7-one-line-dashboards">7. One-Line Dashboards</h2>
+<p><b>Combine tools into instant observability:</b></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># System overview (alias this to 'sys')</span>
+watch <span class="nt">-n</span> 2 <span class="s1">'printf "\nCPU: "; sar -u 1 1 |tail-1; printf "MEM: "; free -h |tail-1; printf "DISK: "; df -h / /var |tail -2'</span>
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Top resource hogs</span>
+watch <span class="nt">-n</span> 2 <span class="s1">'ps aux --sort=-%cpu | head -8; echo "---"; ps aux --sort=-%mem | head -8'</span>
+</code></pre></div></div>
+
+<h2 id="quick-reference-table">Quick Reference Table</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Scenario    | Command                | Pro Tip                              |
+| ----------- | ---------------------- | ------------------------------------ |
+| CPU trends  | sar -u 1 5             | Historical data in /var/log/sysstat/ |
+| Memory      | free -h                | Watch available, ignore free         |
+| Disk I/O    | iostat -x 1            | %util &gt;80% = trouble                 |
+| Connections | ss -tuln               | Modern netstat replacement           |
+| Logs        | journalctl -u nginx -f | systemd's tail -f                    |
+| Processes   | htop -p $(pgrep nginx) | Filter to specific app               |
+</code></pre></div></div>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
