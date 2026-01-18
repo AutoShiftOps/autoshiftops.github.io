@@ -108,26 +108,26 @@ Copy this into your internal wiki, README, Notion, or ops repo.
 
 6. Comms cadence (keep it boring)<br/>
 
-SEV1: updates every 10–15 minutes.​<br/>
-SEV2: updates every 30 minutes.<br/>
-SEV3: async updates acceptable.<br/>
-<br/>​
-Use this structure:
-- What we know
-- What we don’t know
-- What we’re doing now
-- Next update at: TIME
+    SEV1: updates every 10–15 minutes.​<br/>
+    SEV2: updates every 30 minutes.<br/>
+    SEV3: async updates acceptable.<br/>
+    <br/>​
+    Use this structure:
+    - What we know
+    - What we don’t know
+    - What we’re doing now
+    - Next update at: TIME
 ​
 
 7. Verify resolution
-- Confirm user impact is gone (synthetic checks + error rate + latency).
-- Confirm saturation is back to normal (CPU/memory/disk/I/O).
-- Watch for 30–60 minutes for regression.
+    - Confirm user impact is gone (synthetic checks + error rate + latency).
+    - Confirm saturation is back to normal (CPU/memory/disk/I/O).
+    - Watch for 30–60 minutes for regression.
 
 8. Close and learn (post-incident)
-- Write a brief timeline (detection → mitigation → resolution).
-- Capture what worked, what didn’t, and what to automate.
-- Create follow-ups: alerts tuning, runbook updates, tests, guardrails.
+    - Write a brief timeline (detection → mitigation → resolution).
+    - Capture what worked, what didn’t, and what to automate.
+    - Create follow-ups: alerts tuning, runbook updates, tests, guardrails.
 
 ## Bonus: “Golden signals” lens for incidents
 When you’re lost, anchor on the four golden signals:
