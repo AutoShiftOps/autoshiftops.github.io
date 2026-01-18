@@ -8,7 +8,7 @@ description: "A ready to use incident response runbook template with severity le
 keywords: [shell scripting, bash scripting, devops, Linux]
 ---
 
-## Incident Response Runbook Template for DevOps (Copy/Paste)
+## Incident Response Runbook Template for DevOps
 Incidents are stressful when the team is improvising. A simple runbook reduces MTTR by making response repeatable, not heroic.
 ​
 This post provides a ready to use incident response runbook template plus a practical Linux triage checklist you can run from any box.
