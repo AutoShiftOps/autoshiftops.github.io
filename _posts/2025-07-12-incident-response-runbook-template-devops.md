@@ -37,74 +37,74 @@ Copy this into your internal wiki, README, Notion, or ops repo.
 ​
 3. Assess severity (5–10 minutes)
 
-<b>Answer quickly:</b>
-- What’s impacted (service, region, feature)?
-- How many users / revenue / compliance impact?
-- Is impact ongoing and spreading?
+    <b>Answer quickly:</b>
+    - What’s impacted (service, region, feature)?
+    - How many users / revenue / compliance impact?
+    - Is impact ongoing and spreading?
 
-<b>Suggested severity:</b>
-- SEV1: Major outage / severe user impact; immediate coordination.
-- SEV2: Partial outage / significant degradation; urgent but controlled.
-- SEV3: Minor impact; can be handled async.
+    <b>Suggested severity:</b>
+    - SEV1: Major outage / severe user impact; immediate coordination.
+    - SEV2: Partial outage / significant degradation; urgent but controlled.
+    - SEV3: Minor impact; can be handled async.
 
 4. Stabilize first (10–30 minutes)
 
-<b>Goal:</b> stop the bleeding before chasing root cause.
+    <b>Goal:</b> stop the bleeding before chasing root cause.
 
-<b>Typical mitigations:</b>
+    <b>Typical mitigations:</b>
 
-- Roll back the last deploy/config change.
-- Disable a feature flag.
-- Scale up/out temporarily.
-- Fail over if safe.
-- Rate-limit or block abusive traffic.
+    - Roll back the last deploy/config change.
+    - Disable a feature flag.
+    - Scale up/out temporarily.
+    - Fail over if safe.
+    - Rate-limit or block abusive traffic.
 
 5. Triage checklist (host-level)
-Run these to establish the baseline quickly (copy/paste friendly).
+    Run these to establish the baseline quickly (copy/paste friendly).
 
-<b>CPU</b>
-    
-```bash
-ps aux --sort=-%cpu | head -15
-```
-<b>Alert cue:</b> any process >50% sustained.
+    <b>CPU</b>
+        
+    ```bash
+    ps aux --sort=-%cpu | head -15
+    ```
+    <b>Alert cue:</b> any process >50% sustained.
 
-<b>Memory</b>
-```bash
-free -h
-```
+    <b>Memory</b>
+    ```bash
+    free -h
+    ```
 
-<b>Alert cue:</b> available <20% total RAM.
+    <b>Alert cue:</b> available <20% total RAM.
 
-<b>Disk</b>
+    <b>Disk</b>
 
-```bash
-df -h
-du -sh /var/log/* 2>/dev/null | sort -h | tail -10
-```
-<b>Alert cue:</b> any filesystem >90%.
-​
+    ```bash
+    df -h
+    du -sh /var/log/* 2>/dev/null | sort -h | tail -10
+    ```
+    <b>Alert cue:</b> any filesystem >90%.
+    ​
 
-<b>Disk I/O</b>
+    <b>Disk I/O</b>
 
-```bash
-iostat -x 1 3
-```
-<b>Alert cue:</b> %util >80%, await >20ms.
+    ```bash
+    iostat -x 1 3
+    ```
+    <b>Alert cue:</b> %util >80%, await >20ms.
 
-<b>Network listeners</b>
+    <b>Network listeners</b>
 
-```bash
-ss -tuln
-```
-<b>Alert cue:</b> unexpected listeners/ports.
-​
-<b>Logs (example: nginx)</b>
+    ```bash
+    ss -tuln
+    ```
+    <b>Alert cue:</b> unexpected listeners/ports.
+    ​
+    <b>Logs (example: nginx)</b>
 
-```bash
-journalctl -u nginx -f
-```
-<b>Alert cue:</b> 5xx errors spiking.
+    ```bash
+    journalctl -u nginx -f
+    ```
+    <b>Alert cue:</b> 5xx errors spiking.
 
 6. Comms cadence (keep it boring)<br/>
 
