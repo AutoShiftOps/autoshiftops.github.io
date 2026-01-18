@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</h1>
+  <p class="post-meta">Published on July 12, 2025</p>
+  <div class="post-content">
+    <h2 id="incident-response-runbook-template-for-devops-copypaste">Incident Response Runbook Template for DevOps (Copy/Paste)</h2>
+<p>Incidents are stressful when the team is improvising. A simple runbook reduces MTTR by making response repeatable, not heroic.
+​
+This post provides a ready to use incident response runbook template plus a practical Linux triage checklist you can run from any box.</p>
+
+<h2 id="what-this-runbook-optimizes-for">What this runbook optimizes for</h2>
+<ul>
+  <li>Fast acknowledgement and clear ownership (Incident Commander + roles).</li>
+  <li>Early impact assessment and severity assignment to avoid under/over‑reacting.</li>
+  <li>Communication cadence and “known/unknown/next update” structure that builds trust.</li>
+  <li>Evidence capture (commands + logs) to support post‑incident review.
+​
+    <h2 id="the-incident-runbook-template">The incident runbook template</h2>
+    <p>Copy this into your internal wiki, README, Notion, or ops repo.
+​</p>
+    <ol>
+      <li>Trigger
+<b>Triggers:</b></li>
+    </ol>
+    <ul>
+      <li>Monitoring alert / SLO breach</li>
+      <li>Customer report escalated</li>
+      <li>Internal detection (logs, latency spikes, error spikes)
+​
+        <ol>
+          <li>Acknowledge (0–5 minutes)</li>
+        </ol>
+      </li>
+      <li>Acknowledge page/alert in your paging system.</li>
+      <li>Create an incident channel: #inc-YYYYMMDD-service-shortdesc.</li>
+      <li>Assign Incident Commander (IC) and Comms Lead.</li>
+      <li>Start an incident document: timeline + links + decisions.
+​
+        <ol>
+          <li>Assess severity (5–10 minutes)</li>
+        </ol>
+      </li>
+    </ul>
+
+    <p><b>Answer quickly:</b></p>
+    <ul>
+      <li>What’s impacted (service, region, feature)?</li>
+      <li>How many users / revenue / compliance impact?</li>
+      <li>Is impact ongoing and spreading?</li>
+    </ul>
+
+    <p><b>Suggested severity:</b></p>
+    <ul>
+      <li>SEV1: Major outage / severe user impact; immediate coordination.</li>
+      <li>SEV2: Partial outage / significant degradation; urgent but controlled.</li>
+      <li>SEV3: Minor impact; can be handled async.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Stabilize first (10–30 minutes)</p>
+
+    <p><b>Goal:</b> stop the bleeding before chasing root cause.</p>
+
+    <p><b>Typical mitigations:</b></p>
+
+    <ul>
+      <li>Roll back the last deploy/config change.</li>
+      <li>Disable a feature flag.</li>
+      <li>Scale up/out temporarily.</li>
+      <li>Fail over if safe.</li>
+      <li>Rate-limit or block abusive traffic.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Triage checklist (host-level)
+Run these to establish the baseline quickly (copy/paste friendly).</p>
+
+    <p><b>CPU</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any process &gt;50% sustained.</p>
+
+    <p><b>Memory</b></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> free <span class="nt">-h</span>
+</code></pre></div>    </div>
+
+    <p><b>Alert cue:</b> available &lt;20% total RAM.</p>
+
+    <p><b>Disk</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">df</span> <span class="nt">-h</span>
+ <span class="nb">du</span> <span class="nt">-sh</span> /var/log/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any filesystem &gt;90%.
+ ​</p>
+
+    <p><b>Disk I/O</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iostat <span class="nt">-x</span> 1 3
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> %util &gt;80%, await &gt;20ms.</p>
+
+    <p><b>Network listeners</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ss <span class="nt">-tuln</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> unexpected listeners/ports.
+ ​
+ <b>Logs (example: nginx)</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> 5xx errors spiking.</p>
+  </li>
+  <li>
+    <p>Comms cadence (keep it boring)<br /></p>
+
+    <p>SEV1: updates every 10–15 minutes.​<br />
+ SEV2: updates every 30 minutes.<br />
+ SEV3: async updates acceptable.<br />
+ <br />​
+ Use this structure:</p>
+
+    <ul>
+      <li>What we know</li>
+      <li>What we don’t know</li>
+      <li>What we’re doing now</li>
+      <li>Next update at: TIME
+​</li>
+    </ul>
+  </li>
+  <li>
+    <p>Verify resolution</p>
+
+    <ul>
+      <li>Confirm user impact is gone (synthetic checks + error rate + latency).</li>
+      <li>Confirm saturation is back to normal (CPU/memory/disk/I/O).</li>
+      <li>Watch for 30–60 minutes for regression.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Close and learn (post-incident)</p>
+    <ul>
+      <li>Write a brief timeline (detection → mitigation → resolution).</li>
+      <li>Capture what worked, what didn’t, and what to automate.</li>
+      <li>Create follow-ups: alerts tuning, runbook updates, tests, guardrails.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="bonus-golden-signals-lens-for-incidents">Bonus: “Golden signals” lens for incidents</h2>
+<p>When you’re lost, anchor on the four golden signals:</p>
+
+<ul>
+  <li>Latency (are requests slower?)</li>
+  <li>Traffic (is demand abnormal?)</li>
+  <li>Errors (is failure rate rising?)</li>
+  <li>Saturation (are resources hitting limits?)</li>
+</ul>
+
+<p>This keeps triage focused on user impact and system limits, not vanity metrics.
+​</p>
+
+<h2 id="download--reuse">Download / reuse</h2>
+<p>If you reuse this template internally, make one improvement immediately: add links to dashboards, logs, deploy history, and owners for each service. Your future self will thank you.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

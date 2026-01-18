@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-13T00:51:15+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-18T02:57:12+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1518,7 +1518,170 @@ It is <strong>not financial advice</strong>.</p>
 
 <p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
 
-<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">Linux Monitoring &amp;amp; Alerting: Command-Line Mastery for DevOps</title><link href="https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html" rel="alternate" type="text/html" title="Linux Monitoring &amp;amp; Alerting: Command-Line Mastery for DevOps" /><published>2025-07-06T00:00:00+00:00</published><updated>2025-07-06T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html"><![CDATA[<h2 id="the-monitoring-gap-every-devops-engineer-faces">The Monitoring Gap Every DevOps Engineer Faces</h2>
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</title><link href="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html" rel="alternate" type="text/html" title="Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)" /><published>2025-07-12T00:00:00+00:00</published><updated>2025-07-12T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html"><![CDATA[<h2 id="incident-response-runbook-template-for-devops-copypaste">Incident Response Runbook Template for DevOps (Copy/Paste)</h2>
+<p>Incidents are stressful when the team is improvising. A simple runbook reduces MTTR by making response repeatable, not heroic.
+​
+This post provides a ready to use incident response runbook template plus a practical Linux triage checklist you can run from any box.</p>
+
+<h2 id="what-this-runbook-optimizes-for">What this runbook optimizes for</h2>
+<ul>
+  <li>Fast acknowledgement and clear ownership (Incident Commander + roles).</li>
+  <li>Early impact assessment and severity assignment to avoid under/over‑reacting.</li>
+  <li>Communication cadence and “known/unknown/next update” structure that builds trust.</li>
+  <li>Evidence capture (commands + logs) to support post‑incident review.
+​
+    <h2 id="the-incident-runbook-template">The incident runbook template</h2>
+    <p>Copy this into your internal wiki, README, Notion, or ops repo.
+​</p>
+    <ol>
+      <li>Trigger
+<b>Triggers:</b></li>
+    </ol>
+    <ul>
+      <li>Monitoring alert / SLO breach</li>
+      <li>Customer report escalated</li>
+      <li>Internal detection (logs, latency spikes, error spikes)
+​
+        <ol>
+          <li>Acknowledge (0–5 minutes)</li>
+        </ol>
+      </li>
+      <li>Acknowledge page/alert in your paging system.</li>
+      <li>Create an incident channel: #inc-YYYYMMDD-service-shortdesc.</li>
+      <li>Assign Incident Commander (IC) and Comms Lead.</li>
+      <li>Start an incident document: timeline + links + decisions.
+​
+        <ol>
+          <li>Assess severity (5–10 minutes)</li>
+        </ol>
+      </li>
+    </ul>
+
+    <p><b>Answer quickly:</b></p>
+    <ul>
+      <li>What’s impacted (service, region, feature)?</li>
+      <li>How many users / revenue / compliance impact?</li>
+      <li>Is impact ongoing and spreading?</li>
+    </ul>
+
+    <p><b>Suggested severity:</b></p>
+    <ul>
+      <li>SEV1: Major outage / severe user impact; immediate coordination.</li>
+      <li>SEV2: Partial outage / significant degradation; urgent but controlled.</li>
+      <li>SEV3: Minor impact; can be handled async.</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>Stabilize first (10–30 minutes)</p>
+
+    <p><b>Goal:</b> stop the bleeding before chasing root cause.</p>
+
+    <p><b>Typical mitigations:</b></p>
+
+    <ul>
+      <li>Roll back the last deploy/config change.</li>
+      <li>Disable a feature flag.</li>
+      <li>Scale up/out temporarily.</li>
+      <li>Fail over if safe.</li>
+      <li>Rate-limit or block abusive traffic.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Triage checklist (host-level)
+Run these to establish the baseline quickly (copy/paste friendly).</p>
+
+    <p><b>CPU</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any process &gt;50% sustained.</p>
+
+    <p><b>Memory</b></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> free <span class="nt">-h</span>
+</code></pre></div>    </div>
+
+    <p><b>Alert cue:</b> available &lt;20% total RAM.</p>
+
+    <p><b>Disk</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">df</span> <span class="nt">-h</span>
+ <span class="nb">du</span> <span class="nt">-sh</span> /var/log/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any filesystem &gt;90%.
+ ​</p>
+
+    <p><b>Disk I/O</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iostat <span class="nt">-x</span> 1 3
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> %util &gt;80%, await &gt;20ms.</p>
+
+    <p><b>Network listeners</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ss <span class="nt">-tuln</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> unexpected listeners/ports.
+ ​
+ <b>Logs (example: nginx)</b></p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> 5xx errors spiking.</p>
+  </li>
+  <li>
+    <p>Comms cadence (keep it boring)<br /></p>
+
+    <p>SEV1: updates every 10–15 minutes.​<br />
+ SEV2: updates every 30 minutes.<br />
+ SEV3: async updates acceptable.<br />
+ <br />​
+ Use this structure:</p>
+
+    <ul>
+      <li>What we know</li>
+      <li>What we don’t know</li>
+      <li>What we’re doing now</li>
+      <li>Next update at: TIME
+​</li>
+    </ul>
+  </li>
+  <li>
+    <p>Verify resolution</p>
+
+    <ul>
+      <li>Confirm user impact is gone (synthetic checks + error rate + latency).</li>
+      <li>Confirm saturation is back to normal (CPU/memory/disk/I/O).</li>
+      <li>Watch for 30–60 minutes for regression.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Close and learn (post-incident)</p>
+    <ul>
+      <li>Write a brief timeline (detection → mitigation → resolution).</li>
+      <li>Capture what worked, what didn’t, and what to automate.</li>
+      <li>Create follow-ups: alerts tuning, runbook updates, tests, guardrails.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="bonus-golden-signals-lens-for-incidents">Bonus: “Golden signals” lens for incidents</h2>
+<p>When you’re lost, anchor on the four golden signals:</p>
+
+<ul>
+  <li>Latency (are requests slower?)</li>
+  <li>Traffic (is demand abnormal?)</li>
+  <li>Errors (is failure rate rising?)</li>
+  <li>Saturation (are resources hitting limits?)</li>
+</ul>
+
+<p>This keeps triage focused on user impact and system limits, not vanity metrics.
+​</p>
+
+<h2 id="download--reuse">Download / reuse</h2>
+<p>If you reuse this template internally, make one improvement immediately: add links to dashboards, logs, deploy history, and owners for each service. Your future self will thank you.</p>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Incident" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="Incident" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A ready to use incident response runbook template with severity levels, comms cadence, and Linux triage commands to reduce MTTR.]]></summary></entry><entry><title type="html">Linux Monitoring &amp;amp; Alerting: Command-Line Mastery for DevOps</title><link href="https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html" rel="alternate" type="text/html" title="Linux Monitoring &amp;amp; Alerting: Command-Line Mastery for DevOps" /><published>2025-07-06T00:00:00+00:00</published><updated>2025-07-06T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html"><![CDATA[<h2 id="the-monitoring-gap-every-devops-engineer-faces">The Monitoring Gap Every DevOps Engineer Faces</h2>
 
 <p>Full monitoring stacks like Prometheus + Grafana are great, but they take time to set up. What about the servers you inherit? The staging environments? The emergency VM you spin up during an outage?</p>
 
@@ -2516,117 +2679,4 @@ flowchart TD
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Infrastructure as Code testing ensures that your deployments are consistent, secure, and maintainable. By incorporating linting, unit testing, integration testing, and security checks, DevOps teams can confidently deploy infrastructure changes, minimize production risks, and maintain resilient cloud-native systems.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="IaC" /><category term="Testing" /><category term="Infrastructure as Code" /><category term="Terraform" /><category term="Pulumi" /><category term="testing" /><category term="CI/CD" /><category term="DevOps automation" /><summary type="html"><![CDATA[Learn how to implement robust testing strategies for Infrastructure as Code using Terraform and Pulumi to ensure reliable, secure, and maintainable infrastructure deployments.]]></summary></entry><entry><title type="html">🤖 AI-Driven Incident Response in DevOps</title><link href="https://autoshiftops.com/devops/ai/incident%20management/2025/06/21/AI-Driven-Incident-Response-in-DevOps.html" rel="alternate" type="text/html" title="🤖 AI-Driven Incident Response in DevOps" /><published>2025-06-21T00:00:00+00:00</published><updated>2025-06-21T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/incident%20management/2025/06/21/AI-Driven%20Incident%20Response%20in%20DevOps</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/incident%20management/2025/06/21/AI-Driven-Incident-Response-in-DevOps.html"><![CDATA[<h2 id="ai-driven-incident-response-in-devops">AI-Driven Incident Response in DevOps</h2>
-
-<p>AI-driven incident response integrates <strong>artificial intelligence and machine learning</strong> into DevOps workflows to <strong>detect anomalies, analyze root causes, and automate remediation</strong>. By processing vast volumes of logs, metrics, and traces, AI can predict failures and reduce mean time to resolution (MTTR).</p>
-
-<p>This approach empowers DevOps and SRE teams to <strong>shift from reactive firefighting to proactive incident management</strong>, ensuring higher reliability and faster recovery.</p>
-
-<hr />
-
-<h3 id="why-ai-in-incident-response-matters-for-devops-engineers">Why AI in Incident Response Matters for DevOps Engineers</h3>
-
-<ul>
-  <li><strong>Faster Detection:</strong> Identify anomalies and potential failures in real-time</li>
-  <li><strong>Root Cause Analysis:</strong> Correlate logs, metrics, and traces to pinpoint issues</li>
-  <li><strong>Automated Remediation:</strong> Trigger scripts or workflows to resolve common incidents</li>
-  <li><strong>Predictive Analysis:</strong> Forecast failures before they impact users</li>
-  <li><strong>Enhanced Reliability:</strong> Reduce MTTR and maintain SLOs and SLIs</li>
-</ul>
-
-<hr />
-
-<h3 id="ai-driven-incident-response-workflow">AI-Driven Incident Response Workflow</h3>
-
-<ol>
-  <li><strong>Data Collection:</strong> Gather logs, metrics, traces, and alerts from all systems</li>
-  <li><strong>Anomaly Detection:</strong> Use AI/ML to detect unusual patterns or deviations</li>
-  <li><strong>Root Cause Correlation:</strong> Analyze related events across services</li>
-  <li><strong>Automated Actions:</strong> Trigger scripts, scale resources, or restart services</li>
-  <li><strong>Human-in-the-Loop:</strong> Alert engineers for complex issues requiring judgment</li>
-  <li><strong>Continuous Learning:</strong> Update AI models with incident resolution data</li>
-</ol>
-
-<hr />
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-
-<div class="mermaid">
-flowchart TD
-    A[Logs &amp; Metrics Collection] --&gt; B[AI/ML Anomaly Detection]
-    B --&gt; C[Root Cause Analysis]
-    C --&gt; D[Automated Remediation / Scripts]
-    C --&gt; E[Engineer Alert / Human-in-Loop]
-    D &amp; E --&gt; F[System Stability &amp; Recovery]
-    F --&gt; G[Update AI Models with Learning]
-</div>
-
-<hr />
-
-<h3 id="sample-python-implementation-anomaly-detection">Sample Python Implementation: Anomaly Detection</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
-<span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
-
-<span class="c1"># Load metrics data
-</span><span class="n">metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="sh">'</span><span class="s">system_metrics.csv</span><span class="sh">'</span><span class="p">)</span>
-
-<span class="c1"># Train anomaly detection model
-</span><span class="n">model</span> <span class="o">=</span> <span class="nc">IsolationForest</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">metrics_df</span><span class="p">[[</span><span class="sh">'</span><span class="s">cpu_usage</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">memory_usage</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">latency</span><span class="sh">'</span><span class="p">]])</span>
-
-<span class="c1"># Predict anomalies
-</span><span class="n">metrics_df</span><span class="p">[</span><span class="sh">'</span><span class="s">anomaly</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">metrics_df</span><span class="p">[[</span><span class="sh">'</span><span class="s">cpu_usage</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">memory_usage</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">latency</span><span class="sh">'</span><span class="p">]])</span>
-<span class="n">anomalies</span> <span class="o">=</span> <span class="n">metrics_df</span><span class="p">[</span><span class="n">metrics_df</span><span class="p">[</span><span class="sh">'</span><span class="s">anomaly</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Detected anomalies:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">anomalies</span><span class="p">)</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="recommended-tools">Recommended Tools</h3>
-<p>| Category | Tools |
-|———-|——-|
-| AI/ML Platforms | TensorFlow, PyTorch, H2O.ai |
-| Monitoring &amp; Observability | Prometheus, Grafana, ELK Stack, Datadog |
-| Automation &amp; Remediation | Ansible, Python scripts, Kubernetes Operators |
-| Incident Management | PagerDuty, OpsGenie, ServiceNow |
-| Log Analysis &amp; Correlation | Splunk, Graylog, ELK Stack |</p>
-
-<hr />
-
-<h3 id="best-practices">Best Practices</h3>
-
-<ul>
-  <li>Begin with non-critical systems before automating high-impact responses</li>
-  <li>Ensure AI models are trained with historical incident data</li>
-  <li>Keep engineers in the loop for complex or ambiguous alerts</li>
-  <li>Continuously validate and improve anomaly detection models</li>
-  <li>Integrate AI workflows with existing CI/CD pipelines</li>
-</ul>
-
-<hr />
-
-<h3 id="common-pitfalls">Common Pitfalls</h3>
-
-<ul>
-  <li>Over-reliance on AI without human oversight</li>
-  <li>Insufficient training data leading to false positives or negatives</li>
-  <li>Ignoring correlation between metrics, logs, and traces</li>
-  <li>Not automating response for repeatable incidents</li>
-</ul>
-
-<hr />
-
-<h3 id="key-takeaways">Key Takeaways</h3>
-
-<ul>
-  <li>AI accelerates incident detection, root cause analysis, and remediation</li>
-  <li>Combining automated scripts with human oversight ensures safety</li>
-  <li>Predictive analytics reduce MTTR and enhance reliability</li>
-  <li>Continuous learning from incidents improves system resilience</li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>AI-driven incident response transforms DevOps from reactive firefighting to proactive reliability engineering. By leveraging anomaly detection, root cause analysis, and automated remediation, DevOps teams can maintain higher uptime, reduce operational burden, and deliver robust services in complex, distributed systems.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Incident Management" /><category term="AI" /><category term="incident response" /><category term="DevOps automation" /><category term="monitoring" /><category term="root cause analysis" /><category term="SRE" /><summary type="html"><![CDATA[Leverage AI for automated incident response in DevOps pipelines to detect, analyze, and remediate issues faster with actionable insights and predictive analysis.]]></summary></entry></feed>
+<p>Infrastructure as Code testing ensures that your deployments are consistent, secure, and maintainable. By incorporating linting, unit testing, integration testing, and security checks, DevOps teams can confidently deploy infrastructure changes, minimize production risks, and maintain resilient cloud-native systems.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="IaC" /><category term="Testing" /><category term="Infrastructure as Code" /><category term="Terraform" /><category term="Pulumi" /><category term="testing" /><category term="CI/CD" /><category term="DevOps automation" /><summary type="html"><![CDATA[Learn how to implement robust testing strategies for Infrastructure as Code using Terraform and Pulumi to ensure reliable, secure, and maintainable infrastructure deployments.]]></summary></entry></feed>
