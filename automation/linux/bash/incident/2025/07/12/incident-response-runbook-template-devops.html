@@ -95,83 +95,80 @@ This post provides a ready to use incident response runbook template plus a prac
 ​</li>
     </ul>
   </li>
-  <li>Assess severity (5–10 minutes)</li>
-</ol>
+  <li>
+    <p>Assess severity (5–10 minutes)</p>
 
-<p><b>Answer quickly:</b></p>
-<ul>
-  <li>What’s impacted (service, region, feature)?</li>
-  <li>How many users / revenue / compliance impact?</li>
-  <li>Is impact ongoing and spreading?</li>
-</ul>
+    <p><b>Answer quickly:</b></p>
+    <ul>
+      <li>What’s impacted (service, region, feature)?</li>
+      <li>How many users / revenue / compliance impact?</li>
+      <li>Is impact ongoing and spreading?</li>
+    </ul>
 
-<p><b>Suggested severity:</b></p>
-<ul>
-  <li>SEV1: Major outage / severe user impact; immediate coordination.</li>
-  <li>SEV2: Partial outage / significant degradation; urgent but controlled.</li>
-  <li>SEV3: Minor impact; can be handled async.</li>
-</ul>
+    <p><b>Suggested severity:</b></p>
+    <ul>
+      <li>SEV1: Major outage / severe user impact; immediate coordination.</li>
+      <li>SEV2: Partial outage / significant degradation; urgent but controlled.</li>
+      <li>SEV3: Minor impact; can be handled async.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Stabilize first (10–30 minutes)</p>
 
-<ol>
-  <li>Stabilize first (10–30 minutes)</li>
-</ol>
+    <p><b>Goal:</b> stop the bleeding before chasing root cause.</p>
 
-<p><b>Goal:</b> stop the bleeding before chasing root cause.</p>
+    <p><b>Typical mitigations:</b></p>
 
-<p><b>Typical mitigations:</b></p>
+    <ul>
+      <li>Roll back the last deploy/config change.</li>
+      <li>Disable a feature flag.</li>
+      <li>Scale up/out temporarily.</li>
+      <li>Fail over if safe.</li>
+      <li>Rate-limit or block abusive traffic.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Triage checklist (host-level)
+ Run these to establish the baseline quickly (copy/paste friendly).</p>
 
-<ul>
-  <li>Roll back the last deploy/config change.</li>
-  <li>Disable a feature flag.</li>
-  <li>Scale up/out temporarily.</li>
-  <li>Fail over if safe.</li>
-  <li>Rate-limit or block abusive traffic.</li>
-</ul>
+    <p><b>CPU</b></p>
 
-<ol>
-  <li>Triage checklist (host-level)
-Run these to establish the baseline quickly (copy/paste friendly).</li>
-</ol>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any process &gt;50% sustained.</p>
 
-<p><b>CPU</b></p>
+    <p><b>Memory</b></p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> free <span class="nt">-h</span>
+</code></pre></div>    </div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
-</code></pre></div></div>
-<p><b>Alert cue:</b> any process &gt;50% sustained.</p>
+    <p><b>Alert cue:</b> available &lt;20% total RAM.</p>
 
-<p><b>Memory</b></p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>free <span class="nt">-h</span>
-</code></pre></div></div>
+    <p><b>Disk</b></p>
 
-<p><b>Alert cue:</b> available &lt;20% total RAM.</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nb">df</span> <span class="nt">-h</span>
+ <span class="nb">du</span> <span class="nt">-sh</span> /var/log/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> any filesystem &gt;90%.
+ ​</p>
 
-<p><b>Disk</b></p>
+    <p><b>Disk I/O</b></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span>
-<span class="nb">du</span> <span class="nt">-sh</span> /var/log/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
-</code></pre></div></div>
-<p><b>Alert cue:</b> any filesystem &gt;90%.
-​</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> iostat <span class="nt">-x</span> 1 3
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> %util &gt;80%, await &gt;20ms.</p>
 
-<p><b>Disk I/O</b></p>
+    <p><b>Network listeners</b></p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iostat <span class="nt">-x</span> 1 3
-</code></pre></div></div>
-<p><b>Alert cue:</b> %util &gt;80%, await &gt;20ms.</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ss <span class="nt">-tuln</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> unexpected listeners/ports.
+ ​
+ <b>Logs (example: nginx)</b></p>
 
-<p><b>Network listeners</b></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ss <span class="nt">-tuln</span>
-</code></pre></div></div>
-<p><b>Alert cue:</b> unexpected listeners/ports.
-​
-<b>Logs (example: nginx)</b></p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>
-</code></pre></div></div>
-<p><b>Alert cue:</b> 5xx errors spiking.</p>
-
-<ol>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> journalctl <span class="nt">-u</span> nginx <span class="nt">-f</span>
+</code></pre></div>    </div>
+    <p><b>Alert cue:</b> 5xx errors spiking.</p>
+  </li>
   <li>Comms cadence (keep it boring)<br /></li>
 </ol>
 
