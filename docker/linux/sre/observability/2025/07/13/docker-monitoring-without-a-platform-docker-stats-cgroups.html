@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)</h1>
+  <p class="post-meta">Published on July 13, 2025</p>
+  <div class="post-content">
+    <p>When an incident hits a containerized service, you often don’t need a full observability stack to get traction. You need fast answers: Which container is hot? What resource is saturating? Is it an app problem or a limit problem?</p>
+
+<p>This guide shows a practical monitoring stack you can run from any Docker host:</p>
+
+<ol>
+  <li>Docker-level commands (docker stats, docker inspect, docker logs)</li>
+  <li>Host Linux tools (ps/top/free/df/iostat/ss/journalctl)</li>
+  <li>Kernel primitives: cgroups (resource limits/accounting) and namespaces (isolation)</li>
+</ol>
+
+<h2 id="1-start-with-docker-stats-the-fastest-signal">1) Start with docker stats (the fastest signal)</h2>
+<p>docker stats streams runtime metrics for containers, including CPU%, memory usage/limit, network I/O, and block I/O.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stats
+</code></pre></div></div>
+
+<p>Common workflows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stats <span class="nt">--no-stream</span>          <span class="c"># Snapshot (good for scripts)</span>
+docker stats &lt;container_name&gt;     <span class="c"># Focus on one container</span>
+</code></pre></div></div>
+
+<p>How to interpret it (in plain language)</p>
+<ul>
+  <li><strong>CPU%:</strong> who’s burning compute right now.</li>
+  <li><strong>MEM USAGE / LIMIT:</strong> how close you are to the memory ceiling.</li>
+  <li><strong>NET I/O:</strong> traffic spikes, retries, or unusual egress.</li>
+  <li><strong>BLOCK I/O:</strong> slow disks, chatty logging, or heavy read/write workloads.</li>
+</ul>
+
+<h2 id="2-jump-from-container-name--what-is-it">2) Jump from “container name” → “what is it?”</h2>
+<p>Once you identify a hot container, immediately gather identity + configuration.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps
+docker inspect &lt;container&gt; | less
+</code></pre></div></div>
+
+<p>Useful inspect questions:</p>
+
+<ul>
+  <li>What image/tag is running?</li>
+  <li>What env vars/config are set?</li>
+  <li>What ports and volumes are attached?</li>
+  <li>Are there memory/CPU limits configured?</li>
+</ul>
+
+<h2 id="3-logs-confirm-symptoms-fast">3) Logs: confirm symptoms fast</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs <span class="nt">--tail</span> 200 &lt;container&gt;
+docker logs <span class="nt">-f</span> &lt;container&gt;
+</code></pre></div></div>
+
+<p>This is often enough to spot:</p>
+
+<ul>
+  <li>crash loops</li>
+  <li>OOM errors / memory pressure</li>
+  <li>upstream timeouts</li>
+  <li>DB connection exhaustion</li>
+</ul>
+
+<h2 id="4-understand-why-its-happening-cgroups--namespaces-the-mental-model">4) Understand why it’s happening: cgroups + namespaces (the mental model)</h2>
+<p>Docker relies on Linux kernel features:</p>
+
+<ul>
+  <li>Namespaces isolate views of processes, networking, mounts, etc.</li>
+  <li>cgroups control and account for resources like CPU, memory, and I/O.</li>
+</ul>
+
+<p>Why this matters during incidents:</p>
+
+<ul>
+  <li>A container can be “slow” because it’s CPU-throttled, not because the app code suddenly got worse.</li>
+  <li>A container can restart because it hit its memory limit and the kernel’s OOM behavior targeted its processes.</li>
+</ul>
+
+<h2 id="5-host-level-confirmation-tie-back-to-your-linux-monitoring-toolkit">5) Host-level confirmation (tie back to your Linux monitoring toolkit)</h2>
+<p>When docker stats shows a spike, verify on the host to avoid false conclusions.</p>
+
+<h3 id="cpu-hogs">CPU hogs</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
+</code></pre></div></div>
+
+<h3 id="memory-pressure">Memory pressure</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>free <span class="nt">-h</span>
+</code></pre></div></div>
+
+<h3 id="disk-full--log-explosions">Disk full / log explosions</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span>
+<span class="nb">du</span> <span class="nt">-sh</span> /var/lib/docker/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
+</code></pre></div></div>
+
+<h3 id="disk-io-saturation">Disk I/O saturation</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iostat <span class="nt">-x</span> 1 3
+</code></pre></div></div>
+
+<h3 id="unexpected-listeners--traffic-patterns">Unexpected listeners / traffic patterns</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ss <span class="nt">-tuln</span>
+</code></pre></div></div>
+
+<p>These host checks help you decide whether you’re dealing with a single container or a node-wide saturation problem.
+​</p>
+<h2 id="6-what-to-do-with-the-data-action-mapping">6) What to do with the data (action mapping)</h2>
+<p>Use the shortest safe path to stability:</p>
+
+<ul>
+  <li>
+    <p>CPU high + latency rising</p>
+
+    <ul>
+      <li>If CPU is legitimately needed: scale out / add capacity.</li>
+      <li>If CPU is throttled: revisit limits/requests (or container CPU shares).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Memory near limit</p>
+
+    <ul>
+      <li>If memory leak suspected: restart as mitigation + open an issue with heap profiling.</li>
+      <li>If limit too low for normal peaks: adjust limit carefully and monitor.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Block I/O high</p>
+
+    <ul>
+      <li>Check log volume and disk saturation; reduce noisy logs or move logs off disk.</li>
+      <li>Consider storage performance constraints and workload patterns.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Network I/O abnormal</p>
+
+    <ul>
+      <li>Look for retries, timeouts, DDoS/abuse patterns, or upstream issues.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="7-copypaste-triage-sequence-5-minutes">7) Copy/paste triage sequence (5 minutes)</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1) Find the hot container</span>
+docker stats <span class="nt">--no-stream</span>
+
+<span class="c"># 2) Identify it</span>
+docker ps
+docker inspect &lt;container&gt; | less
+
+<span class="c"># 3) Check symptoms</span>
+docker logs <span class="nt">--tail</span> 200 &lt;container&gt;
+
+<span class="c"># 4) Confirm on host (avoid guessing)</span>
+ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-10</span>
+free <span class="nt">-h</span>
+<span class="nb">df</span> <span class="nt">-h</span>
+iostat <span class="nt">-x</span> 1 3
+ss <span class="nt">-tuln</span>
+</code></pre></div></div>
+
+<h2 id="next-in-the-series">Next in the series</h2>
+<p><b>Next post:</b> Container Troubleshooting Playbook (common symptoms → commands → safe mitigations → root cause follow-ups).</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-18T03:30:01+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-01-31T22:32:20+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1518,7 +1518,172 @@ It is <strong>not financial advice</strong>.</p>
 
 <p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
 
-<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</title><link href="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html" rel="alternate" type="text/html" title="Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)" /><published>2025-07-12T00:00:00+00:00</published><updated>2025-07-12T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html"><![CDATA[<h2 id="incident-response-runbook-template-for-devops">Incident Response Runbook Template for DevOps</h2>
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)</title><link href="https://autoshiftops.com/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups.html" rel="alternate" type="text/html" title="Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)" /><published>2025-07-13T00:00:00+00:00</published><updated>2025-07-13T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups.html"><![CDATA[<p>When an incident hits a containerized service, you often don’t need a full observability stack to get traction. You need fast answers: Which container is hot? What resource is saturating? Is it an app problem or a limit problem?</p>
+
+<p>This guide shows a practical monitoring stack you can run from any Docker host:</p>
+
+<ol>
+  <li>Docker-level commands (docker stats, docker inspect, docker logs)</li>
+  <li>Host Linux tools (ps/top/free/df/iostat/ss/journalctl)</li>
+  <li>Kernel primitives: cgroups (resource limits/accounting) and namespaces (isolation)</li>
+</ol>
+
+<h2 id="1-start-with-docker-stats-the-fastest-signal">1) Start with docker stats (the fastest signal)</h2>
+<p>docker stats streams runtime metrics for containers, including CPU%, memory usage/limit, network I/O, and block I/O.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stats
+</code></pre></div></div>
+
+<p>Common workflows:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stats <span class="nt">--no-stream</span>          <span class="c"># Snapshot (good for scripts)</span>
+docker stats &lt;container_name&gt;     <span class="c"># Focus on one container</span>
+</code></pre></div></div>
+
+<p>How to interpret it (in plain language)</p>
+<ul>
+  <li><strong>CPU%:</strong> who’s burning compute right now.</li>
+  <li><strong>MEM USAGE / LIMIT:</strong> how close you are to the memory ceiling.</li>
+  <li><strong>NET I/O:</strong> traffic spikes, retries, or unusual egress.</li>
+  <li><strong>BLOCK I/O:</strong> slow disks, chatty logging, or heavy read/write workloads.</li>
+</ul>
+
+<h2 id="2-jump-from-container-name--what-is-it">2) Jump from “container name” → “what is it?”</h2>
+<p>Once you identify a hot container, immediately gather identity + configuration.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker ps
+docker inspect &lt;container&gt; | less
+</code></pre></div></div>
+
+<p>Useful inspect questions:</p>
+
+<ul>
+  <li>What image/tag is running?</li>
+  <li>What env vars/config are set?</li>
+  <li>What ports and volumes are attached?</li>
+  <li>Are there memory/CPU limits configured?</li>
+</ul>
+
+<h2 id="3-logs-confirm-symptoms-fast">3) Logs: confirm symptoms fast</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker logs <span class="nt">--tail</span> 200 &lt;container&gt;
+docker logs <span class="nt">-f</span> &lt;container&gt;
+</code></pre></div></div>
+
+<p>This is often enough to spot:</p>
+
+<ul>
+  <li>crash loops</li>
+  <li>OOM errors / memory pressure</li>
+  <li>upstream timeouts</li>
+  <li>DB connection exhaustion</li>
+</ul>
+
+<h2 id="4-understand-why-its-happening-cgroups--namespaces-the-mental-model">4) Understand why it’s happening: cgroups + namespaces (the mental model)</h2>
+<p>Docker relies on Linux kernel features:</p>
+
+<ul>
+  <li>Namespaces isolate views of processes, networking, mounts, etc.</li>
+  <li>cgroups control and account for resources like CPU, memory, and I/O.</li>
+</ul>
+
+<p>Why this matters during incidents:</p>
+
+<ul>
+  <li>A container can be “slow” because it’s CPU-throttled, not because the app code suddenly got worse.</li>
+  <li>A container can restart because it hit its memory limit and the kernel’s OOM behavior targeted its processes.</li>
+</ul>
+
+<h2 id="5-host-level-confirmation-tie-back-to-your-linux-monitoring-toolkit">5) Host-level confirmation (tie back to your Linux monitoring toolkit)</h2>
+<p>When docker stats shows a spike, verify on the host to avoid false conclusions.</p>
+
+<h3 id="cpu-hogs">CPU hogs</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-15</span>
+</code></pre></div></div>
+
+<h3 id="memory-pressure">Memory pressure</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>free <span class="nt">-h</span>
+</code></pre></div></div>
+
+<h3 id="disk-full--log-explosions">Disk full / log explosions</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">df</span> <span class="nt">-h</span>
+<span class="nb">du</span> <span class="nt">-sh</span> /var/lib/docker/<span class="k">*</span> 2&gt;/dev/null | <span class="nb">sort</span> <span class="nt">-h</span> | <span class="nb">tail</span> <span class="nt">-10</span>
+</code></pre></div></div>
+
+<h3 id="disk-io-saturation">Disk I/O saturation</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>iostat <span class="nt">-x</span> 1 3
+</code></pre></div></div>
+
+<h3 id="unexpected-listeners--traffic-patterns">Unexpected listeners / traffic patterns</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ss <span class="nt">-tuln</span>
+</code></pre></div></div>
+
+<p>These host checks help you decide whether you’re dealing with a single container or a node-wide saturation problem.
+​</p>
+<h2 id="6-what-to-do-with-the-data-action-mapping">6) What to do with the data (action mapping)</h2>
+<p>Use the shortest safe path to stability:</p>
+
+<ul>
+  <li>
+    <p>CPU high + latency rising</p>
+
+    <ul>
+      <li>If CPU is legitimately needed: scale out / add capacity.</li>
+      <li>If CPU is throttled: revisit limits/requests (or container CPU shares).</li>
+    </ul>
+  </li>
+  <li>
+    <p>Memory near limit</p>
+
+    <ul>
+      <li>If memory leak suspected: restart as mitigation + open an issue with heap profiling.</li>
+      <li>If limit too low for normal peaks: adjust limit carefully and monitor.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Block I/O high</p>
+
+    <ul>
+      <li>Check log volume and disk saturation; reduce noisy logs or move logs off disk.</li>
+      <li>Consider storage performance constraints and workload patterns.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Network I/O abnormal</p>
+
+    <ul>
+      <li>Look for retries, timeouts, DDoS/abuse patterns, or upstream issues.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="7-copypaste-triage-sequence-5-minutes">7) Copy/paste triage sequence (5 minutes)</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1) Find the hot container</span>
+docker stats <span class="nt">--no-stream</span>
+
+<span class="c"># 2) Identify it</span>
+docker ps
+docker inspect &lt;container&gt; | less
+
+<span class="c"># 3) Check symptoms</span>
+docker logs <span class="nt">--tail</span> 200 &lt;container&gt;
+
+<span class="c"># 4) Confirm on host (avoid guessing)</span>
+ps aux <span class="nt">--sort</span><span class="o">=</span>-%cpu | <span class="nb">head</span> <span class="nt">-10</span>
+free <span class="nt">-h</span>
+<span class="nb">df</span> <span class="nt">-h</span>
+iostat <span class="nt">-x</span> 1 3
+ss <span class="nt">-tuln</span>
+</code></pre></div></div>
+
+<h2 id="next-in-the-series">Next in the series</h2>
+<p><b>Next post:</b> Container Troubleshooting Playbook (common symptoms → commands → safe mitigations → root cause follow-ups).</p>]]></content><author><name></name></author><category term="Docker" /><category term="Linux" /><category term="SRE" /><category term="Observability" /><category term="Automation" /><category term="SRE" /><category term="Bash" /><category term="Linux" /><category term="Docker" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[Learn container monitoring from the terminal: docker stats, docker inspect, logs, and how cgroups/namespaces explain CPU/memory/I/O behavior.]]></summary></entry><entry><title type="html">Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</title><link href="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html" rel="alternate" type="text/html" title="Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)" /><published>2025-07-12T00:00:00+00:00</published><updated>2025-07-12T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html"><![CDATA[<h2 id="incident-response-runbook-template-for-devops">Incident Response Runbook Template for DevOps</h2>
 <p>Incidents are stressful when the team is improvising. A simple runbook reduces MTTR by making response repeatable, not heroic.
 ​
 This post provides a ready to use incident response runbook template plus a practical Linux triage checklist you can run from any box.</p>
@@ -2481,195 +2646,4 @@ flowchart TD
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Building CI/CD pipelines for multi-cloud environments enables organizations to leverage the strengths of each provider while maintaining reliability, scalability, and compliance. By combining IaC, cloud-agnostic CI/CD tools, secure secret management, and centralized observability, DevOps teams can deploy confidently across multiple clouds with reduced risk and improved operational efficiency.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="CI/CD" /><category term="Multi-Cloud" /><category term="multi-cloud" /><category term="CI/CD" /><category term="DevOps" /><category term="cloud deployment" /><category term="automation" /><category term="hybrid cloud" /><summary type="html"><![CDATA[Explore best practices for building CI/CD pipelines across multiple cloud providers, addressing challenges, and implementing robust solutions for hybrid cloud environments.]]></summary></entry><entry><title type="html">🔗 Infrastructure as Code Testing Strategies: Terraform &amp;amp; Pulumi</title><link href="https://autoshiftops.com/devops/iac/testing/2025/06/22/Infrastructure-as-Code-Testing-Strategies.html" rel="alternate" type="text/html" title="🔗 Infrastructure as Code Testing Strategies: Terraform &amp;amp; Pulumi" /><published>2025-06-22T00:00:00+00:00</published><updated>2025-06-22T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/iac/testing/2025/06/22/Infrastructure%20as%20Code%20Testing%20Strategies</id><content type="html" xml:base="https://autoshiftops.com/devops/iac/testing/2025/06/22/Infrastructure-as-Code-Testing-Strategies.html"><![CDATA[<h2 id="infrastructure-as-code-testing-strategies-terraform--pulumi">Infrastructure as Code Testing Strategies: Terraform &amp; Pulumi</h2>
-
-<p>Infrastructure as Code (IaC) allows DevOps teams to <strong>define and manage infrastructure through code</strong>, making deployments repeatable and scalable. However, misconfigured IaC scripts can lead to downtime, security vulnerabilities, or compliance issues.</p>
-
-<p>Implementing <strong>IaC testing strategies</strong> ensures that infrastructure code is <strong>reliable, maintainable, and secure</strong>, reducing risk before changes reach production.</p>
-
-<hr />
-
-<h3 id="why-iac-testing-matters">Why IaC Testing Matters</h3>
-
-<ul>
-  <li><strong>Early Detection of Errors:</strong> Catch syntax, configuration, and logic errors before deployment</li>
-  <li><strong>Maintain Consistency:</strong> Ensure infrastructure matches desired state across environments</li>
-  <li><strong>Security Compliance:</strong> Identify misconfigurations that could expose sensitive resources</li>
-  <li><strong>Reduce Outages:</strong> Prevent failures in production due to faulty scripts</li>
-  <li><strong>Enable CI/CD Integration:</strong> Automate testing as part of your deployment pipelines</li>
-</ul>
-
-<hr />
-
-<h3 id="types-of-iac-testing">Types of IaC Testing</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Testing Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Linting / Static Analysis</strong></td>
-      <td>Checks code syntax, best practices, and style rules (e.g., <code class="language-plaintext highlighter-rouge">terraform fmt</code>, <code class="language-plaintext highlighter-rouge">tflint</code>)</td>
-    </tr>
-    <tr>
-      <td><strong>Unit Testing</strong></td>
-      <td>Tests individual modules or functions using frameworks like <code class="language-plaintext highlighter-rouge">terratest</code> or <code class="language-plaintext highlighter-rouge">pytest-pulumi</code></td>
-    </tr>
-    <tr>
-      <td><strong>Integration Testing</strong></td>
-      <td>Validates interactions between multiple infrastructure components</td>
-    </tr>
-    <tr>
-      <td><strong>Security Testing</strong></td>
-      <td>Detects vulnerabilities using tools like <code class="language-plaintext highlighter-rouge">Checkov</code>, <code class="language-plaintext highlighter-rouge">tfsec</code>, or <code class="language-plaintext highlighter-rouge">Pulumis’ security plugins</code></td>
-    </tr>
-    <tr>
-      <td><strong>End-to-End Testing</strong></td>
-      <td>Deploys infrastructure in a test environment to validate full workflows and CI/CD integration</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="workflow-example">Workflow Example</h3>
-
-<ol>
-  <li><strong>Linting:</strong> Run static analysis on IaC scripts</li>
-  <li><strong>Unit Tests:</strong> Validate individual modules for expected outputs</li>
-  <li><strong>Security Scans:</strong> Detect misconfigurations, secrets in code, and policy violations</li>
-  <li><strong>Integration Tests:</strong> Deploy infrastructure in sandbox environment</li>
-  <li><strong>Automated CI/CD:</strong> Integrate tests into pipeline for pre-merge validation</li>
-  <li><strong>End-to-End Validation:</strong> Deploy to staging and perform operational checks</li>
-</ol>
-
-<hr />
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-
-<div class="mermaid">
-flowchart TD
-    A[Write IaC Code] --&gt; B[Lint &amp; Static Analysis]
-    B --&gt; C[Unit Testing]
-    C --&gt; D[Security Scanning]
-    D --&gt; E[Integration Testing in Sandbox]
-    E --&gt; F[CI/CD Pipeline Validation]
-    F --&gt; G[Deploy to Staging / Production]
-</div>
-
-<hr />
-
-<h3 id="sample-terraform-unit-test-using-terratest-go">Sample Terraform Unit Test Using Terratest (Go)</h3>
-
-<div class="language-go highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">test</span>
-
-<span class="k">import</span> <span class="p">(</span>
-  <span class="s">"testing"</span>
-  <span class="s">"github.com/gruntwork-io/terratest/modules/terraform"</span>
-<span class="p">)</span>
-
-<span class="k">func</span> <span class="n">TestTerraformExample</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span><span class="n">testing</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">options</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="n">terraform</span><span class="o">.</span><span class="n">Options</span><span class="p">{</span>
-    <span class="n">TerraformDir</span><span class="o">:</span> <span class="s">"../examples/my-terraform-module"</span><span class="p">,</span>
-  <span class="p">}</span>
-
-  <span class="k">defer</span> <span class="n">terraform</span><span class="o">.</span><span class="n">Destroy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-  <span class="n">terraform</span><span class="o">.</span><span class="n">InitAndApply</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">options</span><span class="p">)</span>
-
-  <span class="n">output</span> <span class="o">:=</span> <span class="n">terraform</span><span class="o">.</span><span class="n">Output</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="s">"instance_id"</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="s">""</span> <span class="p">{</span>
-    <span class="n">t</span><span class="o">.</span><span class="n">Fatalf</span><span class="p">(</span><span class="s">"Expected instance_id to be non-empty"</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="sample-pulumi-test-using-python">Sample Pulumi Test Using Python</h3>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pulumi</span>
-<span class="kn">from</span> <span class="n">pulumi_aws</span> <span class="kn">import</span> <span class="n">s3</span>
-<span class="kn">import</span> <span class="n">pulumi.runtime</span> <span class="k">as</span> <span class="n">runtime</span>
-
-<span class="k">def</span> <span class="nf">test_s3_bucket_name</span><span class="p">():</span>
-    <span class="n">bucket</span> <span class="o">=</span> <span class="n">s3</span><span class="p">.</span><span class="nc">Bucket</span><span class="p">(</span><span class="sh">"</span><span class="s">my-bucket</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">check_name</span><span class="p">(</span><span class="n">bucket_name</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="n">bucket_name</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">"</span><span class="s">my-</span><span class="sh">"</span><span class="p">),</span> <span class="sh">"</span><span class="s">Bucket name should start with </span><span class="sh">'</span><span class="s">my-</span><span class="sh">'"</span>
-    <span class="n">runtime</span><span class="p">.</span><span class="nf">run_in_stack</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="nf">check_name</span><span class="p">(</span><span class="n">bucket</span><span class="p">.</span><span class="n">bucket</span><span class="p">))</span>
-</code></pre></div></div>
-
-<hr />
-
-<h3 id="recommended-tools">Recommended Tools</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Tools</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Linting / Static Analysis</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">terraform fmt</code>, <code class="language-plaintext highlighter-rouge">tflint</code>, <code class="language-plaintext highlighter-rouge">pulumi fmt</code></td>
-    </tr>
-    <tr>
-      <td><strong>Unit Testing</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">Terratest</code>, <code class="language-plaintext highlighter-rouge">pytest-pulumi</code>, Go testing</td>
-    </tr>
-    <tr>
-      <td><strong>Security Testing</strong></td>
-      <td><code class="language-plaintext highlighter-rouge">Checkov</code>, <code class="language-plaintext highlighter-rouge">tfsec</code>, <code class="language-plaintext highlighter-rouge">pulumi-policy-as-code</code></td>
-    </tr>
-    <tr>
-      <td><strong>CI/CD Integration</strong></td>
-      <td>GitHub Actions, GitLab CI/CD, Jenkins</td>
-    </tr>
-    <tr>
-      <td><strong>Sandbox / Integration</strong></td>
-      <td>Localstack, Minikube, Docker Compose</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="best-practices">Best Practices</h3>
-
-<ul>
-  <li>Always use version control for IaC scripts</li>
-  <li>Include unit and integration tests in CI/CD pipelines</li>
-  <li>Automate security and compliance checks</li>
-  <li>Use sandbox or ephemeral environments for testing</li>
-  <li>Keep modules reusable and well-documented</li>
-</ul>
-
-<hr />
-
-<h3 id="common-pitfalls">Common Pitfalls</h3>
-
-<ul>
-  <li>Skipping tests for small changes, leading to production failures</li>
-  <li>Ignoring security scanning for IaC scripts</li>
-  <li>Hardcoding environment-specific values</li>
-  <li>Not validating dependencies between modules or services</li>
-</ul>
-
-<hr />
-
-<h3 id="key-takeaways">Key Takeaways</h3>
-
-<ul>
-  <li>Testing IaC is critical to maintain reliable, secure, and compliant infrastructure</li>
-  <li>A combination of linting, unit, integration, and security testing ensures robustness</li>
-  <li>CI/CD pipelines should automate all testing phases for faster, safer deployments</li>
-  <li>Using tools like Terraform, Pulumi, Terratest, and Checkov streamlines validation</li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Infrastructure as Code testing ensures that your deployments are consistent, secure, and maintainable. By incorporating linting, unit testing, integration testing, and security checks, DevOps teams can confidently deploy infrastructure changes, minimize production risks, and maintain resilient cloud-native systems.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="IaC" /><category term="Testing" /><category term="Infrastructure as Code" /><category term="Terraform" /><category term="Pulumi" /><category term="testing" /><category term="CI/CD" /><category term="DevOps automation" /><summary type="html"><![CDATA[Learn how to implement robust testing strategies for Infrastructure as Code using Terraform and Pulumi to ensure reliable, secure, and maintainable infrastructure deployments.]]></summary></entry></feed>
+<p>Building CI/CD pipelines for multi-cloud environments enables organizations to leverage the strengths of each provider while maintaining reliability, scalability, and compliance. By combining IaC, cloud-agnostic CI/CD tools, secure secret management, and centralized observability, DevOps teams can deploy confidently across multiple clouds with reduced risk and improved operational efficiency.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="CI/CD" /><category term="Multi-Cloud" /><category term="multi-cloud" /><category term="CI/CD" /><category term="DevOps" /><category term="cloud deployment" /><category term="automation" /><category term="hybrid cloud" /><summary type="html"><![CDATA[Explore best practices for building CI/CD pipelines across multiple cloud providers, addressing challenges, and implementing robust solutions for hybrid cloud environments.]]></summary></entry></feed>
