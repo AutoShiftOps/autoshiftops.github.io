@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)"
+title: "📊 Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)"
 date: 2025-07-13
 categories: [Docker, Linux, SRE, Observability]
 tags: [Automation, SRE, Bash, Linux, Docker, AutoShiftOps]

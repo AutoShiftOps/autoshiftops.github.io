@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Linux Monitoring & Alerting: Command-Line Mastery for DevOps"
+title: "📊 Linux Monitoring & Alerting: Command-Line Mastery for DevOps"
 date: 2025-07-06
 categories: [Automation, Linux, Bash ]
 tags: [Automation, Scripting, Bash, Linux, AutoShiftOps]

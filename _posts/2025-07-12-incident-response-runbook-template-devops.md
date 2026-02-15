@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)"
+title: "🔧 Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)"
 date: 2025-07-12
 categories: [Automation, Linux, Bash, Incident]
 tags: [Automation, Scripting, Bash, Linux, Incident, AutoShiftOps]
