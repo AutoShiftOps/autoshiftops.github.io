@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</h1>
+  <p class="post-meta">Published on July 19, 2025</p>
+  <div class="post-content">
+    <p>When a container fails in production, you don’t always have time to browse StackOverflow. You need a checklist.</p>
+
+<p>This post is a field guide for the three most common container “murders”: Memory (OOMKilled), CPU Throttling, and I/O Saturation. We’ll diagnose each using the <code class="language-plaintext highlighter-rouge">docker stats</code> + Linux host tools workflow we established last week.</p>
+
+<h2 id="scenario-1-the-silent-death-oomkilled">Scenario 1: The “Silent” Death (OOMKilled)</h2>
+<p>Symptom: The container restarts randomly. No error logs in the application output because it was killed instantly by the kernel.</p>
+
+<h3 id="1-confirm-it-was-an-oom-kill">1. Confirm it was an OOM Kill</h3>
+<p>Docker knows why the container died. Ask it:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker inspect &lt;container&gt; <span class="nt">--format</span> <span class="s1">''</span>
+<span class="c"># Output: true</span>
+</code></pre></div></div>
+
+<p>Or check the specific exit code (137 = 128 + 9 SIGKILL):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker inspect &lt;container&gt; <span class="nt">--format</span> <span class="s1">''</span>
+<span class="c"># Output: 137</span>
+</code></pre></div></div>
+
+<h3 id="2-find-the-smoking-gun-in-kernel-logs">2. Find the “Smoking Gun” in Kernel Logs</h3>
+<p>If Docker confirms it, see exactly when the kernel snapped. Run this on the host:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dmesg <span class="nt">-T</span> | <span class="nb">grep</span> <span class="nt">-i</span> <span class="s2">"killed process"</span>
+</code></pre></div></div>
+
+<p>You’ll see a line like: <code class="language-plaintext highlighter-rouge">Out of memory: Killed process 1234 (node) total-vm:2048kB, anon-rss:1024kB</code>.</p>
+
+<h3 id="3-the-fix">3. The Fix</h3>
+<ul>
+  <li>
+    <p><strong>Immediate:</strong> Bump the memory limit if the host has capacity.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker update <span class="nt">--memory</span> 2g &lt;container&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Root Cause:</strong> Check your application for memory leaks. If it’s Java, check the heap settings (<code class="language-plaintext highlighter-rouge">-Xmx</code>). If it’s Node, check the GC behavior.</p>
+  </li>
+</ul>
+
+<h2 id="scenario-2-the-slow-death-cpu-throttling">Scenario 2: The “Slow” Death (CPU Throttling)</h2>
+<p>Symptom: App is running but incredibly slow. Latency spikes. Health checks time out.
+​</p>
+<h3 id="1-check-if-its-throttling">1. Check if it’s throttling</h3>
+<p>Linux cgroups enforce CPU limits by “pausing” your process when it uses its quota. It doesn’t kill the app; it just freezes it for milliseconds at a time.</p>
+
+<p>Check <code class="language-plaintext highlighter-rouge">docker stats</code> first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker stats <span class="nt">--no-stream</span>
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">CPU %</code> is consistently near 100% of your configured limit (e.g., if you gave it 0.5 CPUs and it’s at 50%), you are being throttled.</p>
+
+<h3 id="2-verify-throttling-in-cgroups">2. Verify Throttling in cgroups</h3>
+<p>Look at the raw cgroup metrics (works on cgroup v1/v2):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Find the container ID</span>
+docker inspect &lt;container&gt; <span class="nt">--format</span> <span class="s1">''</span>
+
+<span class="c"># Check throttle stats (path varies by distro, commonly:)</span>
+<span class="nb">cat</span> /sys/fs/cgroup/cpu/docker/&lt;long-id&gt;/cpu.stat
+</code></pre></div></div>
+
+<p>Look for <code class="language-plaintext highlighter-rouge">nr_throttled</code> and <code class="language-plaintext highlighter-rouge">throttled_time</code>. If these numbers are rising, your app is gasping for air.
+​</p>
+<h3 id="3-the-fix-1">3. The Fix</h3>
+<ul>
+  <li>
+    <p><strong>Remove the limit</strong> temporarily to prove it’s the bottleneck.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker update <span class="nt">--cpus</span> 0 &lt;container&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Tune requests:</strong> If the app needs that CPU, increase the limit. If it’s a bug (infinite loop), profile the app.
+​</p>
+    <h2 id="scenario-3-the-gridlock-disk-io-saturation">Scenario 3: The “Gridlock” (Disk I/O Saturation)</h2>
+    <p>Symptom: The container becomes unresponsive, <code class="language-plaintext highlighter-rouge">docker ps</code> hangs, or logs stop writing.
+​</p>
+    <h3 id="1-identify-the-io-hog">1. Identify the I/O Hog</h3>
+    <p>Is it the container or the neighbor?</p>
+  </li>
+</ul>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Check host I/O</span>
+iostat <span class="nt">-x</span> 1 5
+</code></pre></div></div>
+
+<p>If <code class="language-plaintext highlighter-rouge">%util</code> is &gt;80%, the disk is saturated.</p>
+
+<h3 id="2-blame-the-container">2. Blame the Container</h3>
+<p>Use <code class="language-plaintext highlighter-rouge">pidstat</code> (part of <code class="language-plaintext highlighter-rouge">sysstat</code>) to find which process is thrashing the disk:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pidstat <span class="nt">-d</span> 1
+</code></pre></div></div>
+
+<p>Look for the PID with high <code class="language-plaintext highlighter-rouge">kB_rd/s</code> or <code class="language-plaintext highlighter-rouge">kB_wr/s</code>. Match that PID back to a container:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker inspect <span class="nt">--format</span> <span class="s1">''</span> &lt;container&gt;
+</code></pre></div></div>
+
+<h3 id="3-the-fix-2">3. The Fix</h3>
+<ul>
+  <li>
+    <p><strong>Limit the blast radius:</strong> Set a Block I/O limit on the greedy container so it doesn’t kill the host.</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  docker update <span class="nt">--blkio-weight</span> 100 &lt;container&gt;  <span class="c"># Low priority (default 500)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Move logs:</strong> Ensure your app isn’t logging debug data to the container’s JSON log driver (which writes to disk). Use a log shipper or write to <code class="language-plaintext highlighter-rouge">stdout</code> sparingly.
+​</p>
+  </li>
+</ul>
+
+<h2 id="bonus-network-connectivity-issues">Bonus: Network Connectivity Issues</h2>
+<p><strong>Symptom:</strong> “Connection refused” or timeouts between containers.</p>
+
+<h3 id="1-the-can-i-reach-it-check">1. The “Can I reach it?” Check</h3>
+<p>Don’t guess. Enter the container’s namespace:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;source-container&gt; sh
+<span class="c"># Inside:</span>
+ping &lt;target-container-name&gt;
+nc <span class="nt">-zv</span> &lt;target-container-name&gt; &lt;port&gt;
+</code></pre></div></div>
+
+<h3 id="2-if-dns-fails">2. If DNS fails</h3>
+<p>Docker has its own internal DNS. Check <code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code> inside the container:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /etc/resolv.conf
+</code></pre></div></div>
+
+<p>It should point to Docker’s embedded DNS server (usually <code class="language-plaintext highlighter-rouge">127.0.0.11</code>). If it’s missing or wrong, check your daemon config.
+​</p>
+<h2 id="summary-checklist-copypaste">Summary Checklist (Copy/Paste)</h2>
+<p>| Symptom | Check Command | Fix Action |
+|———|—————|———–|
+| Random Restarts | <code class="language-plaintext highlighter-rouge">docker inspect &lt;container&gt; --format ''</code> | Increase RAM limit / Fix memory leak |
+| Sluggish App | <code class="language-plaintext highlighter-rouge">cat /sys/fs/cgroup/cpu/docker/&lt;id&gt;/cpu.stat</code> (check <code class="language-plaintext highlighter-rouge">nr_throttled</code>) | Increase CPU limit / Profile app |
+| Host Unresponsive | <code class="language-plaintext highlighter-rouge">iostat -x 1 5</code> &amp; <code class="language-plaintext highlighter-rouge">pidstat -d 1</code> | Limit Block I/O weight / Reduce logging |
+| Network Timeout | <code class="language-plaintext highlighter-rouge">docker exec &lt;container&gt; nc -zv &lt;target&gt; &lt;port&gt;</code> | Check Docker DNS / Verify network aliases |</p>
+
+<h2 id="next-steps">Next Steps</h2>
+<p>Now that you can debug containers manually, how do you automate this? Next week, we’ll build a “Self-Healing” Bash Script that detects these states and alerts you automatically.</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
