@@ -196,12 +196,40 @@ nc <span class="nt">-zv</span> &lt;target-container-name&gt; &lt;port&gt;
 <p>It should point to Docker’s embedded DNS server (usually <code class="language-plaintext highlighter-rouge">127.0.0.11</code>). If it’s missing or wrong, check your daemon config.
 ​</p>
 <h2 id="summary-checklist-copypaste">Summary Checklist (Copy/Paste)</h2>
-<p>| Symptom | Check Command | Fix Action|
-|—|—|—|
-| Random Restarts | <code class="language-plaintext highlighter-rouge">docker inspect &lt;container&gt; --format ''</code> | Increase RAM limit / Fix memory leak |
-| Sluggish App | <code class="language-plaintext highlighter-rouge">cat /sys/fs/cgroup/cpu/docker/&lt;id&gt;/cpu.stat</code> (check <code class="language-plaintext highlighter-rouge">nr_throttled</code>) | Increase CPU limit / Profile app |
-| Host Unresponsive | <code class="language-plaintext highlighter-rouge">iostat -x 1 5</code> &amp; <code class="language-plaintext highlighter-rouge">pidstat -d 1</code> | Limit Block I/O weight / Reduce logging |
-| Network Timeout | <code class="language-plaintext highlighter-rouge">docker exec &lt;container&gt; nc -zv &lt;target&gt; &lt;port&gt;</code> | Check Docker DNS / Verify network aliases |</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Symptom</th>
+      <th>Check Command</th>
+      <th>Fix Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Random Restarts</td>
+      <td><code class="language-plaintext highlighter-rouge">docker inspect &lt;container&gt; --format ''</code></td>
+      <td>Increase RAM limit / Fix memory leak</td>
+    </tr>
+    <tr>
+      <td>Sluggish App</td>
+      <td><code class="language-plaintext highlighter-rouge">cat /sys/fs/cgroup/cpu/docker/&lt;id&gt;/cpu.stat</code> (check <code class="language-plaintext highlighter-rouge">nr_throttled</code>)</td>
+      <td>Increase CPU limit / Profile app</td>
+    </tr>
+    <tr>
+      <td>Host Unresponsive</td>
+      <td><code class="language-plaintext highlighter-rouge">iostat -x 1 5</code> &amp; <code class="language-plaintext highlighter-rouge">pidstat -d 1</code></td>
+      <td>Limit Block I/O weight / Reduce logging</td>
+    </tr>
+    <tr>
+      <td>Network Timeout</td>
+      <td><code class="language-plaintext highlighter-rouge">docker exec &lt;container&gt; nc -zv &lt;target&gt; &lt;port&gt;</code></td>
+      <td>Check Docker DNS / Verify network aliases</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
 
 <h2 id="next-steps">Next Steps</h2>
 <p>Now that you can debug containers manually, how do you automate this? Next week, we’ll build a “Self-Healing” Bash Script that detects these states and alerts you automatically.</p>
