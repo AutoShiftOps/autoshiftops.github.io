@@ -196,13 +196,13 @@ nc <span class="nt">-zv</span> &lt;target-container-name&gt; &lt;port&gt;
 <p>It should point to Docker’s embedded DNS server (usually <code class="language-plaintext highlighter-rouge">127.0.0.11</code>). If it’s missing or wrong, check your daemon config.
 ​</p>
 <h2 id="summary-checklist-copypaste">Summary Checklist (Copy/Paste)</h2>
-<p>| Symptom | Check Command | Fix Action |
-|———|—————|———–|
-| Random Restarts | <code class="language-plaintext highlighter-rouge">docker inspect &lt;container&gt; --format ''</code> | Increase RAM limit / Fix memory leak |
-| Sluggish App | <code class="language-plaintext highlighter-rouge">cat /sys/fs/cgroup/cpu/docker/&lt;id&gt;/cpu.stat</code> (check <code class="language-plaintext highlighter-rouge">nr_throttled</code>) | Increase CPU limit / Profile app |
-| Host Unresponsive | <code class="language-plaintext highlighter-rouge">iostat -x 1 5</code> &amp; <code class="language-plaintext highlighter-rouge">pidstat -d 1</code> | Limit Block I/O weight / Reduce logging |
-| Network Timeout | <code class="language-plaintext highlighter-rouge">docker exec &lt;container&gt; nc -zv &lt;target&gt; &lt;port&gt;</code> | Check Docker DNS / Verify network aliases |</p>
-
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>| Symptom | Check Command | Fix Action |
+|---------|---------------|-----------|
+| Random Restarts | `docker inspect &lt;container&gt; --format ''` | Increase RAM limit / Fix memory leak |
+| Sluggish App | `cat /sys/fs/cgroup/cpu/docker/&lt;id&gt;/cpu.stat` (check `nr_throttled`) | Increase CPU limit / Profile app |
+| Host Unresponsive | `iostat -x 1 5` &amp; `pidstat -d 1` | Limit Block I/O weight / Reduce logging |
+| Network Timeout | `docker exec &lt;container&gt; nc -zv &lt;target&gt; &lt;port&gt;` | Check Docker DNS / Verify network aliases |
+</code></pre></div></div>
 <h2 id="next-steps">Next Steps</h2>
 <p>Now that you can debug containers manually, how do you automate this? Next week, we’ll build a “Self-Healing” Bash Script that detects these states and alerts you automatically.</p>
 
