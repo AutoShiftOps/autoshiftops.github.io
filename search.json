@@ -33,7 +33,7 @@
   },
 
   {
-    "title": "The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts",
+    "title": "🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts",
     "url": "https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html",
     "date": "2025-07-19",
     "categories": ["Docker","Linux","Troubleshooting"],
@@ -41,7 +41,7 @@
   },
 
   {
-    "title": "Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)",
+    "title": "📊 Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)",
     "url": "https://autoshiftops.com/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups.html",
     "date": "2025-07-13",
     "categories": ["Docker","Linux","SRE","Observability"],
@@ -49,7 +49,7 @@
   },
 
   {
-    "title": "Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)",
+    "title": "🔧 Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)",
     "url": "https://autoshiftops.com/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html",
     "date": "2025-07-12",
     "categories": ["Automation","Linux","Bash","Incident"],
@@ -57,7 +57,7 @@
   },
 
   {
-    "title": "Linux Monitoring & Alerting: Command-Line Mastery for DevOps",
+    "title": "📊 Linux Monitoring & Alerting: Command-Line Mastery for DevOps",
     "url": "https://autoshiftops.com/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html",
     "date": "2025-07-06",
     "categories": ["Automation","Linux","Bash"],
@@ -65,7 +65,7 @@
   },
 
   {
-    "title": "Advanced Bash Scripting for DevOps Automation",
+    "title": "🚀 Advanced Bash Scripting for DevOps Automation",
     "url": "https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html",
     "date": "2025-07-05",
     "categories": ["Automation","Linux","Bash"],
