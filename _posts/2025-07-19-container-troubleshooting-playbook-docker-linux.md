@@ -143,12 +143,13 @@ cat /etc/resolv.conf
 It should point to Docker’s embedded DNS server (usually `127.0.0.11`). If it’s missing or wrong, check your daemon config.
 ​
 ## Summary Checklist (Copy/Paste)
+```
 | Symptom | Check Command | Fix Action |
 |---------|---------------|-----------|
 | Random Restarts | `docker inspect <container> --format '{{.State.OOMKilled}}'` | Increase RAM limit / Fix memory leak |
 | Sluggish App | `cat /sys/fs/cgroup/cpu/docker/<id>/cpu.stat` (check `nr_throttled`) | Increase CPU limit / Profile app |
 | Host Unresponsive | `iostat -x 1 5` & `pidstat -d 1` | Limit Block I/O weight / Reduce logging |
 | Network Timeout | `docker exec <container> nc -zv <target> <port>` | Check Docker DNS / Verify network aliases |
-
+```
 ## Next Steps
 Now that you can debug containers manually, how do you automate this? Next week, we’ll build a "Self-Healing" Bash Script that detects these states and alerts you automatically.
