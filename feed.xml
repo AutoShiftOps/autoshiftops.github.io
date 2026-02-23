@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-02-15T13:00:36+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-02-23T00:29:10+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1518,7 +1518,211 @@ It is <strong>not financial advice</strong>.</p>
 
 <p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
 
-<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</title><link href="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html" rel="alternate" type="text/html" title="🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts" /><published>2025-07-19T00:00:00+00:00</published><updated>2025-07-19T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html"><![CDATA[<p>When a container fails in production, you don’t always have time to browse StackOverflow. You need a checklist.</p>
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</title><link href="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html" rel="alternate" type="text/html" title="🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-20T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html"><![CDATA[<p>Manual restarts during incidents are reactive. Self-healing means your containers recover themselves between alerts.</p>
+
+<p>This post shows how to build a lightweight bash watchdog that:</p>
+
+<ol>
+  <li>Monitors container health via Docker health checks</li>
+  <li>Restarts unhealthy containers</li>
+  <li>Integrates with systemd for daemon-like behavior</li>
+  <li>Logs everything for incident review</li>
+</ol>
+
+<h2 id="the-self-healing-architecture">The Self-Healing Architecture</h2>
+<p>Docker has built-in restart policies (<code class="language-plaintext highlighter-rouge">--restart unless-stopped</code>), but they don’t respect health checks. A container can be “running” but unhealthy (app crashed, dependencies down, etc.).</p>
+
+<p>Our script loops every 30 seconds:</p>
+
+<ol>
+  <li>Query Docker API for container health</li>
+  <li>Restart unhealthy containers</li>
+  <li>Log actions to systemd journal</li>
+  <li>Repeat</li>
+</ol>
+
+<h3 id="step-1-docker-health-checks-the-foundation">Step 1: Docker Health Checks (the foundation)</h3>
+<p>First, ensure your containers have proper health checks in <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> or <code class="language-plaintext highlighter-rouge">docker run</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">web</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost/health"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">40s</span>
+</code></pre></div></div>
+
+<p>This marks containers <code class="language-plaintext highlighter-rouge">healthy</code>, <code class="language-plaintext highlighter-rouge">unhealthy</code>, or <code class="language-plaintext highlighter-rouge">starting</code>.</p>
+
+<h3 id="step-2-the-self-healing-watchdog-script">Step 2: The Self-Healing Watchdog Script</h3>
+<p>Save this as <code class="language-plaintext highlighter-rouge">/usr/local/bin/docker-autoheal.sh</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="c"># Config</span>
+<span class="nv">CHECK_INTERVAL</span><span class="o">=</span>30
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/var/log/docker-autoheal.log"</span>
+<span class="nv">CONTAINER_LABEL</span><span class="o">=</span><span class="s2">"autoheal=true"</span>  <span class="c"># Label your containers</span>
+
+log<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - </span><span class="nv">$*</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+<span class="o">}</span>
+
+heal_containers<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">unhealthy</span><span class="o">=(</span><span class="si">$(</span>docker ps <span class="nt">--filter</span> <span class="s2">"health=unhealthy"</span> <span class="nt">--filter</span> <span class="s2">"label=</span><span class="nv">$CONTAINER_LABEL</span><span class="s2">"</span> <span class="nt">--format</span> <span class="s2">""</span><span class="si">)</span><span class="o">)</span>
+  
+  <span class="k">for </span>container <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">unhealthy</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    </span>log <span class="s2">"RESTARTING UNHEALTHY CONTAINER: </span><span class="nv">$container</span><span class="s2">"</span>
+    
+    <span class="c"># Graceful stop first</span>
+    docker stop <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">true</span>
+    
+    <span class="c"># Hard kill after timeout</span>
+    docker <span class="nb">kill</span> <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">true</span>
+    
+    <span class="c"># Restart with original command</span>
+    docker start <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span>
+    
+    log <span class="s2">"RESTARTED: </span><span class="nv">$container</span><span class="s2">"</span>
+  <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c"># Main loop</span>
+log <span class="s2">"Docker Auto-Heal started (check interval: </span><span class="k">${</span><span class="nv">CHECK_INTERVAL</span><span class="k">}</span><span class="s2">s)"</span>
+<span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+  </span>heal_containers
+  <span class="nb">sleep</span> <span class="s2">"</span><span class="nv">$CHECK_INTERVAL</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h3 id="step-3-run-as-a-systemd-service-production-ready">Step 3: Run as a Systemd Service (production-ready)</h3>
+<p>Create <code class="language-plaintext highlighter-rouge">/etc/systemd/system/docker-autoheal.service</code>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Docker Container Auto-Healer
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/docker-autoheal.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p><strong>Enable and start:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker-autoheal.service
+<span class="nb">sudo </span>systemctl start docker-autoheal.service
+</code></pre></div></div>
+
+<p><strong>Check status:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl status docker-autoheal.service
+<span class="nb">sudo </span>journalctl <span class="nt">-u</span> docker-autoheal.service <span class="nt">-f</span>
+</code></pre></div></div>
+
+<h3 id="step-4-label-your-containers">Step 4: Label Your Containers</h3>
+<p>Tag containers you want to auto-heal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--label</span> <span class="s2">"autoheal=true"</span> <span class="se">\</span>
+  <span class="nt">--restart</span> unless-stopped <span class="se">\</span>
+  <span class="nt">--health-cmd</span><span class="o">=</span><span class="s2">"curl -f http://localhost:8080/health || exit 1"</span> <span class="se">\</span>
+  nginx
+</code></pre></div></div>
+
+<h3 id="step-5-advanced-features">Step 5: Advanced Features</h3>
+<p>Grace Period (avoid restart loops)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add to script before restart</span>
+<span class="k">if </span>docker inspect <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="nt">--format</span> <span class="s1">''</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"10"</span><span class="p">;</span> <span class="k">then
+  </span>log <span class="s2">"SKIPPING: </span><span class="nv">$container</span><span class="s2"> restart count too high (restart loop?)"</span>
+  <span class="k">continue
+fi</span>
+</code></pre></div></div>
+
+<p><strong>Webhook Alerts</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">container</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="nv">$container</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">action</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">restart</span><span class="se">\"</span><span class="s2">}"</span> <span class="s2">"</span><span class="nv">$WEBHOOK_URL</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h3 id="multi-host-docker-swarm">Multi-Host (Docker Swarm)</h3>
+<p>Use labels + a central orchestrator or run the script on each host.
+​</p>
+<h3 id="testing-it-safely">Testing It (safely)</h3>
+<p>Spin up a container with a failing health check:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--name</span> test-fail <span class="se">\</span>
+  <span class="nt">--label</span> <span class="s2">"autoheal=true"</span> <span class="se">\</span>
+  <span class="nt">--health-cmd</span><span class="o">=</span><span class="s2">"exit 1"</span> <span class="se">\</span>
+  alpine <span class="nb">sleep </span>infinity
+</code></pre></div></div>
+
+<p><strong>Watch it get restarted:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-u</span> docker-autoheal.service <span class="nt">-f</span>
+</code></pre></div></div>
+
+<h2 id="limitations--when-to-upgrade">Limitations + When to Upgrade</h2>
+<p><strong>This works great for:</strong></p>
+
+<ul>
+  <li>Small deployments / homelabs</li>
+  <li>Edge services / single-host apps</li>
+  <li>Dev/staging environments</li>
+</ul>
+
+<p><strong>Upgrade to:</strong></p>
+
+<ul>
+  <li>Kubernetes: liveness/readiness probes + pod disruption budgets</li>
+  <li>Docker Swarm: service replicas + constraints</li>
+  <li>Nomad: health checks + restart stanzas</li>
+</ul>
+
+<h3 id="summary-table-copypaste">Summary Table (Copy/Paste)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Command</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Health Check</td>
+      <td><code class="language-plaintext highlighter-rouge">docker ps --filter health=unhealthy</code></td>
+      <td>Find broken containers</td>
+    </tr>
+    <tr>
+      <td>Watchdog</td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl status docker-autoheal</code></td>
+      <td>Confirm service running</td>
+    </tr>
+    <tr>
+      <td>Logs</td>
+      <td><code class="language-plaintext highlighter-rouge">journalctl -u docker-autoheal</code></td>
+      <td>Review restart history</td>
+    </tr>
+    <tr>
+      <td>Container Labels</td>
+      <td><code class="language-plaintext highlighter-rouge">--label autoheal=true</code></td>
+      <td>Target specific services</td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name></name></author><category term="Docker" /><category term="Linux" /><category term="Troubleshooting" /><category term="Docker" /><category term="cgroups" /><category term="namespaces" /><category term="bash scripting" /><category term="monitoring" /><category term="self-healing" /><summary type="html"><![CDATA[Build a bash watchdog that monitors Docker container health, auto-restarts unhealthy ones, and integrates with systemd and cgroups for production reliability.]]></summary></entry><entry><title type="html">🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</title><link href="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html" rel="alternate" type="text/html" title="🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts" /><published>2025-07-19T00:00:00+00:00</published><updated>2025-07-19T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html"><![CDATA[<p>When a container fails in production, you don’t always have time to browse StackOverflow. You need a checklist.</p>
 
 <p>This post is a field guide for the three most common container “murders”: Memory (OOMKilled), CPU Throttling, and I/O Saturation. We’ll diagnose each using the <code class="language-plaintext highlighter-rouge">docker stats</code> + Linux host tools workflow we established last week.</p>
 
@@ -2462,181 +2666,4 @@ systemctl restart myapp
     <p>Make changes with sed, awk, or yq/jq for structured data.
 ​</p>
   </li>
-</ul>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide for bash scripting commands essential for Devops Automation.]]></summary></entry><entry><title type="html">🚦 Feature Flag Management in Continuous Delivery</title><link href="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html" rel="alternate" type="text/html" title="🚦 Feature Flag Management in Continuous Delivery" /><published>2025-06-29T00:00:00+00:00</published><updated>2025-06-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature%20Flag%20Management%20in%20Continuous%20Delivery</id><content type="html" xml:base="https://autoshiftops.com/devops/ci/cd/continuous%20delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"><![CDATA[<h2 id="feature-flag-management-in-continuous-delivery">Feature Flag Management in Continuous Delivery</h2>
-
-<p>Feature flags (also known as feature toggles) are a <strong>powerful mechanism to decouple code deployment from feature releases</strong>. They enable DevOps teams to <strong>release features gradually, conduct A/B tests, and quickly rollback problematic features</strong> without redeploying code.</p>
-
-<p>This practice improves <strong>release velocity, reduces risk, and provides better control over production deployments</strong>.</p>
-
-<hr />
-
-<h3 id="why-feature-flags-matter">Why Feature Flags Matter</h3>
-
-<ul>
-  <li><strong>Controlled Rollouts:</strong> Enable incremental exposure of new features</li>
-  <li><strong>A/B Testing:</strong> Experiment with different variants to measure user impact</li>
-  <li><strong>Quick Rollbacks:</strong> Turn off problematic features instantly without redeploying</li>
-  <li><strong>Decoupled Deployments:</strong> Separate feature release from code integration</li>
-  <li><strong>Improved Collaboration:</strong> Developers, product managers, and QA can manage flags independently</li>
-</ul>
-
-<hr />
-
-<h3 id="types-of-feature-flags">Types of Feature Flags</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Release Flags</strong></td>
-      <td>Control feature release timing in production</td>
-    </tr>
-    <tr>
-      <td><strong>Experiment Flags</strong></td>
-      <td>Enable A/B testing and experimentation</td>
-    </tr>
-    <tr>
-      <td><strong>Ops Flags</strong></td>
-      <td>Control operational behavior like throttling or debugging</td>
-    </tr>
-    <tr>
-      <td><strong>Permission Flags</strong></td>
-      <td>Enable features for specific users or groups</td>
-    </tr>
-    <tr>
-      <td><strong>Kill Switch Flags</strong></td>
-      <td>Quickly disable features in case of issues</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="feature-flag-workflow-example">Feature Flag Workflow Example</h3>
-
-<ol>
-  <li><strong>Develop Feature Behind Flag:</strong> Wrap new code in a feature flag</li>
-  <li><strong>Deploy Code to Production:</strong> Deploy with the feature flag turned OFF</li>
-  <li><strong>Enable Gradually:</strong> Activate for internal users or small percentage of users</li>
-  <li><strong>Monitor Metrics:</strong> Observe performance, errors, and user behavior</li>
-  <li><strong>Roll Out or Roll Back:</strong> Adjust feature exposure based on insights</li>
-  <li><strong>Clean Up:</strong> Remove unused flags after feature is fully released</li>
-</ol>
-
-<hr />
-
-<h3 id="visual-diagram">Visual Diagram</h3>
-
-<div class="mermaid">
-flowchart TD
-    A[Feature Development] --&gt; B[Feature Flag Wrapper]
-    B --&gt; C[Deploy to Production]
-    C --&gt; D[Controlled Activation]
-    D --&gt; E[Monitor Metrics &amp; User Feedback]
-    E --&gt; F[Full Rollout or Rollback]
-</div>
-
-<hr />
-
-<h3 id="sample-code-snippet-python-feature-flag">Sample Code Snippet: Python Feature Flag</h3>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">FEATURE_FLAGS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sh">"</span><span class="s">new_checkout_flow</span><span class="sh">"</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">beta_search</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span>
-<span class="p">}</span>
-
-<span class="k">def</span> <span class="nf">checkout</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">FEATURE_FLAGS</span><span class="p">[</span><span class="sh">"</span><span class="s">new_checkout_flow</span><span class="sh">"</span><span class="p">]:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Using new checkout flow</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Using legacy checkout flow</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">search</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">FEATURE_FLAGS</span><span class="p">[</span><span class="sh">"</span><span class="s">beta_search</span><span class="sh">"</span><span class="p">]:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Using beta search algorithm</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Using standard search</span><span class="sh">"</span><span class="p">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>Toggle flags via environment variables, configuration files, or feature flag management tools</p>
-  </li>
-  <li>
-    <p>Avoid hardcoding flags in multiple places</p>
-  </li>
-</ul>
-
-<hr />
-
-<h3 id="recommended-tools">Recommended Tools</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Category</th>
-      <th>Tools</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><strong>Feature Flag Management</strong></td>
-      <td>LaunchDarkly, Unleash, Flagsmith, Split.io</td>
-    </tr>
-    <tr>
-      <td><strong>CI/CD Integration</strong></td>
-      <td>GitHub Actions, GitLab CI/CD, Jenkins</td>
-    </tr>
-    <tr>
-      <td><strong>Monitoring &amp; Metrics</strong></td>
-      <td>Grafana, Datadog, Prometheus</td>
-    </tr>
-    <tr>
-      <td><strong>Rollback Automation</strong></td>
-      <td>Ansible, Python scripts, Kubernetes Operators</td>
-    </tr>
-  </tbody>
-</table>
-
-<hr />
-
-<h3 id="best-practices">Best Practices</h3>
-
-<ul>
-  <li>Keep flags short-lived to prevent code complexity</li>
-  <li>Document the purpose and lifecycle of each flag</li>
-  <li>Use centralized management for toggles in production</li>
-  <li>Automate rollback and monitoring for safety</li>
-  <li>Test flags in staging environments before production</li>
-</ul>
-
-<hr />
-
-<h3 id="common-pitfalls">Common Pitfalls</h3>
-
-<ul>
-  <li>Leaving old flags in code, causing technical debt</li>
-  <li>Overusing flags, leading to confusion and maintenance overhead</li>
-  <li>Failing to monitor feature impact before full rollout</li>
-  <li>Not cleaning up unused flags after feature release</li>
-</ul>
-
-<hr />
-
-<h3 id="key-takeaways">Key Takeaways</h3>
-
-<ul>
-  <li>Feature flags decouple code deployment from feature release, increasing agility</li>
-  <li>Controlled rollouts, A/B testing, and quick rollbacks reduce risk</li>
-  <li>Centralized management and automated monitoring improve reliability</li>
-  <li>Flags should be short-lived and carefully documented</li>
-</ul>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>Feature flag management is a critical strategy for modern DevOps and continuous delivery. By using feature flags, teams can release features faster, experiment safely, and maintain stability in production environments. Implementing proper workflows, monitoring, and automated rollback mechanisms ensures a reliable and scalable deployment strategy.</p>]]></content><author><name></name></author><category term="DevOps" /><category term="CI/CD" /><category term="Continuous Delivery" /><category term="feature flags" /><category term="continuous delivery" /><category term="DevOps" /><category term="release management" /><category term="canary releases" /><category term="A/B testing" /><summary type="html"><![CDATA[Learn how to implement feature flag management in CI/CD pipelines to enable controlled rollouts, canary releases, and safer deployments in production.]]></summary></entry></feed>
+</ul>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide for bash scripting commands essential for Devops Automation.]]></summary></entry></feed>

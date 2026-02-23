@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</h1>
+  <p class="post-meta">Published on July 20, 2025</p>
+  <div class="post-content">
+    <p>Manual restarts during incidents are reactive. Self-healing means your containers recover themselves between alerts.</p>
+
+<p>This post shows how to build a lightweight bash watchdog that:</p>
+
+<ol>
+  <li>Monitors container health via Docker health checks</li>
+  <li>Restarts unhealthy containers</li>
+  <li>Integrates with systemd for daemon-like behavior</li>
+  <li>Logs everything for incident review</li>
+</ol>
+
+<h2 id="the-self-healing-architecture">The Self-Healing Architecture</h2>
+<p>Docker has built-in restart policies (<code class="language-plaintext highlighter-rouge">--restart unless-stopped</code>), but they don’t respect health checks. A container can be “running” but unhealthy (app crashed, dependencies down, etc.).</p>
+
+<p>Our script loops every 30 seconds:</p>
+
+<ol>
+  <li>Query Docker API for container health</li>
+  <li>Restart unhealthy containers</li>
+  <li>Log actions to systemd journal</li>
+  <li>Repeat</li>
+</ol>
+
+<h3 id="step-1-docker-health-checks-the-foundation">Step 1: Docker Health Checks (the foundation)</h3>
+<p>First, ensure your containers have proper health checks in <code class="language-plaintext highlighter-rouge">docker-compose.yml</code> or <code class="language-plaintext highlighter-rouge">docker run</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">services</span><span class="pi">:</span>
+  <span class="na">web</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="na">healthcheck</span><span class="pi">:</span>
+      <span class="na">test</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">CMD"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">curl"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-f"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">http://localhost/health"</span><span class="pi">]</span>
+      <span class="na">interval</span><span class="pi">:</span> <span class="s">30s</span>
+      <span class="na">timeout</span><span class="pi">:</span> <span class="s">10s</span>
+      <span class="na">retries</span><span class="pi">:</span> <span class="m">3</span>
+      <span class="na">start_period</span><span class="pi">:</span> <span class="s">40s</span>
+</code></pre></div></div>
+
+<p>This marks containers <code class="language-plaintext highlighter-rouge">healthy</code>, <code class="language-plaintext highlighter-rouge">unhealthy</code>, or <code class="language-plaintext highlighter-rouge">starting</code>.</p>
+
+<h3 id="step-2-the-self-healing-watchdog-script">Step 2: The Self-Healing Watchdog Script</h3>
+<p>Save this as <code class="language-plaintext highlighter-rouge">/usr/local/bin/docker-autoheal.sh</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
+<span class="nb">set</span> <span class="nt">-euo</span> pipefail
+
+<span class="c"># Config</span>
+<span class="nv">CHECK_INTERVAL</span><span class="o">=</span>30
+<span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">"/var/log/docker-autoheal.log"</span>
+<span class="nv">CONTAINER_LABEL</span><span class="o">=</span><span class="s2">"autoheal=true"</span>  <span class="c"># Label your containers</span>
+
+log<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="si">)</span><span class="s2"> - </span><span class="nv">$*</span><span class="s2">"</span> | <span class="nb">tee</span> <span class="nt">-a</span> <span class="s2">"</span><span class="nv">$LOG_FILE</span><span class="s2">"</span>
+<span class="o">}</span>
+
+heal_containers<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">unhealthy</span><span class="o">=(</span><span class="si">$(</span>docker ps <span class="nt">--filter</span> <span class="s2">"health=unhealthy"</span> <span class="nt">--filter</span> <span class="s2">"label=</span><span class="nv">$CONTAINER_LABEL</span><span class="s2">"</span> <span class="nt">--format</span> <span class="s2">""</span><span class="si">)</span><span class="o">)</span>
+  
+  <span class="k">for </span>container <span class="k">in</span> <span class="s2">"</span><span class="k">${</span><span class="nv">unhealthy</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">do
+    </span>log <span class="s2">"RESTARTING UNHEALTHY CONTAINER: </span><span class="nv">$container</span><span class="s2">"</span>
+    
+    <span class="c"># Graceful stop first</span>
+    docker stop <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">true</span>
+    
+    <span class="c"># Hard kill after timeout</span>
+    docker <span class="nb">kill</span> <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="o">||</span> <span class="nb">true</span>
+    
+    <span class="c"># Restart with original command</span>
+    docker start <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span>
+    
+    log <span class="s2">"RESTARTED: </span><span class="nv">$container</span><span class="s2">"</span>
+  <span class="k">done</span>
+<span class="o">}</span>
+
+<span class="c"># Main loop</span>
+log <span class="s2">"Docker Auto-Heal started (check interval: </span><span class="k">${</span><span class="nv">CHECK_INTERVAL</span><span class="k">}</span><span class="s2">s)"</span>
+<span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do
+  </span>heal_containers
+  <span class="nb">sleep</span> <span class="s2">"</span><span class="nv">$CHECK_INTERVAL</span><span class="s2">"</span>
+<span class="k">done</span>
+</code></pre></div></div>
+
+<h3 id="step-3-run-as-a-systemd-service-production-ready">Step 3: Run as a Systemd Service (production-ready)</h3>
+<p>Create <code class="language-plaintext highlighter-rouge">/etc/systemd/system/docker-autoheal.service</code>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Docker Container Auto-Healer
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/docker-autoheal.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p><strong>Enable and start:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>docker-autoheal.service
+<span class="nb">sudo </span>systemctl start docker-autoheal.service
+</code></pre></div></div>
+
+<p><strong>Check status:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl status docker-autoheal.service
+<span class="nb">sudo </span>journalctl <span class="nt">-u</span> docker-autoheal.service <span class="nt">-f</span>
+</code></pre></div></div>
+
+<h3 id="step-4-label-your-containers">Step 4: Label Your Containers</h3>
+<p>Tag containers you want to auto-heal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--label</span> <span class="s2">"autoheal=true"</span> <span class="se">\</span>
+  <span class="nt">--restart</span> unless-stopped <span class="se">\</span>
+  <span class="nt">--health-cmd</span><span class="o">=</span><span class="s2">"curl -f http://localhost:8080/health || exit 1"</span> <span class="se">\</span>
+  nginx
+</code></pre></div></div>
+
+<h3 id="step-5-advanced-features">Step 5: Advanced Features</h3>
+<p>Grace Period (avoid restart loops)</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Add to script before restart</span>
+<span class="k">if </span>docker inspect <span class="s2">"</span><span class="nv">$container</span><span class="s2">"</span> <span class="nt">--format</span> <span class="s1">''</span> | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"10"</span><span class="p">;</span> <span class="k">then
+  </span>log <span class="s2">"SKIPPING: </span><span class="nv">$container</span><span class="s2"> restart count too high (restart loop?)"</span>
+  <span class="k">continue
+fi</span>
+</code></pre></div></div>
+
+<p><strong>Webhook Alerts</strong></p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-X</span> POST <span class="nt">-d</span> <span class="s2">"{</span><span class="se">\"</span><span class="s2">container</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="nv">$container</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">action</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">restart</span><span class="se">\"</span><span class="s2">}"</span> <span class="s2">"</span><span class="nv">$WEBHOOK_URL</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<h3 id="multi-host-docker-swarm">Multi-Host (Docker Swarm)</h3>
+<p>Use labels + a central orchestrator or run the script on each host.
+​</p>
+<h3 id="testing-it-safely">Testing It (safely)</h3>
+<p>Spin up a container with a failing health check:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run <span class="nt">-d</span> <span class="se">\</span>
+  <span class="nt">--name</span> test-fail <span class="se">\</span>
+  <span class="nt">--label</span> <span class="s2">"autoheal=true"</span> <span class="se">\</span>
+  <span class="nt">--health-cmd</span><span class="o">=</span><span class="s2">"exit 1"</span> <span class="se">\</span>
+  alpine <span class="nb">sleep </span>infinity
+</code></pre></div></div>
+
+<p><strong>Watch it get restarted:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>journalctl <span class="nt">-u</span> docker-autoheal.service <span class="nt">-f</span>
+</code></pre></div></div>
+
+<h2 id="limitations--when-to-upgrade">Limitations + When to Upgrade</h2>
+<p><strong>This works great for:</strong></p>
+
+<ul>
+  <li>Small deployments / homelabs</li>
+  <li>Edge services / single-host apps</li>
+  <li>Dev/staging environments</li>
+</ul>
+
+<p><strong>Upgrade to:</strong></p>
+
+<ul>
+  <li>Kubernetes: liveness/readiness probes + pod disruption budgets</li>
+  <li>Docker Swarm: service replicas + constraints</li>
+  <li>Nomad: health checks + restart stanzas</li>
+</ul>
+
+<h3 id="summary-table-copypaste">Summary Table (Copy/Paste)</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Command</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Health Check</td>
+      <td><code class="language-plaintext highlighter-rouge">docker ps --filter health=unhealthy</code></td>
+      <td>Find broken containers</td>
+    </tr>
+    <tr>
+      <td>Watchdog</td>
+      <td><code class="language-plaintext highlighter-rouge">systemctl status docker-autoheal</code></td>
+      <td>Confirm service running</td>
+    </tr>
+    <tr>
+      <td>Logs</td>
+      <td><code class="language-plaintext highlighter-rouge">journalctl -u docker-autoheal</code></td>
+      <td>Review restart history</td>
+    </tr>
+    <tr>
+      <td>Container Labels</td>
+      <td><code class="language-plaintext highlighter-rouge">--label autoheal=true</code></td>
+      <td>Target specific services</td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
