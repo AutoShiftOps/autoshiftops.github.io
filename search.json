@@ -25,6 +25,14 @@
   },
 
   {
+    "title": "🚀 Build an AI Incident Copilot (CLI) in Python: Summarize Logs + Suggest Next Commands",
+    "url": "https://autoshiftops.com/devops/ai/incident%20management/machine%20learning/2025/11/29/ai-incident-copilot.html",
+    "date": "2025-11-29",
+    "categories": ["DevOps","AI","Incident Management","Machine Learning"],
+    "content": "Build an AI Incident Copilot (CLI) in PythonWhen an incident hits, most engineers repeat the same manual loop: pull recent logs, scan for errors, and guess what to check next.This post builds incopilot—a CLI tool that automates the first-pass triage:  Collect logs from systemd journal and/or Docker  Detect high-signal patterns (timeouts, OOM, disk full, 5xx, panics)  Map findings to the Four Golden Signals  Output report.md + report.json ready to paste into an incident doc  Safe by design: suggestions only — no destructive commands.ArchitectureProject structureincopilot/  __init__.py  cli.py          # argument parsing + console output  collectors.py   # journalctl, docker logs, file, bundle  analyzer.py     # pattern detection + line normalization  reporter.py     # report.md / report.json generation  config.py       # patterns, golden-signal map, safe-command listscripts/  demo_generate_sample_logs.pyposts/requirements.txtpyproject.tomlREADME.mdSetupgit clone https://github.com/AutoShiftOps/incopilot.gitcd incopilotpython -m venv .venvsource .venv/bin/activatepip install -r requirements.txtQuick test (no real services needed)python scripts/demo_generate_sample_logs.pypython -m incopilot file --path sample.logls out/Systemd journal triagepython -m incopilot journal --unit nginx --since \"30 min ago\"Docker triagepython -m incopilot docker --container my-api --since 1hBoth sources (bundle)python -m incopilot bundle \\  --unit nginx \\  --container my-api \\  --since-journal \"30 min ago\" \\  --since-docker 1hWhat you getout/report.md — paste into your incident docout/report.json — attach to a ticket or POST to a webhookWhat to improve next  Per-service pattern packs (nginx, postgres, java, node)  Slack/Teams webhook posting (--webhook &lt;url&gt;)  Unit tests + GitHub Actions CI  Scheduled timer (systemd timer unit) for proactive reports"
+  },
+
+  {
     "title": "🚀 Building an AI-Powered Stock Trading Bot in Python",
     "url": "https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html",
     "date": "2025-11-20",

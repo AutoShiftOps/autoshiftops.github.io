@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Categories</title>
+  <title>🚀 Build an AI Incident Copilot (CLI) in Python: Summarize Logs + Suggest Next Commands</title>
   <link rel="stylesheet" href="/assets/css/custom.css">
   <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
@@ -55,104 +55,91 @@
 </header>
 
   <main class="site-main">
-    <h1>Blog Categories</h1>
+    <article class="post container">
+  <h1>🚀 Build an AI Incident Copilot (CLI) in Python: Summarize Logs + Suggest Next Commands</h1>
+  <p class="post-meta">Published on November 29, 2025</p>
+  <div class="post-content">
+    <h1 id="build-an-ai-incident-copilot-cli-in-python">Build an AI Incident Copilot (CLI) in Python</h1>
+
+<p>When an incident hits, most engineers repeat the same manual loop: pull recent logs, scan for errors, and guess what to check next.</p>
+
+<p>This post builds <strong>incopilot</strong>—a CLI tool that automates the first-pass triage:</p>
+
 <ul>
-
-  <li><a href="/category/devops">DevOps</a> (58)</li>
-
-  <li><a href="/category/affiliate-marketing">affiliate marketing</a> (1)</li>
-
-  <li><a href="/category/cloud-migration">Cloud Migration</a> (1)</li>
-
-  <li><a href="/category/ci-cd">CI/CD</a> (21)</li>
-
-  <li><a href="/category/automation">Automation</a> (15)</li>
-
-  <li><a href="/category/github-automation">GitHub Automation</a> (1)</li>
-
-  <li><a href="/category/testing">Testing</a> (3)</li>
-
-  <li><a href="/category/cloud">Cloud</a> (6)</li>
-
-  <li><a href="/category/terraform">Terraform</a> (1)</li>
-
-  <li><a href="/category/monitoring">Monitoring</a> (9)</li>
-
-  <li><a href="/category/observability">Observability</a> (5)</li>
-
-  <li><a href="/category/containers">Containers</a> (2)</li>
-
-  <li><a href="/category/docker">Docker</a> (4)</li>
-
-  <li><a href="/category/kubernetes">Kubernetes</a> (5)</li>
-
-  <li><a href="/category/security">Security</a> (4)</li>
-
-  <li><a href="/category/ai">AI</a> (9)</li>
-
-  <li><a href="/category/logging">Logging</a> (2)</li>
-
-  <li><a href="/category/deployment">Deployment</a> (4)</li>
-
-  <li><a href="/category/scalability">Scalability</a> (1)</li>
-
-  <li><a href="/category/reliability">Reliability</a> (2)</li>
-
-  <li><a href="/category/serverless">Serverless</a> (1)</li>
-
-  <li><a href="/category/finance">Finance</a> (1)</li>
-
-  <li><a href="/category/infrastructure">Infrastructure</a> (1)</li>
-
-  <li><a href="/category/database">Database</a> (1)</li>
-
-  <li><a href="/category/release-management">Release Management</a> (1)</li>
-
-  <li><a href="/category/incident-management">Incident Management</a> (3)</li>
-
-  <li><a href="/category/sre">SRE</a> (2)</li>
-
-  <li><a href="/category/performance">Performance</a> (1)</li>
-
-  <li><a href="/category/backup">Backup</a> (1)</li>
-
-  <li><a href="/category/microservices">Microservices</a> (1)</li>
-
-  <li><a href="/category/collaboration">Collaboration</a> (1)</li>
-
-  <li><a href="/category/cost-management">Cost Management</a> (1)</li>
-
-  <li><a href="/category/gitops">GitOps</a> (1)</li>
-
-  <li><a href="/category/chaos-engineering">Chaos Engineering</a> (1)</li>
-
-  <li><a href="/category/resilience">Resilience</a> (1)</li>
-
-  <li><a href="/category/iac">IaC</a> (1)</li>
-
-  <li><a href="/category/multi-cloud">Multi-Cloud</a> (1)</li>
-
-  <li><a href="/category/continuous-delivery">Continuous Delivery</a> (1)</li>
-
-  <li><a href="/category/linux">Linux</a> (6)</li>
-
-  <li><a href="/category/bash">Bash</a> (3)</li>
-
-  <li><a href="/category/incident">Incident</a> (1)</li>
-
-  <li><a href="/category/troubleshooting">Troubleshooting</a> (2)</li>
-
-  <li><a href="/category/trading">Trading</a> (1)</li>
-
-  <li><a href="/category/machine-learning">Machine Learning</a> (4)</li>
-
-  <li><a href="/category/new-relic">New Relic</a> (1)</li>
-
-  <li><a href="/category/serivenow">SeriveNow</a> (1)</li>
-
-  <li><a href="/category/llms">LLMs</a> (2)</li>
-
+  <li>Collect logs from <strong>systemd journal</strong> and/or <strong>Docker</strong></li>
+  <li>Detect high-signal patterns (timeouts, OOM, disk full, 5xx, panics)</li>
+  <li>Map findings to the <strong>Four Golden Signals</strong></li>
+  <li>Output <code class="language-plaintext highlighter-rouge">report.md</code> + <code class="language-plaintext highlighter-rouge">report.json</code> ready to paste into an incident doc</li>
 </ul>
+
+<blockquote>
+  <p>Safe by design: suggestions only — no destructive commands.</p>
+</blockquote>
+
+<h2 id="architecture">Architecture</h2>
+<p><a href="/assets/images/posts/2025-11-29-ai-incident-copilot.png"><img src="/assets/images/posts/2025-11-29-ai-incident-copilot.png" alt="Architecture diagram" /></a></p>
+
+<h2 id="project-structure">Project structure</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>incopilot/
+  __init__.py
+  cli.py          # argument parsing + console output
+  collectors.py   # journalctl, docker logs, file, bundle
+  analyzer.py     # pattern detection + line normalization
+  reporter.py     # report.md / report.json generation
+  config.py       # patterns, golden-signal map, safe-command list
+scripts/
+  demo_generate_sample_logs.py
+posts/
+requirements.txt
+pyproject.toml
+README.md
+</code></pre></div></div>
+
+<h2 id="setup">Setup</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/AutoShiftOps/incopilot.git
+<span class="nb">cd </span>incopilot
+python <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="quick-test-no-real-services-needed">Quick test (no real services needed)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python scripts/demo_generate_sample_logs.py
+python <span class="nt">-m</span> incopilot file <span class="nt">--path</span> sample.log
+<span class="nb">ls </span>out/
+</code></pre></div></div>
+
+<h2 id="systemd-journal-triage">Systemd journal triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot journal <span class="nt">--unit</span> nginx <span class="nt">--since</span> <span class="s2">"30 min ago"</span>
+</code></pre></div></div>
+
+<h2 id="docker-triage">Docker triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot docker <span class="nt">--container</span> my-api <span class="nt">--since</span> 1h
+</code></pre></div></div>
+
+<h2 id="both-sources-bundle">Both sources (bundle)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot bundle <span class="se">\</span>
+  <span class="nt">--unit</span> nginx <span class="se">\</span>
+  <span class="nt">--container</span> my-api <span class="se">\</span>
+  <span class="nt">--since-journal</span> <span class="s2">"30 min ago"</span> <span class="se">\</span>
+  <span class="nt">--since-docker</span> 1h
+</code></pre></div></div>
+
+<h2 id="what-you-get">What you get</h2>
+<p><code class="language-plaintext highlighter-rouge">out/report.md</code> — paste into your incident doc<br />
+<code class="language-plaintext highlighter-rouge">out/report.json</code> — attach to a ticket or POST to a webhook</p>
+
+<h2 id="what-to-improve-next">What to improve next</h2>
+<ul>
+  <li>Per-service pattern packs (nginx, postgres, java, node)</li>
+  <li>Slack/Teams webhook posting (<code class="language-plaintext highlighter-rouge">--webhook &lt;url&gt;</code>)</li>
+  <li>Unit tests + GitHub Actions CI</li>
+  <li>Scheduled timer (systemd timer unit) for proactive reports</li>
+</ul>
+
+
+  </div>
+</article>
 
   </main>
 

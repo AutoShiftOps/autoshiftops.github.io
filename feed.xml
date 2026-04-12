@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-02-23T00:29:10+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-04-12T04:02:24+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1319,7 +1319,83 @@ wget &lt;official-model-url&gt;
       <td>Verify the <code class="language-plaintext highlighter-rouge">gr.addQuery</code> in the script matches the <code class="language-plaintext highlighter-rouge">issue_id</code> being sent.</td>
     </tr>
   </tbody>
-</table>]]></content><author><name></name></author><category term="New Relic" /><category term="SeriveNow" /><category term="New Relic" /><category term="ServiceNow" /><category term="Integration" /><summary type="html"><![CDATA[A comprehensive guide to Integrate New Relic Incidents into ServiceNow.]]></summary></entry><entry><title type="html">🚀 Building an AI-Powered Stock Trading Bot in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="🚀 Building an AI-Powered Stock Trading Bot in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h3 id="an-autoshiftops-guide-to-ai-agents-backtesting-and-real-world-automation">An AutoShiftOps guide to AI agents, backtesting, and real-world automation</h3>
+</table>]]></content><author><name></name></author><category term="New Relic" /><category term="SeriveNow" /><category term="New Relic" /><category term="ServiceNow" /><category term="Integration" /><summary type="html"><![CDATA[A comprehensive guide to Integrate New Relic Incidents into ServiceNow.]]></summary></entry><entry><title type="html">🚀 Build an AI Incident Copilot (CLI) in Python: Summarize Logs + Suggest Next Commands</title><link href="https://autoshiftops.com/devops/ai/incident%20management/machine%20learning/2025/11/29/ai-incident-copilot.html" rel="alternate" type="text/html" title="🚀 Build an AI Incident Copilot (CLI) in Python: Summarize Logs + Suggest Next Commands" /><published>2025-11-29T00:00:00+00:00</published><updated>2025-11-29T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/incident%20management/machine%20learning/2025/11/29/ai-incident-copilot</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/incident%20management/machine%20learning/2025/11/29/ai-incident-copilot.html"><![CDATA[<h1 id="build-an-ai-incident-copilot-cli-in-python">Build an AI Incident Copilot (CLI) in Python</h1>
+
+<p>When an incident hits, most engineers repeat the same manual loop: pull recent logs, scan for errors, and guess what to check next.</p>
+
+<p>This post builds <strong>incopilot</strong>—a CLI tool that automates the first-pass triage:</p>
+
+<ul>
+  <li>Collect logs from <strong>systemd journal</strong> and/or <strong>Docker</strong></li>
+  <li>Detect high-signal patterns (timeouts, OOM, disk full, 5xx, panics)</li>
+  <li>Map findings to the <strong>Four Golden Signals</strong></li>
+  <li>Output <code class="language-plaintext highlighter-rouge">report.md</code> + <code class="language-plaintext highlighter-rouge">report.json</code> ready to paste into an incident doc</li>
+</ul>
+
+<blockquote>
+  <p>Safe by design: suggestions only — no destructive commands.</p>
+</blockquote>
+
+<h2 id="architecture">Architecture</h2>
+<p><a href="/assets/images/posts/2025-11-29-ai-incident-copilot.png"><img src="/assets/images/posts/2025-11-29-ai-incident-copilot.png" alt="Architecture diagram" /></a></p>
+
+<h2 id="project-structure">Project structure</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>incopilot/
+  __init__.py
+  cli.py          # argument parsing + console output
+  collectors.py   # journalctl, docker logs, file, bundle
+  analyzer.py     # pattern detection + line normalization
+  reporter.py     # report.md / report.json generation
+  config.py       # patterns, golden-signal map, safe-command list
+scripts/
+  demo_generate_sample_logs.py
+posts/
+requirements.txt
+pyproject.toml
+README.md
+</code></pre></div></div>
+
+<h2 id="setup">Setup</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/AutoShiftOps/incopilot.git
+<span class="nb">cd </span>incopilot
+python <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="quick-test-no-real-services-needed">Quick test (no real services needed)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python scripts/demo_generate_sample_logs.py
+python <span class="nt">-m</span> incopilot file <span class="nt">--path</span> sample.log
+<span class="nb">ls </span>out/
+</code></pre></div></div>
+
+<h2 id="systemd-journal-triage">Systemd journal triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot journal <span class="nt">--unit</span> nginx <span class="nt">--since</span> <span class="s2">"30 min ago"</span>
+</code></pre></div></div>
+
+<h2 id="docker-triage">Docker triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot docker <span class="nt">--container</span> my-api <span class="nt">--since</span> 1h
+</code></pre></div></div>
+
+<h2 id="both-sources-bundle">Both sources (bundle)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot bundle <span class="se">\</span>
+  <span class="nt">--unit</span> nginx <span class="se">\</span>
+  <span class="nt">--container</span> my-api <span class="se">\</span>
+  <span class="nt">--since-journal</span> <span class="s2">"30 min ago"</span> <span class="se">\</span>
+  <span class="nt">--since-docker</span> 1h
+</code></pre></div></div>
+
+<h2 id="what-you-get">What you get</h2>
+<p><code class="language-plaintext highlighter-rouge">out/report.md</code> — paste into your incident doc<br />
+<code class="language-plaintext highlighter-rouge">out/report.json</code> — attach to a ticket or POST to a webhook</p>
+
+<h2 id="what-to-improve-next">What to improve next</h2>
+<ul>
+  <li>Per-service pattern packs (nginx, postgres, java, node)</li>
+  <li>Slack/Teams webhook posting (<code class="language-plaintext highlighter-rouge">--webhook &lt;url&gt;</code>)</li>
+  <li>Unit tests + GitHub Actions CI</li>
+  <li>Scheduled timer (systemd timer unit) for proactive reports</li>
+</ul>]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Incident Management" /><category term="Machine Learning" /><category term="AI agents" /><category term="incident management" /><category term="Python" /><category term="log analysis" /><category term="command suggestions" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A practical DevOps tool you can run over SSH in minutes (journalctl, docker logs, or plain files)]]></summary></entry><entry><title type="html">🚀 Building an AI-Powered Stock Trading Bot in Python</title><link href="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html" rel="alternate" type="text/html" title="🚀 Building an AI-Powered Stock Trading Bot in Python" /><published>2025-11-20T00:00:00+00:00</published><updated>2025-11-20T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"><![CDATA[<h3 id="an-autoshiftops-guide-to-ai-agents-backtesting-and-real-world-automation">An AutoShiftOps guide to AI agents, backtesting, and real-world automation</h3>
 
 <hr />
 
@@ -2403,267 +2479,4 @@ watch <span class="nt">-n</span> 2 <span class="s1">'ps aux --sort=-%cpu | head 
 | Connections | ss -tuln               | Modern netstat replacement           |
 | Logs        | journalctl -u nginx -f | systemd's tail -f                    |
 | Processes   | htop -p $(pgrep nginx) | Filter to specific app               |
-</code></pre></div></div>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide Linux Monitoring & Alerting.]]></summary></entry><entry><title type="html">🚀 Advanced Bash Scripting for DevOps Automation</title><link href="https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html" rel="alternate" type="text/html" title="🚀 Advanced Bash Scripting for DevOps Automation" /><published>2025-07-05T00:00:00+00:00</published><updated>2025-07-05T00:00:00+00:00</updated><id>https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting</id><content type="html" xml:base="https://autoshiftops.com/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html"><![CDATA[<h2 id="why-bash-still-rules-devops">Why Bash Still Rules DevOps?</h2>
-
-<p>Infrastructure as code, containers, and Kubernetes are great, but when you log into a box to fix something right now, Bash is still the fastest tool you have.
-​</p>
-
-<p>This post focuses on practical Bash scripting patterns that automate real DevOps tasks: deployments, health checks, log cleanups, and safety‑first operations you can trust in production.
-​</p>
-
-<h2 id="1-bash-scripting-foundations-done-right">1. Bash Scripting Foundations Done Right</h2>
-<p>Even experienced engineers skip basics that later cause flaky scripts.</p>
-
-<p>Always start with a shebang and safe defaults:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-<span class="nv">IFS</span><span class="o">=</span><span class="s1">$'</span><span class="se">\n\t</span><span class="s1">'</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p><b>et -e</b> → exit on error</p>
-  </li>
-  <li>
-    <p><b>set -u</b> → fail on undefined variables</p>
-  </li>
-  <li>
-    <p><b>set -o pipefail</b> → fail if any part of a pipe fails
-​</p>
-  </li>
-</ul>
-
-<p>Use functions instead of long procedural blobs:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
-
-die<span class="o">()</span> <span class="o">{</span>
-  log <span class="s2">"ERROR: </span><span class="nv">$*</span><span class="s2">"</span>
-  <span class="nb">exit </span>1
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>These patterns make scripts safer and easier to reuse across services and environments.</p>
-
-<h2 id="2-parameters-flags-and-environments">2. Parameters, Flags, and Environments</h2>
-<p>A good DevOps script is configurable without editing the file.</p>
-
-<p>Using Arguments and Defaults</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-
-<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>   <span class="c"># default to staging</span>
-
-log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
-
-log <span class="s2">"Deploying to </span><span class="nv">$ENVIRONMENT</span><span class="s2">"</span>
-</code></pre></div></div>
-
-<ul>
-  <li>
-    <p>${1:-staging} gives you a default while still allowing overrides.</p>
-  </li>
-  <li>
-    <p>This pattern works great for scripts you’ll run from CI/CD pipelines.
-​</p>
-  </li>
-</ul>
-
-<h3 id="robust-flag-parsing">Robust Flag Parsing</h3>
-<p>For more complex tools, use getopts:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">while </span><span class="nb">getopts</span> <span class="s2">"e:v:h"</span> opt<span class="p">;</span> <span class="k">do
-  case</span> <span class="s2">"</span><span class="nv">$opt</span><span class="s2">"</span> <span class="k">in
-    </span>e<span class="p">)</span> <span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
-    v<span class="p">)</span> <span class="nv">VERSION</span><span class="o">=</span><span class="s2">"</span><span class="nv">$OPTARG</span><span class="s2">"</span> <span class="p">;;</span>
-    h<span class="p">)</span> <span class="nb">echo</span> <span class="s2">"Usage: deploy.sh -e &lt;env&gt; -v &lt;version&gt;"</span><span class="p">;</span> <span class="nb">exit </span>0 <span class="p">;;</span>
-    <span class="k">*</span><span class="p">)</span> <span class="nb">exit </span>1 <span class="p">;;</span>
-  <span class="k">esac</span>
-<span class="k">done</span>
-</code></pre></div></div>
-
-<p>This turns a script into a proper CLI your team can rely on.​</p>
-
-<h2 id="3-realworld-deployment-script-pattern">3. Real‑World Deployment Script Pattern</h2>
-<p>Here’s a simplified multi‑step deployment flow you can adapt for web apps or microservices.
-​</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-
-<span class="nv">ENVIRONMENT</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">staging</span><span class="k">}</span><span class="s2">"</span>
-<span class="nv">APP_DIR</span><span class="o">=</span><span class="s2">"/srv/myapp"</span>
-<span class="nv">REPO_URL</span><span class="o">=</span><span class="s2">"git@github.com:org/myapp.git"</span>
-
-log<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">"[</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F %T'</span><span class="si">)</span><span class="s2">] [</span><span class="nv">$ENVIRONMENT</span><span class="s2">] </span><span class="nv">$*</span><span class="s2">"</span><span class="p">;</span> <span class="o">}</span>
-
-deploy<span class="o">()</span> <span class="o">{</span>
-  log <span class="s2">"Updating code..."</span>
-  <span class="k">if</span> <span class="o">[[</span> <span class="o">!</span> <span class="nt">-d</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">/.git"</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then
-    </span>git clone <span class="s2">"</span><span class="nv">$REPO_URL</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
-  <span class="k">fi
-  </span><span class="nb">cd</span> <span class="s2">"</span><span class="nv">$APP_DIR</span><span class="s2">"</span>
-  git fetch <span class="nt">--all</span>
-  git checkout main
-  git pull <span class="nt">--ff-only</span>
-
-  log <span class="s2">"Installing dependencies..."</span>
-  npm ci
-
-  log <span class="s2">"Running tests..."</span>
-  npm <span class="nb">test
-
-  </span>log <span class="s2">"Building..."</span>
-  npm run build
-
-  log <span class="s2">"Restarting service..."</span>
-  <span class="nb">sudo </span>systemctl restart myapp
-
-  log <span class="s2">"Deployment complete."</span>
-<span class="o">}</span>
-
-deploy
-</code></pre></div></div>
-
-<p>Why this works for DevOps:</p>
-
-<ul>
-  <li>Idempotent: safe to run multiple times.
-​</li>
-  <li>Ties into systemd for consistent service management.</li>
-</ul>
-
-<h2 id="4-automated-health-checks-and-rollbacks">4. Automated Health Checks and Rollbacks</h2>
-<p>Production automation needs more than “deploy and hope.”</p>
-
-<p>Health Check Example</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>health_check<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">local </span><span class="nv">url</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">http</span>://localhost/health<span class="k">}</span><span class="s2">"</span>
-  <span class="k">if </span>curl <span class="nt">-fsS</span> <span class="s2">"</span><span class="nv">$url</span><span class="s2">"</span> <span class="o">&gt;</span> /dev/null<span class="p">;</span> <span class="k">then
-    </span>log <span class="s2">"Health check passed for </span><span class="nv">$url</span><span class="s2">"</span>
-  <span class="k">else
-    </span>die <span class="s2">"Health check FAILED for </span><span class="nv">$url</span><span class="s2">"</span>
-  <span class="k">fi</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>Combine this with deployment:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>previous_version<span class="o">()</span> <span class="o">{</span>
-  git describe <span class="nt">--tags</span> <span class="nt">--abbrev</span><span class="o">=</span>0 HEAD~1 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s2">""</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rollback<span class="o">()</span> <span class="o">{</span>
-  <span class="nb">local </span>prev
-  <span class="nv">prev</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span>previous_version<span class="si">)</span><span class="s2">"</span>
-  <span class="o">[[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> die <span class="s2">"No previous version found for rollback"</span>
-
-  log <span class="s2">"Rolling back to </span><span class="nv">$prev</span><span class="s2">"</span>
-  git checkout <span class="s2">"</span><span class="nv">$prev</span><span class="s2">"</span>
-  npm run build
-  <span class="nb">sudo </span>systemctl restart myapp
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>After deployment:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deploy
-<span class="k">if</span> <span class="o">!</span> health_check <span class="s2">"https://myapp.example.com/health"</span><span class="p">;</span> <span class="k">then
-  </span>log <span class="s2">"Health check failed; rolling back"</span>
-  rollback
-<span class="k">fi</span>
-</code></pre></div></div>
-
-<p>This pattern mirrors real‑world blue/green or canary flows on a smaller scale.
-​</p>
-<h2 id="5-log-rotation-and-cleanup-jobs">5. Log Rotation and Cleanup Jobs</h2>
-<p>Bash + cron is still a perfectly valid way to manage logs on smaller setups.
-​</p>
-<h3 id="rotate-and-compress-logs">Rotate and Compress Logs</h3>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-
-<span class="nv">LOG_DIR</span><span class="o">=</span><span class="s2">"/var/log/myapp"</span>
-<span class="nv">DAYS_TO_KEEP</span><span class="o">=</span>7
-
-find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.log"</span> <span class="nt">-mtime</span> +<span class="nv">$DAYS_TO_KEEP</span> <span class="nt">-print0</span> <span class="se">\</span>
-  | <span class="k">while </span><span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> <span class="nt">-r</span> <span class="nt">-d</span> <span class="s1">''</span> file<span class="p">;</span> <span class="k">do
-      </span><span class="nb">gzip</span> <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span>
-    <span class="k">done</span>
-</code></pre></div></div>
-
-<p>Remove Old Archives</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find <span class="s2">"</span><span class="nv">$LOG_DIR</span><span class="s2">"</span> <span class="nt">-type</span> f <span class="nt">-name</span> <span class="s2">"*.gz"</span> <span class="nt">-mtime</span> +30 <span class="nt">-delete</span>
-</code></pre></div></div>
-
-<p>Schedule with cron:</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>crontab <span class="nt">-e</span>
-<span class="c"># Run cleanup daily at 01:30</span>
-30 1 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/local/bin/log_cleanup.sh
-</code></pre></div></div>
-
-<p>This keeps disks healthy without needing a full log‑management stack.
-​</p>
-<h2 id="6-monitoring-scripts-with-alerts">6. Monitoring Scripts with Alerts</h2>
-<p>You can wrap common Linux monitoring commands into Bash scripts that push alerts to Slack, email, or webhooks.
-​
-Example: CPU and Memory Watchdog</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="nb">set</span> <span class="nt">-euo</span> pipefail
-
-<span class="nv">CPU_THRESHOLD</span><span class="o">=</span>80
-<span class="nv">MEM_THRESHOLD</span><span class="o">=</span>80
-
-cpu_usage<span class="o">()</span> <span class="o">{</span>
-  mpstat 1 1 | <span class="nb">awk</span> <span class="s1">'/Average/ &amp;&amp; $12 ~ /[0-9.]+/ {print 100-$12}'</span>
-<span class="o">}</span>
-
-mem_usage<span class="o">()</span> <span class="o">{</span>
-  free | <span class="nb">awk</span> <span class="s1">'/Mem:/ {printf(\"%.0f\", $3/$2 * 100)}'</span>
-<span class="o">}</span>
-
-<span class="nv">CPU</span><span class="o">=</span><span class="si">$(</span>cpu_usage<span class="si">)</span>
-<span class="nv">MEM</span><span class="o">=</span><span class="si">$(</span>mem_usage<span class="si">)</span>
-
-<span class="k">if</span> <span class="o">((</span> CPU <span class="o">&gt;</span> CPU_THRESHOLD <span class="o">||</span> MEM <span class="o">&gt;</span> MEM_THRESHOLD <span class="o">))</span><span class="p">;</span> <span class="k">then
-  </span><span class="nb">echo</span> <span class="s2">"High usage detected: CPU=</span><span class="k">${</span><span class="nv">CPU</span><span class="k">}</span><span class="s2">% MEM=</span><span class="k">${</span><span class="nv">MEM</span><span class="k">}</span><span class="s2">%"</span>
-  <span class="c"># Hook: send to Slack / email / alerting system</span>
-<span class="k">fi</span>
-</code></pre></div></div>
-
-<p>This complements full monitoring stacks by giving you lightweight, scriptable checks.​</p>
-
-<h2 id="7-safer-file-and-config-changes">7. Safer File and Config Changes</h2>
-<p>Use Bash to modify configuration files predictably instead of manual edits.</p>
-
-<p>Backups + Atomic Changes</p>
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">CONFIG</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml"</span>
-<span class="nv">BACKUP</span><span class="o">=</span><span class="s2">"/etc/myapp/config.yaml.</span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%F-%H%M%S'</span><span class="si">)</span><span class="s2">.bak"</span>
-
-<span class="nb">cp</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span> <span class="s2">"</span><span class="nv">$BACKUP</span><span class="s2">"</span>
-
-<span class="c"># Example: toggle a feature flag</span>
-<span class="nb">sed</span> <span class="nt">-i</span> <span class="s1">'s/feature_x: false/feature_x: true/'</span> <span class="s2">"</span><span class="nv">$CONFIG</span><span class="s2">"</span>
-
-systemctl restart myapp
-</code></pre></div></div>
-
-<p>Pattern:</p>
-
-<ul>
-  <li>
-    <p>Always create timestamped backups.</p>
-  </li>
-  <li>
-    <p>Make changes with sed, awk, or yq/jq for structured data.
-​</p>
-  </li>
-</ul>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide for bash scripting commands essential for Devops Automation.]]></summary></entry></feed>
+</code></pre></div></div>]]></content><author><name></name></author><category term="Automation" /><category term="Linux" /><category term="Bash" /><category term="Automation" /><category term="Scripting" /><category term="Bash" /><category term="Linux" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide Linux Monitoring & Alerting.]]></summary></entry></feed>
