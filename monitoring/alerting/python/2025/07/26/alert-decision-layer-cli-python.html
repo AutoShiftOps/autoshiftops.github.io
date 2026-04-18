@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</title>
+  <link rel="stylesheet" href="/assets/css/custom.css">
+  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicon/site.webmanifest">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
+     crossorigin="anonymous"></script>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <header class="site-header">
+  <div class="container header-container">
+    <!-- Hamburger button -->
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="/">
+        <img src="/assets/images/logo.png"
+             alt="AutoshiftOps" class="site-logo">
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <button class="nav-close" aria-label="Close Menu">&times;</button>
+      <a href="/blog">Blog</a>
+      <a href="/projects">Projects</a>
+      <a href="/tools">Tools</a>
+      <a href="/archives/2025">Archives</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="site-main">
+    <article class="post container">
+  <h1>🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</h1>
+  <p class="post-meta">Published on July 26, 2025</p>
+  <div class="post-content">
+    <h1 id="designing-an-alert-decision-layer-with-a-working-cli-in-python">Designing an Alert Decision Layer (with a Working CLI in Python)</h1>
+
+<p>Most teams don’t have an <strong>alerting problem</strong>. They have a <strong>decision problem</strong>.</p>
+
+<ul>
+  <li>Too many alerts, not enough clear decisions.</li>
+  <li>Too many “AI insights”, not enough simple rules everyone can understand.</li>
+</ul>
+
+<p>In this post we’ll design a small <strong>Alert Decision Layer</strong> and ship a working Python CLI called <code class="language-plaintext highlighter-rouge">alertdecider</code> that:</p>
+
+<ul>
+  <li>Normalizes alerts from JSON into a compact schema.</li>
+  <li>Uses a transparent rule engine to decide: <code class="language-plaintext highlighter-rouge">page</code>, <code class="language-plaintext highlighter-rouge">ticket</code>, <code class="language-plaintext highlighter-rouge">suppress</code>, or <code class="language-plaintext highlighter-rouge">aggregate</code>.</li>
+  <li>Emits a Markdown + JSON report you can paste into your incident tooling.</li>
+</ul>
+
+<p>This is intentionally small but architecturally opinionated — a good stepping stone towards more advanced AI-driven triage later.</p>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>High level:</p>
+
+<ol>
+  <li><strong>Alert sources</strong> export alerts as JSON (Prometheus Alertmanager, PagerDuty, etc.).</li>
+  <li><code class="language-plaintext highlighter-rouge">alertdecider</code> <strong>normalizes</strong> them into a simple <code class="language-plaintext highlighter-rouge">Alert</code> model.</li>
+  <li>An <strong>AlertDecisionEngine</strong> evaluates each alert using service profiles (tier, SLO criticality) and recent history (flapping / noise).</li>
+  <li>The engine emits a <strong>Decision</strong> (<code class="language-plaintext highlighter-rouge">page</code> / <code class="language-plaintext highlighter-rouge">ticket</code> / <code class="language-plaintext highlighter-rouge">aggregate</code> / <code class="language-plaintext highlighter-rouge">suppress</code>) plus a short reason.</li>
+  <li>A <strong>reporter</strong> writes <code class="language-plaintext highlighter-rouge">decision_report.md</code> and <code class="language-plaintext highlighter-rouge">decision_report.json</code>.</li>
+</ol>
+
+<h2 id="project-structure">Project structure</h2>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>alertdecider-agent/
+  __init__.py
+  __main__.py
+  cli.py          # CLI entry point
+  models.py       # Alert, ServiceProfile, History dataclasses
+  loader.py       # Load alerts/services/history from JSON/YAML
+  engine.py       # Decision rules (AlertDecisionEngine)
+  reporter.py     # Console + Markdown/JSON output
+examples/
+  alerts.json     # Example alerts
+  services.yml    # Service risk profiles
+  history.json    # Simple alert history
+</code></pre></div></div>
+
+<h2 id="setup">Setup</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/AutoShiftOps/alertdecider.git
+<span class="nb">cd </span>alertdecider
+python <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="try-it-with-the-example-data">Try it with the example data</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> alertdecider-agent   <span class="nt">--alerts</span> examples/alerts.json   <span class="nt">--services</span> examples/services.yml   <span class="nt">--history</span> examples/history.json   <span class="nt">--out-dir</span> out
+
+<span class="nb">cat </span>out/decision_report.md
+</code></pre></div></div>
+
+<p>You should see:</p>
+
+<ul>
+  <li>The checkout <code class="language-plaintext highlighter-rouge">critical</code> alert routed to <strong>page</strong> (tier1 + slo-critical).</li>
+  <li>The notification <code class="language-plaintext highlighter-rouge">warning</code> routed to <strong>ticket</strong>.</li>
+  <li>The flappy notification alert marked <strong>aggregate</strong> because it fired 25 times in 24h.</li>
+  <li>The staging <code class="language-plaintext highlighter-rouge">info</code> alert <strong>suppressed</strong>.</li>
+</ul>
+
+<h2 id="where-ai-fits-later">Where AI fits later</h2>
+
+<p>Once you have a clear decision layer like this, AI becomes a drop-in:</p>
+
+<ul>
+  <li>Turn the <code class="language-plaintext highlighter-rouge">reason</code> strings into richer explanations (LLM summarization).</li>
+  <li>Generate suggested runbook links based on alert name / service.</li>
+  <li>Feed the decisions and history into a learning system.</li>
+</ul>
+
+<p>But the core remains <strong>interpretable rules + data you control</strong>.</p>
+
+<h2 id="next-steps">Next steps</h2>
+
+<ul>
+  <li>Add time-of-day and on-call load into the decision model.</li>
+  <li>Persist history (e.g. in a small SQLite DB) instead of JSON.</li>
+  <li>Integrate with your real alert source via webhooks.</li>
+</ul>
+
+<p>we will look at a working implementation of this in the next post, where we build out the <code class="language-plaintext highlighter-rouge">AlertDecisionEngine</code> and CLI in Python. Stay tuned!</p>
+
+  </div>
+</article>
+
+  </main>
+
+  <section class="newsletter">
+  <h3>Join the Weekly DevOps Digest 🚀</h3>
+  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
+  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
+    <input type="email" name="email" placeholder="Your email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+  <footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.</p>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
