@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-04-18T22:05:28+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://autoshiftops.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://autoshiftops.com/" rel="alternate" type="text/html" /><updated>2026-04-19T01:03:49+00:00</updated><id>https://autoshiftops.com/feed.xml</id><title type="html">AutoShiftOps</title><subtitle>Tech with Sajja’s — DevOps, Cloud &amp; AI simplified</subtitle><entry><title type="html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</title><link href="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html" rel="alternate" type="text/html" title="🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp" /><published>2025-12-28T00:00:00+00:00</published><updated>2025-12-28T00:00:00+00:00</updated><id>https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained</id><content type="html" xml:base="https://autoshiftops.com/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html"><![CDATA[<h1 id="running-large-language-models-on-cpu-a-practical-guide-to-cpu-only-llm-inference">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference</h1>
 
 <blockquote>
   <p><em>No GPUs. No cloud scaling. Just Linux, CPUs, and solid systems engineering.</em></p>
@@ -1594,36 +1594,117 @@ It is <strong>not financial advice</strong>.</p>
 
 <p>We focus on <strong>practical AI</strong> — systems that survive production, not demos.</p>
 
-<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</title><link href="https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html" rel="alternate" type="text/html" title="🔧 Designing an Alert Decision Layer (with a Working CLI in Python)" /><published>2025-07-26T00:00:00+00:00</published><updated>2025-07-26T00:00:00+00:00</updated><id>https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python</id><content type="html" xml:base="https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html"><![CDATA[<h1 id="designing-an-alert-decision-layer-with-a-working-cli-in-python">Designing an Alert Decision Layer (with a Working CLI in Python)</h1>
+<hr />]]></content><author><name></name></author><category term="DevOps" /><category term="AI" /><category term="Trading" /><category term="Machine Learning" /><category term="AI agents" /><category term="stock trading" /><category term="Python" /><category term="LSTM" /><category term="backtesting" /><category term="machine learning" /><category term="AutoShiftOps" /><summary type="html"><![CDATA[A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting.]]></summary></entry><entry><title type="html">🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</title><link href="https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html" rel="alternate" type="text/html" title="🔧 Designing an Alert Decision Layer (with a Working CLI in Python)" /><published>2025-07-26T00:00:00+00:00</published><updated>2025-07-26T00:00:00+00:00</updated><id>https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python</id><content type="html" xml:base="https://autoshiftops.com/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html"><![CDATA[<p>Most teams don’t have an alerting problem. They have a <strong>decision problem</strong>.</p>
 
-<p>Most teams don’t have an <strong>alerting problem</strong>. They have a <strong>decision problem</strong>.</p>
+<p>Over time, SRE and DevOps teams add more checks, more monitors, more “smart” tools. The result is often alert fatigue: hundreds of alerts, dozens of dashboards, and still no clear answer to the question “Do we wake someone up for this?”</p>
 
-<ul>
-  <li>Too many alerts, not enough clear decisions.</li>
-  <li>Too many “AI insights”, not enough simple rules everyone can understand.</li>
-</ul>
-
-<p>In this post we’ll design a small <strong>Alert Decision Layer</strong> and ship a working Python CLI called <code class="language-plaintext highlighter-rouge">alertdecider</code> that:</p>
+<p>In this post we’ll do two things:</p>
 
 <ul>
-  <li>Normalizes alerts from JSON into a compact schema.</li>
-  <li>Uses a transparent rule engine to decide: <code class="language-plaintext highlighter-rouge">page</code>, <code class="language-plaintext highlighter-rouge">ticket</code>, <code class="language-plaintext highlighter-rouge">suppress</code>, or <code class="language-plaintext highlighter-rouge">aggregate</code>.</li>
-  <li>Emits a Markdown + JSON report you can paste into your incident tooling.</li>
+  <li>Design a simple <strong>Alert Decision Layer</strong> – an explicit step between alerts and humans.</li>
+  <li>Build a small, working CLI in Python called <code class="language-plaintext highlighter-rouge">alertdecider</code> that you can run today.</li>
 </ul>
 
-<p>This is intentionally small but architecturally opinionated — a good stepping stone towards more advanced AI-driven triage later.</p>
+<p>By the end you’ll have:</p>
+
+<ul>
+  <li>A clear architecture for routing alerts to <code class="language-plaintext highlighter-rouge">page</code>, <code class="language-plaintext highlighter-rouge">ticket</code>, <code class="language-plaintext highlighter-rouge">aggregate</code>, or <code class="language-plaintext highlighter-rouge">suppress</code>.</li>
+  <li>A CLI that reads alerts from JSON, applies transparent rules, and outputs a Markdown + JSON report.</li>
+  <li>A foundation you can later extend with AI without turning your incident pipeline into a black box.</li>
+</ul>
+
+<hr />
+
+<h2 id="the-problem-alerts-without-decisions">The problem: alerts without decisions</h2>
+
+<p>Alert fatigue has been written about a lot, but the symptoms are consistent:</p>
+
+<ul>
+  <li>On-call engineers get spammed by low-value alerts, become desensitized, and miss the important ones.</li>
+  <li>Teams add more tools and even AI summaries, but humans still have to manually decide “page vs ticket vs ignore” for each signal.</li>
+  <li>Runbooks and SLOs exist, but the mental model that turns raw alerts into decisions lives in people’s heads.</li>
+</ul>
+
+<p>What’s missing is a <strong>small decision layer</strong> that sits between your alert sources and your incident response.</p>
+
+<p>That layer should be:</p>
+
+<ul>
+  <li><strong>Transparent</strong> – decisions come from rules everyone can understand and modify.</li>
+  <li><strong>Context-aware</strong> – severity alone isn’t enough; you need service tier, environment, and history.</li>
+  <li><strong>Composable</strong> – easy to extend later with AI-based explanations instead of replacing human judgment.</li>
+</ul>
+
+<p>That’s what we’ll build.</p>
+
+<hr />
+
+<h2 id="design-principles">Design principles</h2>
+
+<p>Before touching code, let’s describe the design as an architect:</p>
+
+<ol>
+  <li>
+    <p><strong>Normalize first, then decide</strong><br />
+Every alert source has its own JSON schema. We’ll normalize into a simple <code class="language-plaintext highlighter-rouge">Alert</code> model (id, name, service, severity, environment, fingerprint, timestamps) before any rules.</p>
+  </li>
+  <li>
+    <p><strong>Service profiles matter</strong><br />
+A <code class="language-plaintext highlighter-rouge">critical</code> alert on a tier1, SLO-critical service is not the same as a <code class="language-plaintext highlighter-rouge">critical</code> on a best-effort internal tool. We encode this in a <code class="language-plaintext highlighter-rouge">ServiceProfile</code> model loaded from <code class="language-plaintext highlighter-rouge">services.yml</code>.</p>
+  </li>
+  <li>
+    <p><strong>History influences action</strong><br />
+A fingerprint fired once is different from a fingerprint that fired 40 times today. We’ll use a small <code class="language-plaintext highlighter-rouge">History</code> model to treat flapping/noisy alerts differently.</p>
+  </li>
+  <li>
+    <p><strong>Rules are code, not magic</strong><br />
+The <code class="language-plaintext highlighter-rouge">AlertDecisionEngine</code> is a small, explicit rule engine. The first version has no AI – just clear if/else policies you can review in code.</p>
+  </li>
+  <li>
+    <p><strong>Decisions must be explainable</strong><br />
+Every decision carries a <code class="language-plaintext highlighter-rouge">reason</code> string. This is where AI can plug in later to generate richer explanations, but today it’s hand-written and predictable.</p>
+  </li>
+</ol>
+
+<hr />
 
 <h2 id="architecture">Architecture</h2>
 
-<p>High level:</p>
+<p>Here’s the high-level architecture of the Alert Decision Layer:</p>
 
 <ol>
-  <li><strong>Alert sources</strong> export alerts as JSON (Prometheus Alertmanager, PagerDuty, etc.).</li>
-  <li><code class="language-plaintext highlighter-rouge">alertdecider</code> <strong>normalizes</strong> them into a simple <code class="language-plaintext highlighter-rouge">Alert</code> model.</li>
-  <li>An <strong>AlertDecisionEngine</strong> evaluates each alert using service profiles (tier, SLO criticality) and recent history (flapping / noise).</li>
-  <li>The engine emits a <strong>Decision</strong> (<code class="language-plaintext highlighter-rouge">page</code> / <code class="language-plaintext highlighter-rouge">ticket</code> / <code class="language-plaintext highlighter-rouge">aggregate</code> / <code class="language-plaintext highlighter-rouge">suppress</code>) plus a short reason.</li>
-  <li>A <strong>reporter</strong> writes <code class="language-plaintext highlighter-rouge">decision_report.md</code> and <code class="language-plaintext highlighter-rouge">decision_report.json</code>.</li>
+  <li><strong>Sources</strong>
+    <ul>
+      <li>Prometheus Alertmanager, PagerDuty, or any system that can export alerts as JSON.</li>
+    </ul>
+  </li>
+  <li><strong>Normalizer (<code class="language-plaintext highlighter-rouge">loader.py</code>)</strong>
+    <ul>
+      <li>Reads raw JSON and maps each item into an <code class="language-plaintext highlighter-rouge">Alert</code> dataclass with a consistent shape.</li>
+    </ul>
+  </li>
+  <li><strong>Context loaders</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">services.yml</code> → <code class="language-plaintext highlighter-rouge">ServiceProfile</code> per service (tier, SLO criticality, owner).</li>
+      <li><code class="language-plaintext highlighter-rouge">history.json</code> → <code class="language-plaintext highlighter-rouge">History</code> per fingerprint (how often we’ve seen this alert recently).</li>
+    </ul>
+  </li>
+  <li><strong>Decision engine (<code class="language-plaintext highlighter-rouge">engine.py</code>)</strong>
+    <ul>
+      <li>For each <code class="language-plaintext highlighter-rouge">Alert</code>, looks up the service profile and history and decides one of: <code class="language-plaintext highlighter-rouge">page</code>, <code class="language-plaintext highlighter-rouge">ticket</code>, <code class="language-plaintext highlighter-rouge">aggregate</code>, <code class="language-plaintext highlighter-rouge">suppress</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Reporters (<code class="language-plaintext highlighter-rouge">reporter.py</code>)</strong>
+    <ul>
+      <li>Writes a human-friendly <code class="language-plaintext highlighter-rouge">decision_report.md</code> and a machine-friendly <code class="language-plaintext highlighter-rouge">decision_report.json</code>.</li>
+      <li>Prints a table to the terminal so you can sanity-check the decisions quickly.</li>
+    </ul>
+  </li>
 </ol>
+
+<p>This is intentionally simple: a single CLI binary that can be run locally, in CI, or as a cron/systemd job.</p>
+
+<hr />
 
 <h2 id="project-structure">Project structure</h2>
 
@@ -1641,6 +1722,10 @@ examples/
   history.json    # Simple alert history
 </code></pre></div></div>
 
+<p>You can clone the repo and run it against the example data to see how everything works before wiring it into your own tooling.</p>
+
+<hr />
+
 <h2 id="setup">Setup</h2>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/AutoShiftOps/alertdecider.git
@@ -1650,43 +1735,136 @@ python <span class="nt">-m</span> venv .venv
 pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
 </code></pre></div></div>
 
-<h2 id="try-it-with-the-example-data">Try it with the example data</h2>
+<p>The dependencies are minimal:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">rich</code> for nice CLI tables.</li>
+  <li><code class="language-plaintext highlighter-rouge">PyYAML</code> for <code class="language-plaintext highlighter-rouge">services.yml</code>.</li>
+</ul>
+
+<hr />
+
+<h2 id="modelling-alerts-services-and-history">Modelling alerts, services, and history</h2>
+
+<p>We start by defining three small dataclasses in <code class="language-plaintext highlighter-rouge">models.py</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Alert</code> – normalized alert coming from any source (Prometheus, PagerDuty, etc.).</li>
+  <li><code class="language-plaintext highlighter-rouge">ServiceProfile</code> – tier and SLO information for a service.</li>
+  <li><code class="language-plaintext highlighter-rouge">History</code> – how often an alert fingerprint has fired in the last 24 hours.</li>
+</ul>
+
+<p>This gives us a clean domain model to talk about decisions.</p>
+
+<hr />
+
+<h2 id="implementing-the-decision-engine">Implementing the decision engine</h2>
+
+<p><code class="language-plaintext highlighter-rouge">engine.py</code> contains the <code class="language-plaintext highlighter-rouge">AlertDecisionEngine</code> with a handful of clear rules.</p>
+
+<p>Examples of policies encoded:</p>
+
+<ul>
+  <li>
+    <p><strong>Low-severity non-prod noise</strong><br />
+<code class="language-plaintext highlighter-rouge">info</code> / <code class="language-plaintext highlighter-rouge">debug</code> in non-prod → <code class="language-plaintext highlighter-rouge">suppress</code>.</p>
+  </li>
+  <li>
+    <p><strong>Critical on tier1, SLO-critical services</strong><br />
+<code class="language-plaintext highlighter-rouge">critical</code> + <code class="language-plaintext highlighter-rouge">tier1</code> + <code class="language-plaintext highlighter-rouge">slo_critical=true</code> → <code class="language-plaintext highlighter-rouge">page</code>.</p>
+  </li>
+  <li>
+    <p><strong>Flapping alerts</strong><br />
+<code class="language-plaintext highlighter-rouge">count_24h &gt;= 20</code> → <code class="language-plaintext highlighter-rouge">aggregate</code> (don’t page for every occurrence; treat as noisy/frequent).</p>
+  </li>
+  <li>
+    <p><strong>Warnings on tier1</strong><br />
+<code class="language-plaintext highlighter-rouge">warning</code> on <code class="language-plaintext highlighter-rouge">tier1</code> → <code class="language-plaintext highlighter-rouge">ticket</code> (not a page, but still important to track).</p>
+  </li>
+  <li>
+    <p><strong>Default behavior</strong><br />
+Prod alerts without a specific rule → <code class="language-plaintext highlighter-rouge">ticket</code>.<br />
+Non-prod alerts without a specific rule → <code class="language-plaintext highlighter-rouge">suppress</code>.</p>
+  </li>
+</ul>
+
+<p>The whole point is that you can read this engine like a policy document.</p>
+
+<hr />
+
+<h2 id="running-the-cli-with-example-data">Running the CLI with example data</h2>
+
+<p>With the repo set up, try the example:</p>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> alertdecider-agent   <span class="nt">--alerts</span> examples/alerts.json   <span class="nt">--services</span> examples/services.yml   <span class="nt">--history</span> examples/history.json   <span class="nt">--out-dir</span> out
 
 <span class="nb">cat </span>out/decision_report.md
 </code></pre></div></div>
 
-<p>You should see:</p>
+<p>You’ll see a table in your terminal and a Markdown report with each alert’s decision and reason.</p>
+
+<p>With the provided examples, you should observe:</p>
 
 <ul>
-  <li>The checkout <code class="language-plaintext highlighter-rouge">critical</code> alert routed to <strong>page</strong> (tier1 + slo-critical).</li>
-  <li>The notification <code class="language-plaintext highlighter-rouge">warning</code> routed to <strong>ticket</strong>.</li>
-  <li>The flappy notification alert marked <strong>aggregate</strong> because it fired 25 times in 24h.</li>
-  <li>The staging <code class="language-plaintext highlighter-rouge">info</code> alert <strong>suppressed</strong>.</li>
+  <li>A <strong>critical</strong> alert on a tier1, SLO-critical service in prod → <strong>page</strong>.</li>
+  <li>A <strong>warning</strong> on a tier1 service → <strong>ticket</strong>.</li>
+  <li>A flapping alert with high <code class="language-plaintext highlighter-rouge">count_24h</code> → <strong>aggregate</strong>.</li>
+  <li>A low-severity <code class="language-plaintext highlighter-rouge">info</code> alert in staging → <strong>suppress</strong>.</li>
 </ul>
 
-<h2 id="where-ai-fits-later">Where AI fits later</h2>
+<p>From here, you can plug in your own alerts JSON and adjust <code class="language-plaintext highlighter-rouge">services.yml</code> and <code class="language-plaintext highlighter-rouge">engine.py</code> to match your reality.</p>
 
-<p>Once you have a clear decision layer like this, AI becomes a drop-in:</p>
+<hr />
+
+<h2 id="where-ai-fits-in-later">Where AI fits in (later)</h2>
+
+<p>Right now, <code class="language-plaintext highlighter-rouge">alertdecider-agent</code> is deliberately rule-based and transparent.</p>
+
+<p>Once you’re happy with the structure, you can start experimenting with AI in safe, incremental ways:</p>
 
 <ul>
-  <li>Turn the <code class="language-plaintext highlighter-rouge">reason</code> strings into richer explanations (LLM summarization).</li>
-  <li>Generate suggested runbook links based on alert name / service.</li>
-  <li>Feed the decisions and history into a learning system.</li>
+  <li>
+    <p><strong>Richer explanations</strong><br />
+Feed the normalized alert + decision into an LLM to generate a human-friendly explanation and suggested next steps.</p>
+  </li>
+  <li>
+    <p><strong>Runbook suggestions</strong><br />
+Use alert name, service name, and history to suggest a runbook link or dashboard.</p>
+  </li>
+  <li>
+    <p><strong>Rule tuning hints</strong><br />
+Analyze real decision logs to recommend new rules (e.g., “this pattern is always suppressed but often escalated manually”).</p>
+  </li>
 </ul>
 
-<p>But the core remains <strong>interpretable rules + data you control</strong>.</p>
+<p>The important part is: the control plane (what gets paged vs ticketed vs suppressed) remains in code you own.</p>
 
-<h2 id="next-steps">Next steps</h2>
+<hr />
+
+<h2 id="next-steps-for-your-team">Next steps for your team</h2>
+
+<p>If you try this out, here are some directions to evolve it:</p>
 
 <ul>
-  <li>Add time-of-day and on-call load into the decision model.</li>
-  <li>Persist history (e.g. in a small SQLite DB) instead of JSON.</li>
-  <li>Integrate with your real alert source via webhooks.</li>
+  <li>
+    <p><strong>Add time-of-day and on-call load</strong><br />
+Don’t page at 03:00 for something that can safely be a ticket until business hours.</p>
+  </li>
+  <li>
+    <p><strong>Persist history more robustly</strong><br />
+Replace <code class="language-plaintext highlighter-rouge">history.json</code> with a small SQLite table or a lightweight time-series store.</p>
+  </li>
+  <li>
+    <p><strong>Integrate with your actual alert pipeline</strong><br />
+Wire <code class="language-plaintext highlighter-rouge">alertdecider</code> into Alertmanager/PagerDuty via webhooks, or run it as part of your incident ingestion path.</p>
+  </li>
+  <li>
+    <p><strong>Measure impact</strong><br />
+Track how many alerts are suppressed or aggregated, and how many pages you avoided without missing true incidents.</p>
+  </li>
 </ul>
 
-<p>we will look at a working implementation of this in the next post, where we build out the <code class="language-plaintext highlighter-rouge">AlertDecisionEngine</code> and CLI in Python. Stay tuned!</p>]]></content><author><name></name></author><category term="Monitoring" /><category term="Alerting" /><category term="Python" /><category term="Python" /><category term="alerting" /><category term="decision-making" /><summary type="html"><![CDATA[Build a Python CLI for designing and managing an alert decision layer that intelligently routes and handles alerts.]]></summary></entry><entry><title type="html">🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</title><link href="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html" rel="alternate" type="text/html" title="🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-20T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html"><![CDATA[<p>Manual restarts during incidents are reactive. Self-healing means your containers recover themselves between alerts.</p>
+<p>This is the kind of small, opinionated tool that can pay off quickly for SRE/DevOps teams drowning in alerts – and it’s a great foundation for more advanced AI-assisted incident management.</p>]]></content><author><name></name></author><category term="Monitoring" /><category term="Alerting" /><category term="Python" /><category term="Python" /><category term="alerting" /><category term="decision-making" /><summary type="html"><![CDATA[Build a Python CLI for designing and managing an alert decision layer that intelligently routes and handles alerts.]]></summary></entry><entry><title type="html">🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</title><link href="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html" rel="alternate" type="text/html" title="🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery" /><published>2025-07-20T00:00:00+00:00</published><updated>2025-07-20T00:00:00+00:00</updated><id>https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash</id><content type="html" xml:base="https://autoshiftops.com/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html"><![CDATA[<p>Manual restarts during incidents are reactive. Self-healing means your containers recover themselves between alerts.</p>
 
 <p>This post shows how to build a lightweight bash watchdog that:</p>
 
