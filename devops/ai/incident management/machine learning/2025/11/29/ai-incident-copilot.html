@@ -67,17 +67,6 @@
 
 <p>This post walks through the architecture, the design decisions, and exactly how to build it yourself. Everything is open source at https://github.com/AutoShiftOps/incopilot.</p>
 
-<p>When an incident hits, most engineers repeat the same manual loop: pull recent logs, scan for errors, and guess what to check next.</p>
-
-<p>This post builds <strong>incopilot</strong>—a CLI tool that automates the first-pass triage:</p>
-
-<ul>
-  <li>Collect logs from <strong>systemd journal</strong> and/or <strong>Docker</strong></li>
-  <li>Detect high-signal patterns (timeouts, OOM, disk full, 5xx, panics)</li>
-  <li>Map findings to the <strong>Four Golden Signals</strong></li>
-  <li>Output <code class="language-plaintext highlighter-rouge">report.md</code> + <code class="language-plaintext highlighter-rouge">report.json</code> ready to paste into an incident doc</li>
-</ul>
-
 <blockquote>
   <p>Safe by design: suggestions only — no destructive commands.</p>
 </blockquote>
