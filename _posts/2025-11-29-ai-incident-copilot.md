@@ -16,8 +16,6 @@ I've been on that on-call rotation. I know what it costs — not just in time, b
 
 This post walks through the architecture, the design decisions, and exactly how to build it yourself. Everything is open source at https://github.com/AutoShiftOps/incopilot.
 
-> Safe by design: suggestions only — no destructive commands.
-
 ## Architecture
 [![Architecture diagram](/assets/images/posts/2025-11-29-ai-incident-copilot.png)](/assets/images/posts/2025-11-29-ai-incident-copilot.png)
 
