@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafka Offsets, Explained With Real Examples | AutoShiftOps</title>
+<meta name="description" content="Sajja — Application Architect with 13+ years across cloud infrastructure, DevOps, and AI-powered operations. Creator of QueryTuner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>Kafka Offsets, Explained With Real Examples</h1>
+    <div class="post-meta">
+      November 14, 2024
+       &middot; kafka / offsets / python / pipeline / automation / monitoring / streaming
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <p>If you’ve worked with Kafka for more than a week, you’ve run into the word “offset” more times than you can count. It shows up in error messages, in consumer configs, in dashboards — and most explanations either wave their hands at it or bury it in more jargon than it deserves. It’s a simple idea underneath all that: an offset is just a position marker. Once that clicks, most of Kafka’s consumer behavior stops feeling mysterious.</p>
+
+<p>This post walks through what offsets are, why they matter in practice, and how to track them yourself with a small Python consumer.</p>
+
+<h2 id="1-what-an-offset-actually-is">1. What an offset actually is</h2>
+
+<p>Every Kafka topic is split into <strong>partitions</strong>, and each partition is just an ordered, append-only log of messages. Every message in that log gets a number based on its position — the first message is offset 0, the next is offset 1, and so on. That number never changes once it’s assigned.</p>
+
+<p>There are really two offsets worth knowing about:</p>
+
+<ul>
+  <li><strong>Message offset</strong> — the position of a message inside its partition. Fixed, permanent, assigned by Kafka.</li>
+  <li><strong>Consumer offset</strong> — the position a <em>consumer</em> has reached while reading that partition. This one moves as the consumer works through the log, and Kafka lets the consumer save (“commit”) it, so it can pick up where it left off after a restart.</li>
+</ul>
+
+<p>The message offset is Kafka’s bookkeeping. The consumer offset is yours.</p>
+
+<h2 id="2-why-this-matters-in-production">2. Why this matters in production</h2>
+
+<p>Offsets exist to solve one problem: what happens when a consumer dies mid-stream?</p>
+
+<ul>
+  <li><strong>Crash recovery.</strong> If a consumer crashes, it doesn’t need to guess where it stopped — it resumes from the last committed offset. No manual intervention, no data loss, no duplicate processing (assuming the commit strategy is right, more on that below).</li>
+  <li><strong>Replay.</strong> Because the log isn’t deleted after it’s read, you can rewind a consumer to an earlier offset and reprocess messages — useful for backfilling a broken analytics job or debugging a production incident after the fact.</li>
+  <li><strong>Progress tracking.</strong> Offsets are effectively a checkpoint. Anyone can ask “how far behind is this consumer?” by comparing its committed offset to the latest offset in the partition — which, as you’ll see below, is also how you catch a consumer that’s silently falling behind.</li>
+</ul>
+
+<h2 id="3-two-ways-offsets-get-committed">3. Two ways offsets get committed</h2>
+
+<p><strong>Example 1 — automatic commits, single partition, two consumers in a group</strong></p>
+
+<p>Say a topic has one partition, and a consumer group with two workers, Consumer-A and Consumer-B, is reading from it.</p>
+
+<ol>
+  <li>Messages <code class="language-plaintext highlighter-rouge">m0</code>, <code class="language-plaintext highlighter-rouge">m1</code>, <code class="language-plaintext highlighter-rouge">m2</code> land in the partition at offsets 0, 1, 2.</li>
+  <li>Consumer-A reads <code class="language-plaintext highlighter-rouge">m0</code>, commits offset 0. Reads <code class="language-plaintext highlighter-rouge">m1</code>, commits offset 1.</li>
+  <li>Consumer-A crashes right after committing offset 1. On restart, it resumes at offset 2 — it re-reads nothing and skips nothing.</li>
+</ol>
+
+<p>This is the easy case, and it’s why auto-commit is fine for a lot of workloads: fast, low-friction, no message loss as long as commits keep pace with processing.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/kafka/Kafka_Offset.gif" alt="Kafka offset tracking across a partition" /></p>
+
+<p><strong>Example 2 — manual commits, when “at least once” isn’t good enough</strong></p>
+
+<p>Auto-commit has a real gap: Kafka commits on a timer, not when your processing actually finishes. If your consumer crashes <em>after</em> Kafka auto-commits but <em>before</em> your code finishes handling the message, that message is gone for good as far as the consumer group is concerned.</p>
+
+<p>For anything where losing a message is worse than reprocessing one — payment events, inventory updates, anything downstream systems can’t easily reconcile — commit manually, after processing succeeds:</p>
+
+<ol>
+  <li>Consumer-B reads a message at offset 0. It does <strong>not</strong> commit yet.</li>
+  <li>It processes the message. If it crashes here, nothing was committed — on restart, it re-reads offset 0 from scratch.</li>
+  <li>Once processing finishes successfully, <em>then</em> it commits offset 0.</li>
+</ol>
+
+<p>This trades a bit of throughput for a real guarantee: a message is only ever marked “done” after your code has actually finished with it.</p>
+
+<h2 id="4-replay-and-rewind">4. Replay and rewind</h2>
+
+<p>Because Kafka retains messages for a configured retention window rather than deleting them the moment they’re read, you’re not locked into “latest” as your only starting point. You can point a consumer at a specific offset — say, offset 100 — and it will start there, re-reading everything after it.</p>
+
+<p>That’s the mechanism behind two very ordinary production tasks:</p>
+
+<ul>
+  <li><strong>Backfilling.</strong> A downstream table was wrong for three days because of a bug — fix the bug, rewind the consumer to before the bad deploy, and let it reprocess.</li>
+  <li><strong>Debugging.</strong> Something went wrong in production and you want to see exactly what the consumer saw, in order, without touching the live topic.</li>
+</ul>
+
+<h2 id="5-tracking-offsets-yourself-in-python">5. Tracking offsets yourself, in Python</h2>
+
+<p>Here’s a minimal consumer using <a href="https://kafka-python.readthedocs.io/"><code class="language-plaintext highlighter-rouge">kafka-python</code></a> that logs the offset of every message it processes and commits manually, so you can see the mechanics from example 2 in actual code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">kafka</span> <span class="kn">import</span> <span class="n">KafkaConsumer</span>
+<span class="kn">import</span> <span class="n">logging</span>
+
+<span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="sh">"</span><span class="s">%(asctime)s - %(message)s</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">consume_messages</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">topic</span><span class="p">):</span>
+    <span class="n">consumer</span> <span class="o">=</span> <span class="nc">KafkaConsumer</span><span class="p">(</span>
+        <span class="n">topic</span><span class="p">,</span>
+        <span class="n">bootstrap_servers</span><span class="o">=</span><span class="p">[</span><span class="n">broker</span><span class="p">],</span>
+        <span class="n">group_id</span><span class="o">=</span><span class="sh">"</span><span class="s">example_group</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">auto_offset_reset</span><span class="o">=</span><span class="sh">"</span><span class="s">earliest</span><span class="sh">"</span><span class="p">,</span>   <span class="c1"># start from the beginning if there's no committed offset yet
+</span>        <span class="n">enable_auto_commit</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>       <span class="c1"># we're committing manually
+</span>    <span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">consumer</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Message: </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">value</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Partition: </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">partition</span><span class="si">}</span><span class="s">, Offset: </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">offset</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Processed message at offset </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">offset</span><span class="si">}</span><span class="s"> in partition </span><span class="si">{</span><span class="n">message</span><span class="p">.</span><span class="n">partition</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+            <span class="c1"># commit only after the message has actually been handled
+</span>            <span class="n">consumer</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
+    <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Stopped consuming.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">consumer</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+<span class="n">broker</span> <span class="o">=</span> <span class="sh">"</span><span class="s">localhost:9092</span><span class="sh">"</span>
+<span class="n">topic</span> <span class="o">=</span> <span class="sh">"</span><span class="s">your_topic_name</span><span class="sh">"</span>
+<span class="nf">consume_messages</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>A couple of things worth calling out:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">auto_offset_reset="earliest"</code> only matters the <em>first</em> time this consumer group reads the topic — once it has a committed offset, that’s what it resumes from, regardless of this setting. Set it to <code class="language-plaintext highlighter-rouge">"latest"</code> if you’d rather skip history on a brand-new consumer group.</li>
+  <li><code class="language-plaintext highlighter-rouge">enable_auto_commit=False</code> plus an explicit <code class="language-plaintext highlighter-rouge">consumer.commit()</code> after processing is exactly the manual pattern from example 2. Delete both of those lines and Kafka reverts to its default periodic auto-commit.</li>
+</ul>
+
+<p>Run this, kill it mid-stream, and restart it — you’ll see it pick up from the last logged offset instead of reprocessing everything or skipping ahead.</p>
+
+<h2 id="6-the-follow-up-question-every-sre-asks-how-far-behind-am-i">6. The follow-up question every SRE asks: how far behind am I?</h2>
+
+<p>Tracking your own offset only answers half the question. The other half is <strong>consumer lag</strong> — the gap between the offset your consumer has committed and the latest offset actually written to the partition. A consumer can be alive, healthy, and still falling further behind every minute if it can’t keep up with the incoming rate, and offset logging alone won’t tell you that.</p>
+
+<p>The quickest way to check lag from the command line:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kafka-consumer-groups.sh <span class="nt">--bootstrap-server</span> localhost:9092 <span class="se">\</span>
+  <span class="nt">--describe</span> <span class="nt">--group</span> example_group
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">LAG</code> column in that output is the number to alert on. A consumer group with steadily growing lag is a slow-motion incident — it’s usually easier to catch from a dashboard than from a support ticket three hours later.</p>
+
+<h2 id="wrapping-up">Wrapping up</h2>
+
+<p>Offsets aren’t a Kafka quirk to memorize — they’re the entire mechanism that makes Kafka consumers resumable, replayable, and debuggable. Once you know the difference between a message offset and a consumer offset, and when to trade auto-commit’s simplicity for manual commit’s guarantees, the rest of Kafka’s consumer behavior mostly falls out of that one idea.</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

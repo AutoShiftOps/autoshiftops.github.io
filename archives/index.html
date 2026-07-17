@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Archives</title>
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
-  <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest">
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
-     crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Archives | AutoShiftOps</title>
+<meta name="description" content="Sajja — Application Architect with 13+ years across cloud infrastructure, DevOps, and AI-powered operations. Creator of QueryTuner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -26,36 +26,21 @@
 </script>
 </head>
 <body>
-  <header class="site-header">
-  <div class="container header-container">
-    <!-- Hamburger button -->
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-
-    <!-- Logo -->
-    <div class="logo">
-      <a href="/">
-        <img src="/assets/images/logo.png"
-             alt="AutoshiftOps" class="site-logo">
-      </a>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
     </div>
-
-    <!-- Navigation -->
-    <nav class="site-nav">
-      <button class="nav-close" aria-label="Close Menu">&times;</button>
-      <a href="/blog">Blog</a>
-      <a href="/projects">Projects</a>
-      <a href="/tools">Tools</a>
-      <a href="/archives/2025">Archives</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </nav>
   </div>
-</header>
+</nav>
 
-  <main class="site-main">
-    <div class="container page-section">
+  <div class="container page-section">
   <h1>Archives</h1>
   
   
@@ -70,29 +55,32 @@
     
       <li>
         <a href="/archives/2024/">
-          2024 (2)
+          2024 (3)
+        </a>
+      </li>
+    
+      <li>
+        <a href="/archives/2023/">
+          2023 (1)
         </a>
       </li>
     
   </ul>
 </div>
 
-  </main>
-
-  <section class="newsletter">
-  <h3>Join the Weekly DevOps Digest 🚀</h3>
-  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
-  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
-    <input type="email" name="email" placeholder="Your email address" required>
-    <button type="submit">Subscribe</button>
-  </form>
-</section>
   <footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.<a
-        href="https://sajja-command-center.vercel.app" style="opacity:0.1;font-size:8px;">tracker</a></p>
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
   </div>
 </footer>
+
 
   <!-- mermaid: render diagrams client-side with glow + white edges -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
@@ -149,7 +137,7 @@
       lightbox.appendChild(img);
       document.body.appendChild(lightbox);
 
-      document.querySelectorAll(".post-content img").forEach(image => {
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
         image.addEventListener("click", () => {
           img.src = image.src;
           lightbox.classList.add("visible");
@@ -161,6 +149,5 @@
       });
     });
   </script>
-  <script src="/assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔑 Secrets Management in DevOps Pipelines | AutoShiftOps</title>
+<meta name="description" content="Learn best practices for securely managing secrets in DevOps pipelines, including passwords, API keys, and tokens.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>🔑 Secrets Management in DevOps Pipelines</h1>
+    <div class="post-meta">
+      January 26, 2025
+       &middot; secrets management / DevOps / CI/CD / security / vault
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <h2 id="secrets-management-in-devops-pipelines">Secrets Management in DevOps Pipelines</h2>
+
+<p>Storing sensitive information like passwords, API keys, or tokens in code repositories is risky. <strong>Proper secrets management</strong> ensures credentials are secure while still accessible to automated pipelines.</p>
+
+<hr />
+
+<h3 id="why-secrets-management-matters">Why Secrets Management Matters</h3>
+
+<ul>
+  <li><strong>Security:</strong> Prevent unauthorized access</li>
+  <li><strong>Compliance:</strong> Meet industry standards (e.g., PCI, SOC2)</li>
+  <li><strong>Automation:</strong> Pipelines can still use secrets without exposing them</li>
+  <li><strong>Auditability:</strong> Track who accessed or modified secrets</li>
+</ul>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<ol>
+  <li>Store secrets in a <strong>vault</strong> or secure service</li>
+  <li>Configure CI/CD pipeline to fetch secrets at runtime</li>
+  <li>Use secrets for deployment, configuration, or scripts</li>
+  <li>Rotate secrets regularly and audit usage</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Secrets Vault] --&gt; B[Pipeline Fetches Secrets]
+    B --&gt; C[Deployment Scripts Use Secrets]
+    C --&gt; D[Application Runs Securely]
+    B --&gt; E[Audit Logs]
+    E --&gt; F[Security Team Reviews]
+</div>
+
+<hr />
+
+<h3 id="tools-for-secrets-management">Tools for Secrets Management</h3>
+
+<ul>
+  <li>HashiCorp Vault: Centralized secret storage with policies</li>
+  <li>AWS Secrets Manager / Parameter Store</li>
+  <li>GitHub Actions Secrets (for GitHub pipelines)</li>
+  <li>Azure Key Vault</li>
+  <li>Kubernetes Secrets (with encryption at rest)</li>
+</ul>
+
+<hr />
+
+<h3 id="example-github-actions-secret-usage">Example: GitHub Actions Secret Usage</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">./deploy.sh</span>
+        <span class="na">env</span><span class="pi">:</span>
+          <span class="na">API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Never commit secrets to Git</li>
+  <li>Use environment variables or secret managers</li>
+  <li>Rotate secrets regularly</li>
+  <li>Limit access to only necessary roles</li>
+</ul>
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Hardcoding credentials in scripts or Dockerfiles</li>
+  <li>Sharing secrets across multiple projects without isolation</li>
+  <li>Ignoring audit logs for sensitive operations</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Secure secrets management is critical for DevOps pipelines, allowing automation without compromising security or compliance. Using vaults and CI/CD secret features ensures safe, auditable, and reliable workflows.</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streaming IoT Data in Real Time: EMQX, Kafka, and MongoDB | AutoShiftOps</title>
+<meta name="description" content="Sajja — Application Architect with 13+ years across cloud infrastructure, DevOps, and AI-powered operations. Creator of QueryTuner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>Streaming IoT Data in Real Time: EMQX, Kafka, and MongoDB</h1>
+    <div class="post-meta">
+      November 13, 2023
+       &middot; emqx / kafka / mqtt / mongodb / python / pipeline / automation
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <p>Kafka is built for high-throughput event streaming, but it wasn’t designed with edge IoT devices in mind — most IoT hardware can’t hold a stable, high-resource connection to a Kafka broker the way a backend service can. That’s the gap MQTT fills: a lightweight publish/subscribe protocol built for constrained devices and unreliable networks. <strong>EMQX</strong> is an open-source MQTT broker that speaks that lightweight protocol on one side and can hand data off to Kafka on the other, which is what makes it a practical bridge between “a sensor somewhere” and “a stream you can actually process.”</p>
+
+<p>This post walks through building that bridge end to end: an EMQX broker running in Docker, a Python MQTT publisher and subscriber, a Kafka producer/consumer pair, and a final handoff into MongoDB for storage. Every code block below is code I actually ran to get this working.</p>
+
+<p>Here’s the shape of what we’re building:</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx-kafka.jpg" alt="emqx-kafka architecture" /></p>
+
+<h2 id="setting-up-emqx">Setting up EMQX</h2>
+
+<h3 id="running-the-emqx-broker">Running the EMQX broker</h3>
+
+<p>Docker makes this a two-command job instead of a real install:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker pull emqx/emqx
+docker run <span class="nt">-d</span> <span class="nt">--name</span> emqx <span class="nt">-p</span> 1883:1883 <span class="nt">-p</span> 8083:8083 <span class="nt">-p</span> 8084:8084 <span class="nt">-p</span> 8883:8883 <span class="nt">-p</span> 18083:18083 emqx/emqx
+</code></pre></div></div>
+
+<p>The same image runs fine through Docker Desktop on Windows if that’s your setup.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx/emqx-windows.png" alt="emqx running via Docker Desktop on Windows" /></p>
+
+<p>Once the container is up, the logs will show which ports each listener is bound to:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">1883</code> — plain TCP</li>
+  <li><code class="language-plaintext highlighter-rouge">8883</code> — TLS/SSL</li>
+  <li><code class="language-plaintext highlighter-rouge">8083</code> — WebSocket</li>
+  <li><code class="language-plaintext highlighter-rouge">8084</code> — secure WebSocket</li>
+  <li><code class="language-plaintext highlighter-rouge">18083</code> — the dashboard UI</li>
+</ul>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx/running-emqx-docker.png" alt="EMQX docker container running" /></p>
+
+<p>The dashboard is a web UI for managing the broker and watching connected devices in real time — open <code class="language-plaintext highlighter-rouge">&lt;your-ip&gt;:18083</code> in a browser to reach it.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx/webpage.png" alt="EMQX dashboard login page" /></p>
+
+<p>Default login is <code class="language-plaintext highlighter-rouge">admin</code> / <code class="language-plaintext highlighter-rouge">public</code>. EMQX forces a password reset on first login, and then you’re in.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx/dashboard.png" alt="EMQX dashboard after login" /></p>
+
+<h3 id="publishing-and-subscribing-from-python">Publishing and subscribing from Python</h3>
+
+<p>With the broker running, the next step is a publisher and a subscriber talking to it — both built with <a href="https://pypi.org/project/paho-mqtt/"><code class="language-plaintext highlighter-rouge">paho-mqtt</code></a>, the standard Python MQTT client.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip3 <span class="nb">install </span>paho-mqtt
+</code></pre></div></div>
+
+<p><strong>Publisher</strong> (<code class="language-plaintext highlighter-rouge">emqx-pub.py</code>):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">paho.mqtt</span> <span class="kn">import</span> <span class="n">client</span> <span class="k">as</span> <span class="n">mqtt_client</span>
+<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># MQTT connection settings
+</span><span class="n">broker</span>      <span class="o">=</span> <span class="sh">'</span><span class="s">192.168.48.1</span><span class="sh">'</span>
+<span class="n">port</span>        <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span>       <span class="o">=</span> <span class="sh">"</span><span class="s">python/mqtt</span><span class="sh">"</span>
+<span class="n">client_id</span>   <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">python-mqtt-</span><span class="si">{</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span>
+<span class="n">username</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">admin</span><span class="sh">"</span>
+<span class="n">password</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">public</span><span class="sh">"</span>
+
+<span class="c1"># reconnect backoff settings
+</span><span class="n">FIRST_RECONNECT_DELAY</span>   <span class="o">=</span> <span class="mi">1</span>
+<span class="n">RECONNECT_RATE</span>          <span class="o">=</span> <span class="mi">2</span>
+<span class="n">MAX_RECONNECT_COUNT</span>     <span class="o">=</span> <span class="mi">12</span>
+<span class="n">MAX_RECONNECT_DELAY</span>     <span class="o">=</span> <span class="mi">60</span>
+
+<span class="k">def</span> <span class="nf">connect_mqtt</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Connected to MQTT Broker!</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Failed to connect, return code %d</span><span class="se">\n</span><span class="sh">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_disconnect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Disconnected with result code: %s</span><span class="sh">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+        <span class="n">reconnect_count</span><span class="p">,</span> <span class="n">reconnect_delay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">FIRST_RECONNECT_DELAY</span>
+        <span class="k">while</span> <span class="n">reconnect_count</span> <span class="o">&lt;</span> <span class="n">MAX_RECONNECT_COUNT</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Reconnecting in %d seconds...</span><span class="sh">"</span><span class="p">,</span> <span class="n">reconnect_delay</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">reconnect_delay</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">client</span><span class="p">.</span><span class="nf">reconnect</span><span class="p">()</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Reconnected successfully!</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">%s. Reconnect failed. Retrying...</span><span class="sh">"</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+            <span class="n">reconnect_delay</span> <span class="o">*=</span> <span class="n">RECONNECT_RATE</span>
+            <span class="n">reconnect_delay</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">reconnect_delay</span><span class="p">,</span> <span class="n">MAX_RECONNECT_DELAY</span><span class="p">)</span>
+            <span class="n">reconnect_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Reconnect failed after %s attempts. Exiting...</span><span class="sh">"</span><span class="p">,</span> <span class="n">reconnect_count</span><span class="p">)</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">mqtt_client</span><span class="p">.</span><span class="nc">Client</span><span class="p">(</span><span class="n">client_id</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">username_pw_set</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_connect</span> <span class="o">=</span> <span class="n">on_connect</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_disconnect</span> <span class="o">=</span> <span class="n">on_disconnect</span>
+    <span class="k">return</span> <span class="n">client</span>
+
+<span class="k">def</span> <span class="nf">publish</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="n">msg_count</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">messages: </span><span class="si">{</span><span class="n">msg_count</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">publish</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Send `</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s">` to topic `</span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s">`</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Failed to send message to topic </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">msg_count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">msg_count</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="k">break</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="nf">connect_mqtt</span><span class="p">()</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">loop_start</span><span class="p">()</span>
+    <span class="nf">publish</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">loop_forever</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">run</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><strong>Subscriber</strong> (<code class="language-plaintext highlighter-rouge">emqx-sub.py</code>):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+<span class="kn">from</span> <span class="n">paho.mqtt</span> <span class="kn">import</span> <span class="n">client</span> <span class="k">as</span> <span class="n">mqtt_client</span>
+
+<span class="n">broker</span>      <span class="o">=</span> <span class="sh">'</span><span class="s">192.168.48.1</span><span class="sh">'</span>
+<span class="n">port</span>        <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span>       <span class="o">=</span> <span class="sh">"</span><span class="s">python/mqtt</span><span class="sh">"</span>
+<span class="n">client_id</span>   <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">subscribe-</span><span class="si">{</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span>
+<span class="n">username</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">admin</span><span class="sh">"</span>
+<span class="n">password</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">public</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">connect_mqtt</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mqtt_client</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Connected to MQTT Broker!</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Failed to connect, return code %d</span><span class="se">\n</span><span class="sh">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">mqtt_client</span><span class="p">.</span><span class="nc">Client</span><span class="p">(</span><span class="n">client_id</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">username_pw_set</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_connect</span> <span class="o">=</span> <span class="n">on_connect</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+
+<span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">mqtt_client</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Received `</span><span class="si">{</span><span class="n">msg</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="nf">decode</span><span class="p">()</span><span class="si">}</span><span class="s">` from `</span><span class="si">{</span><span class="n">msg</span><span class="p">.</span><span class="n">topic</span><span class="si">}</span><span class="s">` topic</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">client</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="nf">connect_mqtt</span><span class="p">()</span>
+    <span class="nf">subscribe</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">loop_forever</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">run</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Two notes on these before moving on: the publisher only sends 5 messages before stopping (the <code class="language-plaintext highlighter-rouge">msg_count &gt; 5</code> check) — delete that block if you want it to run continuously. And the reconnect logic in the publisher isn’t decoration; MQTT clients on flaky networks disconnect constantly, and without a backoff-and-retry loop, a dropped connection just means silent data loss.</p>
+
+<p>Run the subscriber first, then the publisher in a second terminal:</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/emqx/execution-emqx.png" alt="running the EMQX publisher and subscriber" /></p>
+
+<p>That’s EMQX working end to end: a broker, a publisher, and a subscriber, all talking over MQTT.</p>
+
+<h2 id="setting-up-kafka">Setting up Kafka</h2>
+
+<p>This part assumes Ubuntu. Kafka runs on the JVM, so start with Java:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>default-jdk
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java --version
+openjdk 17.0.9 2023-10-17
+OpenJDK Runtime Environment (build 17.0.9+9-Ubuntu-122.04)
+OpenJDK 64-Bit Server VM (build 17.0.9+9-Ubuntu-122.04, mixed mode, sharing)
+</code></pre></div></div>
+
+<p>A quick mental model before installing it: Kafka organizes data into <strong>topics</strong>, which producers write to and consumers read from — the same publish/subscribe idea as MQTT, just built for much higher throughput and long-term retention rather than lightweight device messaging. (There’s more to the full picture — Zookeeper, consumer groups, partitions — but that’s a separate post.)</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/kafka/kafka-setup.png" alt="kafka architecture overview" /></p>
+
+<p>Download and extract Kafka:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget https://dlcdn.apache.org/kafka/3.6.1/kafka_2.13-3.6.1.tgz
+<span class="nb">tar</span> <span class="nt">-xzf</span> kafka_2.13-3.6.1.tgz
+<span class="nb">sudo mv </span>kafka_2.13-3.6.1 /usr/local/kafka
+</code></pre></div></div>
+
+<h3 id="running-kafka-as-a-systemd-service">Running Kafka as a systemd service</h3>
+
+<p>Rather than starting Kafka manually from <code class="language-plaintext highlighter-rouge">/usr/local/kafka/bin</code> every time, set it up as a proper service. This example uses Zookeeper rather than KRaft mode.</p>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/systemd/system/zookeeper.service</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Apache Zookeeper server
+Documentation=http://zookeeper.apache.org
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/kafka/bin/zookeeper-server-start.sh /usr/local/kafka/config/zookeeper.properties
+ExecStop=/usr/local/kafka/bin/zookeeper-server-stop.sh
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">/etc/systemd/system/kafka.service</code>:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Unit]
+Description=Apache Kafka Server
+Documentation=http://kafka.apache.org/documentation.html
+Requires=zookeeper.service
+
+[Service]
+Type=simple
+Environment="JAVA_HOME=/usr/lib/jvm/java-1.17.0-openjdk-amd64"
+ExecStart=/usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties
+ExecStop=/usr/local/kafka/bin/kafka-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>Reload systemd and start both services, Zookeeper first:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start zookeeper
+<span class="nb">sudo </span>systemctl start kafka
+<span class="nb">sudo </span>systemctl status kafka
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>● kafka.service - Apache Kafka Server
+   Loaded: loaded (/etc/systemd/system/kafka.service; disabled; vendor preset: enabled)
+   Active: active (running) since Tue 2023-12-12 13:41:12 EST; 6s ago
+     Docs: http://kafka.apache.org/documentation.html
+ Main PID: 50201 (java)
+   Tasks: 83 (limit: 9396)
+   Memory: 315.5M
+
+Dec 12 13:41:17 kafka-server-start.sh[50201]: INFO [SocketServer listenerType=ZK_BROKER, nodeId=0] Enabling request processing.
+Dec 12 13:41:17 kafka-server-start.sh[50201]: INFO Awaiting socket connections on 0.0.0.0:9092.
+Dec 12 13:41:17 kafka-server-start.sh[50201]: INFO Kafka version: 3.6.1
+Dec 12 13:41:17 kafka-server-start.sh[50201]: INFO [KafkaServer id=0] started (kafka.server.KafkaServer)
+</code></pre></div></div>
+
+<h3 id="creating-and-using-a-topic">Creating and using a topic</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /usr/local/kafka
+bin/kafka-topics.sh <span class="nt">--create</span> <span class="nt">--bootstrap-server</span> localhost:9092 <span class="nt">--replication-factor</span> 1 <span class="nt">--partitions</span> 1 <span class="nt">--topic</span> emqx-to-kafka
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Created topic emqx-to-kafka.
+</code></pre></div></div>
+
+<p>List topics:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/kafka-topics.sh <span class="nt">--list</span> <span class="nt">--bootstrap-server</span> localhost:9092
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emqx-to-kafka
+</code></pre></div></div>
+
+<p>Inspect a topic’s partition/replica details:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/kafka-topics.sh <span class="nt">--describe</span> <span class="nt">--topic</span> emqx-to-kafka <span class="nt">--bootstrap-server</span> localhost:9092
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Topic: emqx-to-kafka    TopicId: BPDpQiOvQ2WDGWPn45d99w    PartitionCount: 1    ReplicationFactor: 1
+        Partition: 0    Leader: 0    Replicas: 0    Isr: 0
+</code></pre></div></div>
+
+<p>With a single broker, keep replication factor at 1 — set partition count based on how many consumers you want reading in parallel.</p>
+
+<h3 id="producing-and-consuming-from-the-cli">Producing and consuming from the CLI</h3>
+
+<p>Write a few events by hand first, just to confirm the topic works before wiring in code:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/kafka-console-producer.sh <span class="nt">--topic</span> emqx-to-kafka <span class="nt">--bootstrap-server</span> localhost:9092
+<span class="o">&gt;</span>First kafka producer message
+<span class="o">&gt;</span>Second Kafka producer message
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Ctrl-C</code> ends the producer session. Then read them back from a second terminal:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bin/kafka-console-consumer.sh <span class="nt">--topic</span> emqx-to-kafka <span class="nt">--from-beginning</span> <span class="nt">--bootstrap-server</span> localhost:9092
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>First kafka producer message
+Second Kafka producer message
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">--from-beginning</code> is doing real work there — without it, the consumer only sees new messages from the point it connects. That <code class="language-plaintext highlighter-rouge">--offset earliest</code>/<code class="language-plaintext highlighter-rouge">--offset latest</code> choice matters in production too: <code class="language-plaintext highlighter-rouge">latest</code> (the default) skips anything the consumer wasn’t running to catch, while <code class="language-plaintext highlighter-rouge">earliest</code> replays from the start of what Kafka has retained. If a consumer restarts after an outage and you’re on <code class="language-plaintext highlighter-rouge">latest</code>, you’ll quietly miss everything that arrived while it was down.</p>
+
+<h3 id="producing-and-consuming-from-python">Producing and consuming from Python</h3>
+
+<p>CLI tools are fine for a sanity check, but a real pipeline needs code. Here’s a producer using <a href="https://pypi.org/project/kafka-python/"><code class="language-plaintext highlighter-rouge">kafka-python</code></a>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">from</span> <span class="n">logging</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="n">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>
+<span class="kn">from</span> <span class="n">kafka.errors</span> <span class="kn">import</span> <span class="n">KafkaError</span>
+
+<span class="n">producer</span> <span class="o">=</span> <span class="nc">KafkaProducer</span><span class="p">(</span>
+    <span class="n">bootstrap_servers</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">localhost:9092</span><span class="sh">'</span><span class="p">],</span>
+    <span class="n">retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">value_serializer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">m</span><span class="p">).</span><span class="nf">encode</span><span class="p">(</span><span class="sh">'</span><span class="s">ascii</span><span class="sh">'</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_send_success</span><span class="p">(</span><span class="n">record_metadata</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%s:%d:%d</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">record_metadata</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span> <span class="n">record_metadata</span><span class="p">.</span><span class="n">partition</span><span class="p">,</span> <span class="n">record_metadata</span><span class="p">.</span><span class="n">offset</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">on_send_error</span><span class="p">(</span><span class="n">excp</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">'</span><span class="s">Send failed</span><span class="sh">'</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">excp</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">producer</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="sh">'</span><span class="s">emqx-to-kafka</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="n">item</span><span class="p">:</span> <span class="sh">'</span><span class="s">awesome-</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">item</span><span class="o">**</span><span class="mi">2</span><span class="p">)})</span> \
+        <span class="p">.</span><span class="nf">add_callback</span><span class="p">(</span><span class="n">on_send_success</span><span class="p">)</span> \
+        <span class="p">.</span><span class="nf">add_errback</span><span class="p">(</span><span class="n">on_send_error</span><span class="p">)</span>
+
+<span class="n">producer</span><span class="p">.</span><span class="nf">flush</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>And a matching consumer:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">from</span> <span class="n">kafka</span> <span class="kn">import</span> <span class="n">KafkaConsumer</span>
+
+<span class="n">consumer</span> <span class="o">=</span> <span class="nc">KafkaConsumer</span><span class="p">(</span>
+    <span class="n">bootstrap_servers</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost:9092</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">auto_offset_reset</span><span class="o">=</span><span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">enable_auto_commit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">consumer_timeout_ms</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">value_deserializer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">ascii</span><span class="sh">'</span><span class="p">)),</span>
+<span class="p">)</span>
+
+<span class="n">consumer</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="sh">'</span><span class="s">^emqx.*</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">consumer</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%s:%d:%d: data=%s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">partition</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/kafka/kafka-exec.png" alt="running the Kafka producer and consumer" /></p>
+
+<h2 id="connecting-emqx-to-kafka">Connecting EMQX to Kafka</h2>
+
+<p>Now for the actual bridge: take the subscriber logic from earlier and, instead of just printing incoming MQTT messages, forward each one straight into the Kafka producer.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">from</span> <span class="n">logging</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="n">kafka</span> <span class="kn">import</span> <span class="n">KafkaProducer</span>
+<span class="kn">from</span> <span class="n">kafka.errors</span> <span class="kn">import</span> <span class="n">KafkaError</span>
+<span class="kn">from</span> <span class="n">paho.mqtt</span> <span class="kn">import</span> <span class="n">client</span> <span class="k">as</span> <span class="n">mqtt_client</span>
+
+<span class="n">broker</span>      <span class="o">=</span> <span class="sh">'</span><span class="s">192.168.48.1</span><span class="sh">'</span>
+<span class="n">port</span>        <span class="o">=</span> <span class="mi">1883</span>
+<span class="n">topic</span>       <span class="o">=</span> <span class="sh">"</span><span class="s">python/mqtt</span><span class="sh">"</span>
+<span class="n">client_id</span>   <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">subscribe-</span><span class="si">{</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span>
+<span class="n">username</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">admin</span><span class="sh">"</span>
+<span class="n">password</span>    <span class="o">=</span> <span class="sh">"</span><span class="s">public</span><span class="sh">"</span>
+
+<span class="n">producer</span> <span class="o">=</span> <span class="nc">KafkaProducer</span><span class="p">(</span>
+    <span class="n">bootstrap_servers</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">localhost:9092</span><span class="sh">'</span><span class="p">],</span>
+    <span class="n">retries</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">value_serializer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">m</span><span class="p">).</span><span class="nf">encode</span><span class="p">(</span><span class="sh">'</span><span class="s">ascii</span><span class="sh">'</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_send_success</span><span class="p">(</span><span class="n">record_metadata</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%s:%d:%d</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">record_metadata</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span> <span class="n">record_metadata</span><span class="p">.</span><span class="n">partition</span><span class="p">,</span> <span class="n">record_metadata</span><span class="p">.</span><span class="n">offset</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">on_send_error</span><span class="p">(</span><span class="n">excp</span><span class="p">):</span>
+    <span class="n">log</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">'</span><span class="s">Send failed</span><span class="sh">'</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">excp</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">connect_mqtt</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">mqtt_client</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rc</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Connected to MQTT Broker!</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Failed to connect, return code %d</span><span class="se">\n</span><span class="sh">"</span><span class="p">,</span> <span class="n">rc</span><span class="p">)</span>
+
+    <span class="n">client</span> <span class="o">=</span> <span class="n">mqtt_client</span><span class="p">.</span><span class="nc">Client</span><span class="p">(</span><span class="n">client_id</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">username_pw_set</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_connect</span> <span class="o">=</span> <span class="n">on_connect</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="n">broker</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+
+<span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="n">client</span><span class="p">:</span> <span class="n">mqtt_client</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Received `</span><span class="si">{</span><span class="n">msg</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="nf">decode</span><span class="p">()</span><span class="si">}</span><span class="s">` from `</span><span class="si">{</span><span class="n">msg</span><span class="p">.</span><span class="n">topic</span><span class="si">}</span><span class="s">` topic</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">producer</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="sh">'</span><span class="s">emqx-to-kafka</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">data</span><span class="sh">"</span><span class="p">:</span> <span class="n">msg</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="nf">decode</span><span class="p">()})</span> \
+            <span class="p">.</span><span class="nf">add_callback</span><span class="p">(</span><span class="n">on_send_success</span><span class="p">)</span> \
+            <span class="p">.</span><span class="nf">add_errback</span><span class="p">(</span><span class="n">on_send_error</span><span class="p">)</span>
+        <span class="n">producer</span><span class="p">.</span><span class="nf">flush</span><span class="p">()</span>
+
+    <span class="n">client</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="nf">connect_mqtt</span><span class="p">()</span>
+    <span class="nf">subscribe</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
+    <span class="n">client</span><span class="p">.</span><span class="nf">loop_forever</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">run</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The only real change from the plain MQTT subscriber is inside <code class="language-plaintext highlighter-rouge">on_message</code>: instead of just printing the payload, it hands that payload to the Kafka producer. In a real deployment, that MQTT subscriber runs close to (or embedded in) the IoT devices, and the Kafka producer side runs wherever your data platform lives — that’s the actual “bridge” this whole setup exists to build.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/kafka/emqx-kafka-together.png" alt="EMQX and Kafka merged pipeline" /></p>
+
+<h2 id="storing-the-stream-in-mongodb">Storing the stream in MongoDB</h2>
+
+<p>The last piece: land the Kafka consumer’s output somewhere durable. <a href="https://www.mongodb.com/">MongoDB Atlas</a> has a free tier that’s more than enough to get started, with no billing setup required.</p>
+
+<p>A small handler that inserts a document into a collection:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">pymongo</span> <span class="kn">import</span> <span class="n">MongoClient</span>
+
+<span class="k">def</span> <span class="nf">mongo_insert_handler</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="n">uri</span> <span class="o">=</span> <span class="sh">"</span><span class="s">mongodb+srv://&lt;username&gt;:&lt;password&gt;@&lt;mongo-endpoint&gt;/?retryWrites=true&amp;w=majority</span><span class="sh">"</span>
+    <span class="n">collection_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">incoming</span><span class="sh">"</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="nc">MongoClient</span><span class="p">(</span><span class="n">uri</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">db</span> <span class="o">=</span> <span class="n">client</span><span class="p">[</span><span class="sh">"</span><span class="s">emqx-kafka-mongo-app</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="n">db</span><span class="p">[</span><span class="n">collection_name</span><span class="p">]</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Inserting document: </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">collection</span><span class="p">.</span><span class="nf">insert_one</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Document inserted!</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Wire it into the Kafka consumer so every message that arrives gets written straight to Mongo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<span class="kn">from</span> <span class="n">kafka</span> <span class="kn">import</span> <span class="n">KafkaConsumer</span>
+<span class="kn">from</span> <span class="n">mongo_handler</span> <span class="kn">import</span> <span class="n">mongo_insert_handler</span>
+
+<span class="n">consumer</span> <span class="o">=</span> <span class="nc">KafkaConsumer</span><span class="p">(</span>
+    <span class="n">bootstrap_servers</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost:9092</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">auto_offset_reset</span><span class="o">=</span><span class="sh">'</span><span class="s">latest</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">enable_auto_commit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">consumer_timeout_ms</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">value_deserializer</span><span class="o">=</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">ascii</span><span class="sh">'</span><span class="p">)),</span>
+<span class="p">)</span>
+
+<span class="n">consumer</span><span class="p">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="sh">'</span><span class="s">^emqx.*</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">consumer</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">%s:%d:%d: data=%s</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">partition</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">message</span><span class="p">.</span><span class="n">value</span><span class="p">))</span>
+        <span class="n">document</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">topic</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span><span class="p">.</span><span class="n">topic</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">partition</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span><span class="p">.</span><span class="n">partition</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">offset</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span><span class="p">.</span><span class="n">offset</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">value</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span><span class="p">.</span><span class="n">value</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="nf">mongo_insert_handler</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The only addition to the earlier consumer is the last two lines of the loop — build a document from the message metadata, hand it to the Mongo handler.</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/mongo/mongo-insert.png" alt="document inserted into MongoDB" /></p>
+
+<p>And confirming it from the Atlas console:</p>
+
+<p><img src="/assets/images/posts/emqx-kafka-project/mongo/mongo-console.png" alt="records visible in the MongoDB Atlas console" /></p>
+
+<h2 id="putting-it-together">Putting it together</h2>
+
+<p>End to end, the pipeline looks like this: an IoT device publishes over MQTT → EMQX receives it → a Python subscriber forwards it into Kafka → a Python consumer reads it back out of Kafka → each message lands as a document in MongoDB.</p>
+
+<p>None of the individual pieces here are exotic — MQTT client, Kafka producer/consumer, a Mongo insert — but wiring them together is what turns “a sensor sending readings” into something a real data platform can actually consume, store, and query later. From here, the natural next steps are batching the Mongo writes instead of inserting one document at a time, adding schema validation before data lands in Mongo, and — since none of this is fault-tolerant yet — applying the offset-commit strategies from Kafka’s consumer API to make sure a crash mid-stream doesn’t silently drop readings.</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

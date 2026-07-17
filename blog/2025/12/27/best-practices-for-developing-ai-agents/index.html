@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 Best Practices for Developing AI Agents | AutoShiftOps</title>
+<meta name="description" content="A comprehensive guide to best practices for developing robust, reliable AI agents with code examples and patterns.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>🤖 Best Practices for Developing AI Agents</h1>
+    <div class="post-meta">
+      December 27, 2025
+       &middot; LLMs / AI agents / best practices / software engineering / machine learning
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <p>Here’s a comprehensive guide for developing robust, reliable AI agents:</p>
+
+<h2 id="1-design--architecture">1. Design &amp; Architecture</h2>
+<h3 id="11-clear-agent-purpose">1.1 Clear Agent Purpose</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ✅ Good: Clear, single responsibility
+</span><span class="k">class</span> <span class="nc">IncidentAnalysisAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    Agent responsible for:
+    - Fetching incidents from API
+    - Analyzing incident data
+    - Extracting actionable insights
+    - Providing recommendations
+    </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">api_client</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">api_client</span> <span class="o">=</span> <span class="n">api_client</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">analyze_incidents</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">Analyze single incident</span><span class="sh">"""</span>
+        <span class="k">pass</span>
+    
+    <span class="k">def</span> <span class="nf">batch_analyze</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">incidents</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">Analyze multiple incidents</span><span class="sh">"""</span>
+        <span class="k">pass</span>
+</code></pre></div></div>
+
+<h3 id="12-separation-of-concerns">1.2 Separation of Concerns</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ✅ Good: Separate components
+</span><span class="k">class</span> <span class="nc">IncidentAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">fetcher</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">analyzer</span><span class="p">,</span> <span class="n">recommender</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">fetcher</span> <span class="o">=</span> <span class="n">fetcher</span>          <span class="c1"># Fetch data  
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser</span>            <span class="c1"># Parse data
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">analyzer</span> <span class="o">=</span> <span class="n">analyzer</span>        <span class="c1"># Analyze data
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">writer</span>            <span class="c1"># Write results
+</span>    
+<span class="c1"># ❌ Bad: Everything mixed together
+</span><span class="k">class</span> <span class="nc">MonolithicAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">api_client</span><span class="p">):</span>
+        <span class="c1"># Fetch, parse, analyze, and write all in one class
+</span>        <span class="k">pass</span>
+</code></pre></div></div>
+
+<h2 id="2-error-handling--resilience">2. Error Handling &amp; Resilience</h2>
+<h3 id="21-comprehensive-error-handling">2.1 Comprehensive Error Handling</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span> <span class="n">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AIAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+    
+    <span class="k">def</span> <span class="nf">retry_with_backoff</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+        <span class="c1">### Decorator for retrying with exponential backoff ###
+</span>        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">max_retries</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Attempt </span><span class="si">{</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">max_retries</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="nf">func</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                
+                <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">All </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s"> attempts failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                        <span class="k">raise</span>
+                    
+                    <span class="n">wait_time</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span> <span class="c1"># Exponential backoff
+</span>                    <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Attempt </span><span class="si">{</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s"> failed. Retrying in </span><span class="si">{</span><span class="n">wait_time</span><span class="si">}</span><span class="s">s: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    
+    <span class="nd">@retry_with_backoff</span>
+    <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">Fetch data from a URL with retries and timeout</span><span class="sh">"""</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="22-graceful-degradation">2.2 Graceful Degradation</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># ✅ Good: Provide fallback when API fails
+</span><span class="k">class</span> <span class="nc">RobustIncidentAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_incidents</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">fetch_from_primary_api</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Primary API failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">. Falling back to secondary API.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">fetch_from_cache</span><span class="p">()</span>      <span class="c1"># Fallback to cached data
+</span>    
+    <span class="k">def</span> <span class="nf">analyze_with_fallback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">incident</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">advanced_analysis</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Advanced analysis failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">. Using basic analysis.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">basic_analysis</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span> <span class="c1"># Fallback to basic analysis
+</span></code></pre></div></div>
+
+<h2 id="3-input-validation--simulation">3. Input Validation &amp; Simulation</h2>
+<h3 id="31-strict-input-validation">3.1 Strict Input Validation</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ValidationError</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">IncidentData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="c1">### Validate incident data structure ###
+</span>    <span class="n">incident_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">target_name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">severity</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">timestamp</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="sh">'</span><span class="s">incident_id</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">incident_id_not_empty</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span> <span class="ow">and</span> <span class="nf">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">'</span><span class="s">incident_id must not be empty</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+    
+    <span class="nd">@validator</span><span class="p">(</span><span class="sh">'</span><span class="s">severity</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">severity_valid</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">valid_severities</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">low</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">medium</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">high</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">critical</span><span class="sh">'</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">valid_severities</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">severity must be one of </span><span class="si">{</span><span class="n">valid_severities</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span>
+    
+<span class="k">class</span> <span class="nc">IncidentAgent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">process_incident</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Validate data structure
+</span>            <span class="n">incident</span> <span class="o">=</span> <span class="nc">IncidentData</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Processing incident: </span><span class="si">{</span><span class="n">incident</span><span class="p">.</span><span class="n">incident_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Invalid incident data: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+<h3 id="32-sanitize-external-inputs">3.2 Sanitize External Inputs</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="n">re</span>
+<span class="kn">from</span> <span class="n">urllib.parse</span> <span class="kn">import</span> <span class="n">quote</span>
+
+<span class="k">def</span> <span class="nf">sanitize_input</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">Sanitize user input to prevent injection attacks</span><span class="sh">"""</span>
+    <span class="c1"># Remove potentially dangerous characters
+</span>    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">html</span><span class="p">.</span><span class="nf">escape</span><span class="p">(</span><span class="n">user_input</span><span class="p">)</span>
+    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">[&lt;&gt;\"\'%;()&amp;+]</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">,</span> <span class="n">sanitized</span><span class="p">)</span>
+    <span class="n">sanitized</span> <span class="o">=</span> <span class="n">sanitized</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">sanitized</span>
+
+<span class="k">def</span> <span class="nf">sanitize_file_path</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1">### Prevent directory traversal attacks ###
+</span>    <span class="n">path</span> <span class="o">=</span> <span class="n">file_path</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">..</span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">)</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">//</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">/</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">path</span>
+</code></pre></div></div>
+
+<h2 id="4-logging--monitoring">4. Logging &amp; Monitoring</h2>
+<h3 id="41-comprehensive-logging">4.1 Comprehensive Logging</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">class</span> <span class="nc">StructuredLogger</span><span class="p">:</span>
+    <span class="c1">### Structured logging for AI agents ###
+</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">setup_handlers</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">setup_handlers</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Console handler
+</span>        <span class="n">console_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nc">StreamHandler</span><span class="p">()</span>
+        <span class="n">console_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+
+        <span class="c1"># File handler
+</span>        <span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nc">FileHandler</span><span class="p">(</span><span class="sh">'</span><span class="s">agent.log</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">file_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+
+        <span class="c1"># Formatter
+</span>        <span class="n">log_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nc">Formatter</span><span class="p">(</span><span class="sh">'</span><span class="s">%(asctime)s - %(name)s - %(levelname)s - %(message)s</span><span class="sh">'</span><span class="p">)</span>
+
+        <span class="n">console_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">log_formatter</span><span class="p">)</span>
+        <span class="n">file_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">log_formatter</span><span class="p">)</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">console_handler</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">log_action</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">action</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">details</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="c1">### Log structured action data ###
+</span>        <span class="n">log_entry</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">timestamp</span><span class="sh">"</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">utcnow</span><span class="p">().</span><span class="nf">isoformat</span><span class="p">(),</span>
+            <span class="sh">"</span><span class="s">action</span><span class="sh">"</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">details</span><span class="sh">"</span><span class="p">:</span> <span class="n">details</span>
+        <span class="p">}</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">log_entry</span><span class="p">))</span>
+
+<span class="c1"># Usage details
+</span><span class="n">logger</span> <span class="o">=</span> <span class="nc">StructuredLogger</span><span class="p">(</span><span class="n">__name_</span><span class="p">)</span>
+<span class="n">logger</span><span class="p">.</span><span class="nf">log_action</span><span class="p">(</span><span class="sh">'</span><span class="s">fetch_incidents</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">success</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">count</span><span class="sh">'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">duration_ms</span><span class="sh">'</span><span class="p">:</span> <span class="mi">1234</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<h3 id="42-monitoring--metrics">4.2 Monitoring &amp; Metrics</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">Histogram</span><span class="p">,</span> <span class="n">Guage</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="k">class</span> <span class="nc">MonitoredAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent with monitoring and metrics </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Metrics
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">request_count</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">(</span>
+            <span class="sh">'</span><span class="s">agent_requests_total</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Total requests</span><span class="sh">'</span><span class="p">,</span>
+            <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">status</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">request_duration</span> <span class="o">=</span> <span class="nc">Histogram</span><span class="p">(</span>
+            <span class="sh">'</span><span class="s">agent_request_duration_seconds</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Request duration</span><span class="sh">'</span><span class="p">,</span>
+            <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">self</span><span class="p">.</span><span class="n">active_requests</span> <span class="o">=</span> <span class="nc">Guage</span><span class="p">(</span>
+            <span class="sh">'</span><span class="s">agent_active_requests</span><span class="sh">'</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">Active requests</span><span class="sh">'</span>
+        <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="c1">### Fetch with monitoring ###
+</span>        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">active_requests</span><span class="p">.</span><span class="nf">inc</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+
+            <span class="n">self</span><span class="p">.</span><span class="n">request_count</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="sh">'</span><span class="s">fetch</span><span class="sh">'</span><span class="p">,</span>
+                <span class="n">status</span><span class="o">=</span><span class="sh">'</span><span class="s">success</span><span class="sh">'</span>
+            <span class="p">).</span><span class="nf">inc</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">request_count</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span>
+                <span class="n">method</span><span class="o">=</span><span class="sh">'</span><span class="s">fetch</span><span class="sh">'</span><span class="p">,</span>
+                <span class="n">status</span><span class="o">=</span><span class="sh">'</span><span class="s">raise</span><span class="sh">'</span>
+            <span class="p">).</span><span class="nf">inc</span><span class="p">()</span>
+            <span class="k">raise</span>
+        
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">request_duration</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="sh">'</span><span class="s">fetch</span><span class="sh">'</span><span class="p">).</span><span class="nf">observe</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">active_requests</span><span class="p">.</span><span class="nf">dec</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="5-testing--quality-assurance">5. Testing &amp; Quality Assurance</h2>
+<h3 id="51-unit-testing">5.1 Unit Testing</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
+<span class="kn">from</span> <span class="n">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+
+<span class="k">class</span> <span class="nc">TestIncidentAgent</span><span class="p">:</span>
+    <span class="nd">@pytest.fixture</span>
+    <span class="k">def</span> <span class="nf">agent</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1">### Create test agent ###
+</span>        <span class="n">mock_api</span> <span class="o">=</span> <span class="nc">Mock</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nc">IncidentAgent</span><span class="p">(</span><span class="n">api</span><span class="o">=</span><span class="n">mock_api</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_extract_target_name</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">):</span>
+        <span class="c1">### Test target name extraction ###
+</span>        <span class="n">description</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Target Name: xyz.example.com</span><span class="sh">"</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">extract_target_name</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="sh">"</span><span class="s">xyz.example.com</span><span class="sh">"</span>
+    
+    <span class="k">def</span> <span class="nf">test_invalid_incident_data</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">agent</span><span class="p">):</span>
+        <span class="c1">### Test invalid incident data handling ###
+</span>        <span class="n">invalid_data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">incident_id</span><span class="sh">'</span><span class="p">:</span> <span class="sh">''</span><span class="p">}</span> <span class="c1"># Empty ID
+</span>        <span class="k">with</span> <span class="n">pytest</span><span class="p">.</span><span class="nf">raises</span><span class="p">(</span><span class="nb">ValueError</span><span class="p">):</span>
+            <span class="n">agent</span><span class="p">.</span><span class="nf">process_incident</span><span class="p">(</span><span class="n">invalid_data</span><span class="p">)</span>
+    
+    <span class="nd">@patch</span><span class="p">(</span><span class="sh">'</span><span class="s">requests.get</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_fetch_with_proxy</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mock_get</span><span class="p">,</span> <span class="n">agent</span><span class="p">):</span>
+        <span class="c1">### Test fetch with proxy ###
+</span>        <span class="n">mock_get</span><span class="p">.</span><span class="n">return_value</span><span class="p">.</span><span class="n">json</span><span class="p">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">:</span> <span class="p">[]}</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">fetch_incidents</span><span class="p">()</span>
+
+        <span class="k">assert</span> <span class="n">mock_get</span><span class="p">.</span><span class="n">called</span>
+        <span class="n">mock_get</span><span class="p">.</span><span class="nf">assert_called_with</span><span class="p">(</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+            <span class="n">proxies</span><span class="o">=</span><span class="p">{</span><span class="sh">'</span><span class="s">http</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">http://proxy:8080</span><span class="sh">'</span><span class="p">}</span>
+        <span class="p">)</span>
+</code></pre></div></div>
+<h3 id="52-integration-testing">5.2 Integration Testing</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
+<span class="kn">import</span> <span class="n">responses</span>
+
+<span class="k">class</span> <span class="nc">TestAgentIntegration</span><span class="p">:</span>
+    <span class="nd">@responses.activate</span>
+    <span class="k">def</span> <span class="nf">test_full_incidents_processing</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1">### Test complete incidents processing flow ###
+</span>        
+        <span class="c1"># Mock API response
+</span>        <span class="n">responses</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span>
+            <span class="n">responses</span><span class="p">.</span><span class="n">GET</span><span class="p">,</span>
+            <span class="sh">'</span><span class="s">https://api.example.com/incidents</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="p">[{</span>
+                <span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">INC123</span><span class="sh">'</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">description</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Target Name: xyz.example.com</span><span class="se">\n</span><span class="s">Target Type: server</span><span class="sh">'</span><span class="p">,</span>
+            <span class="p">}]</span>
+            <span class="n">status</span><span class="o">=</span><span class="mi">200</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Create agent and process
+</span>        <span class="n">agent</span> <span class="o">=</span> <span class="nc">IncidentAgent</span><span class="p">()</span>
+        <span class="n">incidents</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">fetch_incidents</span><span class="p">()</span>
+
+        <span class="c1"># Assertions
+</span>        <span class="k">assert</span> <span class="nf">len</span><span class="p">(</span><span class="n">incidents</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="k">assert</span> <span class="n">inciedents</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">incident_id</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">INC123</span><span class="sh">'</span>
+        <span class="k">assert</span> <span class="n">incidents</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">target_name</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">xyz.example.com</span><span class="sh">'</span>
+</code></pre></div></div>
+
+<h2 id="6-configuration-management">6. Configuration Management</h2>
+<h3 id="61-environment-based-configuration">6.1 Environment-Based Configuration</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="nf">load_dotenv</span><span class="p">()</span>  <span class="c1"># Load .env file
+</span>
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent configuration </span><span class="sh">"""</span>
+
+    <span class="c1"># API settings
+</span>    <span class="n">api_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_URL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">https://api.example.com</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">api_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_TIMEOUT</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">30</span><span class="sh">'</span><span class="p">))</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">MAX_RETRIES</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">3</span><span class="sh">'</span><span class="p">))</span>
+
+    <span class="c1"># Proxy settings
+</span>    <span class="n">proxy_enabled</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">PROXY_ENABLED</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">false</span><span class="sh">'</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span> <span class="o">==</span> <span class="sh">'</span><span class="s">true</span><span class="sh">'</span>
+    <span class="n">proxy_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">PROXY_URL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">https://proxy:8080</span><span class="sh">'</span><span class="p">)</span>
+
+    <span class="c1"># Logging
+</span>    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">LOG_LEVEL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">INFO</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">LOG_FILE</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">agent.log</span><span class="sh">'</span><span class="p">)</span>
+
+    <span class="c1"># Security
+</span>    <span class="n">api_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_TOKEN</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+    <span class="n">verify_ssl</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">VERIFY_SSL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">true</span><span class="sh">'</span><span class="p">).</span><span class="nf">lower</span><span class="p">()</span> <span class="o">==</span> <span class="sh">'</span><span class="s">true</span><span class="sh">'</span>
+
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> validate configuration </span><span class="sh">"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">api_url</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">API_URL must be set</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">api_token</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">API_TOKEN must be set</span><span class="sh">"</span><span class="p">)</span>
+<span class="c1"># Usage
+</span><span class="n">config</span> <span class="o">=</span> <span class="nc">Config</span><span class="p">()</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">validate</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h3 id="62-env-file">6.2 .env file</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># API Configuration
+</span><span class="n">API_URL</span><span class="o">=</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">api</span><span class="p">.</span><span class="n">example</span><span class="p">.</span><span class="n">com</span>
+<span class="n">API_TIMEOUT</span><span class="o">=</span><span class="mi">30</span>
+<span class="n">MAX_RETRIES</span><span class="o">=</span><span class="mi">3</span>
+
+<span class="c1"># Proxy Configuration
+</span><span class="n">PROXY_ENABLED</span><span class="o">=</span><span class="n">true</span>
+<span class="n">PROXY_URL</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">proxy</span><span class="p">:</span><span class="mi">8080</span>
+
+<span class="c1"># Logging
+</span><span class="n">LOG_LEVEL</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">LOG_FILE</span><span class="o">=</span><span class="n">agent</span><span class="p">.</span><span class="n">log</span>
+
+<span class="c1"># Security
+</span><span class="n">API_TOKEN</span><span class="o">=</span><span class="n">your_api_token_here</span>
+<span class="n">VERIFY_SSL</span><span class="o">=</span><span class="n">true</span>
+</code></pre></div></div>
+
+<h2 id="7-security-best-practices">7. Security Best Practices</h2>
+<h3 id="71-secure-credential-management">7.1 Secure Credential Management</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">cryptography.fernet</span> <span class="kn">import</span> <span class="n">Fernet</span>
+<span class="kn">import</span> <span class="n">os</span>
+
+<span class="k">class</span> <span class="nc">SecureCredentials</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Manage credentials securely </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="c1"># Never hardcode key - use environment variable
+</span>        <span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">ENCRYPTION_KEY</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">ENCRYPTION_KEY must be set in environment variables</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="n">self</span><span class="p">.</span><span class="n">cipher</span> <span class="o">=</span> <span class="nc">Fernet</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s"> Encrypt sensitive token </span><span class="sh">"""</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">cipher</span><span class="p">.</span><span class="nf">encrypt</span><span class="p">(</span><span class="n">token</span><span class="p">.</span><span class="nf">encode</span><span class="p">()).</span><span class="nf">decode</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">encrypted_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s"> Decrypt sensitive token </span><span class="sh">"""</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">cipher</span><span class="p">.</span><span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted_token</span><span class="p">.</span><span class="nf">encode</span><span class="p">()).</span><span class="nf">decode</span><span class="p">()</span>
+
+<span class="c1"># ❌ BAD: Hardcoding credentials
+</span><span class="n">api_token</span> <span class="o">=</span> <span class="sh">"</span><span class="s">secret_token_123</span><span class="sh">"</span>
+
+<span class="c1"># ✅ GOOD: Using secure credential management
+</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_TOKEN_ENCRYPTED</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="72-rate-limiting">7.2 Rate Limiting</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">requests.adapters</span> <span class="kn">import</span> <span class="n">HTTPAdapter</span>
+<span class="kn">from</span> <span class="n">urllib3.util.retry</span> <span class="kn">import</span> <span class="n">Retry</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="k">class</span> <span class="nc">RateLimitedAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent with rate limiting </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">requests_per_second</span> <span class="o">=</span> <span class="n">requests_per_second</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">min_interval</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">requests_per_second</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">last_request_time</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">def</span> <span class="nf">_wait_if_needed</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Wait to maintain rate limit </span><span class="sh">"""</span>
+        <span class="n">elapsed</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">last_request_time</span>
+        <span class="k">if</span> <span class="n">elapsed</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">.</span><span class="n">min_interval</span><span class="p">:</span>
+            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">min_interval</span> <span class="o">-</span> <span class="n">elapsed</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Fetch with rate limiting </span><span class="sh">"""</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">_wait_if_needed</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">last_request_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="8-performance-optimization">8. Performance Optimization</h2>
+<h3 id="81-caching">8.1 Caching</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">funtools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+
+<span class="k">class</span> <span class="nc">CachedAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent with intelligent caching </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">cache_ttl</span> <span class="o">=</span> <span class="mi">300</span> <span class="c1"># 5 minutes
+</span>    
+    <span class="k">def</span> <span class="nf">get_incidents</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">force_refresh</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Get incidents with caching </span><span class="sh">"""</span>
+
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="sh">'</span><span class="s">incidents</span><span class="sh">'</span>
+
+        <span class="c1"># Check cache
+</span>        <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">cache</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force_refresh</span><span class="p">:</span>
+            <span class="n">cached_data</span><span class="p">,</span> <span class="n">timestamp</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">timestamp</span> <span class="o">&lt;</span> <span class="nf">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">cache_ttl</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">cached_data</span>
+        
+        <span class="c1"># Fetch fresh data
+</span>        <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Fetching fresh incidents</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">incidents</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_fetch_from_api</span><span class="p">()</span>
+
+        <span class="c1"># Update cache
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">incidents</span><span class="p">,</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">incidents</span>
+    
+    <span class="k">def</span> <span class="nf">_fetch_from_api</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Fetch from API </span><span class="sh">"""</span>
+        <span class="k">pass</span>
+</code></pre></div></div>
+
+<h3 id="82-batch-processing">8.2 Batch Processing</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Iterator</span>
+
+<span class="k">class</span> <span class="nc">BatchedAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Process incidents in batches </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">process_in_batches</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">incidents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]:</span>
+        <span class="sh">"""</span><span class="s"> process incidents in batches to reduce memory </span><span class="sh">"""</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">incidents</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+            <span class="n">batch</span> <span class="o">=</span> <span class="n">incidents</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
+            <span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Processing batch </span><span class="si">{</span><span class="n">i</span> <span class="o">//</span> <span class="n">batch_size</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+           
+            <span class="k">for</span> <span class="n">incident</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">self</span><span class="p">.</span><span class="nf">process_incident</span><span class="p">(</span><span class="n">incident</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="9-documentation--code-quality">9. Documentation &amp; Code Quality</h2>
+<h3 id="91-type-hints">9.1 Type Hints</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="k">class</span> <span class="nc">DocumentedAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Well-documented agent </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">extract_target_name</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sh">"""</span><span class="s"> Extract target name from incident description
+
+        Args:
+            description (str): Incident description text
+
+        Returns:
+            The Target name if found, None Otherwise
+
+        Raises:
+            ValueError: If description is empty
+        
+        Example:
+</span><span class="gp">            &gt;&gt;&gt;</span> <span class="n">agent</span> <span class="o">=</span> <span class="nc">DocumentedAgent</span><span class="p">()</span>
+            <span class="o">&gt;&gt;&gt;</span> <span class="n">agent</span><span class="p">.</span><span class="nf">extract_target_name</span><span class="p">(</span><span class="sh">"</span><span class="s">Target Name: xyz.example.com</span><span class="sh">"</span><span class="p">)</span>
+            <span class="sh">'</span><span class="s">xyz.example.com</span><span class="sh">'</span>
+        <span class="sh">"""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">description</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Description must not be empty</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">Target Name:\s*(\S+)</span><span class="sh">'</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">match</span> <span class="k">else</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">batch_process</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span>
+        <span class="n">incidents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">parallel</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+        <span class="sh">"""</span><span class="s"> 
+        Process multiple incidents
+
+        Args:
+            incidents: List of incident dictionaries
+            parallel: Whether to process in parallel
+
+        Returns:
+            Tuple of (processed_incidents, error_ids)
+        </span><span class="sh">"""</span>
+        <span class="k">pass</span>
+</code></pre></div></div>
+
+<h2 id="10-observability--debugging">10. Observability &amp; Debugging</h2>
+<h3 id="101-debugging-mode">10.1 Debugging Mode</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
+
+<span class="k">class</span> <span class="nc">DebuggableAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent with debug mode </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">debug</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">setup_logging</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">setup_logging</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Setup logging based on debug mode </span><span class="sh">"""</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span> <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">debug</span> <span class="k">else</span> <span class="n">logging</span><span class="p">.</span><span class="n">INFO</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Fetch with debug output </span><span class="sh">"""</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fetching data from URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Using proxies: </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">proxies</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Response status: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">debug</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Response size: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span><span class="si">}</span><span class="s"> bytes</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">response</span>
+</code></pre></div></div>
+<h3 id="102-health-checks">10.2 Health Checks</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">HealthCheckAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Agent with health checks </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">health_check</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+        <span class="sh">"""</span><span class="s"> check agent health </span><span class="sh">"""</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="sh">'</span><span class="s">api_connectivity</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">_check_api</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">proxy_connectivity</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">_check_proxy</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">database_connection</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">_check_database</span><span class="p">(),</span>
+            <span class="sh">'</span><span class="s">cache_health</span><span class="sh">'</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="nf">_check_cache</span><span class="p">()</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span> <span class="nf">_check_api</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s"> Check API connectivity </span><span class="sh">"""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">api_url</span><span class="si">}</span><span class="s">/health</span><span class="sh">"</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+        <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+<h2 id="-quick-refence-checklist">✅ Quick Refence Checklist</h2>
+<ul>
+  <li>✅ Single responsibility principle</li>
+  <li>✅ Comprehensive error handling with retries</li>
+  <li>✅ Input validation and sanitization</li>
+  <li>✅ Structured logging</li>
+  <li>✅ Unit &amp; Integration testing</li>
+  <li>✅ Configuration management</li>
+  <li>✅ Security best practices</li>
+  <li>✅ Rate limiting and Caching</li>
+  <li>✅ Type hints and documentation</li>
+  <li>✅ Health checks and monitoring</li>
+  <li>✅ Gradeful degradation</li>
+  <li>✅ Retry logic with backoff</li>
+  <li>✅ Environment-based configuration</li>
+  <li>✅ Secrets management</li>
+  <li>✅ Performance optimization</li>
+</ul>
+
+<h2 id="-complete-production-ready-agent-template">🚀 Complete Production-Ready Agent Template</h2>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="n">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="n">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">Config</span><span class="p">:</span>
+    <span class="n">api_url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_URL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">https://api.example.com</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">api_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">API_TIMEOUT</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">30</span><span class="sh">'</span><span class="p">))</span>
+    <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">MAX_RETRIES</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">3</span><span class="sh">'</span><span class="p">))</span>
+    <span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">LOG_LEVEL</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">INFO</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">ProductionAgent</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s"> Production-ready AI Agent </span><span class="sh">"""</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span> <span class="ow">or</span> <span class="nc">Config</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_setup_logging</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">def</span> <span class="nf">_setup_logging</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Setup structured logging </span><span class="sh">"""</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">log_level</span><span class="p">)</span>
+
+        <span class="n">handler</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nc">StreamHandler</span><span class="p">()</span>
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nc">Formatter</span><span class="p">(</span><span class="sh">'</span><span class="s">%(asctime)s - %(name)s - %(levelname)s - %(message)s</span><span class="sh">'</span><span class="p">)</span>
+
+        <span class="n">handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logger</span>
+
+    <span class="k">def</span> <span class="nf">retry</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s"> Retry decorator with backoff </span><span class="sh">"""</span>
+        <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">max_retries</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="nf">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">All retries failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                        <span class="k">raise</span>
+                    <span class="n">wait_time</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span>
+                    <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Attempt </span><span class="si">{</span><span class="n">attempt</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s"> failed. Retrying in </span><span class="si">{</span><span class="n">wait_time</span><span class="si">}</span><span class="s">s: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">wrapper</span>
+    
+    <span class="nd">@retry</span>
+    <span class="k">def</span> <span class="nf">fetch_data</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+        <span class="sh">"""</span><span class="s"> Fetch data with retry logic </span><span class="sh">"""</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fetching from: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">api_timeout</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+        <span class="sh">"""</span><span class="s"> Process data safely </span><span class="sh">"""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Processing data</span><span class="sh">"</span><span class="p">)</span>
+            <span class="c1"># Your processing logic here
+</span>            <span class="k">return</span> <span class="n">data</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Processing failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+<span class="c1"># Usage
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="nc">ProductionAgent</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">fetch_data</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">https://api.example.com/incidents</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">processed</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">process</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>This comprehensive guide covers all aspects of developing professional AI agents! 🎯</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

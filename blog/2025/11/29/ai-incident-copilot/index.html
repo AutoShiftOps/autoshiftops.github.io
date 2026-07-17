@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚀 Building an AI Incident Copilot: How I Automated the First 15 Minutes of Every Production Incident | AutoShiftOps</title>
+<meta name="description" content="A practical DevOps tool you can run over SSH in minutes (journalctl, docker logs, or plain files)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>🚀 Building an AI Incident Copilot: How I Automated the First 15 Minutes of Every Production Incident</h1>
+    <div class="post-meta">
+      November 29, 2025
+       &middot; AI agents / incident management / Python / log analysis / command suggestions / machine learning / AutoShiftOps
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <p>Every production incident follows the same painful ritual.</p>
+
+<p>An alert fires at 2am. An engineer wakes up, SSH’s into a server, and begins the manual loop — pulling logs, scanning for errors, guessing what to check next. This loop can take 15 to 45 minutes before the real diagnosis even begins. Multiply that by every incident across every team in your organisation, and you have thousands of engineering hours lost every year to work that is repetitive, stressful, and largely automatable.</p>
+
+<p>I’ve been on that on-call rotation. I know what it costs — not just in time, but in cognitive load, in missed context, and in the compounding pressure of an active incident. So I built incopilot: a CLI tool that automates the entire first-pass triage so engineers can skip straight to actual problem-solving.</p>
+
+<p>This post walks through the architecture, the design decisions, and exactly how to build it yourself. Everything is open source at https://github.com/AutoShiftOps/incopilot.</p>
+
+<h2 id="architecture">Architecture</h2>
+<p><a href="/assets/images/posts/2025-11-29-ai-incident-copilot.png"><img src="/assets/images/posts/2025-11-29-ai-incident-copilot.png" alt="Architecture diagram" /></a></p>
+
+<h2 id="project-structure">Project structure</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>incopilot/
+  __init__.py
+  cli.py          # argument parsing + console output
+  collectors.py   # journalctl, docker logs, file, bundle
+  analyzer.py     # pattern detection + line normalization
+  reporter.py     # report.md / report.json generation
+  config.py       # patterns, golden-signal map, safe-command list
+scripts/
+  demo_generate_sample_logs.py
+posts/
+requirements.txt
+pyproject.toml
+README.md
+</code></pre></div></div>
+
+<h2 id="setup">Setup</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/AutoShiftOps/incopilot.git
+<span class="nb">cd </span>incopilot
+python <span class="nt">-m</span> venv .venv
+<span class="nb">source</span> .venv/bin/activate
+pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt
+</code></pre></div></div>
+
+<h2 id="quick-test-no-real-services-needed">Quick test (no real services needed)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python scripts/demo_generate_sample_logs.py
+python <span class="nt">-m</span> incopilot file <span class="nt">--path</span> sample.log
+<span class="nb">ls </span>out/
+</code></pre></div></div>
+
+<h2 id="systemd-journal-triage">Systemd journal triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot journal <span class="nt">--unit</span> nginx <span class="nt">--since</span> <span class="s2">"30 min ago"</span>
+</code></pre></div></div>
+
+<h2 id="docker-triage">Docker triage</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot docker <span class="nt">--container</span> my-api <span class="nt">--since</span> 1h
+</code></pre></div></div>
+
+<h2 id="both-sources-bundle">Both sources (bundle)</h2>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python <span class="nt">-m</span> incopilot bundle <span class="se">\</span>
+  <span class="nt">--unit</span> nginx <span class="se">\</span>
+  <span class="nt">--container</span> my-api <span class="se">\</span>
+  <span class="nt">--since-journal</span> <span class="s2">"30 min ago"</span> <span class="se">\</span>
+  <span class="nt">--since-docker</span> 1h
+</code></pre></div></div>
+
+<h2 id="what-you-get">What you get</h2>
+<p><code class="language-plaintext highlighter-rouge">out/report.md</code> — paste into your incident doc<br />
+<code class="language-plaintext highlighter-rouge">out/report.json</code> — attach to a ticket or POST to a webhook</p>
+
+<h2 id="what-to-improve-next">What to improve next</h2>
+<ul>
+  <li>Per-service pattern packs (nginx, postgres, java, node)</li>
+  <li>Slack/Teams webhook posting (<code class="language-plaintext highlighter-rouge">--webhook &lt;url&gt;</code>)</li>
+  <li>Unit tests + GitHub Actions CI</li>
+  <li>Scheduled timer (systemd timer unit) for proactive reports</li>
+</ul>
+
+<p>Sudhakar Sajja is an Application Architect at TechMahindra with 13 years of experience across protocol testing, SDET, DevOps, and cloud architecture. He specialises in AI-powered DevOps operations — building tools that use LLMs to replace manual incident response and query diagnostics. He writes weekly at AutoShiftOps (autoshiftops.com) and built QueryTuner (querytuner.com), an AI-driven SQL query analysis tool. Based in Mississauga, Canada.</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

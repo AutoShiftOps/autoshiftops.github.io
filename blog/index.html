@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog</title>
-  <link rel="stylesheet" href="/assets/css/custom.css">
-  <link rel="stylesheet" href="/assets/css/kaggle-theme.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
-  <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest">
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2452994478358649"
-     crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | AutoShiftOps</title>
+<meta name="description" content="DevOps, cloud, and AI tooling notes from Sajja.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -26,327 +26,503 @@
 </script>
 </head>
 <body>
-  <header class="site-header">
-  <div class="container header-container">
-    <!-- Hamburger button -->
-    <button class="nav-toggle" aria-label="Toggle navigation">
-      <span></span><span></span><span></span>
-    </button>
-
-    <!-- Logo -->
-    <div class="logo">
-      <a href="/">
-        <img src="/assets/images/logo.png"
-             alt="AutoshiftOps" class="site-logo">
-      </a>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" class="active">Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
     </div>
+  </div>
+</nav>
 
-    <!-- Navigation -->
-    <nav class="site-nav">
-      <button class="nav-close" aria-label="Close Menu">&times;</button>
-      <a href="/blog">Blog</a>
-      <a href="/projects">Projects</a>
-      <a href="/tools">Tools</a>
-      <a href="/archives/2025">Archives</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-    </nav>
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">tail -f blog.log</div>
+    <h1>Blog</h1>
+    <p class="sub">Notes from the field — grouped by what they're actually about.</p>
   </div>
 </header>
 
-  <main class="site-main">
-    <div class="blog-container">
-  <h1 class="page-title">Explore Our Blog</h1>
-
-  <!-- Search + Category Filter -->
-  <div class="search-filter">
-    <!-- Search Widget -->
-    <div id="search-widget" class="search-widget">
-      <input id="searchBox" type="text" placeholder="Search posts..." aria-label="Search posts">
-      <div id="search-results" class="search-results"></div>
+<section>
+  <div class="wrap">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-pillar="all">All</button>
+      <button class="filter-btn" data-pillar="ai-devops">AI &amp; DevOps Tooling</button>
+      <button class="filter-btn" data-pillar="cloud-k8s">Cloud &amp; Kubernetes</button>
+      <button class="filter-btn" data-pillar="incident-sre">Incident Response &amp; SRE</button>
+      <button class="filter-btn" data-pillar="career-mba">Career &amp; MBA Insights</button>
     </div>
-    <div class="spacer"></div>
-    <!-- Category Filter -->
-    <div class="category-filter">
-      <button class="filter-btn active" data-category="all">All</button>
+
+    <div class="post-list" id="post-list">
       
       
-        <button class="filter-btn" data-category="ai">AI</button>
+      <a class="post-row" href="/blog/2025/12/28/cpu-only-llm-inference-explained/" data-tags="devops,ai,llms,machine learning,llms,cpu inference,quantization,llama.cpp,large language models,ai,machine learning">
+        <span class="post-title">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</span>
+        <span class="post-date">Dec 28, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="alerting">Alerting</button>
       
-        <button class="filter-btn" data-category="automation">Automation</button>
+      <a class="post-row" href="/blog/2025/12/27/best-practices-for-developing-ai-agents/" data-tags="devops,ai,llms,machine learning,llms,ai agents,best practices,software engineering,machine learning">
+        <span class="post-title">🤖 Best Practices for Developing AI Agents</span>
+        <span class="post-date">Dec 27, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="backup">Backup</button>
       
-        <button class="filter-btn" data-category="bash">Bash</button>
+      <a class="post-row" href="/blog/2025/12/22/new-relic-to-service-now-incident-automation/" data-tags="new relic,serivenow,new relic,servicenow,integration,incident,sre">
+        <span class="post-title">↔️New Relic to ServiceNow Incident Automation(Lab Guide)</span>
+        <span class="post-date">Dec 22, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="ci-cd">CI/CD</button>
       
-        <button class="filter-btn" data-category="chaos-engineering">Chaos Engineering</button>
+      <a class="post-row" href="/blog/2025/11/29/ai-incident-copilot/" data-tags="devops,ai,incident management,machine learning,ai agents,incident management,python,log analysis,command suggestions,machine learning,autoshiftops">
+        <span class="post-title">🚀 Building an AI Incident Copilot: How I Automated the First 15 Minutes of Every Production Incident</span>
+        <span class="post-date">Nov 29, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="cloud">Cloud</button>
       
-        <button class="filter-btn" data-category="cloud-migration">Cloud Migration</button>
+      <a class="post-row" href="/blog/2025/11/20/Building-ai-agents-using-python-for-stocktrade/" data-tags="devops,ai,trading,machine learning,ai agents,stock trading,python,lstm,backtesting,machine learning,autoshiftops">
+        <span class="post-title">🚀 Building an AI-Powered Stock Trading Bot in Python</span>
+        <span class="post-date">Nov 20, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="collaboration">Collaboration</button>
       
-        <button class="filter-btn" data-category="containers">Containers</button>
+      <a class="post-row" href="/blog/2025/07/26/alert-decision-layer-cli-python/" data-tags="monitoring,alerting,python,python,alerting,decision-making">
+        <span class="post-title">🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</span>
+        <span class="post-date">Jul 26, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="continuous-delivery">Continuous Delivery</button>
       
-        <button class="filter-btn" data-category="cost-management">Cost Management</button>
+      <a class="post-row" href="/blog/2025/07/20/self-healing-containers-docker-bash/" data-tags="docker,linux,troubleshooting,docker,cgroups,namespaces,bash scripting,monitoring,self-healing">
+        <span class="post-title">🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</span>
+        <span class="post-date">Jul 20, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="database">Database</button>
       
-        <button class="filter-btn" data-category="deployment">Deployment</button>
+      <a class="post-row" href="/blog/2025/07/19/container-troubleshooting-playbook-docker-linux/" data-tags="docker,linux,troubleshooting,docker,cgroups,namespaces,troubleshooting,monitoring">
+        <span class="post-title">🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</span>
+        <span class="post-date">Jul 19, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="devops">DevOps</button>
       
-        <button class="filter-btn" data-category="docker">Docker</button>
+      <a class="post-row" href="/blog/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups/" data-tags="docker,linux,sre,observability,automation,sre,bash,linux,docker,autoshiftops">
+        <span class="post-title">📊 Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)</span>
+        <span class="post-date">Jul 13, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="finance">Finance</button>
       
-        <button class="filter-btn" data-category="github-automation">GitHub Automation</button>
+      <a class="post-row" href="/blog/2025/07/12/incident-response-runbook-template-devops/" data-tags="automation,linux,bash,incident,automation,scripting,bash,linux,incident,autoshiftops">
+        <span class="post-title">🔧 Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</span>
+        <span class="post-date">Jul 12, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="gitops">GitOps</button>
       
-        <button class="filter-btn" data-category="iac">IaC</button>
+      <a class="post-row" href="/blog/2025/07/06/Linux-Monitoring-and-Alerting/" data-tags="automation,linux,bash,automation,scripting,bash,linux,monitoring,alerting,autoshiftops">
+        <span class="post-title">📊 Linux Monitoring & Alerting: Command-Line Mastery for DevOps</span>
+        <span class="post-date">Jul 06, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="incident">Incident</button>
       
-        <button class="filter-btn" data-category="incident-management">Incident Management</button>
+      <a class="post-row" href="/blog/2025/07/05/Advanced-bash-scripting/" data-tags="automation,linux,bash,automation,scripting,bash,linux,autoshiftops">
+        <span class="post-title">🚀 Advanced Bash Scripting for DevOps Automation</span>
+        <span class="post-date">Jul 05, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="infrastructure">Infrastructure</button>
       
-        <button class="filter-btn" data-category="kubernetes">Kubernetes</button>
+      <a class="post-row" href="/blog/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery/" data-tags="devops,ci/cd,continuous delivery,feature flags,continuous delivery,devops,release management,canary releases,a/b testing">
+        <span class="post-title">🚦 Feature Flag Management in Continuous Delivery</span>
+        <span class="post-date">Jun 29, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="llms">LLMs</button>
       
-        <button class="filter-btn" data-category="linux">Linux</button>
+      <a class="post-row" href="/blog/2025/06/28/Multi-Cloud-CICD-Pipelines-Challenges-and-Solutions/" data-tags="devops,ci/cd,multi-cloud,multi-cloud,ci/cd,devops,cloud deployment,automation,hybrid cloud">
+        <span class="post-title">📦 Multi-Cloud CI/CD Pipelines: Challenges and Solutions</span>
+        <span class="post-date">Jun 28, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="logging">Logging</button>
       
-        <button class="filter-btn" data-category="machine-learning">Machine Learning</button>
+      <a class="post-row" href="/blog/2025/06/22/Infrastructure-as-Code-Testing-Strategies/" data-tags="devops,iac,testing,infrastructure as code,terraform,pulumi,testing,ci/cd,devops automation">
+        <span class="post-title">🔗 Infrastructure as Code Testing Strategies: Terraform & Pulumi</span>
+        <span class="post-date">Jun 22, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="microservices">Microservices</button>
       
-        <button class="filter-btn" data-category="monitoring">Monitoring</button>
+      <a class="post-row" href="/blog/2025/06/21/AI-Driven-Incident-Response-in-DevOps/" data-tags="devops,ai,incident management,ai,incident response,devops automation,monitoring,root cause analysis,sre">
+        <span class="post-title">🤖 AI-Driven Incident Response in DevOps</span>
+        <span class="post-date">Jun 21, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="multi-cloud">Multi-Cloud</button>
       
-        <button class="filter-btn" data-category="new-relic">New Relic</button>
+      <a class="post-row" href="/blog/2025/06/15/Chaos-Engineering-in-Production/" data-tags="devops,chaos engineering,resilience,chaos engineering,resilience,reliability,devops,fault injection,sre">
+        <span class="post-title">🛡️ Chaos Engineering in Production: Building Resilient Systems</span>
+        <span class="post-date">Jun 15, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="observability">Observability</button>
       
-        <button class="filter-btn" data-category="performance">Performance</button>
+      <a class="post-row" href="/blog/2025/06/14/Observability-Driven-DevOps/" data-tags="devops,observability,ci/cd,observability,monitoring,metrics,logs,traces,devops,sre">
+        <span class="post-title">🔍 Observability-Driven DevOps: Metrics, Logs & Traces</span>
+        <span class="post-date">Jun 14, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="python">Python</button>
       
-        <button class="filter-btn" data-category="release-management">Release Management</button>
+      <a class="post-row" href="/blog/2025/06/08/Blue-Green-Deployment-Strategies-in-Kubernetes/" data-tags="devops,ci/cd,kubernetes,blue-green deployment,kubernetes,ci/cd,devops automation">
+        <span class="post-title">🔹 Blue-Green Deployment Strategies in Kubernetes</span>
+        <span class="post-date">Jun 08, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="reliability">Reliability</button>
       
-        <button class="filter-btn" data-category="resilience">Resilience</button>
+      <a class="post-row" href="/blog/2025/06/07/The-Future-of-DevOps-Autonomous-Pipelines-by-2030/" data-tags="devops,automation,ai,autonomous pipelines,ci/cd,ai,devops automation,self-healing">
+        <span class="post-title">🚀 The Future of DevOps: Autonomous Pipelines by 2030</span>
+        <span class="post-date">Jun 07, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="sre">SRE</button>
       
-        <button class="filter-btn" data-category="scalability">Scalability</button>
+      <a class="post-row" href="/blog/2025/06/01/ChatGPT-Integration-in-DevOps/" data-tags="devops,ai,automation,chatgpt,ai,devops,automation,ci/cd">
+        <span class="post-title">🤖 ChatGPT Integration in DevOps</span>
+        <span class="post-date">Jun 01, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="security">Security</button>
       
-        <button class="filter-btn" data-category="serivenow">SeriveNow</button>
+      <a class="post-row" href="/blog/2025/05/31/Observability-in-DevOps/" data-tags="devops,monitoring,observability,observability,devops,metrics,logs,tracing,monitoring">
+        <span class="post-title">👁️ Observability in DevOps</span>
+        <span class="post-date">May 31, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="serverless">Serverless</button>
       
-        <button class="filter-btn" data-category="terraform">Terraform</button>
+      <a class="post-row" href="/blog/2025/05/25/GitOps-for-DevOps-Automation/" data-tags="devops,automation,gitops,gitops,devops,ci/cd,kubernetes,automation">
+        <span class="post-title">🌿 GitOps for DevOps Automation</span>
+        <span class="post-date">May 25, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="testing">Testing</button>
       
-        <button class="filter-btn" data-category="trading">Trading</button>
+      <a class="post-row" href="/blog/2025/05/24/Cloud-Cost-Optimization-in-DevOps/" data-tags="devops,cloud,cost management,cloud cost,optimization,devops,aws,azure,gcp">
+        <span class="post-title">💰 Cloud Cost Optimization in DevOps</span>
+        <span class="post-date">May 24, 2025</span>
+      </a>
       
-        <button class="filter-btn" data-category="troubleshooting">Troubleshooting</button>
       
-        <button class="filter-btn" data-category="affiliate-marketing">affiliate marketing</button>
+      <a class="post-row" href="/blog/2025/05/18/ChatOps-for-DevOps-Teams/" data-tags="devops,automation,collaboration,chatops,devops,automation,slack,collaboration">
+        <span class="post-title">💬 ChatOps for DevOps Teams</span>
+        <span class="post-date">May 18, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/05/17/End-to-End-DevOps-Automation/" data-tags="devops,automation,ci/cd,devops,automation,ci/cd,end-to-end,pipelines">
+        <span class="post-title">🔗 End-to-End DevOps Automation</span>
+        <span class="post-date">May 17, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/05/11/AI-Powered-DevOps-Insights/" data-tags="devops,ai,monitoring,ai,devops,monitoring,predictive analytics,automation">
+        <span class="post-title">🤖 AI-Powered DevOps Insights</span>
+        <span class="post-date">May 11, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/05/10/Progressive-Delivery-Techniques/" data-tags="devops,ci/cd,deployment,progressive delivery,devops,feature rollout,canary,blue-green">
+        <span class="post-title">🚀 Progressive Delivery Techniques</span>
+        <span class="post-date">May 10, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/05/04/Container-Security-Best-Practices/" data-tags="devops,security,containers,container security,docker,kubernetes,devops,best practices">
+        <span class="post-title">🔒 Container Security Best Practices</span>
+        <span class="post-date">May 04, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/05/03/Log-Aggregation-&-Analysis/" data-tags="devops,monitoring,logging,logging,log aggregation,devops,elk,monitoring">
+        <span class="post-title">📝 Log Aggregation & Analysis in DevOps</span>
+        <span class="post-date">May 03, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/27/DevSecOps-Integration/" data-tags="devops,security,ci/cd,devsecops,security,devops,ci/cd,automation">
+        <span class="post-title">🔐 DevSecOps Integration</span>
+        <span class="post-date">Apr 27, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/26/CICD-for-Microservices/" data-tags="devops,ci/cd,microservices,ci/cd,microservices,devops,automation,pipelines">
+        <span class="post-title">⚡ CI/CD for Microservices</span>
+        <span class="post-date">Apr 26, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/20/Kubernetes-Operators-Explained/" data-tags="devops,kubernetes,automation,kubernetes,operators,devops,automation,crd">
+        <span class="post-title">⚙️ Kubernetes Operators Explained</span>
+        <span class="post-date">Apr 20, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/19/Automated-Backup-&-Disaster-Recovery/" data-tags="devops,cloud,backup,backup,disaster recovery,devops,automation,cloud">
+        <span class="post-title">💾 Automated Backup & Disaster Recovery</span>
+        <span class="post-date">Apr 19, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/13/DevOps-Metrics-&-KPIs/" data-tags="devops,monitoring,performance,devops metrics,kpis,performance,ci/cd,monitoring">
+        <span class="post-title">📊 DevOps Metrics & KPIs</span>
+        <span class="post-date">Apr 13, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/12/Site-Reliability-Engineering-(SRE)-Practices/" data-tags="devops,reliability,sre,sre,devops,reliability,slas,monitoring">
+        <span class="post-title">🛡️ Site Reliability Engineering (SRE) Practices</span>
+        <span class="post-date">Apr 12, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/06/Incident-Management-Automation/" data-tags="devops,monitoring,incident management,incident management,devops,automation,alerting,on-call">
+        <span class="post-title">🚨 Incident Management Automation in DevOps</span>
+        <span class="post-date">Apr 06, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/04/05/Feature-Flags-in-DevOps/" data-tags="devops,ci/cd,release management,feature flags,devops,ci/cd,rollout,feature toggles">
+        <span class="post-title">🚩 Feature Flags in DevOps</span>
+        <span class="post-date">Apr 05, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/30/Continuous-Database-Deployment/" data-tags="devops,database,ci/cd,database deployment,ci/cd,devops,migrations,automation">
+        <span class="post-title">💾 Continuous Database Deployment</span>
+        <span class="post-date">Mar 30, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/29/Advanced-Helm-Charts-for-Kubernetes/" data-tags="devops,kubernetes,ci/cd,helm,kubernetes,devops,ci/cd,deployment">
+        <span class="post-title">📦 Advanced Helm Charts for Kubernetes</span>
+        <span class="post-date">Mar 29, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/22/Observability-with-OpenTelemetry/" data-tags="devops,monitoring,observability,opentelemetry,observability,devops,metrics,tracing,logging">
+        <span class="post-title">🔍 Observability with OpenTelemetry</span>
+        <span class="post-date">Mar 22, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/16/Advanced-Jenkins-Pipelines/" data-tags="devops,ci/cd,automation,jenkins,ci/cd,devops,pipeline,automation">
+        <span class="post-title">🚦 Advanced Jenkins Pipelines for CI/CD</span>
+        <span class="post-date">Mar 16, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/15/Infrastructure-as-Code-(IaC)-with-Terraform/" data-tags="devops,infrastructure,automation,terraform,iac,devops,cloud,automation">
+        <span class="post-title">🛠️ Infrastructure as Code with Terraform</span>
+        <span class="post-date">Mar 15, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/09/DevOps-Cost-Optimization/" data-tags="devops,cloud,finance,devops,cost optimization,cloud,automation,efficiency">
+        <span class="post-title">💰 DevOps Cost Optimization Strategies</span>
+        <span class="post-date">Mar 09, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/08/Multi-Cloud-Deployment-Best-Practices/" data-tags="devops,cloud,deployment,multi-cloud,devops,deployment,cloud strategy,kubernetes">
+        <span class="post-title">☁️ Multi-Cloud Deployment Best Practices</span>
+        <span class="post-date">Mar 08, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/02/Serverless-CICD-Pipelines/" data-tags="devops,ci/cd,serverless,serverless,ci/cd,devops,automation,aws lambda">
+        <span class="post-title">☁️ Serverless CI/CD Pipelines</span>
+        <span class="post-date">Mar 02, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/03/01/Chaos-Engineering-in-DevOps/" data-tags="devops,reliability,testing,chaos engineering,devops,resilience,testing,reliability">
+        <span class="post-title">💥 Chaos Engineering in DevOps</span>
+        <span class="post-date">Mar 01, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/23/Auto-Scaling-Strategies/" data-tags="devops,cloud,scalability,auto-scaling,devops,cloud,kubernetes,performance">
+        <span class="post-title">📈 Auto-Scaling Strategies in DevOps</span>
+        <span class="post-date">Feb 23, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/22/GitOps-for-Modern-DevOps/" data-tags="devops,ci/cd,automation,gitops,devops,ci/cd,kubernetes,automation">
+        <span class="post-title">🌿 GitOps for Modern DevOps</span>
+        <span class="post-date">Feb 22, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/16/Canary-Deployment-for-Progressive-Releases/" data-tags="devops,deployment,ci/cd,canary deployment,devops,ci/cd,progressive rollout">
+        <span class="post-title">🦊 Canary Deployment for Progressive Releases</span>
+        <span class="post-date">Feb 16, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/15/Blue-Green-Deployment-in-Production/" data-tags="devops,deployment,kubernetes,blue-green deployment,kubernetes,ci/cd,devops">
+        <span class="post-title">🔵🔴 Blue-Green Deployment in Production</span>
+        <span class="post-date">Feb 15, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/09/Log-Aggregation-and-Analysis-with-ELK-Stack/" data-tags="devops,monitoring,logging,elk stack,logging,devops,observability">
+        <span class="post-title">📚 Log Aggregation and Analysis with ELK Stack</span>
+        <span class="post-date">Feb 09, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/08/Continuous-Security-in-DevOps-(DevSecOps)/" data-tags="devops,security,ci/cd,devsecops,security,ci/cd,devops,vulnerability scanning">
+        <span class="post-title">🛡️ Continuous Security in DevOps (DevSecOps)</span>
+        <span class="post-date">Feb 08, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/02/ai-driven-observability-for-devops/" data-tags="devops,ai,monitoring,ai,observability,monitoring,devops,metrics">
+        <span class="post-title">🤖 AI-Driven Observability for DevOps</span>
+        <span class="post-date">Feb 02, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/02/01/advanced-cicd-with-multi-stage-pipelines/" data-tags="devops,ci/cd,automation,ci/cd,multi-stage pipeline,devops,automation">
+        <span class="post-title">⚡ Advanced CI/CD with Multi-Stage Pipelines</span>
+        <span class="post-date">Feb 01, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/26/secrets-management-in-devops-pipelines/" data-tags="devops,security,ci/cd,secrets management,devops,ci/cd,security,vault">
+        <span class="post-title">🔑 Secrets Management in DevOps Pipelines</span>
+        <span class="post-date">Jan 26, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/25/kubernetes-deployment-strategies/" data-tags="devops,kubernetes,kubernetes,deployment,devops,ci/cd">
+        <span class="post-title">☸️ Kubernetes Deployment Strategies</span>
+        <span class="post-date">Jan 25, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/19/containerization-best-practices-with-docker/" data-tags="devops,containers,docker,docker,containerization,devops,best practices">
+        <span class="post-title">🐳 Containerization Best Practices with Docker</span>
+        <span class="post-date">Jan 19, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/18/monitoring-and-observability-with-prometheus-grafana/" data-tags="devops,monitoring,observability,prometheus,grafana,devops,monitoring,observability">
+        <span class="post-title">📊 Monitoring and Observability with Prometheus & Grafana</span>
+        <span class="post-date">Jan 18, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/12/infrastructure-as-code-with-terraform/" data-tags="devops,cloud,terraform,iac,terraform,devops,cloud infrastructure">
+        <span class="post-title">🌐 Infrastructure as Code (IaC) with Terraform</span>
+        <span class="post-date">Jan 12, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/11/automated-testing-strategies-in-devops/" data-tags="devops,ci/cd,testing,automated testing,devops,ci/cd,quality assurance">
+        <span class="post-title">🧪 Automated Testing Strategies in DevOps</span>
+        <span class="post-date">Jan 11, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/05/building-cicd-pipelines-with-github-actions/" data-tags="devops,ci/cd,automation,ci/cd,github actions,devops,pipeline automation">
+        <span class="post-title">🏗️ Building CI/CD Pipelines with GitHub Actions</span>
+        <span class="post-date">Jan 05, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/04/getting-started-with-github-automation/" data-tags="devops,github automation,github automation,github actions,devops,ci/cd">
+        <span class="post-title">🚀 Getting Started with GitHub Automation</span>
+        <span class="post-date">Jan 04, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2025/01/01/devops-automation-tools/" data-tags="devops,ci/cd,automation,devops,pipeline automation">
+        <span class="post-title">🚀 DevOps Automation Breakthroughs (2025)</span>
+        <span class="post-date">Jan 01, 2025</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2024/11/14/kafka-offsets-explained-with-real-examples/" data-tags="data engineering,kafka,kafka,offsets,python,pipeline,automation,monitoring,streaming">
+        <span class="post-title">Kafka Offsets, Explained With Real Examples</span>
+        <span class="post-date">Nov 14, 2024</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2024/10/26/onprem-hadoop-to-aws-emr-migration/" data-tags="devops,cloud migration,hadoop migration,aws emr,on-premises to cloud,data migration,devops">
+        <span class="post-title">🚀 On-prem Hadoop to AWS EMR Migration Strategies</span>
+        <span class="post-date">Oct 26, 2024</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2024/10/22/earning-with-affiliate-tools/" data-tags="devops,affiliate marketing,devops,affiliate marketing,affiliate tools">
+        <span class="post-title">🚀 Earning with Affiliate Tools: Turn Your Recommendations into Revenue</span>
+        <span class="post-date">Oct 22, 2024</span>
+      </a>
+      
+      
+      <a class="post-row" href="/blog/2023/11/13/emqx-kafka-mongodb-real-time-iot-pipeline/" data-tags="data engineering,kafka,iot,emqx,kafka,mqtt,mongodb,python,pipeline,automation">
+        <span class="post-title">Streaming IoT Data in Real Time: EMQX, Kafka, and MongoDB</span>
+        <span class="post-date">Nov 13, 2023</span>
+      </a>
       
     </div>
   </div>
-
-  <!-- Blog Grid -->
-  <div id="searchResults" class="blog-grid">
-    
-      <article class="post-card" data-category="devops-ai-llms-machine-learning">
-        
-        <div class="post-content">
-          <h2><a href="/devops/ai/llms/machine%20learning/2025/12/28/cpu-only-llm-inference-explained.html">🧠 CPU-Only LLM Inference Explained: Quantization, GGUF, and llama.cpp</a></h2>
-          <p class="excerpt">Running Large Language Models on CPU: A Practical Guide to CPU-Only LLM Inference
-</p>
-          <p class="meta">December 28, 2025 | DevOps, AI, LLMs, Machine Learning</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="devops-ai-llms-machine-learning">
-        
-        <div class="post-content">
-          <h2><a href="/devops/ai/llms/machine%20learning/2025/12/27/best-practices-for-developing-ai-agents.html">🤖 Best Practices for Developing AI Agents</a></h2>
-          <p class="excerpt">Here’s a comprehensive guide for developing robust, reliable AI agents:
-</p>
-          <p class="meta">December 27, 2025 | DevOps, AI, LLMs, Machine Learning</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="new-relic-serivenow">
-        
-        <div class="post-content">
-          <h2><a href="/new%20relic/serivenow/2025/12/22/new-relic-to-service-now-incident-automation.html">↔️New Relic to ServiceNow Incident Automation(Lab Guide)</a></h2>
-          <p class="excerpt">Objective
-Create a closed-loop incident management system where New Relic automatically creates ServiceNow incidents ...</p>
-          <p class="meta">December 22, 2025 | New Relic, SeriveNow</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="devops-ai-incident-management-machine-learning">
-        
-        <div class="post-content">
-          <h2><a href="/devops/ai/incident%20management/machine%20learning/2025/11/29/ai-incident-copilot.html">🚀 Building an AI Incident Copilot: How I Automated the First 15 Minutes of Every Production Incident</a></h2>
-          <p class="excerpt">Every production incident follows the same painful ritual.
-</p>
-          <p class="meta">November 29, 2025 | DevOps, AI, Incident Management, Machine Learning</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="devops-ai-trading-machine-learning">
-        
-        <div class="post-content">
-          <h2><a href="/devops/ai/trading/machine%20learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html">🚀 Building an AI-Powered Stock Trading Bot in Python</a></h2>
-          <p class="excerpt">An AutoShiftOps guide to AI agents, backtesting, and real-world automation
-</p>
-          <p class="meta">November 20, 2025 | DevOps, AI, Trading, Machine Learning</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="monitoring-alerting-python">
-        
-        <div class="post-content">
-          <h2><a href="/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html">🔧 Designing an Alert Decision Layer (with a Working CLI in Python)</a></h2>
-          <p class="excerpt">Most teams don’t have an alerting problem. They have a decision problem.
-</p>
-          <p class="meta">July 26, 2025 | Monitoring, Alerting, Python</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="docker-linux-troubleshooting">
-        
-        <div class="post-content">
-          <h2><a href="/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html">🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery</a></h2>
-          <p class="excerpt">Manual restarts during incidents are reactive. Self-healing means your containers recover themselves between alerts.
-</p>
-          <p class="meta">July 20, 2025 | Docker, Linux, Troubleshooting</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="docker-linux-troubleshooting">
-        
-        <div class="post-content">
-          <h2><a href="/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html">🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts</a></h2>
-          <p class="excerpt">When a container fails in production, you don’t always have time to browse StackOverflow. You need a checklist.
-</p>
-          <p class="meta">July 19, 2025 | Docker, Linux, Troubleshooting</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="docker-linux-sre-observability">
-        
-        <div class="post-content">
-          <h2><a href="/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups.html">📊 Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)</a></h2>
-          <p class="excerpt">When an incident hits a containerized service, you often don’t need a full observability stack to get traction. You n...</p>
-          <p class="meta">July 13, 2025 | Docker, Linux, SRE, Observability</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="automation-linux-bash-incident">
-        
-        <div class="post-content">
-          <h2><a href="/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html">🔧 Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)</a></h2>
-          <p class="excerpt">Incident Response Runbook Template for DevOps
-Incidents are stressful when the team is improvising. A simple runbook ...</p>
-          <p class="meta">July 12, 2025 | Automation, Linux, Bash, Incident</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="automation-linux-bash">
-        
-        <div class="post-content">
-          <h2><a href="/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html">📊 Linux Monitoring & Alerting: Command-Line Mastery for DevOps</a></h2>
-          <p class="excerpt">The Monitoring Gap Every DevOps Engineer Faces
-</p>
-          <p class="meta">July 06, 2025 | Automation, Linux, Bash</p>
-        </div>
-      </article>
-    
-      <article class="post-card" data-category="automation-linux-bash">
-        
-        <div class="post-content">
-          <h2><a href="/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html">🚀 Advanced Bash Scripting for DevOps Automation</a></h2>
-          <p class="excerpt">Why Bash Still Rules DevOps?
-</p>
-          <p class="meta">July 05, 2025 | Automation, Linux, Bash</p>
-        </div>
-      </article>
-    
-  </div>
-
-  <!-- Pagination -->
-  <div class="pagination">
-    
-    
-      <a class="next" href="/blog/blog/page/2/">Older &rarr;</a>
-    
-  </div>
-</div>
-
-<script src="/assets/js/search.js"></script>
+</section>
 
 <script>
-  // Simple category filter
-  document.addEventListener("DOMContentLoaded", function() {
-    const buttons = document.querySelectorAll(".filter-btn");
-    const posts = document.querySelectorAll(".post-card");
+  // Keyword sets per pillar — matched against each post's categories/tags.
+  var pillarKeywords = {
+    'ai-devops': ['ai','llm','llms','machine learning','genai','agent','agents','chatgpt','ci/cd','pipeline','automation','devsecops'],
+    'cloud-k8s': ['cloud','kubernetes','terraform','iac','multi-cloud','gitops','serverless','helm'],
+    'incident-sre': ['incident','sre','observability','monitoring','alerting','chaos','reliability','runbook'],
+    'career-mba': ['career','mba','product']
+  };
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+  function applyFilter(pillar){
+    document.querySelectorAll('.post-row').forEach(function(row){
+      if(pillar === 'all'){ row.classList.remove('hidden'); return; }
+      var tags = row.getAttribute('data-tags') || '';
+      var keywords = pillarKeywords[pillar] || [];
+      var match = keywords.some(function(k){ return tags.indexOf(k) !== -1; });
+      row.classList.toggle('hidden', !match);
+    });
+  }
 
-        const category = btn.getAttribute("data-category");
-
-        posts.forEach(post => {
-          if (category === "all" || post.dataset.category.includes(category)) {
-            post.style.display = "block";
-          } else {
-            post.style.display = "none";
-          }
-        });
-      });
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      applyFilter(btn.getAttribute('data-pillar'));
     });
   });
-</script>
-  </main>
 
-  <section class="newsletter">
-  <h3>Join the Weekly DevOps Digest 🚀</h3>
-  <p>Stay ahead with curated guides, automation tips, and tools — straight to your inbox.</p>
-  <form action="https://subscribe-forms.beehiiv.com/82e8a094-ab5c-4e67-9fed-11ba8764f2a2" method="POST">
-    <input type="email" name="email" placeholder="Your email address" required>
-    <button type="submit">Subscribe</button>
-  </form>
-</section>
+  // Support linking directly to a pillar via ?pillar=ai-devops
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('pillar');
+  if(initial && pillarKeywords[initial]){
+    document.querySelectorAll('.filter-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-pillar') === initial);
+    });
+    applyFilter(initial);
+  }
+</script>
+
   <footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2026 AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.<a
-        href="https://sajja-command-center.vercel.app" style="opacity:0.1;font-size:8px;">tracker</a></p>
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
   </div>
 </footer>
+
 
   <!-- mermaid: render diagrams client-side with glow + white edges -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
@@ -403,7 +579,7 @@ Incidents are stressful when the team is improvising. A simple runbook ...</p>
       lightbox.appendChild(img);
       document.body.appendChild(lightbox);
 
-      document.querySelectorAll(".post-content img").forEach(image => {
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
         image.addEventListener("click", () => {
           img.src = image.src;
           lightbox.classList.add("visible");
@@ -415,6 +591,5 @@ Incidents are stressful when the team is improvising. A simple runbook ...</p>
       });
     });
   </script>
-  <script src="/assets/js/main.js"></script>
 </body>
 </html>

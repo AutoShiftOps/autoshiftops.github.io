@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>👁️ Observability in DevOps | AutoShiftOps</title>
+<meta name="description" content="Implement observability in DevOps to monitor metrics, logs, and traces for faster troubleshooting and proactive issue resolution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>👁️ Observability in DevOps</h1>
+    <div class="post-meta">
+      May 31, 2025
+       &middot; observability / DevOps / metrics / logs / tracing / monitoring
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <h2 id="observability-in-devops">Observability in DevOps</h2>
+
+<p>Observability provides <strong>full visibility into systems</strong> by analyzing metrics, logs, and traces, enabling proactive detection and faster resolution of issues.</p>
+
+<hr />
+
+<h3 id="why-observability-matters">Why Observability Matters</h3>
+
+<ul>
+  <li><strong>Detect Issues Proactively:</strong> Spot anomalies before users are affected</li>
+  <li><strong>Root Cause Analysis:</strong> Understand why failures occur</li>
+  <li><strong>Improved Reliability:</strong> Ensure system stability</li>
+  <li><strong>Continuous Feedback:</strong> Optimize DevOps pipelines</li>
+</ul>
+
+<hr />
+
+<h3 id="workflow-example">Workflow Example</h3>
+
+<ol>
+  <li>Instrument applications and infrastructure for metrics, logs, and tracing</li>
+  <li>Aggregate data into a centralized observability platform</li>
+  <li>Set up dashboards and automated alerts</li>
+  <li>Analyze incidents and improve processes</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+<pre><code class="language-mermaid">flowchart TD
+    A[Applications &amp; Services] --&gt; B[Metrics, Logs, Traces]
+    B --&gt; C[Observability Platform - Grafana/Prometheus/ELK]
+    C --&gt; D[Dashboards &amp; Alerts]
+    D --&gt; E[Incident Analysis &amp; Remediation]
+</code></pre>
+
+<hr />
+
+<h3 id="sample-code-snippet">Sample Code Snippet</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">start_http_server</span><span class="p">,</span> <span class="n">Summary</span>
+<span class="c1"># Create a metric to track time spent and requests made.
+</span><span class="n">REQUEST_TIME</span> <span class="o">=</span> <span class="nc">Summary</span><span class="p">(</span><span class="sh">'</span><span class="s">request_processing_seconds</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Time spent processing request</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># Decorate function with metric.
+</span><span class="nd">@REQUEST_TIME.time</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">process_request</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">A dummy function that takes some time.</span><span class="sh">"""</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="c1"># Start up the server to expose the metrics.
+</span>    <span class="nf">start_http_server</span><span class="p">(</span><span class="mi">8000</span><span class="p">)</span>
+    <span class="c1"># Generate some requests.
+</span>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="nf">process_request</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Processed a request</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Instrument systems thoroughly</li>
+  <li>Use standardized metrics and log formats</li>
+  <li>Automate alerts for anomalies</li>
+  <li>Continuously refine dashboards and analysis</li>
+</ul>
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Collecting data without analysis</li>
+  <li>Ignoring alert fatigue</li>
+  <li>Partial observability due to uninstrumented components</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Observability ensures transparent, measurable, and proactive operations, empowering DevOps teams to maintain high availability and reliability</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>

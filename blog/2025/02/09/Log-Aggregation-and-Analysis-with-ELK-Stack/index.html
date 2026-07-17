@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Log Aggregation and Analysis with ELK Stack | AutoShiftOps</title>
+<meta name="description" content="Learn how to implement centralized log aggregation and analysis using the ELK stack (Elasticsearch, Logstash, Kibana) to monitor and troubleshoot applications efficiently.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">post</div>
+    <h1>📚 Log Aggregation and Analysis with ELK Stack</h1>
+    <div class="post-meta">
+      February 09, 2025
+       &middot; ELK Stack / logging / DevOps / observability
+    </div>
+  </div>
+</header>
+<section>
+  <div class="wrap prose">
+    <h2 id="log-aggregation-and-analysis-with-elk-stack">Log Aggregation and Analysis with ELK Stack</h2>
+
+<p>Managing logs across multiple services and servers is challenging. The <strong>ELK Stack</strong> provides centralized logging, powerful search, and visualization to streamline monitoring and troubleshooting.</p>
+
+<hr />
+
+<h3 id="why-elk-stack-matters">Why ELK Stack Matters</h3>
+
+<ul>
+  <li><strong>Centralized Logs:</strong> Collect logs from all services in one place</li>
+  <li><strong>Efficient Troubleshooting:</strong> Search and filter logs quickly</li>
+  <li><strong>Visualization:</strong> Gain insights using dashboards</li>
+  <li><strong>Alerting:</strong> Detect anomalies and failures proactively</li>
+</ul>
+
+<hr />
+
+<h3 id="example-workflow">Example Workflow</h3>
+
+<ol>
+  <li>Collect logs from applications and servers</li>
+  <li>Ship logs to <strong>Logstash</strong> or <strong>Filebeat</strong></li>
+  <li>Store in <strong>Elasticsearch</strong></li>
+  <li>Visualize and analyze using <strong>Kibana</strong></li>
+  <li>Create alerts for critical events</li>
+</ol>
+
+<h3 id="visual-diagram">Visual Diagram</h3>
+
+<div class="mermaid">
+flowchart TD
+    A[Application Logs] --&gt; B[Logstash/Filebeat]
+    B --&gt; C[Elasticsearch Storage]
+    C --&gt; D[Kibana Dashboard]
+    C --&gt; E[Alerts via Email/Slack]
+</div>
+
+<hr />
+
+<h3 id="sample-logstash-config">Sample Logstash Config</h3>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s">input {</span>
+  <span class="s">file {</span>
+    <span class="s">path =&gt; "/var/log/app/*.log"</span>
+    <span class="s">start_position =&gt; "beginning"</span>
+  <span class="s">}</span>
+<span class="err">}</span>
+<span class="s">output {</span>
+  <span class="s">elasticsearch {</span>
+    <span class="s">hosts =&gt; ["http://localhost:9200"]</span>
+    <span class="s">index =&gt; "app-logs-%{+YYYY.MM.dd}"</span>
+  <span class="s">}</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="kibana-dashboard-example">Kibana Dashboard Example</h3>
+<ol>
+  <li>Create visualizations (e.g., error rates, response times)</li>
+  <li>Combine visualizations into dashboards for overview</li>
+  <li>Set up alerts based on log patterns (e.g., high error rates)</li>
+</ol>
+
+<hr />
+
+<h3 id="best-practices">Best Practices</h3>
+
+<ul>
+  <li>Standardize log formats across services</li>
+  <li>Use indices and retention policies in Elasticsearch</li>
+  <li>Secure access to logs and dashboards</li>
+  <li>Create dashboards for high-level and detailed views</li>
+</ul>
+
+<hr />
+
+<h3 id="common-pitfalls">Common Pitfalls</h3>
+
+<ul>
+  <li>Storing too many logs without retention, causing storage issues</li>
+  <li>Ignoring log parsing and structuring</li>
+  <li>Not monitoring ELK performance</li>
+  <li>Failing to secure sensitive log data</li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>The ELK Stack enables centralized, searchable, and visualized logs, empowering DevOps teams to quickly detect and resolve issues while gaining operational insights.</p>
+
+  </div>
+</section>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>
