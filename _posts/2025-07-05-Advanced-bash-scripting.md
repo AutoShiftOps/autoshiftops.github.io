@@ -2,6 +2,7 @@
 layout: post
 title: "🚀 Advanced Bash Scripting for DevOps Automation"
 date: 2025-07-05
+redirect_from: "/automation/linux/bash/2025/07/05/Advanced-bash-scripting.html"
 categories: [Automation, Linux, Bash ]
 tags: [Automation, Scripting, Bash, Linux, AutoShiftOps]
 description: "A comprehensive guide for bash scripting commands essential for Devops Automation."

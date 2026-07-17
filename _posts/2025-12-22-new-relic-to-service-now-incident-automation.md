@@ -2,8 +2,9 @@
 layout: post
 title: "↔️New Relic to ServiceNow Incident Automation(Lab Guide)"
 date: 2025-12-22
+redirect_from: "/new relic/serivenow/2025/12/22/new-relic-to-service-now-incident-automation.html"
 categories: [New Relic, SeriveNow]
-tags: [New Relic, ServiceNow, Integration]
+tags: [New Relic, ServiceNow, Integration, Incident, SRE]
 description: "A comprehensive guide to Integrate New Relic Incidents into ServiceNow."
 keywords: [New Relic, ServiceNow, Integration]
 ---

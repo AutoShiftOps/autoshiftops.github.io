@@ -2,6 +2,7 @@
 layout: post
 title: "🤖 AI-Driven Observability for DevOps"
 date: 2025-02-02
+redirect_from: "/devops/ai/monitoring/2025/02/02/ai-driven-observability-for-devops.html"
 categories: [DevOps, AI, Monitoring]
 tags: [AI, observability, monitoring, DevOps, metrics]
 description: "Use AI-driven observability to detect anomalies, predict incidents, and optimize DevOps workflows for faster response and higher uptime."

@@ -6,6 +6,7 @@ gem "jekyll-tagging"
 gem "jekyll-seo-tag"
 gem "jekyll-feed"
 gem "jekyll-sitemap"
+gem "jekyll-redirect-from"
 gem "jekyll-archives"
 # any other gems you already use (e.g., jekyll-tagging) can remain here
 

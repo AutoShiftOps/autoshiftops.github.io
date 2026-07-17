@@ -2,6 +2,7 @@
 layout: post
 title: "📈 Auto-Scaling Strategies in DevOps"
 date: 2025-02-23
+redirect_from: "/devops/cloud/scalability/2025/02/23/Auto-Scaling-Strategies.html"
 categories: [DevOps, Cloud, Scalability]
 tags: [auto-scaling, DevOps, cloud, Kubernetes, performance]
 description: "Implement auto-scaling strategies in cloud and container environments to handle traffic spikes and optimize resource usage."

@@ -2,6 +2,7 @@
 layout: post
 title: "🚀 DevOps Automation Breakthroughs (2025)"
 date: 2025-01-01
+redirect_from: "/devops/ci/cd/automation/2025/01/01/devops-automation-tools.html"
 categories: [DevOps, CI/CD, Automation]
 tags: [DevOps, pipeline automation]
 description: "Guide for building robust CI/CD pipelines using automation."

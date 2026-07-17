@@ -2,6 +2,7 @@
 layout: post
 title: "⚙️ Kubernetes Operators Explained"
 date: 2025-04-20
+redirect_from: "/devops/kubernetes/automation/2025/04/20/Kubernetes-Operators-Explained.html"
 categories: [DevOps, Kubernetes, Automation]
 tags: [Kubernetes, operators, DevOps, automation, CRD]
 description: "Learn how Kubernetes Operators simplify complex application management by automating operational tasks using Custom Resources."

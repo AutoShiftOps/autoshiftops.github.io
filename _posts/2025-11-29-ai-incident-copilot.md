@@ -2,6 +2,7 @@
 layout: post
 title: "🚀 Building an AI Incident Copilot: How I Automated the First 15 Minutes of Every Production Incident"
 date: 2025-11-29
+redirect_from: "/devops/ai/incident management/machine learning/2025/11/29/ai-incident-copilot.html"
 categories: [DevOps, AI, Incident Management, Machine Learning]
 tags: [AI agents, incident management, Python, log analysis, command suggestions, machine learning, AutoShiftOps]
 description: "A practical DevOps tool you can run over SSH in minutes (journalctl, docker logs, or plain files)"

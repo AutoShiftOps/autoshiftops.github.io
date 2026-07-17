@@ -1,0 +1,73 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+description: DevOps, cloud, and AI tooling notes from Sajja.
+---
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">tail -f blog.log</div>
+    <h1>Blog</h1>
+    <p class="sub">Notes from the field — grouped by what they're actually about.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-pillar="all">All</button>
+      <button class="filter-btn" data-pillar="ai-devops">AI &amp; DevOps Tooling</button>
+      <button class="filter-btn" data-pillar="cloud-k8s">Cloud &amp; Kubernetes</button>
+      <button class="filter-btn" data-pillar="incident-sre">Incident Response &amp; SRE</button>
+      <button class="filter-btn" data-pillar="career-mba">Career &amp; MBA Insights</button>
+    </div>
+
+    <div class="post-list" id="post-list">
+      {% for post in site.posts %}
+      {% assign all_tags = post.categories | concat: post.tags | join: "," | downcase %}
+      <a class="post-row" href="{{ post.url | relative_url }}" data-tags="{{ all_tags }}">
+        <span class="post-title">{{ post.title }}</span>
+        <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Keyword sets per pillar — matched against each post's categories/tags.
+  var pillarKeywords = {
+    'ai-devops': ['ai','llm','llms','machine learning','genai','agent','agents','chatgpt','ci/cd','pipeline','automation','devsecops'],
+    'cloud-k8s': ['cloud','kubernetes','terraform','iac','multi-cloud','gitops','serverless','helm'],
+    'incident-sre': ['incident','sre','observability','monitoring','alerting','chaos','reliability','runbook'],
+    'career-mba': ['career','mba','product']
+  };
+
+  function applyFilter(pillar){
+    document.querySelectorAll('.post-row').forEach(function(row){
+      if(pillar === 'all'){ row.classList.remove('hidden'); return; }
+      var tags = row.getAttribute('data-tags') || '';
+      var keywords = pillarKeywords[pillar] || [];
+      var match = keywords.some(function(k){ return tags.indexOf(k) !== -1; });
+      row.classList.toggle('hidden', !match);
+    });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      applyFilter(btn.getAttribute('data-pillar'));
+    });
+  });
+
+  // Support linking directly to a pillar via ?pillar=ai-devops
+  var params = new URLSearchParams(window.location.search);
+  var initial = params.get('pillar');
+  if(initial && pillarKeywords[initial]){
+    document.querySelectorAll('.filter-btn').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-pillar') === initial);
+    });
+    applyFilter(initial);
+  }
+</script>

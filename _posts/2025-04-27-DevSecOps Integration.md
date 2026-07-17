@@ -2,6 +2,7 @@
 layout: post
 title: "🔐 DevSecOps Integration"
 date: 2025-04-27
+redirect_from: "/devops/security/ci/cd/2025/04/27/DevSecOps-Integration.html"
 categories: [DevOps, Security, CI/CD]
 tags: [DevSecOps, security, DevOps, CI/CD, automation]
 description: "Integrate security into DevOps pipelines using DevSecOps practices to detect vulnerabilities early and maintain compliance."

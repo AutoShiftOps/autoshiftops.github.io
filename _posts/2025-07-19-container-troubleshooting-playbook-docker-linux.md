@@ -2,6 +2,7 @@
 layout: post
 title: "🔧 The Container Troubleshooting Playbook: OOMs, CPU Spikes, and Network Timeouts"
 date: 2025-07-19
+redirect_from: "/docker/linux/troubleshooting/2025/07/19/container-troubleshooting-playbook-docker-linux.html"
 categories: [Docker, Linux, Troubleshooting]
 tags: [Docker, cgroups, namespaces, troubleshooting, monitoring]
 description: "When a containerized service is misbehaving, you need fast answers. This playbook walks through practical commands and mental models to quickly identify and mitigate OOMs, CPU spikes, and network timeouts using Docker and Linux tools."

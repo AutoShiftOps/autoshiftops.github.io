@@ -2,6 +2,7 @@
 layout: post
 title: "📊 DevOps Metrics & KPIs"
 date: 2025-04-13
+redirect_from: "/devops/monitoring/performance/2025/04/13/DevOps-Metrics-&-KPIs.html"
 categories: [DevOps, Monitoring, Performance]
 tags: [DevOps metrics, KPIs, performance, CI/CD, monitoring]
 description: "Track and analyze DevOps metrics and KPIs to improve deployment efficiency, system reliability, and team productivity."

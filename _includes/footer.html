@@ -1,6 +1,12 @@
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; {{ site.time | date: "%Y" }} AutoShiftOps — Tech with Sajja’s. Built with ❤️ using Jekyll.<a
-        href="https://sajja-command-center.vercel.app" style="opacity:0.1;font-size:8px;">tracker</a></p>
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/contact/' | relative_url }}">Contact</a>
+      <a href="{{ site.social.github_org }}" target="_blank" rel="noopener">GitHub</a>
+      <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="{{ site.social.youtube }}" target="_blank" rel="noopener">YouTube</a>
+    </div>
   </div>
 </footer>

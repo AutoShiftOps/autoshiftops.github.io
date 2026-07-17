@@ -2,6 +2,7 @@
 layout: post
 title: "☁️ Serverless CI/CD Pipelines"
 date: 2025-03-02
+redirect_from: "/devops/ci/cd/serverless/2025/03/02/Serverless-CICD-Pipelines.html"
 categories: [DevOps, CI/CD, Serverless]
 tags: [serverless, CI/CD, DevOps, automation, AWS Lambda]
 description: "Learn how to build serverless CI/CD pipelines for faster, scalable, and cost-efficient application delivery."

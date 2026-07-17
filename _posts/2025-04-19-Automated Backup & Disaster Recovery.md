@@ -2,6 +2,7 @@
 layout: post
 title: "💾 Automated Backup & Disaster Recovery"
 date: 2025-04-19
+redirect_from: "/devops/cloud/backup/2025/04/19/Automated-Backup-&-Disaster-Recovery.html"
 categories: [DevOps, Cloud, Backup]
 tags: [backup, disaster recovery, DevOps, automation, cloud]
 description: "Implement automated backup and disaster recovery strategies to ensure data safety, business continuity, and operational resilience."

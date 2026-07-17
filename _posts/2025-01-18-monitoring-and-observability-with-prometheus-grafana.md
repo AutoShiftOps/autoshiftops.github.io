@@ -2,6 +2,7 @@
 layout: post
 title: "📊 Monitoring and Observability with Prometheus & Grafana"
 date: 2025-01-18
+redirect_from: "/devops/monitoring/observability/2025/01/18/monitoring-and-observability-with-prometheus-grafana.html"
 categories: [DevOps, Monitoring, Observability]
 tags: [Prometheus, Grafana, DevOps, monitoring, observability]
 description: "Learn how to implement monitoring and observability in DevOps pipelines using Prometheus and Grafana for actionable insights."

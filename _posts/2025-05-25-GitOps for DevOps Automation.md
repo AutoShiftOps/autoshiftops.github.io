@@ -2,6 +2,7 @@
 layout: post
 title: "🌿 GitOps for DevOps Automation"
 date: 2025-05-25
+redirect_from: "/devops/automation/gitops/2025/05/25/GitOps-for-DevOps-Automation.html"
 categories: [DevOps, Automation, GitOps]
 tags: [GitOps, DevOps, CI/CD, Kubernetes, automation]
 description: "Implement GitOps for fully automated infrastructure and application deployments using Git as the single source of truth."

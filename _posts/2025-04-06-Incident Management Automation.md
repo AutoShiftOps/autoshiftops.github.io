@@ -2,6 +2,7 @@
 layout: post
 title: "🚨 Incident Management Automation in DevOps"
 date: 2025-04-06
+redirect_from: "/devops/monitoring/incident management/2025/04/06/Incident-Management-Automation.html"
 categories: [DevOps, Monitoring, Incident Management]
 tags: [incident management, DevOps, automation, alerting, on-call]
 description: "Automate incident detection, alerting, and response in DevOps pipelines to reduce downtime and improve operational efficiency."

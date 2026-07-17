@@ -2,6 +2,7 @@
 layout: post
 title: "🔧 Designing an Alert Decision Layer (with a Working CLI in Python)"
 date: 2025-07-26
+redirect_from: "/monitoring/alerting/python/2025/07/26/alert-decision-layer-cli-python.html"
 categories: [Monitoring, Alerting, Python]
 tags: [Python, alerting, decision-making]
 description: "Build a Python CLI for designing and managing an alert decision layer that intelligently routes and handles alerts."

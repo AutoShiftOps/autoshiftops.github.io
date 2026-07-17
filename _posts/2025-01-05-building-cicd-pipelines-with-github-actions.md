@@ -2,6 +2,7 @@
 layout: post
 title: "🏗️ Building CI/CD Pipelines with GitHub Actions"
 date: 2025-01-05
+redirect_from: "/devops/ci/cd/automation/2025/01/05/building-cicd-pipelines-with-github-actions.html"
 categories: [DevOps, CI/CD, Automation]
 tags: [CI/CD, GitHub Actions, DevOps, pipeline automation]
 description: "Step-by-step guide for building robust CI/CD pipelines using GitHub Actions to automate testing, deployment, and monitoring."

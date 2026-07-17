@@ -2,6 +2,7 @@
 layout: post
 title: "👁️ Observability in DevOps"
 date: 2025-05-31
+redirect_from: "/devops/monitoring/observability/2025/05/31/Observability-in-DevOps.html"
 categories: [DevOps, Monitoring, Observability]
 tags: [observability, DevOps, metrics, logs, tracing, monitoring]
 description: "Implement observability in DevOps to monitor metrics, logs, and traces for faster troubleshooting and proactive issue resolution."

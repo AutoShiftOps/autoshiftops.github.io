@@ -2,6 +2,7 @@
 layout: post
 title: "🚀 Getting Started with GitHub Automation"
 date: 2025-01-04
+redirect_from: "/devops/github automation/2025/01/04/getting-started-with-github-automation.html"
 categories: [DevOps, GitHub Automation]
 tags: [GitHub Automation, GitHub Actions, DevOps, CI/CD]
 description: "Supercharge your workflow with GitHub Automation: A beginner's guide to smarter, faster development."

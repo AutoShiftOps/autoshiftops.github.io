@@ -2,6 +2,7 @@
 layout: post
 title: "💥 Chaos Engineering in DevOps"
 date: 2025-03-01
+redirect_from: "/devops/reliability/testing/2025/03/01/Chaos-Engineering-in-DevOps.html"
 categories: [DevOps, Reliability, Testing]
 tags: [chaos engineering, DevOps, resilience, testing, reliability]
 description: "Implement Chaos Engineering practices to test system resilience and improve reliability in DevOps environments."

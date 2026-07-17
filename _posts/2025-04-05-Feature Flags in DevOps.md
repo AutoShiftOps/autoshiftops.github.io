@@ -2,6 +2,7 @@
 layout: post
 title: "🚩 Feature Flags in DevOps"
 date: 2025-04-05
+redirect_from: "/devops/ci/cd/release management/2025/04/05/Feature-Flags-in-DevOps.html"
 categories: [DevOps, CI/CD, Release Management]
 tags: [feature flags, DevOps, CI/CD, rollout, feature toggles]
 description: "Use feature flags to deploy code safely, control feature rollout, and test in production without downtime."

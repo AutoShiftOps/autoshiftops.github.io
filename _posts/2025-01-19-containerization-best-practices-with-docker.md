@@ -2,6 +2,7 @@
 layout: post
 title: "🐳 Containerization Best Practices with Docker"
 date: 2025-01-19
+redirect_from: "/devops/containers/docker/2025/01/19/containerization-best-practices-with-docker.html"
 categories: [DevOps, Containers, Docker]
 tags: [Docker, containerization, DevOps, best practices]
 description: "Master Docker containerization for DevOps workflows with best practices to improve application deployment, scalability, and maintainability."

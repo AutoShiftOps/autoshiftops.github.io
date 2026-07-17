@@ -2,6 +2,7 @@
 layout: post
 title: "🌿 GitOps for Modern DevOps"
 date: 2025-02-22
+redirect_from: "/devops/ci/cd/automation/2025/02/22/GitOps-for-Modern-DevOps.html"
 categories: [DevOps, CI/CD, Automation]
 tags: [GitOps, DevOps, CI/CD, Kubernetes, automation]
 description: "Implement GitOps to manage infrastructure and applications declaratively through Git, ensuring consistency, traceability, and automation."

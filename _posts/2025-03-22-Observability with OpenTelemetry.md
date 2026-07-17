@@ -2,6 +2,7 @@
 layout: post
 title: "🔍 Observability with OpenTelemetry"
 date: 2025-03-22
+redirect_from: "/devops/monitoring/observability/2025/03/22/Observability-with-OpenTelemetry.html"
 categories: [DevOps, Monitoring, Observability]
 tags: [OpenTelemetry, observability, DevOps, metrics, tracing, logging]
 description: "Implement observability using OpenTelemetry to collect metrics, traces, and logs for end-to-end monitoring in DevOps pipelines."

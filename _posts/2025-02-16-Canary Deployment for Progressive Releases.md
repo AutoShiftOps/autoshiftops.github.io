@@ -2,6 +2,7 @@
 layout: post
 title: "🦊 Canary Deployment for Progressive Releases"
 date: 2025-02-16
+redirect_from: "/devops/deployment/ci/cd/2025/02/16/Canary-Deployment-for-Progressive-Releases.html"
 categories: [DevOps, Deployment, CI/CD]
 tags: [canary deployment, DevOps, CI/CD, progressive rollout]
 description: "Learn how Canary Deployment enables gradual release of new versions to minimize risk and monitor performance in production."

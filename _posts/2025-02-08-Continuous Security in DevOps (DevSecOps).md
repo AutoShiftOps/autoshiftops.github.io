@@ -2,6 +2,7 @@
 layout: post
 title: "🛡️ Continuous Security in DevOps (DevSecOps)"
 date: 2025-02-08
+redirect_from: "/devops/security/ci/cd/2025/02/08/Continuous-Security-in-DevOps-(DevSecOps).html"
 categories: [DevOps, Security, CI/CD]
 tags: [DevSecOps, security, CI/CD, DevOps, vulnerability scanning]
 description: "Learn how to integrate continuous security practices into DevOps pipelines using DevSecOps principles for safer deployments."

@@ -2,6 +2,7 @@
 layout: post
 title: "🔗 Infrastructure as Code Testing Strategies: Terraform & Pulumi"
 date: 2025-06-22
+redirect_from: "/devops/iac/testing/2025/06/22/Infrastructure-as-Code-Testing-Strategies.html"
 categories: [DevOps, IaC, Testing]
 tags: [Infrastructure as Code, Terraform, Pulumi, testing, CI/CD, DevOps automation]
 description: "Learn how to implement robust testing strategies for Infrastructure as Code using Terraform and Pulumi to ensure reliable, secure, and maintainable infrastructure deployments."

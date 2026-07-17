@@ -2,6 +2,7 @@
 layout: post
 title: "🔑 Secrets Management in DevOps Pipelines"
 date: 2025-01-26
+redirect_from: "/devops/security/ci/cd/2025/01/26/secrets-management-in-devops-pipelines.html"
 categories: [DevOps, Security, CI/CD]
 tags: [secrets management, DevOps, CI/CD, security, vault]
 description: "Learn best practices for securely managing secrets in DevOps pipelines, including passwords, API keys, and tokens."

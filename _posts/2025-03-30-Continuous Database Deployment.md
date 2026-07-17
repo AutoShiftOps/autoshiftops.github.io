@@ -2,6 +2,7 @@
 layout: post
 title: "💾 Continuous Database Deployment"
 date: 2025-03-30
+redirect_from: "/devops/database/ci/cd/2025/03/30/Continuous-Database-Deployment.html"
 categories: [DevOps, Database, CI/CD]
 tags: [database deployment, CI/CD, DevOps, migrations, automation]
 description: "Implement continuous database deployment for automated, version-controlled schema and data updates in DevOps pipelines."

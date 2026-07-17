@@ -2,6 +2,7 @@
 layout: post
 title: "🔍 Observability-Driven DevOps: Metrics, Logs & Traces"
 date: 2025-06-14
+redirect_from: "/devops/observability/ci/cd/2025/06/14/Observability-Driven-DevOps.html"
 categories: [DevOps, Observability, CI/CD]
 tags: [observability, monitoring, metrics, logs, traces, DevOps, SRE]
 description: "Implement observability-driven DevOps pipelines with metrics, logs, and distributed traces to improve reliability, troubleshooting, and performance monitoring."

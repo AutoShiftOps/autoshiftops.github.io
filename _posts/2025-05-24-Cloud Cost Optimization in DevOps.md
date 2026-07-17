@@ -2,6 +2,7 @@
 layout: post
 title: "💰 Cloud Cost Optimization in DevOps"
 date: 2025-05-24
+redirect_from: "/devops/cloud/cost management/2025/05/24/Cloud-Cost-Optimization-in-DevOps.html"
 categories: [DevOps, Cloud, Cost Management]
 tags: [cloud cost, optimization, DevOps, AWS, Azure, GCP]
 description: "Optimize cloud costs in DevOps pipelines using monitoring, automation, and best practices to reduce wastage and improve ROI."

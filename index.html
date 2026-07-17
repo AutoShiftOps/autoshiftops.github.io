@@ -1,4 +1,141 @@
 ---
-layout: home
-title: Welcome to AutoShiftOps
+layout: default
+title: Home
 ---
+
+<!-- STATUS BAR -->
+<div class="statusbar">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span><strong>all systems operational</strong></span>
+    <span class="sep">&middot;</span>
+    <span>AWS <span class="sep">/</span> GCP <span class="sep">/</span> Azure</span>
+    <span class="sep">&middot;</span>
+    <span>13+ yrs uptime</span>
+    <span class="sep">&middot;</span>
+    <span>currently building: <strong>QueryTuner</strong></span>
+  </div>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">whoami</div>
+    <h1>Application Architect building <span class="accent">AI-powered DevOps tooling.</span></h1>
+    <p class="sub">13+ years across cloud infrastructure, CI/CD, and incident response at enterprise scale — now building the tools that make that work faster for other teams too. Creator of QueryTuner.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="{{ site.social.querytuner }}" target="_blank" rel="noopener">View QueryTuner &rarr;</a>
+      <a class="btn btn-secondary" href="{{ site.social.github_org }}" target="_blank" rel="noopener">See the code on GitHub</a>
+    </div>
+    <div class="cred">
+      <span><b>TechMahindra</b> — Application Architect</span>
+      <span><b>IEEE</b> — Member</span>
+      <span><b>MBA</b> — Digital Transformation, BITS Pilani</span>
+      <span><b>13+ yrs</b> — Cloud &amp; DevOps</span>
+    </div>
+  </div>
+</header>
+
+<!-- FLAGSHIP: QUERYTUNER -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Featured</span>
+      <h2>Flagship project</h2>
+    </div>
+    <div class="flagship">
+      <div class="flagship-top">
+        <h3>QueryTuner</h3>
+        <span class="tag-flagship">&#9679; live product</span>
+      </div>
+      <p>A SQL performance analysis tool that catches slow queries before they hit production. Combines heuristic analysis with an LLM insights layer, and generates shareable reports across five SQL dialects.</p>
+      <div class="dialects">
+        <span>PostgreSQL</span><span>MySQL</span><span>Oracle</span><span>SQL Server</span><span>SQLite</span>
+      </div>
+      <div class="flagship-links">
+        <a href="{{ site.social.querytuner }}" target="_blank" rel="noopener">Try it live &rarr;</a>
+        <a href="{{ site.social.github_org }}/sql-query-analyzer" target="_blank" rel="noopener">View source &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPPORTING PROJECTS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Also building</span>
+      <h2>Supporting projects</h2>
+      <p>Smaller tools built to solve real operational problems — incident response, alert fatigue, and database migration risk.</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>
+        <h4>incopilot</h4>
+        <p>A practical incident-triage CLI agent that automates the first 15 minutes of a production incident — the part that's usually pure improvisation.</p>
+        <a class="repo-link" href="{{ site.social.github_org }}/incopilot" target="_blank" rel="noopener">github.com/AutoShiftOps/incopilot &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>
+        <h4>alertdecider</h4>
+        <p>An alert decision layer that normalizes noisy signals, applies an opinionated rule engine, and emits decisions with reasons — not just more alerts.</p>
+        <a class="repo-link" href="{{ site.social.github_org }}/alertdecider" target="_blank" rel="noopener">github.com/AutoShiftOps/alertdecider &rarr;</a>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="dot"></span><span class="lang">HTML / Python</span></div>
+        <h4>SP Migration Companion</h4>
+        <p>Analyzes stored procedures for safe database migration — validated as an AWS hackathon entry and built as a potential QueryTuner feature.</p>
+        <a class="repo-link" href="{{ site.social.github_org }}/sql-sp-companion" target="_blank" rel="noopener">github.com/AutoShiftOps/sql-sp-companion &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBE -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">On video</span>
+      <h2>Watch &amp; learn</h2>
+      <p>Walkthroughs on troubleshooting and debugging real-world DevOps problems.</p>
+    </div>
+    <div class="yt-card">
+      <div class="yt-left">
+        <div class="yt-icon">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg>
+        </div>
+        <div>
+          <h4>DevopsDen</h4>
+          <p>Real-time troubleshooting &amp; debugging, on YouTube.</p>
+        </div>
+      </div>
+      <a class="btn btn-primary" href="{{ site.social.youtube }}" target="_blank" rel="noopener">Watch on YouTube &rarr;</a>
+    </div>
+    <!--
+      To embed a specific video instead of / alongside the link-out card above,
+      grab the video ID from its URL (the part after watch?v=) and use:
+
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+                title="Video title" allowfullscreen></iframe>
+      </div>
+    -->
+  </div>
+</section>
+
+<!-- WRITING PILLARS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">Writing</span>
+      <h2>Notes from the field</h2>
+      <p>60+ posts on autoshiftops.com, grouped by what they're actually about.</p>
+    </div>
+    <div class="pillars">
+      <a class="pillar" href="{{ '/blog/?pillar=ai-devops' | relative_url }}"><span class="num">01</span><h4>AI &amp; DevOps Tooling</h4><p>Agents, LLM inference, and the CI/CD &amp; automation tooling underneath it all.</p></a>
+      <a class="pillar" href="{{ '/blog/?pillar=cloud-k8s' | relative_url }}"><span class="num">02</span><h4>Cloud &amp; Kubernetes</h4><p>Multi-cloud CI/CD, IaC, deployment strategy.</p></a>
+      <a class="pillar" href="{{ '/blog/?pillar=incident-sre' | relative_url }}"><span class="num">03</span><h4>Incident Response &amp; SRE</h4><p>Runbooks, observability, chaos engineering.</p></a>
+      <a class="pillar" href="{{ '/blog/?pillar=career-mba' | relative_url }}"><span class="num">04</span><h4>Career &amp; MBA Insights</h4><p>Product thinking for developer tools.</p></a>
+    </div>
+  </div>
+</section>

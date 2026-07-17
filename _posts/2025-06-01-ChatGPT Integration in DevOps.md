@@ -2,6 +2,7 @@
 layout: post
 title: "🤖 ChatGPT Integration in DevOps"
 date: 2025-06-01
+redirect_from: "/devops/ai/automation/2025/06/01/ChatGPT-Integration-in-DevOps.html"
 categories: [DevOps, AI, Automation]
 tags: [ChatGPT, AI, DevOps, automation, CI/CD]
 description: "Leverage ChatGPT for automating DevOps workflows, generating scripts, and improving troubleshooting and documentation."

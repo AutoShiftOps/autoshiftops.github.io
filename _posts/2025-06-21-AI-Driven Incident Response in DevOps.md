@@ -2,6 +2,7 @@
 layout: post
 title: "🤖 AI-Driven Incident Response in DevOps"
 date: 2025-06-21
+redirect_from: "/devops/ai/incident management/2025/06/21/AI-Driven-Incident-Response-in-DevOps.html"
 categories: [DevOps, AI, Incident Management]
 tags: [AI, incident response, DevOps automation, monitoring, root cause analysis, SRE]
 description: "Leverage AI for automated incident response in DevOps pipelines to detect, analyze, and remediate issues faster with actionable insights and predictive analysis."

@@ -2,6 +2,7 @@
 layout: post
 title: "💬 ChatOps for DevOps Teams"
 date: 2025-05-18
+redirect_from: "/devops/automation/collaboration/2025/05/18/ChatOps-for-DevOps-Teams.html"
 categories: [DevOps, Automation, Collaboration]
 tags: [ChatOps, DevOps, automation, Slack, collaboration]
 description: "Use ChatOps to integrate DevOps tools into chat platforms, enabling collaboration, automation, and faster incident response."

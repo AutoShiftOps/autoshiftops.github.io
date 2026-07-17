@@ -2,6 +2,7 @@
 layout: post
 title: "🛡️ Site Reliability Engineering (SRE) Practices"
 date: 2025-04-12
+redirect_from: "/devops/reliability/sre/2025/04/12/Site-Reliability-Engineering-(SRE)-Practices.html"
 categories: [DevOps, Reliability, SRE]
 tags: [SRE, DevOps, reliability, SLAs, monitoring]
 description: "Implement SRE practices to improve reliability, manage SLAs, and maintain scalable and highly available systems."

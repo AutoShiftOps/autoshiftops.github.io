@@ -2,6 +2,7 @@
 layout: post
 title: "🚦 Advanced Jenkins Pipelines for CI/CD"
 date: 2025-03-16
+redirect_from: "/devops/ci/cd/automation/2025/03/16/Advanced-Jenkins-Pipelines.html"
 categories: [DevOps, CI/CD, Automation]
 tags: [Jenkins, CI/CD, DevOps, pipeline, automation]
 description: "Build advanced Jenkins pipelines with declarative and scripted approaches to optimize CI/CD workflows for DevOps teams."

@@ -2,6 +2,7 @@
 layout: post
 title: "📦 Advanced Helm Charts for Kubernetes"
 date: 2025-03-29
+redirect_from: "/devops/kubernetes/ci/cd/2025/03/29/Advanced-Helm-Charts-for-Kubernetes.html"
 categories: [DevOps, Kubernetes, CI/CD]
 tags: [Helm, Kubernetes, DevOps, CI/CD, deployment]
 description: "Master advanced Helm charts for Kubernetes to manage complex deployments, templating, and environment-specific configurations."

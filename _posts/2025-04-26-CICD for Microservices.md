@@ -2,6 +2,7 @@
 layout: post
 title: "⚡ CI/CD for Microservices"
 date: 2025-04-26
+redirect_from: "/devops/ci/cd/microservices/2025/04/26/CICD-for-Microservices.html"
 categories: [DevOps, CI/CD, Microservices]
 tags: [CI/CD, microservices, DevOps, automation, pipelines]
 description: "Implement CI/CD pipelines tailored for microservices architectures to ensure fast, reliable, and independent service deployments."

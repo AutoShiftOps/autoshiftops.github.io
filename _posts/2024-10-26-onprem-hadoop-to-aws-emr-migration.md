@@ -2,6 +2,7 @@
 layout: post
 title: '🚀 On-prem Hadoop to AWS EMR Migration Strategies'
 date: 2024-10-26
+redirect_from: "/devops/cloud migration/2024/10/26/onprem-hadoop-to-aws-emr-migration.html"
 categories: [DevOps, Cloud Migration]
 tags: [Hadoop migration, AWS EMR, on-premises to cloud, data migration, DevOps]
 description: "A comprehensive guide to migrating on-premises Hadoop clusters to Amazon EMR - covering planning, execution, and validation phases."

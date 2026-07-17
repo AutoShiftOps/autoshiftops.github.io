@@ -2,6 +2,7 @@
 layout: post
 title: "☸️ Kubernetes Deployment Strategies"
 date: 2025-01-25
+redirect_from: "/devops/kubernetes/2025/01/25/kubernetes-deployment-strategies.html"
 categories: [DevOps, Kubernetes]
 tags: [Kubernetes, deployment, DevOps, CI/CD]
 description: "Learn effective Kubernetes deployment strategies to achieve zero-downtime updates, scalability, and high availability."

@@ -2,6 +2,7 @@
 layout: post
 title: "🛡️ Chaos Engineering in Production: Building Resilient Systems"
 date: 2025-06-15
+redirect_from: "/devops/chaos engineering/resilience/2025/06/15/Chaos-Engineering-in-Production.html"
 categories: [DevOps, Chaos Engineering, Resilience]
 tags: [chaos engineering, resilience, reliability, DevOps, fault injection, SRE]
 description: "Learn how to implement chaos engineering in production systems to build resilient and fault-tolerant architectures using practical workflows, tools, and best practices."

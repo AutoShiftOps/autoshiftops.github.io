@@ -2,6 +2,7 @@
 layout: post
 title: "🚦 Feature Flag Management in Continuous Delivery"
 date: 2025-06-29
+redirect_from: "/devops/ci/cd/continuous delivery/2025/06/29/Feature-Flag-Management-in-Continuous-Delivery.html"
 categories: [DevOps, CI/CD, Continuous Delivery]
 tags: [feature flags, continuous delivery, DevOps, release management, canary releases, A/B testing]
 description: "Learn how to implement feature flag management in CI/CD pipelines to enable controlled rollouts, canary releases, and safer deployments in production."

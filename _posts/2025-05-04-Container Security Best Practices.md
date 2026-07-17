@@ -2,6 +2,9 @@
 layout: post
 title: "🔒 Container Security Best Practices"
 date: 2025-05-04
+redirect_from:
+  - "/devops/security/containers/2025/05/04/Container-Security-Best-Practices.html"
+  - "/devops/security/containers/2024/05/04/Container-Security-Best-Practices.html"
 categories: [DevOps, Security, Containers]
 tags: [container security, Docker, Kubernetes, DevOps, best practices]
 description: "Secure containers in DevOps pipelines by following best practices, scanning images, and managing vulnerabilities effectively."

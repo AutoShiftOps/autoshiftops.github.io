@@ -2,6 +2,7 @@
 layout: post
 title: "🛠️ Infrastructure as Code with Terraform"
 date: 2025-03-15
+redirect_from: "/devops/infrastructure/automation/2025/03/15/Infrastructure-as-Code-(IaC)-with-Terraform.html"
 categories: [DevOps, Infrastructure, Automation]
 tags: [Terraform, IaC, DevOps, cloud, automation]
 description: "Learn how to manage cloud infrastructure declaratively with Terraform, enabling reproducible, version-controlled, and automated deployments."

@@ -2,6 +2,7 @@
 layout: post
 title: "⚡ Advanced CI/CD with Multi-Stage Pipelines"
 date: 2025-02-01
+redirect_from: "/devops/ci/cd/automation/2025/02/01/advanced-cicd-with-multi-stage-pipelines.html"
 categories: [DevOps, CI/CD, Automation]
 tags: [CI/CD, multi-stage pipeline, DevOps, automation]
 description: "Implement advanced CI/CD with multi-stage pipelines to improve testing, deployment, and rollback capabilities in DevOps workflows."

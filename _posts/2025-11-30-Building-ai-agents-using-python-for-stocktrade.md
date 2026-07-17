@@ -2,6 +2,7 @@
 layout: post
 title: "🚀 Building an AI-Powered Stock Trading Bot in Python"
 date: 2025-11-20
+redirect_from: "/devops/ai/trading/machine learning/2025/11/20/Building-ai-agents-using-python-for-stocktrade.html"
 categories: [DevOps, AI, Trading, Machine Learning]
 tags: [AI agents, stock trading, Python, LSTM, backtesting, machine learning, AutoShiftOps]
 description: "A comprehensive guide to building AI agents for stock trading using Python, LSTM models, and backtesting."

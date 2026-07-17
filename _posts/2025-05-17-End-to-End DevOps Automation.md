@@ -2,6 +2,7 @@
 layout: post
 title: "🔗 End-to-End DevOps Automation"
 date: 2025-05-17
+redirect_from: "/devops/automation/ci/cd/2025/05/17/End-to-End-DevOps-Automation.html"
 categories: [DevOps, Automation, CI/CD]
 tags: [DevOps, automation, CI/CD, end-to-end, pipelines]
 description: "Implement end-to-end DevOps automation covering code, CI/CD, infrastructure, testing, monitoring, and security for seamless delivery."

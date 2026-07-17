@@ -1,37 +1,65 @@
-theme: null
-title: "AutoShiftOps"
-description: "Tech by Sudhakar Sajja — DevOps, Cloud & AI simplified"
-
-baseurl: ""
+title: AutoShiftOps
+tagline: Application Architect building AI-powered DevOps tooling
+description: >-
+  Sajja — Application Architect with 13+ years across cloud infrastructure,
+  DevOps, and AI-powered operations. Creator of QueryTuner.
 url: "https://autoshiftops.com"
+baseurl: ""
+
+author:
+  name: Sajja
+  email: sajja.sudhakararao@gmail.com
+
+# Social / external links
+social:
+  github_org: "https://github.com/AutoShiftOps"
+  linkedin: "https://www.linkedin.com/in/sajjasudhakararao"
+  youtube: "https://youtube.com/@sajjasudhakararao"
+  querytuner: "https://querytuner.com"
+
+# Collections / blog
+permalink: /blog/:year/:month/:day/:title/
 markdown: kramdown
 highlighter: rouge
 
 include:
   - _pages
+  - teaching-python/tests
+  - teaching-python/manifest.json
 
-# Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  # - jekyll-tagging    # uncomment when building via Actions
-  - jekyll-paginate-v2
+  - jekyll-redirect-from
 
-# Optional advanced config for v2
-pagination:
-  enabled: true
-  per_page: 12
-  title: ":title - page :num"
-  permalink: '/blog/:num/'
-  sort_field: 'date'
-  sort_reverse: true
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
 
 # Ensure posts output
 collections:
   posts:
     output: true
 
-# Search settings
+# Search settings (search.json is generated but no search UI currently wired up)
 search:
   json_path: /search.json
+
+exclude:
+  - README.md
+  - README-START-HERE.md
+  - BLOGGING-WORKFLOW.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - _pre-redesign-2026-07
+  - autoshiftops-site.zip

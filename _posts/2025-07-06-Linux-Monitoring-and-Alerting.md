@@ -2,8 +2,9 @@
 layout: post
 title: "📊 Linux Monitoring & Alerting: Command-Line Mastery for DevOps"
 date: 2025-07-06
+redirect_from: "/automation/linux/bash/2025/07/06/Linux-Monitoring-and-Alerting.html"
 categories: [Automation, Linux, Bash ]
-tags: [Automation, Scripting, Bash, Linux, AutoShiftOps]
+tags: [Automation, Scripting, Bash, Linux, Monitoring, Alerting, AutoShiftOps]
 description: "A comprehensive guide Linux Monitoring & Alerting."
 keywords: [shell scripting, bash scripting, devops, automation]
 ---

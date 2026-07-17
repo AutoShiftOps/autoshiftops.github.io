@@ -2,6 +2,7 @@
 layout: post
 title: "🔧 Incident Response Runbook Template for DevOps (Alert → Mitigation → Comms)"
 date: 2025-07-12
+redirect_from: "/automation/linux/bash/incident/2025/07/12/incident-response-runbook-template-devops.html"
 categories: [Automation, Linux, Bash, Incident]
 tags: [Automation, Scripting, Bash, Linux, Incident, AutoShiftOps]
 description: "A ready to use incident response runbook template with severity levels, comms cadence, and Linux triage commands to reduce MTTR."

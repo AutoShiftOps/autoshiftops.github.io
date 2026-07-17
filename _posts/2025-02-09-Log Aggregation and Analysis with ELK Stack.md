@@ -2,6 +2,7 @@
 layout: post
 title: "📚 Log Aggregation and Analysis with ELK Stack"
 date: 2025-02-09
+redirect_from: "/devops/monitoring/logging/2025/02/09/Log-Aggregation-and-Analysis-with-ELK-Stack.html"
 categories: [DevOps, Monitoring, Logging]
 tags: [ELK Stack, logging, DevOps, observability]
 description: "Learn how to implement centralized log aggregation and analysis using the ELK stack (Elasticsearch, Logstash, Kibana) to monitor and troubleshoot applications efficiently."

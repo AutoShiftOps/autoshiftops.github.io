@@ -2,6 +2,7 @@
 layout: post
 title: "📝 Log Aggregation & Analysis in DevOps"
 date: 2025-05-03
+redirect_from: "/devops/monitoring/logging/2025/05/03/Log-Aggregation-&-Analysis.html"
 categories: [DevOps, Monitoring, Logging]
 tags: [logging, log aggregation, DevOps, ELK, monitoring]
 description: "Implement log aggregation and analysis to centralize logs, detect anomalies, and improve troubleshooting in DevOps pipelines."

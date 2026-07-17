@@ -2,6 +2,7 @@
 layout: post
 title: "📊 Docker Monitoring Without a Platform: docker stats + cgroups (DevOps Field Guide)"
 date: 2025-07-13
+redirect_from: "/docker/linux/sre/observability/2025/07/13/docker-monitoring-without-a-platform-docker-stats-cgroups.html"
 categories: [Docker, Linux, SRE, Observability]
 tags: [Automation, SRE, Bash, Linux, Docker, AutoShiftOps]
 description: "Learn container monitoring from the terminal: docker stats, docker inspect, logs, and how cgroups/namespaces explain CPU/memory/I/O behavior."

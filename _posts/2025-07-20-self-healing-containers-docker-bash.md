@@ -2,6 +2,7 @@
 layout: post
 title: "🔧 Self-Healing Containers: Bash Script for Docker Auto-Recovery"
 date: 2025-07-20
+redirect_from: "/docker/linux/troubleshooting/2025/07/20/self-healing-containers-docker-bash.html"
 categories: [Docker, Linux, Troubleshooting]
 tags: [Docker, cgroups, namespaces, bash scripting, monitoring, self-healing]
 description: "Build a bash watchdog that monitors Docker container health, auto-restarts unhealthy ones, and integrates with systemd and cgroups for production reliability."

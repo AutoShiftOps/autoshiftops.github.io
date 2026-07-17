@@ -2,6 +2,7 @@
 layout: post
 title: "🔹 Blue-Green Deployment Strategies in Kubernetes"
 date: 2025-06-08
+redirect_from: "/devops/ci/cd/kubernetes/2025/06/08/Blue-Green-Deployment-Strategies-in-Kubernetes.html"
 categories: [DevOps, CI/CD, Kubernetes]
 tags: [blue-green deployment, Kubernetes, CI/CD, DevOps automation]
 description: "Learn how to implement Blue-Green deployment strategies in Kubernetes, with detailed workflows, architecture diagrams, automation scripts, and real-world use cases."
