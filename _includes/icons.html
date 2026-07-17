@@ -1,0 +1,30 @@
+<!--
+  Shared inline SVG icons, referenced via Liquid capture + case statement so
+  they can be reused in the sidebar social row and the "Where I Publish" cards
+  without duplicating markup. Usage:
+    {% include icons.html name="github" %}
+-->
+{% case include.name %}
+{% when "github" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.3 9.4 7.9 11 .6.1.8-.3.8-.6v-2.2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11 11 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6a11.5 11.5 0 0 0 7.9-11A11.5 11.5 0 0 0 12 .5Z"/></svg>
+{% when "linkedin" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM.5 8.98h8.9V23H.5V8.98ZM14.9 8.98H23v14.02h-8.1v-6.9c0-1.65-.03-3.77-2.3-3.77-2.3 0-2.66 1.8-2.66 3.65v7.02H1.85V8.98h8.02v1.92h.11c1.12-2.12 3.85-2.35 4.92-2.35Z"/></svg>
+{% when "youtube" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.5V8.5L15.8 12l-6.2 3.5Z"/></svg>
+{% when "devto" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.4 8.2h2.3c.6 0 1.1.05 1.5.16.4.1.75.29 1.03.55.28.26.48.6.6 1.02.13.42.19.94.19 1.57v.9c0 .63-.06 1.15-.19 1.57a2.1 2.1 0 0 1-.6 1.02c-.28.26-.63.45-1.03.56-.4.1-.9.16-1.5.16H4.4V8.2Zm1.9 1.55v4.5h.32c.34 0 .59-.08.75-.24.16-.16.25-.44.25-.85v-2.32c0-.4-.09-.68-.25-.84-.16-.16-.41-.25-.75-.25H6.3ZM11.2 8.2h4.35v1.55h-2.45v1.4h1.95v1.5h-1.95v1.6h2.5v1.55H11.2V8.2Zm7.28 0h1.98l-2.06 7.6h-1.86l-2.05-7.6h2.03l1 5.05 1-5.05Z"/></svg>
+{% when "medium" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5.5c0-.4.35-.7.75-.7h1.4c.32 0 .6.2.7.5l3.75 9.1 3.3-9.08a.75.75 0 0 1 .7-.52h4.15c.4 0 .75.3.75.7v13c0 .4-.35.7-.75.7h-1.15a.75.75 0 0 1-.75-.7V9.35l-3.55 9.3a.75.75 0 0 1-.7.55H8.9a.75.75 0 0 1-.7-.55L4.5 9.15v9.35c0 .4-.34.7-.74.7H2.75a.75.75 0 0 1-.75-.7v-13Z"/></svg>
+{% when "dzone" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 4h13.2v2.6H7.1l9.4 11.9v1.5H3v-2.6h9.4L3 5.5V4Zm14.6 0H21v3.4h-3.4V4Zm0 12.6H21V20h-3.4v-3.4Z"/></svg>
+{% when "patreon" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="15" cy="8.5" r="6.5"/><rect x="2.5" y="2" width="3" height="20"/></svg>
+{% when "substack" %}
+<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h18v3.6H3V3Zm0 5.6h18v3.6H3V8.6ZM3 21V14h18v.5L12 21l-9-6.5V21Z"/></svg>
+{% when "location" %}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.3-7-11.5A7 7 0 0 1 19 9.5C19 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+{% when "search" %}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.35-4.35" stroke-linecap="round"/></svg>
+{% when "arrow" %}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+{% endcase %}

@@ -9,6 +9,7 @@ baseurl: ""
 author:
   name: Sajja
   email: sajja.sudhakararao@gmail.com
+  location: "Mississauga, Ontario"
 
 # Social / external links
 social:
@@ -16,6 +17,11 @@ social:
   linkedin: "https://www.linkedin.com/in/sajjasudhakararao"
   youtube: "https://youtube.com/@sajjasudhakararao"
   querytuner: "https://querytuner.com"
+  devto: "https://dev.to/sajjasudhakararao"
+  medium: "https://medium.com/@sajjasudhakarrao"
+  dzone: "https://dzone.com/users/5524033/sajjasudhakararao.html"
+  patreon: "https://www.patreon.com/cw/Autoshiftops"
+  substack: "https://substack.com/@sajjas"
 
 # Collections / blog
 permalink: /blog/:year/:month/:day/:title/
