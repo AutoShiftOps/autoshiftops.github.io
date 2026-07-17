@@ -1,8 +1,7 @@
 <!--
-  Shared inline SVG icons, referenced via Liquid capture + case statement so
+  Shared inline SVG icons, referenced via an include with a "name" param so
   they can be reused in the sidebar social row and the "Where I Publish" cards
-  without duplicating markup. Usage:
-    {% include icons.html name="github" %}
+  without duplicating markup.
 -->
 {% case include.name %}
 {% when "github" %}
