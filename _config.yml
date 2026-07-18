@@ -28,6 +28,10 @@ social:
 github_repos_exclude:
   - abandoned-selves
   - sajja-command-center
+  - autoshiftops.github.io
+  - teaching-python
+  - resume
+  - genai-interface
 
 # Collections / blog
 permalink: /blog/:year/:month/:day/:title/
