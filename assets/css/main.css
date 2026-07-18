@@ -326,8 +326,7 @@ body.has-sidebar{ display:flex; align-items:flex-start; min-height:100vh; }
 .main-content section:first-of-type{ padding-top:40px; }
 
 /* ---------- Filter bar ---------- */
-.filterbar-section{ border-bottom:1px solid var(--border); position:sticky; top:0; z-index:20; background:var(--ink); }
-.filterbar{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding:20px 0; }
+.filterbar{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin:20px 0 24px; }
 .search-input{
   display:flex; align-items:center; gap:8px;
   background:var(--surface); border:1px solid var(--border); border-radius:8px;
@@ -430,7 +429,6 @@ body.has-sidebar{ display:flex; align-items:flex-start; min-height:100vh; }
   .sidebar.open .sidebar-socials{ display:flex; }
   .sidebar.open .sidebar-nav{ display:flex; }
   .main-scroll{ height:auto; overflow-y:visible; }
-  .filterbar-section{ position:static; }
 }
 @media (max-width:600px){
   .sidebar-photo{ width:88px; height:88px; }

@@ -3,25 +3,6 @@ layout: home
 title: Home
 ---
 
-<!-- SEARCH / FILTER BAR -->
-<section class="filterbar-section">
-  <div class="filterbar">
-    <div class="search-input">
-      {% include icons.html name="search" %}
-      <input type="text" id="articleSearch" placeholder="Search articles&hellip;" aria-label="Search articles">
-    </div>
-    <div class="filter-pills" id="pillBar">
-      <button class="filter-btn active" data-pillar="all">All</button>
-      <button class="filter-btn" data-pillar="devops">DevOps</button>
-      <button class="filter-btn" data-pillar="ai">AI</button>
-      <button class="filter-btn" data-pillar="kubernetes">Kubernetes</button>
-      <button class="filter-btn" data-pillar="cloud">Cloud</button>
-      <button class="filter-btn" data-pillar="incident-response">Incident Response</button>
-      <button class="filter-btn" data-pillar="sre">SRE</button>
-    </div>
-  </div>
-</section>
-
 <!-- FEATURED WORK -->
 <section>
   <div class="section-head">
@@ -50,6 +31,21 @@ title: Home
     <span class="label">Writing</span>
     <h2>Latest articles</h2>
     <p>60+ posts on autoshiftops.com &mdash; here are the five most recent.</p>
+  </div>
+  <div class="filterbar">
+    <div class="search-input">
+      {% include icons.html name="search" %}
+      <input type="text" id="articleSearch" placeholder="Search articles&hellip;" aria-label="Search articles">
+    </div>
+    <div class="filter-pills" id="pillBar">
+      <button class="filter-btn active" data-pillar="all">All</button>
+      <button class="filter-btn" data-pillar="devops">DevOps</button>
+      <button class="filter-btn" data-pillar="ai">AI</button>
+      <button class="filter-btn" data-pillar="kubernetes">Kubernetes</button>
+      <button class="filter-btn" data-pillar="cloud">Cloud</button>
+      <button class="filter-btn" data-pillar="incident-response">Incident Response</button>
+      <button class="filter-btn" data-pillar="sre">SRE</button>
+    </div>
   </div>
   <div class="article-scroll" id="articleScroll">
     {% for post in site.posts limit: 5 %}
