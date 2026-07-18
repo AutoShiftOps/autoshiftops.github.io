@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Posts from 2026 | AutoShiftOps</title>
+<meta name="description" content="Sajja — Application Architect with 13+ years across cloud infrastructure, DevOps, and AI-powered operations. Creator of QueryTuner.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="/assets/favicon/site.webmanifest">
+<link type="application/atom+xml" rel="alternate" href="https://autoshiftops.com/feed.xml" title="AutoShiftOps" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-R6YZN08XVK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-R6YZN08XVK');
+</script>
+</head>
+<body>
+  <nav class="site-nav">
+  <div class="wrap">
+    <a class="logo" href="/"><span class="dot"></span>autoshiftops</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.site-nav .links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="/" >Home</a>
+      <a href="/projects/" >Projects</a>
+      <a href="/blog/" >Blog</a>
+      <a href="/about/" >About</a>
+      <a href="/contact/" >Contact</a>
+    </div>
+  </div>
+</nav>
+
+  <div class="container archives-year">
+  <h1>Posts from 2026</h1>
+  
+  <div class="blog-grid">
+    
+    
+    
+    
+      <p class="no-posts">No posts found for 2026</p>
+    
+  </div>
+  
+  <div class="archives-nav">
+    <a href="/archives/">&larr; Back to Archives</a>
+  </div>
+</div>
+
+  <footer class="site-footer">
+  <div class="wrap">
+    <div class="brand">autoshiftops.com &mdash; built by Sajja</div>
+    <div class="links">
+      <a href="/about/">About</a>
+      <a href="/contact/">Contact</a>
+      <a href="https://github.com/AutoShiftOps" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://youtube.com/@sajjasudhakararao" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+
+  <!-- mermaid: render diagrams client-side with glow + white edges -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" defer></script>
+  <script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'base',
+          themeVariables: {
+            primaryColor: '#0b1220',       /* node fill */
+            primaryTextColor: '#ffffff',   /* node text */
+            primaryBorderColor: '#ffffff'  /* node border (if used) */
+          },
+          themeCSS: `
+            /* edge (line) color + width (white) */
+            .edgePath .path { stroke: #ffffff !important; stroke-width: 2.2px !important; opacity: 0.95 !important; }
+            .arrowheadPath { fill: #ffffff !important; }
+
+            /* node visual: dark fill with subtle inner border */
+            .node rect, .node ellipse, .node polygon {
+              fill: #0b1220 !important;
+              stroke: rgba(255,255,255,0.18) !important;
+              stroke-width: 1px !important;
+            }
+
+            /* labels */
+            .label, .edgeLabel tspan, .nodeLabel { fill: #ffffff !important; }
+
+            /* soft glow on nodes (CSS filter drop-shadow works for SVG elements) */
+            .node rect, .node ellipse, .node polygon {
+              filter: drop-shadow(0 8px 18px rgba(16, 185, 129, 0.12)) drop-shadow(0 2px 6px rgba(14,165,233,0.06));
+            }
+
+            /* stronger outer glow for emphasis (optional) */
+            .node .label { text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
+
+            /* make link text clearer on hover */
+            .edgePath .path:hover { stroke-width: 3px !important; opacity: 1 !important; }
+          `
+        });
+      } catch (e) {
+        console.error('mermaid init error', e);
+      }
+    });
+  </script>
+
+  <!-- === Animated Lightbox Script === -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const lightbox = document.createElement("div");
+      lightbox.classList.add("lightbox");
+      const img = document.createElement("img");
+      lightbox.appendChild(img);
+      document.body.appendChild(lightbox);
+
+      document.querySelectorAll(".post-content img, .prose img").forEach(image => {
+        image.addEventListener("click", () => {
+          img.src = image.src;
+          lightbox.classList.add("visible");
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("visible");
+      });
+    });
+  </script>
+</body>
+</html>
