@@ -378,6 +378,15 @@ body.has-sidebar{ display:flex; align-items:flex-start; min-height:100vh; }
 .cert-card h4{ font-family:var(--font-display); font-size:14px; line-height:1.3; }
 .cert-issuer{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); }
 
+/* ---------- GitHub repositories (horizontal scroll) ---------- */
+/* Reuses .card/.card-top/.repo-link styling (see Card grid section); .repo-card
+   just turns it into a fixed-width, non-shrinking item inside a scroll row. */
+.repo-scroll{
+  display:flex; gap:16px; overflow-x:auto; padding-bottom:8px;
+  scroll-snap-type:x proximity;
+}
+.repo-card{ scroll-snap-align:start; flex:0 0 240px; }
+
 /* ---------- Where I Publish ---------- */
 .publish-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; }
 .publish-card{
