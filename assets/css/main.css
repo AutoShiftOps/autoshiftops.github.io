@@ -218,6 +218,15 @@ section{ padding:64px 0; border-bottom:1px solid var(--border); }
 .post-row .post-date{ font-family:var(--font-mono); font-size:12px; color:var(--text-dim); white-space:nowrap; }
 .post-row.hidden{ display:none; }
 
+.contact-note{ margin-top:14px; color:var(--text-dim); font-size:14px; }
+
+/* ---------- About intro ---------- */
+.about-intro{ display:flex; align-items:center; gap:24px; flex-wrap:wrap; }
+.about-photo{
+  width:96px; height:96px; border-radius:50%; object-fit:cover; flex-shrink:0;
+  border:3px solid var(--signal); box-shadow:0 0 0 5px var(--signal-dim);
+}
+
 /* ---------- Prose (posts, about, contact) ---------- */
 .prose{ max-width:70ch; }
 .prose h2{ font-family:var(--font-display); font-size:22px; margin:32px 0 12px; }
