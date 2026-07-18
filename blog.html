@@ -14,23 +14,30 @@ description: DevOps, cloud, and AI tooling notes from Sajja.
 
 <section>
   <div class="wrap">
-    <div class="filter-bar">
-      <button class="filter-btn active" data-pillar="all">All</button>
-      <button class="filter-btn" data-pillar="ai-devops">AI &amp; DevOps Tooling</button>
-      <button class="filter-btn" data-pillar="cloud-k8s">Cloud &amp; Kubernetes</button>
-      <button class="filter-btn" data-pillar="incident-sre">Incident Response &amp; SRE</button>
-      <button class="filter-btn" data-pillar="career-mba">Career &amp; MBA Insights</button>
+    <div class="filterbar">
+      <div class="search-input">
+        {% include icons.html name="search" %}
+        <input type="text" id="postSearch" placeholder="Search posts&hellip;" aria-label="Search posts">
+      </div>
+      <div class="filter-pills" id="pillBar">
+        <button class="filter-btn active" data-pillar="all">All</button>
+        <button class="filter-btn" data-pillar="ai-devops">AI &amp; DevOps Tooling</button>
+        <button class="filter-btn" data-pillar="cloud-k8s">Cloud &amp; Kubernetes</button>
+        <button class="filter-btn" data-pillar="incident-sre">Incident Response &amp; SRE</button>
+        <button class="filter-btn" data-pillar="career-mba">Career &amp; MBA Insights</button>
+      </div>
     </div>
 
     <div class="post-list" id="post-list">
       {% for post in site.posts %}
       {% assign all_tags = post.categories | concat: post.tags | join: "," | downcase %}
-      <a class="post-row" href="{{ post.url | relative_url }}" data-tags="{{ all_tags }}">
+      <a class="post-row" href="{{ post.url | relative_url }}" data-tags="{{ all_tags }}" data-title="{{ post.title | downcase }}">
         <span class="post-title">{{ post.title }}</span>
         <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
       </a>
       {% endfor %}
     </div>
+    <p class="no-results" id="noResults" hidden>No posts match that search.</p>
   </div>
 </section>
 
@@ -43,21 +50,39 @@ description: DevOps, cloud, and AI tooling notes from Sajja.
     'career-mba': ['career','mba','product']
   };
 
-  function applyFilter(pillar){
+  var activePillar = 'all';
+  var searchBox = document.getElementById('postSearch');
+  var noResults = document.getElementById('noResults');
+
+  function applyFilter(){
+    var query = (searchBox.value || '').trim().toLowerCase();
+    var visibleCount = 0;
+
     document.querySelectorAll('.post-row').forEach(function(row){
-      if(pillar === 'all'){ row.classList.remove('hidden'); return; }
       var tags = row.getAttribute('data-tags') || '';
-      var keywords = pillarKeywords[pillar] || [];
-      var match = keywords.some(function(k){ return tags.indexOf(k) !== -1; });
-      row.classList.toggle('hidden', !match);
+      var title = row.getAttribute('data-title') || '';
+
+      var matchesPillar = activePillar === 'all' || (pillarKeywords[activePillar] || []).some(function(k){
+        return tags.indexOf(k) !== -1;
+      });
+      var matchesSearch = !query || title.indexOf(query) !== -1 || tags.indexOf(query) !== -1;
+
+      var visible = matchesPillar && matchesSearch;
+      row.classList.toggle('hidden', !visible);
+      if (visible) visibleCount++;
     });
+
+    if (noResults) noResults.hidden = visibleCount !== 0;
   }
+
+  if (searchBox) searchBox.addEventListener('input', applyFilter);
 
   document.querySelectorAll('.filter-btn').forEach(function(btn){
     btn.addEventListener('click', function(){
       document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
       btn.classList.add('active');
-      applyFilter(btn.getAttribute('data-pillar'));
+      activePillar = btn.getAttribute('data-pillar');
+      applyFilter();
     });
   });
 
@@ -68,6 +93,7 @@ description: DevOps, cloud, and AI tooling notes from Sajja.
     document.querySelectorAll('.filter-btn').forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-pillar') === initial);
     });
-    applyFilter(initial);
+    activePillar = initial;
+    applyFilter();
   }
 </script>

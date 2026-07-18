@@ -84,6 +84,17 @@ function initRepoFeed() {
   var grid = document.getElementById("repoGrid");
   if (!grid) return;
   var org = grid.getAttribute("data-org");
+  var excludeList = (grid.getAttribute("data-exclude") || "")
+    .split(",")
+    .map(function (s) { return s.trim(); })
+    .filter(Boolean);
+
+  function excludeHidden(repos) {
+    if (!excludeList.length) return repos;
+    return repos.filter(function (repo) {
+      return excludeList.indexOf(repo.name.toLowerCase()) === -1;
+    });
+  }
 
   // Kept in sync with the org's actual public repos so a rate-limited visitor
   // (GitHub's unauthenticated API caps at 60 req/hour per IP) still sees a
@@ -104,7 +115,7 @@ function initRepoFeed() {
 
   var cached = readRepoCache();
   if (cached) {
-    renderRepos(grid, cached);
+    renderRepos(grid, excludeHidden(cached));
     return;
   }
 
@@ -116,10 +127,10 @@ function initRepoFeed() {
     .then(function (repos) {
       if (!Array.isArray(repos) || !repos.length) throw new Error("empty repo list");
       writeRepoCache(repos);
-      renderRepos(grid, repos);
+      renderRepos(grid, excludeHidden(repos));
     })
     .catch(function () {
-      renderRepos(grid, fallbackRepos);
+      renderRepos(grid, excludeHidden(fallbackRepos));
     });
 }
 

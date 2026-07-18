@@ -23,6 +23,12 @@ social:
   patreon: "https://www.patreon.com/cw/Autoshiftops"
   substack: "https://sajjas.substack.com/"
 
+# Repos to hide from the live-fetched "GitHub Repositories" homepage section.
+# Names are case-insensitive and must match the GitHub repo name exactly.
+github_repos_exclude:
+  - abandoned-selves
+  - sajja-command-center
+
 # Collections / blog
 permalink: /blog/:year/:month/:day/:title/
 markdown: kramdown
