@@ -145,7 +145,9 @@ section{ padding:64px 0; border-bottom:1px solid var(--border); }
 .tag-flagship{
   font-family:var(--font-mono); font-size:11px; color:var(--accent-blue);
   border:1px solid var(--accent-blue); padding:3px 9px; border-radius:20px; letter-spacing:.05em;
+  display:inline-flex; align-items:center; gap:6px;
 }
+.tag-icon{ width:14px; height:14px; border-radius:4px; display:block; }
 .flagship h3{ font-family:var(--font-display); font-size:24px; margin-bottom:10px; }
 .flagship p{ color:var(--text-dim); font-size:15px; max-width:60ch; margin-bottom:20px; }
 .dialects{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
