@@ -2,7 +2,7 @@
 layout: page
 title: Contact
 permalink: /contact/
-description: Get in touch with Sajja.
+description: Get in touch with Sudhakar Sajja.
 ---
 <header class="page-hero">
   <div class="wrap">

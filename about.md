@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-description: Sajja — Application Architect, 13+ years in cloud infrastructure and DevOps, building AI-powered developer tools.
+description: Sudhakar Sajja — Application Architect, 13+ years in cloud infrastructure and DevOps, building AI-powered developer tools.
 ---
 <header class="page-hero">
   <div class="wrap">
@@ -14,7 +14,7 @@ description: Sajja — Application Architect, 13+ years in cloud infrastructure 
 <section>
   <div class="wrap">
     <div class="about-intro">
-      <img class="about-photo" src="{{ '/assets/images/professional.png' | relative_url }}" alt="Photo of Sajja">
+      <img class="about-photo" src="{{ '/assets/images/professional.png' | relative_url }}" alt="Photo of Sudhakar Sajja">
       <div class="cred">
         <span><b>TechMahindra</b> — Application Architect</span>
         <span><b>IEEE</b> — Member</span>
@@ -27,7 +27,7 @@ description: Sajja — Application Architect, 13+ years in cloud infrastructure 
 
 <section>
   <div class="wrap prose">
-    <p>I'm Sajja, an Application Architect at TechMahindra with 13+ years across DevOps, cloud infrastructure (AWS, GCP, Azure), and — more recently — AI-powered operations tooling.</p>
+    <p>I'm Sudhakar Sajja, an Application Architect at TechMahindra with 13+ years across DevOps, cloud infrastructure (AWS, GCP, Azure), and — more recently — AI-powered operations tooling.</p>
 
     <p>Most of that time has been spent on the operational side of software: CI/CD pipelines, incident response, observability, and the unglamorous work of keeping production systems running. QueryTuner and the other tools on this site come directly out of that — problems I hit repeatedly at work, built into something reusable.</p>
 

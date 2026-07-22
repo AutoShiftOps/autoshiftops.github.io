@@ -1,6 +1,6 @@
 # autoshiftops.com
 
-Source for [autoshiftops.com](https://autoshiftops.com) — Sajja's personal site: DevOps/AI-tooling writing, QueryTuner and other open-source projects, certifications, and contact info. Built with Jekyll, deployed via GitHub Actions to GitHub Pages.
+Source for [autoshiftops.com](https://autoshiftops.com) — Sudhakar Sajja's personal site: DevOps/AI-tooling writing, QueryTuner and other open-source projects, certifications, and contact info. Built with Jekyll, deployed via GitHub Actions to GitHub Pages.
 
 ## Stack
 

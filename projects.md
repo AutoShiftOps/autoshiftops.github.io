@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: QueryTuner and the supporting tools Sajja is building for AI-powered DevOps.
+description: QueryTuner and the supporting tools Sudhakar Sajja is building for AI-powered DevOps.
 ---
 <header class="page-hero">
   <div class="wrap">
