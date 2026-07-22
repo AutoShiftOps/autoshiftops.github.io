@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: About
 permalink: /about/
 description: Sajja — Application Architect, 13+ years in cloud infrastructure and DevOps, building AI-powered developer tools.

@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Projects
 permalink: /projects/
 description: QueryTuner and the supporting tools Sajja is building for AI-powered DevOps.
