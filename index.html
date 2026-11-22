@@ -8,8 +8,7 @@ title: Home
   <span class="label">Credentials</span>
   <div class="cred-chips">
     <a class="cred-chip" href="https://www.credly.com/badges/f756784c-e756-44c1-85ce-c423f07a27b3" target="_blank" rel="noopener"><img src="{{ '/assets/images/certs/gcp-professional-cloud-architect.png' | relative_url }}" alt="" loading="lazy"><span>Professional Cloud Architect</span></a>
-    <!-- PMLE: add badge image at assets/images/certs/gcp-professional-ml-engineer.png and Credly href -->
-    <a class="cred-chip" href="https://www.linkedin.com/in/sajjasudhakararao" target="_blank" rel="noopener"><span class="cred-mono">ML</span><span>Professional ML Engineer</span></a>
+    <a class="cred-chip" href="https://www.credly.com/badges/49cc5a2f-7c2b-4706-b8fe-c5a2614c9f97/public_url" target="_blank" rel="noopener"><img src="https://images.credly.com/images/05e71e7e-92a1-4821-8530-4176b2e3c4b4/linkedin_thumb_image.png" alt="" loading="lazy"><span>Professional ML Engineer</span></a>
     <a class="cred-chip" href="https://cp.certmetrics.com/amazon/en/public/verify/credential/cf91a180c36147f99bfd056919e572ac" target="_blank" rel="noopener"><img src="{{ '/assets/images/certs/aws-solutions-architect-associate.png' | relative_url }}" alt="" loading="lazy"><span>AWS Solutions Architect</span></a>
     <a class="cred-chip" href="https://www.credly.com/badges/b28162fe-b141-45c6-a54f-1ee2db7d7a01" target="_blank" rel="noopener"><img src="{{ '/assets/images/certs/gcp-associate-cloud-engineer.png' | relative_url }}" alt="" loading="lazy"><span>Associate Cloud Engineer</span></a>
     <a class="cred-chip" href="https://www.credly.com/badges/151124da-1473-435f-97cf-29e686fa5dc7" target="_blank" rel="noopener"><img src="{{ '/assets/images/certs/gcp-generative-ai-leader.png' | relative_url }}" alt="" loading="lazy"><span>Generative AI Leader</span></a>
@@ -42,20 +41,36 @@ title: Home
 <section>
   <div class="section-head">
     <span class="label">Live</span>
-    <h2>Live Products</h2>
+    <h2>Live products</h2>
+    <p>Shipped and running &mdash; each with its own home under autoshiftops.com.</p>
   </div>
-  <div class="flagship">
-    <div class="flagship-top">
-      <h3>SPXray</h3>
-      <span class="tag-flagship"><img src="{{ '/assets/images/logos/spxray-mark.svg' | relative_url }}" alt="" class="tag-icon"> live product</span>
+  <div class="grid">
+    <div class="card">
+      <div class="card-top"><img src="{{ '/assets/images/logos/spxray-mark.svg' | relative_url }}" alt="" class="tag-icon"><span class="lang">live</span></div>
+      <h4>SPXray</h4>
+      <p>Stored-procedure analyzer for database migrations &mdash; no DB connection needed. T-SQL, PostgreSQL, MySQL, Oracle. <em>Formerly SP Migration Companion.</em></p>
+      <a class="repo-link" href="https://spxray.querytuner.com" target="_blank" rel="noopener">spxray.querytuner.com &rarr;</a>
+      <a class="repo-link" href="{{ site.social.github_org }}/spxray" target="_blank" rel="noopener">View source &rarr;</a>
     </div>
-    <p><em>Previously called SP Migration Companion.</em> A stored procedure analyzer for database migrations &mdash; no DB connection required. Upload .sql files, get physical table/schema/column extraction, with optional AI migration-risk insights powered by HuggingFace Qwen2.5-Coder.</p>
-    <div class="dialects">
-      <span>T-SQL</span><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span>
+    <div class="card">
+      <div class="card-top"><span class="dot"></span><span class="lang">live</span></div>
+      <h4>firstsignal</h4>
+      <p>Read-only incident triage for logs &mdash; finds the first signal, not just the loudest. Works with systemd, Docker and Kubernetes; no account needed. <em>Formerly incopilot.</em></p>
+      <a class="repo-link" href="https://firstsignal.autoshiftops.com" target="_blank" rel="noopener">firstsignal.autoshiftops.com &rarr;</a>
+      <a class="repo-link" href="{{ site.social.github_org }}/firstsignal" target="_blank" rel="noopener">View source &rarr;</a>
     </div>
-    <div class="flagship-links">
-      <a href="https://spxray.vercel.app" target="_blank" rel="noopener">Try it live &rarr;</a>
-      <a href="https://github.com/AutoShiftOps/spxray" target="_blank" rel="noopener">View source &rarr;</a>
+    <div class="card">
+      <div class="card-top"><span class="dot"></span><span class="lang">live</span></div>
+      <h4>QuizOps</h4>
+      <p>Open-source quiz engine for technical certifications and content-linked knowledge checks.</p>
+      <a class="repo-link" href="https://quiz.autoshiftops.com" target="_blank" rel="noopener">quiz.autoshiftops.com &rarr;</a>
+      <a class="repo-link" href="{{ site.social.github_org }}/quizops" target="_blank" rel="noopener">View source &rarr;</a>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="dot"></span><span class="lang">open source</span></div>
+      <h4>alertdecider</h4>
+      <p>Alert decision layer that normalizes noisy signals and emits decisions with reasons &mdash; not just more alerts.</p>
+      <a class="repo-link" href="{{ site.social.github_org }}/alertdecider" target="_blank" rel="noopener">View source &rarr;</a>
     </div>
   </div>
 </section>
@@ -103,29 +118,6 @@ title: Home
   <p class="no-results" id="noResults" hidden>No articles match that search.</p>
 </section>
 
-<!-- OPEN SOURCE PROJECTS -->
-<section>
-  <div class="section-head">
-    <span class="label">Open source</span>
-    <h2>Tools I build &amp; maintain</h2>
-    <p>Incident response, alert fatigue and database tooling &mdash; all at <a href="{{ site.social.github_org }}" target="_blank" rel="noopener">github.com/AutoShiftOps</a>.</p>
-  </div>
-  <div class="grid">
-    <div class="card">
-      <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>
-      <h4>firstsignal</h4>
-      <p>An incident-triage CLI agent that automates the first 15 minutes of a production incident &mdash; the part that is usually pure improvisation. <em>(formerly incopilot)</em></p>
-      <a class="repo-link" href="{{ site.social.github_org }}/firstsignal" target="_blank" rel="noopener">github.com/AutoShiftOps/firstsignal &rarr;</a>
-    </div>
-    <div class="card">
-      <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>
-      <h4>alertdecider</h4>
-      <p>An alert decision layer that normalizes noisy signals, applies an opinionated rule engine, and emits decisions with reasons &mdash; not just more alerts.</p>
-      <a class="repo-link" href="{{ site.social.github_org }}/alertdecider" target="_blank" rel="noopener">github.com/AutoShiftOps/alertdecider &rarr;</a>
-    </div>
-  </div>
-</section>
-
 <!-- IN THE LAB -->
 <section>
   <div class="section-head">
@@ -134,8 +126,8 @@ title: Home
     <p>Work in progress &mdash; not released yet.</p>
   </div>
   <div class="grid">
-    <div class="card card-lab"><div class="card-top"><span class="dot"></span><span class="lang">in progress</span></div><h4>Groundly</h4><p>Grounding and verification for LLM answers, so AI output is traceable to its sources.</p></div>
-    <div class="card card-lab"><div class="card-top"><span class="dot"></span><span class="lang">in progress</span></div><h4>AuditHub</h4><p>Centralized audit trail and evidence tracking for engineering and compliance workflows.</p></div>
+    <div class="card card-lab"><div class="card-top"><span class="dot"></span><span class="lang">in progress</span></div><h4>Groundly</h4><p>AI business analysis platform &mdash; a grounded RAG pipeline with live web retrieval, turning questions into structured, source-backed reports.</p></div>
+    <div class="card card-lab"><div class="card-top"><span class="dot"></span><span class="lang">in progress</span></div><h4>AuditHub</h4><p>GitHub repository health checker &mdash; audits repos for the hygiene signals that make open-source projects trustworthy.</p></div>
   </div>
 </section>
 

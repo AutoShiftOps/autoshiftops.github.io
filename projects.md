@@ -47,7 +47,7 @@ description: QueryTuner and the supporting tools Sudhakar Sajja is building for 
         <span>T-SQL</span><span>PostgreSQL</span><span>MySQL</span><span>Oracle</span>
       </div>
       <div class="flagship-links">
-        <a href="https://spxray.vercel.app" target="_blank" rel="noopener">Try it live &rarr;</a>
+        <a href="https://spxray.querytuner.com" target="_blank" rel="noopener">Try it live &rarr;</a>
         <a href="https://github.com/AutoShiftOps/spxray" target="_blank" rel="noopener">View source &rarr;</a>
       </div>
     </div>
