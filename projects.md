@@ -25,7 +25,7 @@ description: QueryTuner and the supporting tools Sudhakar Sajja is building for 
       </div>
       <div class="flagship-links">
         <a href="{{ site.social.querytuner }}" target="_blank" rel="noopener">Try it live &rarr;</a>
-        <a href="{{ site.social.github_org }}/sql-query-analyzer" target="_blank" rel="noopener">View source &rarr;</a>
+        <a href="{{ site.social.github_org }}/querytuner" target="_blank" rel="noopener">View source &rarr;</a>
       </div>
     </div>
   </div>
@@ -63,9 +63,9 @@ description: QueryTuner and the supporting tools Sudhakar Sajja is building for 
     <div class="grid">
       <div class="card">
         <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>
-        <h4>incopilot</h4>
+        <h4>firstsignal</h4>
         <p>A practical incident-triage CLI agent that automates the first 15 minutes of a production incident — pulling context, checking recent deploys, and surfacing likely causes before a human even opens a dashboard.</p>
-        <a class="repo-link" href="{{ site.social.github_org }}/incopilot" target="_blank" rel="noopener">github.com/AutoShiftOps/incopilot &rarr;</a>
+        <a class="repo-link" href="{{ site.social.github_org }}/firstsignal" target="_blank" rel="noopener">github.com/AutoShiftOps/firstsignal &rarr;</a>
       </div>
       <div class="card">
         <div class="card-top"><span class="dot"></span><span class="lang">Python</span></div>

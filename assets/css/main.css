@@ -454,3 +454,12 @@ body.has-sidebar{ display:flex; align-items:flex-start; min-height:100vh; }
   .main-content{ padding:0 20px; }
   .article-card{ flex-basis:220px; }
 }
+
+/* ---------- Credentials strip & lab cards ---------- */
+.cred-strip{ margin-bottom:40px; }
+.cred-chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+.cred-chip{ display:inline-flex; align-items:center; gap:10px; padding:8px 14px 8px 10px; background:var(--surface); border:1px solid var(--border); border-radius:999px; font-size:13px; font-weight:500; transition:border-color .15s, transform .15s; }
+.cred-chip:hover{ border-color:var(--signal-dim); transform:translateY(-1px); }
+.cred-chip img{ width:28px; height:28px; object-fit:contain; }
+.cred-mono{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:var(--surface-2); color:var(--signal); font-family:var(--font-mono); font-size:11px; font-weight:600; }
+.card-lab{ border-style:dashed; opacity:.9; }
