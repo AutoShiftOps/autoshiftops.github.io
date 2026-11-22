@@ -463,3 +463,27 @@ body.has-sidebar{ display:flex; align-items:flex-start; min-height:100vh; }
 .cred-chip img{ width:28px; height:28px; object-fit:contain; }
 .cred-mono{ width:28px; height:28px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:var(--surface-2); color:var(--signal); font-family:var(--font-mono); font-size:11px; font-weight:600; }
 .card-lab{ border-style:dashed; opacity:.9; }
+
+.cred-chip img.cred-img-pad{ transform:scale(1.75); }
+
+/* Card action buttons */
+.card{ display:flex; flex-direction:column; }
+.card-actions{ display:flex; gap:10px; margin-top:auto; padding-top:18px; }
+.btn-live,.btn-ghost{ font-family:var(--font-body); font-size:13px; font-weight:600; padding:8px 16px; border-radius:8px; border:1px solid var(--border); transition:border-color .15s, background .15s; }
+.btn-live{ background:var(--signal-dim); color:var(--text); border-color:var(--signal-dim); }
+.btn-live:hover{ border-color:var(--signal); }
+.btn-ghost{ color:var(--text-dim); }
+.btn-ghost:hover{ color:var(--text); border-color:var(--text-dim); }
+
+/* ---------- Tighter vertical rhythm ---------- */
+.main-content section{ padding:32px 0; }
+.main-content section:first-of-type{ padding-top:24px; }
+.section-head{ margin-bottom:20px; }
+.section-head h2{ font-size:24px; }
+.main-content .cred-strip{ padding:16px 0 20px; margin-bottom:0; }
+.cred-strip .section-head, .cred-strip .label{ margin-bottom:0; }
+.cred-chips{ gap:8px; margin-top:8px; }
+.cred-chip{ padding:5px 12px 5px 8px; font-size:12.5px; gap:8px; }
+.cred-chip img{ width:24px; height:24px; }
+.cred-mono{ width:24px; height:24px; }
+.flagship{ padding:28px; }
